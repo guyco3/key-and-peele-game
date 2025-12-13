@@ -1,0 +1,20 @@
+{
+  "name": "key-and-peele-game-monorepo",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend",
+    "shared"
+  ],
+  "scripts": {
+    "dev:backend": "yarn workspace key-and-peele-game-backend dev",
+    "dev:frontend": "yarn workspace key-and-peele-game-frontend dev",
+    "dev": "concurrently \"yarn dev:backend\" \"yarn dev:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "winston": "^3.19.0"
+  }
+}

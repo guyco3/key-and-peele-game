@@ -1,0 +1,23 @@
+[
+  {
+    "id": "substitute-teacher",
+    "name": "Substitute Teacher",
+    "youtubeId": "Dd7FixvoKBw",
+    "description": "A substitute teacher mispronounces students' names",
+    "tags": ["classroom", "popular"]
+  },
+  {
+    "id": "east-west-bowl",
+    "name": "East/West College Bowl",
+    "youtubeId": "gODZzSOelss",
+    "description": "College football players introduce themselves with outrageous names",
+    "tags": ["sports", "popular"]
+  },
+  {
+    "id": "text-message-confusion",
+    "name": "Text Message Confusion",
+    "youtubeId": "naleynXS7yo",
+    "description": "A misinterpreted text message leads to confusion",
+    "tags": ["technology", "misunderstanding"]
+  }
+]
