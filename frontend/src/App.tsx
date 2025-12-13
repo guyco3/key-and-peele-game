@@ -7,21 +7,21 @@ const socket = io("http://localhost:4000");
 export default function App() {
   const [roomId, setRoomId] = useState("");
   const [name, setName] = useState("");
-  const [players, setPlayers] = useState({});
+  const [players, setPlayers] = useState<Record<string, { name: string; score: number }>>({});
   const [status, setStatus] = useState("landing");
   const [round, setRound] = useState(0);
-  const [video, setVideo] = useState(null);
+  const [video, setVideo] = useState<{ url: string; startTime: number; endTime: number; name: string } | null>(null);
   const [guess, setGuess] = useState("");
   const [filteredSketches, setFilteredSketches] = useState(sketches);
-  const [scores, setScores] = useState({});
-  const [maxWrong, setMaxWrong] = useState(3);
+  const [scores, setScores] = useState<Record<string, { name: string; score: number }>>({});
   
   // Volume state and ref for iframe
   const [volume, setVolume] = useState(100); // 0-100
   const [isMuted, setIsMuted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0); // relative time within the segment (0 to duration)
-  const iframeRef = useRef(null);
+  const [maxWrong, setMaxWrong] = useState(3);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   // Update volume on iframe when changed
   useEffect(() => {
@@ -64,7 +64,7 @@ export default function App() {
   }, [isPlaying, video]);
 
   // Send playback control commands to iframe
-  const sendCommand = (func, args = []) => {
+  const sendCommand = (func: string, args: any[] = []) => {
     if (iframeRef.current) {
       iframeRef.current.contentWindow?.postMessage(
         JSON.stringify({ event: 'command', func, args }),
@@ -78,7 +78,7 @@ export default function App() {
     setIsPlaying(!isPlaying);
   };
 
-  const seekTo = (relativeTime) => {
+  const seekTo = (relativeTime: number) => {
     if (video) {
       const absoluteTime = video.startTime + relativeTime;
       sendCommand('seekTo', [absoluteTime, true]);
@@ -86,12 +86,12 @@ export default function App() {
     }
   };
 
-  const handleSeekChange = (e) => {
+  const handleSeekChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTime = Number(e.target.value);
     seekTo(newTime);
   };
 
-  const handleGuessChange = (value) => {
+  const handleGuessChange = (value: string) => {
     setGuess(value);
     if (value.trim().length > 0) {
       const filtered = sketches.filter(s => 
@@ -103,7 +103,7 @@ export default function App() {
     }
   };
 
-  const selectSketch = (sketchName) => {
+  const selectSketch = (sketchName: string) => {
     setGuess(sketchName);
   };
 
@@ -131,7 +131,7 @@ export default function App() {
       setStatus("round_end");
     });
 
-    socket.on("game_over", ({ leaderboard }) => {
+    socket.on("game_over", () => {
       setStatus("game_over");
     });
   }, []);

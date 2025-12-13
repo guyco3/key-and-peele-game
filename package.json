@@ -7,9 +7,9 @@
     "shared"
   ],
   "scripts": {
-    "dev:backend": "yarn workspace key-and-peele-game-backend dev",
-    "dev:frontend": "yarn workspace key-and-peele-game-frontend dev",
-    "dev": "concurrently \"yarn dev:backend\" \"yarn dev:frontend\""
+    "dev:backend": "npm run dev -w backend",
+    "dev:frontend": "npm run dev -w frontend",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\""
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
