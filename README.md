@@ -6,24 +6,24 @@ This monorepo contains the full-stack implementation for the real-time YouTube a
 
 - `backend/` – Node.js + Socket.IO server
 - `frontend/` – React SPA client
-- `shared/` – Shared TypeScript types
+- `shared/` – Shared TypeScript types and data
 
 ## Getting Started
 
 1. **Install dependencies:**
-	```sh
-	yarn install
-	```
+    ```sh
+    npm install
+    ```
 2. **Run in development:**
-	```sh
-	yarn dev
-	```
-	This starts both backend and frontend in watch mode.
+    ```sh
+    npm run dev
+    ```
+    This starts both backend and frontend in watch mode.
 
 3. **Build frontend for production:**
-	```sh
-	cd frontend && yarn build
-	```
+    ```sh
+    cd frontend && npm run build
+    ```
 
 ## Project Spec
 See below for the full design and event specification.
