@@ -130,13 +130,10 @@ This monorepo contains the full-stack implementation for the real-time YouTube a
 - NGINX for static files & reverse proxy
 - Node.js for game logic
 - Redis for persistent state
-- PM2 for process management
 
 **Future Scaling Options:**
 - Multiple Node.js instances
-- Managed Redis service
 - Load balancer
-- CDN for static assets
 
 ### 🔐 Security Boundaries
 
