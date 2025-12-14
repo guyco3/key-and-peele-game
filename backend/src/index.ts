@@ -66,7 +66,6 @@ io.on("connection", (socket) => {
       status: "lobby",
       rules: {
         rounds: rules.rounds || 3,
-        maxWrongGuessesPerRound: rules.maxWrongGuessesPerRound || 3,
         segmentStartTime: rules.segmentStartTime || 0,
         segmentEndTime: rules.segmentEndTime || 10,
       },
@@ -78,7 +77,7 @@ io.on("connection", (socket) => {
     };
 
     // Add host as first player
-    rooms[roomId].players[socket.id] = { name, score: 0, wrongGuessesThisRound: 0, clientId };
+    rooms[roomId].players[socket.id] = { name, score: 0, clientId };
 
     socket.join(roomId);
     socket.emit("room_created", {
@@ -128,7 +127,7 @@ io.on("connection", (socket) => {
       }
     } else {
       // New player
-      room.players[socket.id] = { name, score: 0, wrongGuessesThisRound: 0, clientId };
+      room.players[socket.id] = { name, score: 0, clientId };
     }
     
     socket.join(roomId);
@@ -179,8 +178,6 @@ io.on("connection", (socket) => {
     const player = room.players[socket.id];
     if (!player) return;
 
-    if (player.wrongGuessesThisRound >= room.rules.maxWrongGuessesPerRound) return;
-
     if (!room.currentSketch || !room.currentVideo) return;
     const correctName = room.currentSketch.name;
     if (guess.trim().toLowerCase() === correctName.toLowerCase()) {
@@ -188,8 +185,6 @@ io.on("connection", (socket) => {
       const timeDiff = Date.now() - room.roundStartTime;
       player.score += Math.max(1, Math.round(10000 / timeDiff)); // simple scoring example
       // Don't end the round automatically - let host end it
-    } else {
-      player.wrongGuessesThisRound += 1;
     }
 
     io.to(roomId).emit("player_list", { players: room.players });
@@ -314,15 +309,9 @@ function startRound(roomId: string) {
   room.currentVideo = video;
   room.roundStartTime = Date.now();
 
-  // Reset wrong guesses
-  for (const playerId in room.players) {
-    room.players[playerId].wrongGuessesThisRound = 0;
-  }
-
   io.to(roomId).emit("round_start", {
     roundNumber: room.currentRound,
     video,
-    maxWrongGuesses: room.rules.maxWrongGuessesPerRound,
   });
   io.to(roomId).emit("player_list", { players: room.players });
 }

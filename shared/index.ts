@@ -3,11 +3,10 @@
 // Game status constants
 export type GameStatus = 'landing' | 'lobby' | 'round' | 'round_end' | 'game_over';
 
-// Player interface (backend uses all fields, frontend may not need wrongGuessesThisRound)
+// Player interface
 export interface Player {
   name: string;
   score: number;
-  wrongGuessesThisRound: number;
   clientId: string;
 }
 
@@ -30,7 +29,6 @@ export interface Sketch {
 // Game rules
 export interface GameRules {
   rounds: number;
-  maxWrongGuessesPerRound: number;
   segmentStartTime: number;
   segmentEndTime: number;
 }
