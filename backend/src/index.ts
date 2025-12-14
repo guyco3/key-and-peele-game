@@ -110,6 +110,11 @@ io.on("connection", (socket) => {
 
     room.players[socket.id] = { name, score: 0, wrongGuessesThisRound: 0 };
     socket.join(roomId);
+    
+    // Send the room status to the joining player
+    socket.emit("room_joined", { roomId: room.roomId, status: room.status, hostId: room.hostId });
+    
+    // Notify all players in the room about updated player list
     io.to(roomId).emit("player_list", { players: room.players });
   });
 
@@ -227,6 +232,6 @@ function startRound(roomId: string) {
 }
 
 // --- Start Server ---
-server.listen(PORT, () => {
+server.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });

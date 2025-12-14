@@ -9,6 +9,8 @@ export default function App() {
   const [name, setName] = useState("");
   const [players, setPlayers] = useState<Record<string, { name: string; score: number }>>({});
   const [status, setStatus] = useState("landing");
+  const [hostId, setHostId] = useState("");
+  const [numRounds, setNumRounds] = useState(3);
   const [round, setRound] = useState(0);
   const [video, setVideo] = useState<{ url: string; startTime: number; endTime: number; name: string } | null>(null);
   const [guess, setGuess] = useState("");
@@ -20,8 +22,10 @@ export default function App() {
   const [isMuted, setIsMuted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0); // relative time within the segment (0 to duration)
-  const [maxWrong, setMaxWrong] = useState(3);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  // Add state for visual feedback
+  const [guessFeedback, setGuessFeedback] = useState<string | null>(null);
 
   // Update volume on iframe when changed
   useEffect(() => {
@@ -112,16 +116,22 @@ export default function App() {
     socket.on("room_created", (room) => {
       setRoomId(room.roomId);
       setStatus(room.status);
+      setHostId(room.hostId);
+    });
+
+    socket.on("room_joined", ({ roomId, status, hostId }) => {
+      setRoomId(roomId);
+      setStatus(status);
+      setHostId(hostId);
     });
 
     socket.on("player_list", ({ players }) => {
       setPlayers(players);
     });
 
-    socket.on("round_start", ({ roundNumber, video, maxWrongGuesses }) => {
+    socket.on("round_start", ({ roundNumber, video }) => {
       setRound(roundNumber);
       setVideo(video);
-      setMaxWrong(maxWrongGuesses);
       setStatus("round");
     });
 
@@ -140,7 +150,7 @@ export default function App() {
   const createRoom = () => {
     socket.emit("create_room", {
       name,
-      rules: { rounds: 3, maxWrongGuessesPerRound: 3 },
+      rules: { rounds: numRounds },
     });
   };
 
@@ -154,7 +164,11 @@ export default function App() {
 
   const submitGuess = () => {
     socket.emit("submit_guess", { roomId, guess });
+    setGuessFeedback(guess); // Set feedback to the submitted guess
     setGuess("");
+
+    // Clear feedback after 2 seconds
+    setTimeout(() => setGuessFeedback(null), 2000);
   };
 
   const endRound = () => {
@@ -169,10 +183,45 @@ export default function App() {
   if (status === "landing")
     return (
       <div>
-        <input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-        <button onClick={createRoom}>Create Room</button>
-        <input placeholder="Room ID" value={roomId} onChange={(e) => setRoomId(e.target.value)} />
-        <button onClick={joinRoom}>Join Room</button>
+        <h2>Welcome to Key & Peele Game</h2>
+        <div style={{ marginBottom: 20 }}>
+          <h3>Create Room</h3>
+          <input 
+            placeholder="Your Name" 
+            value={name} 
+            onChange={(e) => setName(e.target.value)} 
+            style={{ marginRight: 8, padding: '8px' }}
+          />
+          <div style={{ marginTop: 8 }}>
+            <label style={{ marginRight: 8 }}>Number of Rounds:</label>
+            <input 
+              type="number" 
+              min="1" 
+              max="25" 
+              value={numRounds} 
+              onChange={(e) => setNumRounds(Math.min(25, Math.max(1, Number(e.target.value))))} 
+              style={{ width: 60, padding: '8px' }}
+            />
+            <span style={{ marginLeft: 8, fontSize: 12, color: '#666' }}>(1-25 rounds)</span>
+          </div>
+          <button onClick={createRoom} style={{ marginTop: 8, padding: '8px 16px' }}>Create Room</button>
+        </div>
+        <div style={{ marginTop: 20, paddingTop: 20, borderTop: '1px solid #ccc' }}>
+          <h3>Join Room</h3>
+          <input 
+            placeholder="Your Name" 
+            value={name} 
+            onChange={(e) => setName(e.target.value)} 
+            style={{ marginRight: 8, padding: '8px' }}
+          />
+          <input 
+            placeholder="Room ID" 
+            value={roomId} 
+            onChange={(e) => setRoomId(e.target.value)} 
+            style={{ marginRight: 8, padding: '8px' }}
+          />
+          <button onClick={joinRoom} style={{ padding: '8px 16px' }}>Join Room</button>
+        </div>
       </div>
     );
 
@@ -182,7 +231,11 @@ export default function App() {
         <h2>Lobby (Room: {roomId})</h2>
         <h3>Players:</h3>
         <ul>{Object.values(players).map((p) => <li key={p.name}>{p.name}</li>)}</ul>
-        <button onClick={startGame}>Start Game</button>
+        {socket.id === hostId ? (
+          <button onClick={startGame}>Start Game</button>
+        ) : (
+          <p style={{ fontStyle: 'italic', color: '#666' }}>Waiting for host to start...</p>
+        )}
       </div>
     );
 
@@ -197,7 +250,9 @@ export default function App() {
           <ul style={{ margin: '0 0 10px 0' }}>
             {Object.entries(players).map(([id, p]) => <li key={id}>{p.name}: {p.score}</li>)}
           </ul>
-          <button onClick={endRound}>End Round (Host)</button>
+          {socket.id === hostId && (
+            <button onClick={endRound}>End Round (Host)</button>
+          )}
         </div>
         
         <div>
@@ -274,6 +329,11 @@ export default function App() {
           )}
         </div>
         
+        {/* Feedback for submitted guess */}
+        <div style={{ marginTop: 16, color: "green", fontWeight: "bold" }}>
+          {guessFeedback && `Submitted guess: ${guessFeedback}`}
+        </div>
+
         {/* Guess Input with Autocomplete */}
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 16 }}>
           <div style={{ position: 'relative', flex: 1 }}>
@@ -365,7 +425,9 @@ export default function App() {
         )}
         <h3>Scores:</h3>
         <ul>{Object.entries(scores).map(([id, p]) => <li key={id}>{p.name}: {p.score}</li>)}</ul>
-        <button onClick={nextRound}>Next Round</button>
+        {socket.id === hostId && (
+          <button onClick={nextRound}>Next Round</button>
+        )}
       </div>
     );
 
