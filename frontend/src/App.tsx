@@ -19,7 +19,7 @@ function GameRouter() {
     if (game.status === "landing") {
       navigate("/");
     } else if (game.roomId) {
-      const expectedPath = `/room/${game.roomId}/${game.status.replace("_", "-")}`;
+      const expectedPath = `/${game.roomId}/${game.status.replace("_", "-")}`;
       const currentPath = window.location.pathname;
       
       if (currentPath !== expectedPath) {
@@ -31,10 +31,10 @@ function GameRouter() {
   return (
     <Routes>
       <Route path="/" element={<LandingScreen />} />
-      <Route path="/room/:roomId/lobby" element={<LobbyScreen />} />
-      <Route path="/room/:roomId/round" element={<RoundScreen />} />
-      <Route path="/room/:roomId/round-end" element={<RoundEndScreen />} />
-      <Route path="/room/:roomId/game-over" element={<GameOverScreen />} />
+      <Route path="/:roomId/lobby" element={<LobbyScreen />} />
+      <Route path="/:roomId/round" element={<RoundScreen />} />
+      <Route path="/:roomId/round-end" element={<RoundEndScreen />} />
+      <Route path="/:roomId/game-over" element={<GameOverScreen />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

@@ -256,6 +256,11 @@ io.on("connection", (socket) => {
       const room = rooms[roomId];
       if (room.players[socket.id]) {
         delete room.players[socket.id];
+        if (Object.keys(room.players).length === 0) {
+          delete rooms[roomId];
+          logger.info(`Room ${roomId} deleted due to all players leaving`);
+          return;
+        }
         io.to(roomId).emit("player_list", { players: room.players });
         if (socket.id === room.hostId && Object.keys(room.players).length > 0) {
           // assign new host
