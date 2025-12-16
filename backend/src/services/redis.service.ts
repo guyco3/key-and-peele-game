@@ -1,6 +1,6 @@
 import { createClient } from "redis";
 import { v4 as uuid } from "uuid";
-import type { GameRules, Player, Guess, GameStatus } from "../../../shared";
+import type { GameRules, Player, Guess, GameStatus } from "@shared";
 
 let client: ReturnType<typeof createClient>;
 
@@ -30,6 +30,7 @@ export async function createGame(hostClientId: string, hostName: string, rules: 
     round: 0,
     hostClientId,
     createdAt: Date.now().toString(),
+    rules: JSON.stringify(rules),
   });
 
   await client.hSet(`game:${gameId}:players`, {
@@ -55,9 +56,30 @@ export async function getGameIdBySocket(socketId: string) {
   return client.get(`socket:${socketId}:game`);
 }
 
+export async function getGameIdByPin(pin: string) {
+  return client.get(`pin:${pin}`);
+}
+
 /* ---------- timers (stateless) ---------- */
-export async function startTimer(gameId: string, type: "round" | "round_end", durationSec: number) {
-  const endsAt = Date.now() + durationSec * 1000;
+export async function startTimer(gameId: string, type: "round" | "round_end", durationSec?: number) {
+  // Get game rules to determine timer durations
+  const meta = await getMeta(gameId);
+  if (!meta.rules) throw new Error("Game rules not found");
+  
+  const rules: GameRules = JSON.parse(meta.rules);
+  let finalDuration: number;
+
+  if (durationSec !== undefined) {
+    finalDuration = durationSec;
+  } else if (type === "round") {
+    finalDuration = rules.roundLength;
+  } else if (type === "round_end") {
+    finalDuration = rules.autoProgress ? rules.roundEndLength : GAME_TTL; // If no autoProgress, set to game TTL
+  } else {
+    finalDuration = ROUND_END_TTL;
+  }
+
+  const endsAt = Date.now() + finalDuration * 1000;
 
   await client.hSet(`game:${gameId}:timer`, { type, endsAt: endsAt.toString() });
   await client.zAdd("zset:timers", { score: endsAt, value: `${gameId}:${type}` });
@@ -77,6 +99,16 @@ export async function getMeta(gameId: string) {
   return client.hGetAll(`game:${gameId}:meta`);
 }
 
+export async function getRules(gameId: string): Promise<GameRules | null> {
+  const meta = await getMeta(gameId);
+  if (!meta.rules) return null;
+  try {
+    return JSON.parse(meta.rules);
+  } catch {
+    return null;
+  }
+}
+
 export async function setStatus(gameId: string, status: GameStatus) {
   await client.hSet(`game:${gameId}:meta`, { status });
 }
@@ -93,7 +125,9 @@ export async function getPlayers(gameId: string): Promise<Record<string, Player>
   for (const [playerId, value] of Object.entries(data)) {
     try {
       players[playerId] = JSON.parse(value);
-    } catch {}
+    } catch {
+      continue;
+    }
   }
 
   return players;
