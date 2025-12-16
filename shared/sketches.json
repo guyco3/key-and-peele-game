@@ -19,5 +19,124 @@
     "youtubeId": "naleynXS7yo",
     "description": "A misinterpreted text message leads to confusion",
     "tags": ["technology", "misunderstanding"]
+  },
+  {
+    "id": "continental-breakfast",
+    "name": "Continental Breakfast",
+    "youtubeId": "st21dIMaGMs",
+    "description": "Two guys get way too excited about continental breakfast",
+    "tags": ["food", "popular"]
+  },
+  {
+    "id": "inner-city-wizard",
+    "name": "Inner City Wizard School",
+    "youtubeId": "j-2ZxldMO-M",
+    "description": "A wizard school in the inner city with its own unique challenges",
+    "tags": ["magic", "classroom"]
+  },
+  {
+    "id": "auction-block",
+    "name": "Auction Block",
+    "youtubeId": "zB7MichlL1k",
+    "description": "A slave auction with an unexpected twist",
+    "tags": ["historical", "dark"]
+  },
+  {
+    "id": "obama-meet-and-greet",
+    "name": "Obama Meet and Greet",
+    "youtubeId": "nopWOC4SRm4",
+    "description": "Obama's anger translator Luther helps at a meet and greet",
+    "tags": ["politics", "popular", "luther"]
+  },
+  {
+    "id": "text-message-confusion-2",
+    "name": "Text Message Confusion Part 2",
+    "youtubeId": "w4sA3tmDX1g",
+    "description": "The sequel to the text message confusion saga",
+    "tags": ["technology", "misunderstanding"]
+  },
+  {
+    "id": "turbulence",
+    "name": "Turbulence",
+    "youtubeId": "kH6QJzmLYtw",
+    "description": "A plane experiences turbulence with hilarious passenger reactions",
+    "tags": ["airplane", "popular"]
+  },
+  {
+    "id": "pizza-order",
+    "name": "Pizza Order",
+    "youtubeId": "fcbj8BBsWSA",
+    "description": "A simple pizza order becomes complicated",
+    "tags": ["food", "phone"]
+  },
+  {
+    "id": "mc-mom",
+    "name": "MC Mom",
+    "youtubeId": "9nBbJQWDE4k",
+    "description": "A mom unexpectedly drops bars at an open mic night",
+    "tags": ["music", "family"]
+  },
+  {
+    "id": "alien-imposters",
+    "name": "Alien Imposters",
+    "youtubeId": "5fK95AdPe4A",
+    "description": "Aliens try to blend in as humans with questionable success",
+    "tags": ["aliens", "popular"]
+  },
+  {
+    "id": "dueling-hats",
+    "name": "Dueling Hats",
+    "youtubeId": "i5ZM0-f5_CU",
+    "description": "Two Southern gentlemen settle a dispute with increasingly fancy hats",
+    "tags": ["fashion", "competition"]
+  },
+  {
+    "id": "i-said-bitch",
+    "name": "I Said Bitch",
+    "youtubeId": "5LGEiIL1__s",
+    "description": "A man tells his friend about calling his wife a certain word",
+    "tags": ["relationship", "popular"]
+  },
+  {
+    "id": "office-homophobe",
+    "name": "Office Homophobe",
+    "youtubeId": "e3h6es6zh1c",
+    "description": "A gay man confronts his homophobic coworker",
+    "tags": ["office", "social"]
+  },
+  {
+    "id": "prepared-for-terries",
+    "name": "Prepared for Terries",
+    "youtubeId": "eiWIOKKuyGE",
+    "description": "Two passengers are ready to defend against airplane terrorists",
+    "tags": ["airplane", "action"]
+  },
+  {
+    "id": "laron-cant-laugh",
+    "name": "Laron Can't Laugh",
+    "youtubeId": "PEfZG9OSytA",
+    "description": "A man with a condition that prevents him from laughing",
+    "tags": ["medical", "comedy"]
+  },
+  {
+    "id": "slap-ass",
+    "name": "Slap-Ass",
+    "youtubeId": "9Mlp_Gcc_5Q",
+    "description": "A baseball player takes the locker room slap-ass tradition too far",
+    "tags": ["sports", "popular"]
+  },
+  {
+    "id": "vampire-job-interview",
+    "name": "Vampire Job Interview",
+    "youtubeId": "Lct6x-XqWrw",
+    "description": "A vampire struggles through a normal job interview",
+    "tags": ["vampire", "work"]
+  },
+  {
+    "id": "soul-food",
+    "name": "Soul Food",
+    "youtubeId": "3zDHSLDY0Q8",
+    "description": "A restaurant serves soul food with literal soul",
+    "tags": ["food", "supernatural"]
   }
 ]

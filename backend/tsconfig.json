@@ -6,10 +6,22 @@
     "strict": true,
     "skipLibCheck": true,
     "outDir": "./dist",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "../../shared": ["../shared/index.ts"]
+      "../../shared": ["../shared/index.ts"],
+      "../../shared/*": ["../shared/*"],
+      "../../../shared": ["../../shared/index.ts"]
     }
   },
-  "include": ["src/**/*", "../shared/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "ts-node": {
+    "transpileOnly": true,
+    "files": true,
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
 }

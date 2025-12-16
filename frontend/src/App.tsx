@@ -18,23 +18,23 @@ function GameRouter() {
   useEffect(() => {
     if (game.status === "landing") {
       navigate("/");
-    } else if (game.roomId) {
-      const expectedPath = `/${game.roomId}/${game.status.replace("_", "-")}`;
+    } else if (game.gameId) {
+      const expectedPath = `/${game.gameId}/${game.status.replace("_", "-")}`;
       const currentPath = window.location.pathname;
       
       if (currentPath !== expectedPath) {
         navigate(expectedPath);
       }
     }
-  }, [game.status, game.roomId, navigate]);
+  }, [game.status, game.gameId, navigate]);
 
   return (
     <Routes>
       <Route path="/" element={<LandingScreen />} />
-      <Route path="/:roomId/lobby" element={<LobbyScreen />} />
-      <Route path="/:roomId/round" element={<RoundScreen />} />
-      <Route path="/:roomId/round-end" element={<RoundEndScreen />} />
-      <Route path="/:roomId/game-over" element={<GameOverScreen />} />
+      <Route path="/:gameId/lobby" element={<LobbyScreen />} />
+      <Route path="/:gameId/round" element={<RoundScreen />} />
+      <Route path="/:gameId/round-end" element={<RoundEndScreen />} />
+      <Route path="/:gameId/game-over" element={<GameOverScreen />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
