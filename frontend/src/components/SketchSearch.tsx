@@ -6,21 +6,14 @@ export const SketchSearch: React.FC = () => {
   const { socket, clientId, gameState, roomCode } = useGame();
   const [query, setQuery] = useState('');
 
-  // Helper to strip extra spaces and lower case
   const normalize = (str: string) => str.trim().toLowerCase().replace(/\s+/g, ' ');
 
   const filteredSketches = useMemo(() => {
     const search = normalize(query);
-    
-    // If no search, show everything (alphabetical)
     if (!search) {
       return [...SKETCHES].sort((a, b) => a.name.localeCompare(b.name));
     }
-
-    // Filter based on normalized names
-    return SKETCHES.filter(s => 
-      normalize(s.name).includes(search)
-    );
+    return SKETCHES.filter(s => normalize(s.name).includes(search));
   }, [query]);
 
   const handleGuess = (name: string) => {
@@ -41,13 +34,21 @@ export const SketchSearch: React.FC = () => {
       <input 
         value={query} 
         onChange={e => setQuery(e.target.value)} 
-        placeholder="Type to filter sketches..." 
+        placeholder="Type to search sketches..." 
         autoFocus
       />
       <ul className="suggestions-list">
         {filteredSketches.map(s => (
-          <li key={s.id} onClick={() => handleGuess(s.name)}>
-            {s.name}
+          <li key={s.id} onClick={() => handleGuess(s.name)} className="sketch-item">
+            <div className="sketch-info">
+              <strong className="sketch-name">{s.name}</strong>
+              <p className="sketch-desc">{s.description}</p>
+              <div className="sketch-tags">
+                {s.tags.map(tag => (
+                  <span key={tag} className="tag">#{tag}</span>
+                ))}
+              </div>
+            </div>
           </li>
         ))}
         {filteredSketches.length === 0 && (

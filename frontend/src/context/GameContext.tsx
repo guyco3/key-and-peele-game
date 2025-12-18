@@ -21,8 +21,10 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [roomCode, setRoomCode] = useState<string | null>(localStorage.getItem('kp_room_code'));
   const [serverOffset, setServerOffset] = useState(0);
   const socketRef = useRef<Socket | null>(null);
+  
+  // 🛡️ The Guard: Prevents re-identification during the unmounting/leaving process
+  const leavingRef = useRef(false);
 
-  // Initialize or Retrieve Persistent Client ID
   const [clientId] = useState(() => {
     const saved = localStorage.getItem('kp_client_id');
     if (saved) return saved;
@@ -32,12 +34,13 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
 
   useEffect(() => {
-    // Connect to Backend
     const socket = io('http://localhost:3001');
     socketRef.current = socket;
 
     socket.on('connect', () => {
-      // Auto-reconnect logic: If we have session data, resume immediately
+      // 🛡️ Only auto-reconnect if we aren't intentionally trying to leave
+      if (leavingRef.current) return;
+
       const savedName = localStorage.getItem('kp_username');
       const savedRoom = localStorage.getItem('kp_room_code');
       if (savedName && savedRoom) {
@@ -45,13 +48,14 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
     });
 
-    // Handle Time Sync
     socket.on('init_sync', ({ serverTime }: { serverTime: number }) => {
       setServerOffset(serverTime - Date.now());
     });
 
-    // Handle State Updates
     socket.on('game_update', (state: GameState) => {
+      // 🛡️ Ignore incoming updates if we are in the process of leaving
+      if (leavingRef.current) return;
+
       setGameState(state);
       if (state.roomCode) {
          setRoomCode(state.roomCode);
@@ -59,7 +63,6 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
     });
 
-    // Handle Errors (e.g., room expired or closed)
     socket.on('error', (msg: string) => {
         if (msg === 'Game not found' || msg === 'Host closed the room') {
             handleCleanState();
@@ -70,20 +73,15 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return () => { socket.disconnect(); };
   }, [clientId]);
 
-  /**
-   * Internal Helper to wipe local session
-   */
   const handleCleanState = () => {
     localStorage.removeItem('kp_room_code');
     setGameState(null);
     setRoomCode(null);
   };
 
-  /**
-   * Action: Create a new room
-   */
   const createRoom = async (hostName: string, config: any) => {
     try {
+      leavingRef.current = false; // Reset guard in case they previously left
       const res = await fetch('http://localhost:3001/create-room', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -97,10 +95,8 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  /**
-   * Action: Identify as a player in a room
-   */
   const identify = (name: string, code: string) => {
+    leavingRef.current = false; // Reset guard
     const upperCode = code.toUpperCase();
     setRoomCode(upperCode);
     localStorage.setItem('kp_username', name);
@@ -108,14 +104,22 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     socketRef.current?.emit('identify', { clientId, name, roomCode: upperCode });
   };
 
-  /**
-   * Action: Intentional Leave
-   */
   const leaveGame = () => {
+    // 1. Instantly flip the guard to ignore any incoming 'game_update' messages
+    leavingRef.current = true;
+
+    // 2. Notify server
     if (socketRef.current && roomCode) {
       socketRef.current.emit('leave_game', { clientId, roomCode });
     }
+    
+    // 3. Wipe local state and storage
     handleCleanState();
+
+    // 4. (Optional) Small delay to ensure all re-renders finish before allowing new joins
+    setTimeout(() => {
+        leavingRef.current = false;
+    }, 500);
   };
 
   return (
