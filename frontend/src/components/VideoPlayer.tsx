@@ -1,58 +1,73 @@
-import React, { useRef, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
-import type { Video } from "../../../shared";
+import React, { useRef, useEffect } from 'react';
+import YouTube, { YouTubeProps } from 'react-youtube';
+import { useGame } from '../context/GameContext';
 
-interface VideoPlayerProps {
-  video: Video;
-  autoplay?: boolean;
-}
+export const VideoPlayer: React.FC = () => {
+  const { gameState } = useGame();
+  const playerRef = useRef<any>(null);
 
-export default function VideoPlayer({ video, autoplay = true }: VideoPlayerProps) {
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const phase = gameState?.phase;
+  const youtubeId = gameState?.currentSketch?.youtubeId;
+  const clipLength = gameState?.config?.clipLength || 5;
 
+  // HINT LOOP: During PLAYING phase, loop the start of the video
   useEffect(() => {
-    // Reset iframe when video changes
-    if (iframeRef.current) {
-      const iframe = iframeRef.current;
-      iframe.src = iframe.src; // Force reload
+    let interval: NodeJS.Timeout;
+
+    if (phase === 'ROUND_PLAYING' && playerRef.current && youtubeId) {
+      interval = setInterval(() => {
+        const currentTime = playerRef.current.getCurrentTime();
+        if (currentTime >= clipLength) {
+          playerRef.current.seekTo(0, true);
+        }
+      }, 500);
     }
-  }, [video.url]);
+
+    return () => clearInterval(interval);
+  }, [phase, clipLength, youtubeId]);
+
+  // Handle phase transitions (Auto-unmute on reveal)
+  useEffect(() => {
+    if (phase === 'ROUND_REVEAL' && playerRef.current) {
+      playerRef.current.unMute();
+      playerRef.current.setVolume(50);
+    }
+  }, [phase]);
+
+  const onReady: YouTubeProps['onReady'] = (event) => {
+    playerRef.current = event.target;
+    playerRef.current.playVideo();
+    // Most browsers block autoplay unless the video starts muted
+    if (phase === 'ROUND_PLAYING') {
+      playerRef.current.mute();
+    }
+  };
+
+  if (!youtubeId) return <div className="video-placeholder">Waiting for sketch...</div>;
+
+  const opts: YouTubeProps['opts'] = {
+    height: '100%',
+    width: '100%',
+    playerVars: {
+      autoplay: 1,
+      controls: phase === 'ROUND_REVEAL' ? 1 : 0, // Hide controls during play
+      modestbranding: 1,
+      rel: 0,
+      disablekb: 1, // Prevent keyboard shortcuts like 'f' for fullscreen
+    },
+  };
 
   return (
-    <Box sx={{ width: '100%', maxWidth: 640, mx: 'auto' }}>
-      <Typography variant="h6" gutterBottom textAlign="center" fontWeight={600}>
-        Watch the Clip!
-      </Typography>
-      <Box
-        sx={{
-          position: 'relative',
-          paddingBottom: '56.25%', // 16:9 aspect ratio
-          height: 0,
-          overflow: 'hidden',
-          borderRadius: 2,
-          boxShadow: 3,
-        }}
-      >
-        <iframe
-          ref={iframeRef}
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-          }}
-          src={`${video.url}?start=${video.startTime}&end=${video.endTime}&autoplay=${autoplay ? 1 : 0}&controls=1&enablejsapi=1`}
-          allow="autoplay; encrypted-media"
-          allowFullScreen
-          frameBorder="0"
-          title="YouTube video player"
-        />
-      </Box>
-      <Typography variant="body2" textAlign="center" color="text.secondary" mt={1}>
-        {video.name}
-      </Typography>
-    </Box>
+    <div className={`video-wrapper ${phase === 'ROUND_PLAYING' ? 'blurred' : 'clear'}`}>
+      <YouTube 
+        videoId={youtubeId} 
+        opts={opts} 
+        onReady={onReady} 
+        className="youtube-embed"
+      />
+      {phase === 'ROUND_PLAYING' && (
+        <div className="anti-cheat-overlay" />
+      )}
+    </div>
   );
-}
-
+};
