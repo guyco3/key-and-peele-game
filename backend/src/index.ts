@@ -5,10 +5,12 @@ import { Server } from 'socket.io';
 import { v4 as uuidv4 } from 'uuid';
 import { GameInstance } from './game';
 import logger from './logger';
+import { Player } from '../../shared';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
 const httpServer = createServer(app);
 const io = new Server(httpServer, { cors: { origin: "*" } });
 
@@ -16,6 +18,23 @@ const games = new Map<string, GameInstance>();
 const roomCodeToId = new Map<string, string>();
 const clientIdToSocketId = new Map<string, string>();
 const clientIdToGameId = new Map<string, string>();
+
+/**
+ * HELPER: Full Cleanup
+ * Prevents memory leaks by clearing all associated player mappings.
+ */
+const fullyDeleteGame = (gameId: string, roomCode: string) => {
+  const game = games.get(gameId);
+  if (game) {
+    Object.keys(game.state.players).forEach(cId => {
+      clientIdToGameId.delete(cId);
+      clientIdToSocketId.delete(cId);
+    });
+    game.destroy();
+  }
+  games.delete(gameId);
+  roomCodeToId.delete(roomCode);
+};
 
 app.post('/create-room', (req, res) => {
   const { config, hostName, hostClientId } = req.body;
@@ -26,7 +45,14 @@ app.post('/create-room', (req, res) => {
     roomCode = Math.random().toString(36).substring(2, 6).toUpperCase();
   } while (roomCodeToId.has(roomCode));
 
-  const host = { clientId: hostClientId, name: hostName, score: 0, connected: true, hasGuessed: false };
+  const host: Player = { 
+    clientId: hostClientId, 
+    name: hostName, 
+    score: 0, 
+    connected: true, 
+    hasGuessed: false 
+  };
+
   const game = new GameInstance(gameId, roomCode, config, host, (state) => {
     io.to(gameId).emit('game_update', state);
   });
@@ -34,41 +60,43 @@ app.post('/create-room', (req, res) => {
   games.set(gameId, game);
   roomCodeToId.set(roomCode, gameId);
   
-  logger.info(`Game Created: ${roomCode}`, { gameId, hostId: hostClientId });
+  logger.info(`[Room Created] Code: ${roomCode} | Host: ${hostName}`);
   res.json({ gameId, roomCode });
 });
 
 io.on('connection', (socket) => {
+
   socket.on('identify', ({ clientId, name, roomCode }) => {
     const gameId = roomCodeToId.get(roomCode);
     const game = games.get(gameId || '');
     
     if (!game) {
-      logger.warn(`Identify Failed: Room ${roomCode} not found`, { socketId: socket.id });
       return socket.emit('error', 'Game not found');
     }
 
+    // Update session mappings
     clientIdToSocketId.set(clientId, socket.id);
     clientIdToGameId.set(clientId, gameId!);
     socket.join(gameId!);
 
     if (game.state.players[clientId]) {
       game.setConnectionStatus(clientId, true);
-      logger.info(`Player Reconnected: ${name}`, { roomCode, clientId });
+      logger.info(`[Reconnected] ${name} to ${roomCode}`);
     } else {
       game.addPlayer({ clientId, name, score: 0, connected: true, hasGuessed: false });
-      logger.info(`Player Joined: ${name}`, { roomCode, clientId });
+      logger.info(`[Joined] ${name} to ${roomCode}`);
     }
     
     socket.emit('init_sync', { serverTime: Date.now() });
     socket.emit('game_update', game.state);
   });
 
-  socket.on('start_game', ({ roomCode }) => {
+  socket.on('start_game', ({ roomCode, clientId }) => {
     const gameId = roomCodeToId.get(roomCode);
     const game = games.get(gameId || '');
-    if (game) {
-      logger.info(`Game Started: ${roomCode}`);
+    
+    // Only the host can start the game
+    if (game && game.state.hostId === clientId) {
       game.start();
     }
   });
@@ -77,26 +105,25 @@ io.on('connection', (socket) => {
     const gameId = roomCodeToId.get(roomCode);
     const game = games.get(gameId || '');
     if (game) {
-      logger.debug(`Guess Submitted`, { clientId, roomCode, guess });
       game.submitGuess(clientId, guess);
     }
   });
 
   socket.on('leave_game', ({ clientId, roomCode }) => {
     const gameId = roomCodeToId.get(roomCode);
-    const game = games.get(gameId || '');
+    if (!gameId) return;
+
+    const game = games.get(gameId);
     if (!game) return;
 
     if (game.state.hostId === clientId && game.state.phase === "LOBBY") {
-      logger.info(`Host Closed Room: ${roomCode}`, { clientId });
-      io.to(gameId!).emit('error', 'Host closed the room');
-      game.destroy();
-      games.delete(gameId!);
-      roomCodeToId.delete(roomCode);
+      io.to(gameId).emit('error', 'Host closed the room');
+      fullyDeleteGame(gameId, roomCode);
     } else {
-      logger.info(`Player Left: ${clientId}`, { roomCode });
       game.removePlayer(clientId);
-      socket.leave(gameId!);
+      clientIdToGameId.delete(clientId);
+      clientIdToSocketId.delete(clientId);
+      socket.leave(gameId);
     }
   });
 
@@ -115,31 +142,21 @@ io.on('connection', (socket) => {
 
       if (game) {
         game.setConnectionStatus(dClientId, false);
-        logger.info(`Socket Disconnected`, { clientId: dClientId, roomCode: game.roomCode });
-
-        if (game.state.hostId === dClientId && game.state.phase === "LOBBY") {
-          logger.info(`Lobby Host Disconnected - Closing Room`, { roomCode: game.roomCode });
-          io.to(gId!).emit('error', 'Host disconnected from lobby');
-          game.destroy();
-          games.delete(gId!);
-          roomCodeToId.delete(game.roomCode);
-        }
       }
+      // Note: We keep clientIdToGameId so they can reconnect!
       clientIdToSocketId.delete(dClientId);
     }
   });
 });
 
-// GC: Cleanup abandoned games every 5 mins
+// GC: Cleanup abandoned games (everyone offline for 10 mins)
 setInterval(() => {
   const now = Date.now();
   games.forEach((game, id) => {
     const allOffline = Object.values(game.state.players).every(p => !p.connected);
     if (allOffline && (now - game.lastActivityAt > 1000 * 60 * 10)) {
-      logger.info(`Garbage Collection: Removing Game ${game.roomCode}`, { gameId: id });
-      game.destroy();
-      roomCodeToId.delete(game.roomCode);
-      games.delete(id);
+      logger.info(`[GC] Removing abandoned game: ${game.roomCode}`);
+      fullyDeleteGame(id, game.roomCode);
     }
   });
 }, 1000 * 60 * 5);

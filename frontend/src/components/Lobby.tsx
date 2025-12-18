@@ -2,7 +2,7 @@ import React from 'react';
 import { useGame } from '../context/GameContext';
 
 export const Lobby: React.FC = () => {
-  const { gameState, socket, clientId, roomCode } = useGame();
+  const { gameState, socket, clientId, roomCode, leaveGame } = useGame();
 
   if (!gameState) return null;
 
@@ -10,7 +10,7 @@ export const Lobby: React.FC = () => {
   const isHost = gameState.hostId === clientId;
 
   const handleStart = () => {
-    socket?.emit('start_game', { roomCode });
+    socket?.emit('start_game', { roomCode, clientId });
   };
 
   return (
@@ -19,6 +19,10 @@ export const Lobby: React.FC = () => {
         <h2>Room Code: <span className="highlight">{roomCode}</span></h2>
         <p>Waiting for players to join...</p>
       </header>
+
+      <button className="leave-btn" onClick={leaveGame}>
+        Quit Room
+    </button>
 
       <div className="player-grid">
         {players.map(p => (

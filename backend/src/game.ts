@@ -6,23 +6,25 @@ export class GameInstance {
   public lastActivityAt: number = Date.now();
   private timerRef: NodeJS.Timeout | null = null;
 
-  constructor(
-    public id: string,
-    public roomCode: string,
-    private config: GameConfig,
-    host: Player,
-    private onUpdate: (state: GameState) => void
-  ) {
-    this.state = {
-      phase: "LOBBY",
-      hostId: host.clientId,
-      currentRound: 0,
-      endsAt: 0,
-      players: { [host.clientId]: host },
-      guessFeed: [],
-    };
-    logger.info(`[Game ${this.roomCode}] Instance created. Host: ${host.name} (${host.clientId})`);
-  }
+    constructor(
+        public id: string,
+        public roomCode: string,
+        private config: GameConfig,
+        host: Player,
+        private onUpdate: (state: GameState) => void
+    ) {
+        this.state = {
+        phase: "LOBBY",
+        hostId: host.clientId,
+        roomCode: this.roomCode,       
+        currentRound: 0,
+        endsAt: 0,
+        players: { [host.clientId]: host },
+        guessFeed: [],
+        config: this.config,        
+        };
+        logger.info(`[Game ${this.roomCode}] Instance created.`);
+    }
 
   public start() {
     if (this.state.phase !== "LOBBY") {

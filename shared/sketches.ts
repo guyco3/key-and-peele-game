@@ -1,4 +1,6 @@
-[
+import { Sketch } from "."
+
+export const SKETCHES: Sketch[] = [
   {
     "id": "substitute-teacher",
     "name": "Substitute Teacher",
