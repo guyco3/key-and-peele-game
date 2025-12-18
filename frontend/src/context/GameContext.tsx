@@ -1,215 +1,145 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
-import type { GameState, Player, Video, GameStatus } from "../../../shared";
+import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
+import { io, Socket } from 'socket.io-client';
+import { v4 as uuidv4 } from 'uuid';
+import { GameState } from '../../../shared';
 
-// Re-export shared types for convenience
-export type { Player, Video, GameState, GameStatus };
-
-export interface GameContextValue extends GameState {
-  setStatus: (status: GameStatus) => void;
-  setRoomId: (roomId: string) => void;
-  setHostId: (hostId: string) => void;
-  setName: (name: string) => void;
-  setPlayers: (players: Record<string, Player>) => void;
-  setRound: (round: number) => void;
-  setVideo: (video: Video | null) => void;
-  setScores: (scores: Record<string, Player>) => void;
-  setNumRounds: (numRounds: number) => void;
-  
-  // Event handlers
-  onRoomCreated: (data: { roomId: string; status: GameStatus; hostId: string }) => void;
-  onRoomJoined: (data: { roomId: string; status: GameStatus; hostId: string }) => void;
-  onPlayerList: (data: { players: Record<string, Player> }) => void;
-  onRoundStart: (data: { roundNumber: number; video: Video }) => void;
-  onRoundEnd: (data: { scores: Record<string, Player>; correctVideo: Video }) => void;
-  onGameOver: () => void;
-  onStateSnapshot: (state: Partial<GameState>) => void;
-  clearGameData: () => void;
+interface GameContextType {
+  socket: Socket | null;
+  gameState: GameState | null;
+  clientId: string;
+  serverOffset: number;
+  roomCode: string | null;
+  identify: (name: string, code: string) => void;
+  createRoom: (name: string, config: any) => Promise<void>;
+  leaveGame: () => void;
 }
 
-const GameContext = createContext<GameContextValue | null>(null);
+const GameContext = createContext<GameContextType | undefined>(undefined);
 
-// Generate or retrieve persistent client ID
-function getOrCreateClientId(): string {
-  let clientId = localStorage.getItem("game_clientId");
-  if (!clientId) {
-    clientId = `client_${Math.random().toString(36).substring(2, 11)}_${Date.now()}`;
-    localStorage.setItem("game_clientId", clientId);
-  }
-  return clientId;
-}
-
-export function GameProvider({ children }: { children: ReactNode }) {
-  // Load from localStorage on mount
-  const [status, setStatus] = useState<GameStatus>(() => {
-    const saved = localStorage.getItem("game_status");
-    // Migrate old "playing" status to "round"
-    if (saved === "playing") {
-      localStorage.setItem("game_status", "round");
-      return "round";
-    }
-    return (saved as GameStatus) || "landing";
-  });
-  const [roomId, setRoomId] = useState(() => {
-    return localStorage.getItem("game_roomId") || "";
-  });
-  const [hostId, setHostId] = useState(() => {
-    return localStorage.getItem("game_hostId") || "";
-  });
-  const [name, setName] = useState(() => {
-    return localStorage.getItem("game_name") || "";
-  });
+export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [gameState, setGameState] = useState<GameState | null>(null);
+  const [roomCode, setRoomCode] = useState<string | null>(localStorage.getItem('kp_room_code'));
+  const [serverOffset, setServerOffset] = useState(0);
+  const socketRef = useRef<Socket | null>(null);
   
-  // Get or create persistent client ID
-  const clientId = getOrCreateClientId();
-  const [players, setPlayers] = useState<Record<string, Player>>({});
-  const [round, setRound] = useState(0);
-  const [video, setVideo] = useState<Video | null>(null);
-  const [scores, setScores] = useState<Record<string, Player>>({});
-  const [numRounds, setNumRounds] = useState(3);
+  // 🛡️ The Guard: Prevents re-identification during the unmounting/leaving process
+  const leavingRef = useRef(false);
 
-  const onRoomCreated = ({ roomId, status, hostId }: { roomId: string; status: GameStatus; hostId: string }) => {
-    console.log("Room created - hostId (clientId):", hostId);
-    setRoomId(roomId);
-    setStatus(status);
-    // hostId from backend is now hostClientId
-    setHostId(hostId);
-    // Persist to localStorage
-    localStorage.setItem("game_roomId", roomId);
-    localStorage.setItem("game_status", status);
-    localStorage.setItem("game_hostId", hostId);
-  };
+  const [clientId] = useState(() => {
+    const saved = localStorage.getItem('kp_client_id');
+    if (saved) return saved;
+    const newId = uuidv4();
+    localStorage.setItem('kp_client_id', newId);
+    return newId;
+  });
 
-  const onRoomJoined = ({ roomId, status, hostId }: { roomId: string; status: GameStatus; hostId: string }) => {
-    console.log("Room joined - hostId (clientId):", hostId);
-    setRoomId(roomId);
-    setStatus(status);
-    setHostId(hostId);
-    // Persist to localStorage
-    localStorage.setItem("game_roomId", roomId);
-    localStorage.setItem("game_status", status);
-    localStorage.setItem("game_hostId", hostId);
-  };
+  useEffect(() => {
+    const socket = io('http://localhost:3001');
+    socketRef.current = socket;
 
-  const onPlayerList = ({ players }: { players: Record<string, Player> }) => {
-    setPlayers(players);
-  };
+    socket.on('connect', () => {
+      // 🛡️ Only auto-reconnect if we aren't intentionally trying to leave
+      if (leavingRef.current) return;
 
-  const onRoundStart = ({ roundNumber, video }: { roundNumber: number; video: Video }) => {
-    setRound(roundNumber);
-    setVideo(video);
-    setStatus("round");
-  };
-
-  const onRoundEnd = ({ scores, correctVideo }: { scores: Record<string, Player>; correctVideo: Video }) => {
-    setScores(scores);
-    setVideo(correctVideo);
-    setStatus("round_end");
-  };
-
-  const onGameOver = () => {
-    setStatus("game_over");
-    // Clear room data when game ends - don't persist finished games
-    localStorage.removeItem("game_roomId");
-    localStorage.removeItem("game_status");
-    localStorage.removeItem("game_hostId");
-    localStorage.removeItem("game_name");
-    // Keep game_clientId for next game
-  };
-
-  const clearGameData = () => {
-    setStatus("landing");
-    setRoomId("");
-    setHostId("");
-    setPlayers({});
-    setRound(0);
-    setVideo(null);
-    setScores({});
-    // Clear localStorage (keep clientId for next game)
-    localStorage.removeItem("game_roomId");
-    localStorage.removeItem("game_status");
-    localStorage.removeItem("game_hostId");
-    localStorage.removeItem("game_name");
-  };
-
-  const onStateSnapshot = (state: Partial<GameState>) => {
-    console.log("Received state snapshot:", state);
-    if (state.status !== undefined) {
-      setStatus(state.status);
-      // If game is over, clear room data
-      if (state.status === "game_over") {
-        localStorage.removeItem("game_roomId");
-        localStorage.removeItem("game_status");
-        localStorage.removeItem("game_hostId");
-        localStorage.removeItem("game_name");
-      } else {
-        localStorage.setItem("game_status", state.status);
+      const savedName = localStorage.getItem('kp_username');
+      const savedRoom = localStorage.getItem('kp_room_code');
+      if (savedName && savedRoom) {
+        socket.emit('identify', { clientId, name: savedName, roomCode: savedRoom });
       }
-    }
-    if (state.roomId !== undefined) {
-      setRoomId(state.roomId);
-      localStorage.setItem("game_roomId", state.roomId);
-    }
-    if (state.hostId !== undefined) {
-      console.log("Updating hostId to:", state.hostId);
-      setHostId(state.hostId);
-      localStorage.setItem("game_hostId", state.hostId);
-    }
-    if (state.players !== undefined) setPlayers(state.players);
-    if (state.round !== undefined) setRound(state.round);
-    if (state.video !== undefined) setVideo(state.video);
-    if (state.scores !== undefined) setScores(state.scores);
+    });
+
+    socket.on('init_sync', ({ serverTime }: { serverTime: number }) => {
+      setServerOffset(serverTime - Date.now());
+    });
+
+    socket.on('game_update', (state: GameState) => {
+      // 🛡️ Ignore incoming updates if we are in the process of leaving
+      if (leavingRef.current) return;
+
+      setGameState(state);
+      if (state.roomCode) {
+         setRoomCode(state.roomCode);
+         localStorage.setItem('kp_room_code', state.roomCode);
+      }
+    });
+
+    socket.on('error', (msg: string) => {
+        if (msg === 'Game not found' || msg === 'Host closed the room') {
+            handleCleanState();
+        }
+        alert(msg);
+    });
+
+    return () => { socket.disconnect(); };
+  }, [clientId]);
+
+  const handleCleanState = () => {
+    localStorage.removeItem('kp_room_code');
+    setGameState(null);
+    setRoomCode(null);
   };
 
-  const value: GameContextValue = {
-    status,
-    roomId,
-    hostId,
-    name,
-    clientId,
-    players,
-    round,
-    video,
-    scores,
-    numRounds,
-    setStatus: (s: GameStatus) => {
-      setStatus(s);
-      localStorage.setItem("game_status", s);
-    },
-    setRoomId: (r: string) => {
-      setRoomId(r);
-      if (r) localStorage.setItem("game_roomId", r);
-      else localStorage.removeItem("game_roomId");
-    },
-    setHostId: (h: string) => {
-      setHostId(h);
-      if (h) localStorage.setItem("game_hostId", h);
-    },
-    setName: (n: string) => {
-      setName(n);
-      if (n) localStorage.setItem("game_name", n);
-    },
-    setPlayers,
-    setRound,
-    setVideo,
-    setScores,
-    setNumRounds,
-    onRoomCreated,
-    onRoomJoined,
-    onPlayerList,
-    onRoundStart,
-    onRoundEnd,
-    onGameOver,
-    onStateSnapshot,
-    clearGameData,
+  const createRoom = async (hostName: string, config: any) => {
+    try {
+      leavingRef.current = false; // Reset guard in case they previously left
+      const res = await fetch('http://localhost:3001/create-room', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ hostName, hostClientId: clientId, config })
+      });
+      const data = await res.json();
+      identify(hostName, data.roomCode);
+    } catch (err) {
+      console.error("Failed to create room:", err);
+      alert("Server connection failed");
+    }
   };
 
-  return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
-}
+  const identify = (name: string, code: string) => {
+    leavingRef.current = false; // Reset guard
+    const upperCode = code.toUpperCase();
+    setRoomCode(upperCode);
+    localStorage.setItem('kp_username', name);
+    localStorage.setItem('kp_room_code', upperCode);
+    socketRef.current?.emit('identify', { clientId, name, roomCode: upperCode });
+  };
 
-export function useGameState() {
+  const leaveGame = () => {
+    // 1. Instantly flip the guard to ignore any incoming 'game_update' messages
+    leavingRef.current = true;
+
+    // 2. Notify server
+    if (socketRef.current && roomCode) {
+      socketRef.current.emit('leave_game', { clientId, roomCode });
+    }
+    
+    // 3. Wipe local state and storage
+    handleCleanState();
+
+    // 4. (Optional) Small delay to ensure all re-renders finish before allowing new joins
+    setTimeout(() => {
+        leavingRef.current = false;
+    }, 500);
+  };
+
+  return (
+    <GameContext.Provider value={{ 
+      socket: socketRef.current, 
+      gameState, 
+      clientId, 
+      serverOffset, 
+      roomCode, 
+      identify, 
+      createRoom,
+      leaveGame 
+    }}>
+      {children}
+    </GameContext.Provider>
+  );
+};
+
+export const useGame = () => {
   const context = useContext(GameContext);
-  if (!context) {
-    throw new Error("useGameState must be used within GameProvider");
-  }
+  if (!context) throw new Error('useGame must be used within GameProvider');
   return context;
-}
+};
