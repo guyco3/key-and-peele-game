@@ -6,9 +6,21 @@ export const SketchSearch: React.FC = () => {
   const { socket, clientId, gameState, roomCode } = useGame();
   const [query, setQuery] = useState('');
 
-  const suggestions = useMemo(() => {
-    if (query.length < 2) return [];
-    return SKETCHES.filter(s => s.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5);
+  // Helper to strip extra spaces and lower case
+  const normalize = (str: string) => str.trim().toLowerCase().replace(/\s+/g, ' ');
+
+  const filteredSketches = useMemo(() => {
+    const search = normalize(query);
+    
+    // If no search, show everything (alphabetical)
+    if (!search) {
+      return [...SKETCHES].sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    // Filter based on normalized names
+    return SKETCHES.filter(s => 
+      normalize(s.name).includes(search)
+    );
   }, [query]);
 
   const handleGuess = (name: string) => {
@@ -17,7 +29,11 @@ export const SketchSearch: React.FC = () => {
   };
 
   if (gameState?.players[clientId]?.hasGuessed) {
-    return <div className="status">Guess Locked In. Waiting for others...</div>;
+    return (
+      <div className="status-locked">
+        <span className="icon">🔒</span> Guess Locked In. Waiting for others...
+      </div>
+    );
   }
 
   return (
@@ -25,15 +41,19 @@ export const SketchSearch: React.FC = () => {
       <input 
         value={query} 
         onChange={e => setQuery(e.target.value)} 
-        placeholder="Which sketch is this?" 
+        placeholder="Type to filter sketches..." 
+        autoFocus
       />
-      {suggestions.length > 0 && (
-        <ul className="suggestions">
-          {suggestions.map(s => (
-            <li key={s.id} onClick={() => handleGuess(s.name)}>{s.name}</li>
-          ))}
-        </ul>
-      )}
+      <ul className="suggestions-list">
+        {filteredSketches.map(s => (
+          <li key={s.id} onClick={() => handleGuess(s.name)}>
+            {s.name}
+          </li>
+        ))}
+        {filteredSketches.length === 0 && (
+          <li className="no-results">No sketches found matching "{query}"</li>
+        )}
+      </ul>
     </div>
   );
 };

@@ -10,10 +10,8 @@ export const VideoPlayer: React.FC = () => {
   const youtubeId = gameState?.currentSketch?.youtubeId;
   const clipLength = gameState?.config?.clipLength || 5;
 
-  // HINT LOOP: During PLAYING phase, loop the start of the video
   useEffect(() => {
     let interval: NodeJS.Timeout;
-
     if (phase === 'ROUND_PLAYING' && playerRef.current && youtubeId) {
       interval = setInterval(() => {
         const currentTime = playerRef.current.getCurrentTime();
@@ -22,25 +20,28 @@ export const VideoPlayer: React.FC = () => {
         }
       }, 500);
     }
-
     return () => clearInterval(interval);
   }, [phase, clipLength, youtubeId]);
 
-  // Handle phase transitions (Auto-unmute on reveal)
+  // Sync volume and mute status based on phase
   useEffect(() => {
-    if (phase === 'ROUND_REVEAL' && playerRef.current) {
-      playerRef.current.unMute();
-      playerRef.current.setVolume(50);
+    if (!playerRef.current) return;
+
+    if (phase === 'ROUND_PLAYING') {
+      playerRef.current.unMute(); // Audio ON for the hint
+      playerRef.current.setVolume(100);
+    } else if (phase === 'ROUND_REVEAL') {
+      playerRef.current.unMute(); // Audio ON for the reveal
+      playerRef.current.setVolume(100);
     }
   }, [phase]);
 
   const onReady: YouTubeProps['onReady'] = (event) => {
     playerRef.current = event.target;
     playerRef.current.playVideo();
-    // Most browsers block autoplay unless the video starts muted
-    if (phase === 'ROUND_PLAYING') {
-      playerRef.current.mute();
-    }
+    // Ensure it starts unmuted so they can hear the hint immediately
+    playerRef.current.unMute();
+    playerRef.current.setVolume(100);
   };
 
   if (!youtubeId) return <div className="video-placeholder">Waiting for sketch...</div>;
@@ -50,23 +51,31 @@ export const VideoPlayer: React.FC = () => {
     width: '100%',
     playerVars: {
       autoplay: 1,
-      controls: phase === 'ROUND_REVEAL' ? 1 : 0, // Hide controls during play
+      controls: 0, // Always hide controls for better security
       modestbranding: 1,
       rel: 0,
-      disablekb: 1, // Prevent keyboard shortcuts like 'f' for fullscreen
+      disablekb: 1,
     },
   };
 
   return (
-    <div className={`video-wrapper ${phase === 'ROUND_PLAYING' ? 'blurred' : 'clear'}`}>
+    <div className={`video-wrapper phase-${phase}`}>
       <YouTube 
         videoId={youtubeId} 
         opts={opts} 
         onReady={onReady} 
         className="youtube-embed"
       />
+      
+      {/* 2025/12/17: Audio-only placeholder for ROUND_PLAYING */}
       {phase === 'ROUND_PLAYING' && (
-        <div className="anti-cheat-overlay" />
+        <div className="audio-only-overlay">
+          <div className="audio-icon">🔊</div>
+          <p>Listen closely...</p>
+          <div className="audio-waves">
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
       )}
     </div>
   );
