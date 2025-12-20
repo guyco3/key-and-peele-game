@@ -21,15 +21,16 @@ export interface GameConfig {
   clipLength: number;
   roundLength: number;
   roundEndLength: number;
-  sketches: Sketch[];
 }
 
 export interface GameState {
   phase: GamePhase;
-  hostId: string; 
+  hostId: string;
+  roomCode: string;
   currentRound: number;
   endsAt: number;
   players: Record<string, Player>;
-  currentSketch?: Partial<Sketch>; 
+  currentSketch?: Partial<Sketch>;
   guessFeed: Array<{ playerName: string; text: string; isCorrect: boolean }>;
+  config: GameConfig;
 }

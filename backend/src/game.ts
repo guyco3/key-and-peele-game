@@ -1,43 +1,59 @@
 import { GameConfig, GameState, Player, GamePhase, Sketch } from "../../shared";
 import logger from "./logger";
+import { SKETCHES } from "../../shared/sketches";
 
 export class GameInstance {
   public state: GameState;
   public lastActivityAt: number = Date.now();
   private timerRef: NodeJS.Timeout | null = null;
+  private activeSketch: Sketch | null = null;
+  private blockedSketchIds: Set<string> = new Set();
 
-    constructor(
-        public id: string,
-        public roomCode: string,
-        private config: GameConfig,
-        host: Player,
-        private onUpdate: (state: GameState) => void
-    ) {
-        this.state = {
-        phase: "LOBBY",
-        hostId: host.clientId,
-        roomCode: this.roomCode,       
-        currentRound: 0,
-        endsAt: 0,
-        players: { [host.clientId]: host },
-        guessFeed: [],
-        config: this.config,        
-        };
-        logger.info(`[Game ${this.roomCode}] Instance created.`);
-    }
+  constructor(
+    public id: string,
+    public roomCode: string,
+    private config: GameConfig,
+    host: Player,
+    private onUpdate: (state: GameState) => void
+  ) {
+    this.state = {
+      phase: "LOBBY",
+      hostId: host.clientId,
+      roomCode: this.roomCode,
+      currentRound: 0,
+      endsAt: 0,
+      players: { [host.clientId]: host },
+      guessFeed: [],
+      config: this.config,
+    };
+    logger.info(`[Game ${this.roomCode}] Instance created.`);
+  }
 
   public start() {
-    if (this.state.phase !== "LOBBY") {
-      logger.warn(`[Game ${this.roomCode}] Attempted to start from invalid phase: ${this.state.phase}`);
-      return;
-    }
+    if (this.state.phase !== "LOBBY") return;
     logger.info(`[Game ${this.roomCode}] Starting game...`);
     this.nextRound();
   }
 
+  /**
+   * 🎲 Logic: Picks a random sketch, excluding known blocked ones.
+   */
+  private pickRandomSketch(): Sketch {
+    // Filter out sketches that have been flagged as blocked in this session
+    const availablePool = SKETCHES.filter(s => !this.blockedSketchIds.has(s.id));
+    
+    // Fallback: If somehow everything is blocked (unlikely), use the full list
+    const choicePool = availablePool.length > 0 ? availablePool : SKETCHES;
+
+    if (choicePool.length === 0) {
+      throw new Error(`Critical Error: The SKETCHES data list is empty for room ${this.roomCode}`);
+    }
+    
+    return choicePool[Math.floor(Math.random() * choicePool.length)];
+  }
+
   private nextRound() {
     if (this.state.currentRound >= this.config.numRounds) {
-      logger.info(`[Game ${this.roomCode}] All rounds complete. Transitioning to GAME_OVER.`);
       this.transitionTo("GAME_OVER", 0);
       return;
     }
@@ -46,23 +62,30 @@ export class GameInstance {
     // Reset "hasGuessed" for everyone
     Object.values(this.state.players).forEach(p => p.hasGuessed = false);
     
-    const sketch = this.config.sketches[this.state.currentRound - 1];
+    const sketch = this.pickRandomSketch();
+    if (!sketch) {
+        logger.error(`[Game ${this.roomCode}] Failed to pick a sketch. Ending game.`);
+        this.transitionTo("GAME_OVER", 0);
+        return;
+    }
+    this.activeSketch = sketch;
     
-    // DATA MASKING: Only send the ID and Video during the round
+    // 🛡️ DATA MASKING: Only send non-spoiler data to the clients
     this.state.currentSketch = { 
-      youtubeId: sketch.youtubeId,
-      id: sketch.id 
+      youtubeId: this.activeSketch.youtubeId,
+      id: this.activeSketch.id 
     };
 
-    logger.info(`[Game ${this.roomCode}] Round ${this.state.currentRound}/${this.config.numRounds} started.`);
+    logger.info(`[Game ${this.roomCode}] Round ${this.state.currentRound} started.`);
     this.transitionTo("ROUND_PLAYING", this.config.roundLength, () => this.revealRound());
   }
 
   private revealRound() {
-    const fullSketch = this.config.sketches[this.state.currentRound - 1];
-    this.state.currentSketch = fullSketch; // Full reveal (name, desc)
+    // 🔓 REVEAL: Send the full metadata (name/description)
+    if (this.activeSketch) {
+      this.state.currentSketch = this.activeSketch;
+    }
     
-    logger.info(`[Game ${this.roomCode}] Round ${this.state.currentRound} revealed. Sketch: ${fullSketch.name}`);
     this.transitionTo("ROUND_REVEAL", this.config.roundEndLength, () => this.nextRound());
   }
 
@@ -75,6 +98,7 @@ export class GameInstance {
     this.state.phase = phase;
     this.state.endsAt = seconds > 0 ? Date.now() + (seconds * 1000) : 0;
     this.lastActivityAt = Date.now();
+    
     this.onUpdate({ ...this.state });
 
     if (seconds > 0 && callback) {
@@ -84,28 +108,21 @@ export class GameInstance {
 
   public submitGuess(clientId: string, guessName: string) {
     const player = this.state.players[clientId];
-    if (!player) {
-      logger.warn(`[Game ${this.roomCode}] Guess received from unknown clientId: ${clientId}`);
+    const actual = this.activeSketch;
+
+    if (!player || !actual || this.state.phase !== "ROUND_PLAYING" || player.hasGuessed) {
       return;
     }
 
-    if (player.hasGuessed || this.state.phase !== "ROUND_PLAYING") {
-      logger.debug(`[Game ${this.roomCode}] Ignoring guess from ${player.name} (Already guessed or wrong phase)`);
-      return;
-    }
-
-    player.hasGuessed = true;
-    const actualSketch = this.config.sketches[this.state.currentRound - 1];
-    const isCorrect = guessName.toLowerCase().trim() === actualSketch.name.toLowerCase().trim();
+    const normalizedGuess = guessName.toLowerCase().trim();
+    const normalizedAnswer = actual.name.toLowerCase().trim();
+    const isCorrect = normalizedGuess === normalizedAnswer;
 
     if (isCorrect) {
-      const remaining = Math.max(0, this.state.endsAt - Date.now());
-      // Scoring: 500 base + speed bonus
-      const bonus = Math.floor((remaining / (this.config.roundLength * 1000)) * 500);
+      player.hasGuessed = true;
+      const remainingMs = Math.max(0, this.state.endsAt - Date.now());
+      const bonus = Math.floor((remainingMs / (this.config.roundLength * 1000)) * 500);
       player.score += (500 + bonus);
-      logger.info(`[Game ${this.roomCode}] ${player.name} guessed CORRECTLY. Points awarded: ${500 + bonus}`);
-    } else {
-      logger.debug(`[Game ${this.roomCode}] ${player.name} guessed incorrectly: "${guessName}"`);
     }
 
     this.state.guessFeed.push({ 
@@ -117,19 +134,39 @@ export class GameInstance {
     this.onUpdate({ ...this.state });
   }
 
+  public rerollVideoForError(clientId: string, errorCode: number) {
+    if (this.state.phase !== "ROUND_PLAYING") return;
+
+    const reporter = this.state.players[clientId];
+    
+    // 1. Add current sketch to blocked list so it's never picked again
+    if (this.activeSketch) {
+      logger.warn(`[Game ${this.roomCode}] Flagging sketch ${this.activeSketch.id} as BLOCKED.`);
+      this.blockedSketchIds.add(this.activeSketch.id);
+    }
+
+    // 2. Pick a new sketch (which will now filter out the blocked one)
+    const newSketch = this.pickRandomSketch();
+    this.activeSketch = newSketch;
+    this.state.currentSketch = { id: newSketch.id, youtubeId: newSketch.youtubeId };
+    
+    this.state.guessFeed.push({
+      playerName: "System",
+      text: `Video blocked for ${reporter?.name || 'someone'}. Finding new sketch...`,
+      isCorrect: false
+    });
+
+    this.transitionTo("ROUND_PLAYING", this.config.roundLength, () => this.revealRound());
+  }
+
   public addPlayer(player: Player) {
-    logger.info(`[Game ${this.roomCode}] Adding player: ${player.name} (${player.clientId})`);
     this.state.players[player.clientId] = player;
-    this.lastActivityAt = Date.now();
     this.onUpdate({ ...this.state });
   }
 
   public removePlayer(clientId: string) {
-    const player = this.state.players[clientId];
-    if (player) {
-      logger.info(`[Game ${this.roomCode}] Removing player: ${player.name} (${clientId})`);
+    if (this.state.players[clientId]) {
       delete this.state.players[clientId];
-      this.lastActivityAt = Date.now();
       this.onUpdate({ ...this.state });
     }
   }
@@ -138,17 +175,11 @@ export class GameInstance {
     const player = this.state.players[clientId];
     if (player) {
       player.connected = status;
-      this.lastActivityAt = Date.now();
       this.onUpdate({ ...this.state });
-      logger.debug(`[Game ${this.roomCode}] Player ${player.name} connection status: ${status ? 'ONLINE' : 'OFFLINE'}`);
     }
   }
 
   public destroy() {
-    logger.info(`[Game ${this.roomCode}] Instance destroying. Cleaning up timers.`);
-    if (this.timerRef) {
-        clearTimeout(this.timerRef);
-        this.timerRef = null;
-    }
+    if (this.timerRef) clearTimeout(this.timerRef);
   }
 }
