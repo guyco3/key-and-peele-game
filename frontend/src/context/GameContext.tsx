@@ -53,14 +53,16 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
 
     socket.on('game_update', (state: GameState) => {
-      // 🛡️ Ignore incoming updates if we are in the process of leaving
-      if (leavingRef.current) return;
+        if (leavingRef.current) return;
 
-      setGameState(state);
-      if (state.roomCode) {
-         setRoomCode(state.roomCode);
-         localStorage.setItem('kp_room_code', state.roomCode);
-      }
+        if (state) {
+            setGameState(state);
+            
+            if (state.roomCode) {
+                setRoomCode(state.roomCode);
+                localStorage.setItem('kp_room_code', state.roomCode);
+            }
+        }
     });
 
     socket.on('error', (msg: string) => {

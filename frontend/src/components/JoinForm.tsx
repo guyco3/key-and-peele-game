@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useGame } from '../context/GameContext';
-import { SKETCHES } from '../../../shared/sketches';
 import { GameConfig } from '../../../shared';
 
 export const JoinForm: React.FC = () => {
@@ -26,8 +25,6 @@ export const JoinForm: React.FC = () => {
       clipLength,
       roundLength,
       roundEndLength,
-      // Send full catalog; rounds will pick randomly server-side
-      sketches: [...SKETCHES]
     };
 
     await createRoom(name, config);

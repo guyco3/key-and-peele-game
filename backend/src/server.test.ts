@@ -1,67 +1,58 @@
 import { GameInstance } from './game';
 
-describe('Server Garbage Collection Integration', () => {
+describe('Server & Socket Integration Logic', () => {
   let games: Map<string, GameInstance>;
-  let roomCodeToId: Map<string, string>;
-  const now = 1766038836729;
+  const now = Date.now();
 
   beforeEach(() => {
     jest.useFakeTimers();
     jest.setSystemTime(now);
     games = new Map();
-    roomCodeToId = new Map();
   });
 
-  const runCleanupJob = () => {
-    const currentTime = Date.now();
-    games.forEach((game, id) => {
-      const allOffline = Object.values(game.state.players).every(p => !p.connected);
-      // Logic: If everyone is offline and it's been > 10 mins
-      if (allOffline && (currentTime - game.lastActivityAt > 1000 * 60 * 10)) {
-        game.destroy();
-        roomCodeToId.delete(game.roomCode);
-        games.delete(id);
-      }
-    });
-  };
-
-  test('GC: Deletes game after everyone is offline for 10 minutes', () => {
-    const host = { clientId: 'H1', name: 'Ada', score: 0, connected: false, hasGuessed: false };
+  test('Connection Logic: Identify handles re-joining existing players', () => {
+    const host = { clientId: 'H1', name: 'Guy', score: 1000, connected: false, hasGuessed: false };
     const game = new GameInstance('g1', 'ROOM', {} as any, host, jest.fn());
-    
-    // Setup state: Game exists, but host is already offline
     games.set('g1', game);
-    roomCodeToId.set('ROOM', 'g1');
-    game.lastActivityAt = now;
 
-    // Advance 5 minutes - Game should still exist
-    jest.advanceTimersByTime(1000 * 60 * 5);
-    jest.setSystemTime(now + 1000 * 60 * 5);
-    runCleanupJob();
+    // Simulation of the "identify" socket logic
+    const clientId = 'H1';
+    if (game.state.players[clientId]) {
+      game.setConnectionStatus(clientId, true);
+    }
+
+    expect(game.state.players['H1'].connected).toBe(true);
+    expect(game.state.players['H1'].score).toBe(1000); // Score preserved
+    expect(Object.keys(game.state.players).length).toBe(1); // No duplicate player created
+  });
+
+  test('GC: Only removes games when ALL players are offline', () => {
+    const p1 = { clientId: 'H1', name: 'Guy', score: 0, connected: false, hasGuessed: false };
+    const p2 = { clientId: 'P2', name: 'A-A-Ron', score: 0, connected: true, hasGuessed: false };
+    
+    const game = new GameInstance('g1', 'ROOM', {} as any, p1, jest.fn());
+    game.addPlayer(p2);
+    games.set('g1', game);
+    
+    game.lastActivityAt = now - (1000 * 60 * 20); // 20 mins ago
+
+    // Run cleanup logic
+    const cleanup = () => {
+      games.forEach((g, id) => {
+        const allOffline = Object.values(g.state.players).every(p => !p.connected);
+        if (allOffline && (Date.now() - g.lastActivityAt > 1000 * 60 * 10)) {
+          games.delete(id);
+        }
+      });
+    };
+
+    cleanup();
+    // Game should persist because P2 is still connected
     expect(games.has('g1')).toBe(true);
 
-    // Advance total 11 minutes - Game should be wiped
-    jest.advanceTimersByTime(1000 * 60 * 6);
-    jest.setSystemTime(now + 1000 * 60 * 11);
-    runCleanupJob();
-
+    // Now disconnect P2 and run again
+    game.setConnectionStatus('P2', false);
+    cleanup();
     expect(games.has('g1')).toBe(false);
-    expect(roomCodeToId.has('ROOM')).toBe(false);
-  });
-
-  test('GC: Does NOT delete game if at least one player is connected', () => {
-    const host = { clientId: 'H1', name: 'Ada', score: 0, connected: true, hasGuessed: false };
-    const game = new GameInstance('g1', 'ROOM', {} as any, host, jest.fn());
-    
-    games.set('g1', game);
-    game.lastActivityAt = now;
-
-    // Advance 15 minutes
-    jest.advanceTimersByTime(1000 * 60 * 15);
-    jest.setSystemTime(now + 1000 * 60 * 15);
-    runCleanupJob();
-
-    // Game should stay because Host is still connected
-    expect(games.has('g1')).toBe(true);
   });
 });

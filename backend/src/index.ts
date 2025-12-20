@@ -42,7 +42,7 @@ app.post('/create-room', (req, res) => {
   
   let roomCode = "";
   do {
-    roomCode = Math.random().toString(36).substring(2, 6).toUpperCase();
+    roomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
   } while (roomCodeToId.has(roomCode));
 
   const host: Player = { 
@@ -127,16 +127,16 @@ io.on('connection', (socket) => {
     }
   });
 
-  socket.on('video_error', ({ clientId, roomCode, youtubeId, errorCode, message }) => {
+  socket.on('video_error', ({ clientId, roomCode, youtubeId, errorCode }) => {
     const gameId = roomCodeToId.get(roomCode);
     const game = games.get(gameId || '');
     if (!game) return;
 
     const currentVideo = game.state.currentSketch?.youtubeId;
     if (game.state.phase !== "ROUND_PLAYING") return;
-    if (currentVideo && youtubeId && currentVideo !== youtubeId) return; // stale report
+    if (currentVideo && youtubeId && currentVideo !== youtubeId) return;
 
-    game.rerollVideoForError(clientId, errorCode, message);
+    game.rerollVideoForError(clientId, errorCode);
   });
 
   socket.on('disconnect', () => {
