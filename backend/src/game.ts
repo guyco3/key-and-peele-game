@@ -144,6 +144,27 @@ export class GameInstance {
     }
   }
 
+  public skipRoundForVideoError(clientId: string, errorCode: number, message?: string) {
+    if (this.state.phase !== "ROUND_PLAYING") {
+      logger.debug(`[Game ${this.roomCode}] Ignoring video error skip; phase=${this.state.phase}`);
+      return;
+    }
+
+    const reporter = this.state.players[clientId];
+    const playerName = reporter?.name || "Someone";
+    const sketch = this.config.sketches[this.state.currentRound - 1];
+
+    this.state.currentSketch = sketch; // reveal details since video failed
+    this.state.guessFeed.push({
+      playerName,
+      text: "reported a video issue. Skipping round.",
+      isCorrect: false
+    });
+
+    logger.warn(`[Game ${this.roomCode}] Skipping round ${this.state.currentRound} due to video error from ${playerName}. Code=${errorCode}. ${message || ""}`);
+    this.transitionTo("ROUND_REVEAL", this.config.roundEndLength, () => this.nextRound());
+  }
+
   public destroy() {
     logger.info(`[Game ${this.roomCode}] Instance destroying. Cleaning up timers.`);
     if (this.timerRef) {
