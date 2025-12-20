@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { useGame } from '../context/GameContext';
+import { Box, List, ListItem, ListItemText, Typography } from '@mui/material';
 
-export const GuessFeed: React.FC = () => {
+export const GuessFeed: React.FC<{ fullHeight?: boolean }> = ({ fullHeight = false }) => {
   const { gameState } = useGame();
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to bottom whenever a new guess arrives
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -15,24 +15,21 @@ export const GuessFeed: React.FC = () => {
   if (!gameState) return null;
 
   return (
-    <div className="guess-feed-container">
-      <h4>Activity</h4>
-      <div className="guess-list" ref={scrollRef}>
-        {gameState.guessFeed.map((guess, index) => (
-          <div 
-            key={index} 
-            className={`guess-item ${guess.isCorrect ? 'is-correct' : 'is-wrong'}`}
-          >
-            <span className="player-name">{guess.playerName}</span>
-            <span className="guess-text">
-              {guess.isCorrect ? " guessed correctly! 🎉" : `: ${guess.text}`}
-            </span>
-          </div>
-        ))}
+    <Box sx={{ overflow: 'auto', height: fullHeight ? '100%' : 240 }} ref={scrollRef}>
+      <List>
         {gameState.guessFeed.length === 0 && (
-          <div className="empty-feed">No guesses yet...</div>
+          <Typography variant="body2" color="text.secondary">No guesses yet...</Typography>
         )}
-      </div>
-    </div>
+
+        {gameState.guessFeed.map((guess, index) => (
+          <ListItem key={index} sx={{ py: 0.5 }}>
+            <ListItemText
+              primary={<strong style={{ color: guess.isCorrect ? '#4caf50' : 'inherit' }}>{guess.playerName}{guess.isCorrect ? ' guessed correctly! 🎉' : ''}</strong>}
+              secondary={!guess.isCorrect ? guess.text : null}
+            />
+          </ListItem>
+        ))}
+      </List>
+    </Box>
   );
 };

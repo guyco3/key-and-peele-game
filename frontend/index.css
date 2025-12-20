@@ -1,11 +1,11 @@
 /* src/index.css */
 :root {
-  --bg-dark: #121213;
-  --bg-panel: #1e1e1f;
-  --accent: #ff4500;
+  --bg-dark: #060607;
+  --bg-panel: #111213;
+  --accent: #ff6a00;
   --text-main: #ffffff;
-  --text-dim: #a1a1a1;
-  --sidebar-w: 300px;
+  --text-dim: #9aa0a6;
+  --sidebar-w: 320px;
 }
 
 .leave-btn {
@@ -35,7 +35,7 @@
 
 body {
   margin: 0;
-  background-color: var(--bg-dark);
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(255,106,0,0.06), transparent), linear-gradient(180deg, #070708 0%, #0d0d0e 100%);
   color: var(--text-main);
   font-family: 'Inter', -apple-system, sans-serif;
 }
@@ -106,6 +106,17 @@ body {
   z-index: 5;
 }
 
+/* Reveal overlay animation */
+.reveal-overlay {
+  animation: fadeIn 400ms ease-out;
+}
+
+/* Podium adjustments */
+.podium-container { padding: 1rem; }
+.podium-grid { display: flex; gap: 1rem; justify-content: center; align-items: flex-end; }
+.podium-place { min-width: 160px; text-align: center; padding: 1rem; border-radius: 12px; }
+
+
 .audio-icon {
   font-size: 5rem;
   margin-bottom: 1rem;
@@ -155,6 +166,10 @@ body {
   height: 100%;
   transition: filter 0.6s ease-in-out;
 }
+
+/* Ensure inner container constrains iframe and preserves aspect-ratio */
+.video-inner { display: flex; align-items: center; justify-content: center; }
+.video-inner .youtube-embed iframe { width: 100% !important; height: 100% !important; }
 
 /* 3. Search Bar UI */
 .search-container {

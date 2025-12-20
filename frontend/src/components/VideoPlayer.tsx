@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import YouTube, { YouTubeProps } from 'react-youtube';
 import { useGame } from '../context/GameContext';
+import { Box } from '@mui/material';
 
 export const VideoPlayer: React.FC = () => {
   const { gameState } = useGame();
@@ -11,12 +12,10 @@ export const VideoPlayer: React.FC = () => {
   const youtubeId = gameState?.currentSketch?.youtubeId;
   const clipLength = gameState?.config?.clipLength || 5;
 
-  // 1. Logic Guard: Check if the player is actually "alive" in the DOM
   const callPlayer = (method: string, ...args: any[]) => {
     if (!playerRef.current || !isReady) return;
     try {
-      // The "reading src" error happens here. We check if getIframe exists first.
-      if (playerRef.current.getIframe()) {
+      if (playerRef.current.getIframe) {
         playerRef.current[method](...args);
       }
     } catch (e) {
@@ -24,20 +23,18 @@ export const VideoPlayer: React.FC = () => {
     }
   };
 
-  // 2. Handle Video Swapping
   useEffect(() => {
     if (isReady && youtubeId) {
-      const currentData = playerRef.current?.getVideoData();
+      const currentData = playerRef.current?.getVideoData?.();
       if (currentData && currentData.video_id !== youtubeId) {
         callPlayer('loadVideoById', { videoId: youtubeId, startSeconds: 0 });
       }
     }
   }, [youtubeId, isReady]);
 
-  // 3. Audio Loop & Phase Control
   useEffect(() => {
-    let interval: NodeJS.Timeout;
-    
+    let interval: NodeJS.Timeout | undefined;
+
     if (isReady && phase === 'ROUND_PLAYING') {
       callPlayer('playVideo');
       callPlayer('unMute');
@@ -54,17 +51,18 @@ export const VideoPlayer: React.FC = () => {
     }
 
     if (isReady && phase === 'ROUND_REVEAL') {
-        callPlayer('playVideo');
-        callPlayer('unMute');
+      callPlayer('playVideo');
+      callPlayer('unMute');
     }
 
-    return () => clearInterval(interval);
+    return () => {
+      if (interval) clearInterval(interval);
+    };
   }, [phase, clipLength, isReady]);
 
   const onReady: YouTubeProps['onReady'] = (event) => {
     playerRef.current = event.target;
     setIsReady(true);
-    // Don't call playVideo directly on the event target here to be safe
   };
 
   if (!youtubeId) return <div className="video-placeholder">Loading audio...</div>;
@@ -84,17 +82,19 @@ export const VideoPlayer: React.FC = () => {
   };
 
   return (
-    <div className={`video-wrapper phase-${phase}`}>
-      {/* 🛡️ STABLE ID: Using the roomCode as the key ensures the player 
-          only re-mounts if the user switches rooms, not between rounds. */}
-      <YouTube 
-        key={gameState?.roomCode || 'global-player'}
-        videoId={youtubeId} 
-        opts={opts} 
-        onReady={onReady} 
-        className="youtube-embed"
-      />
-      
+    <Box className={`video-wrapper phase-${phase}`} sx={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Box className="video-inner" sx={{ width: '100%', maxWidth: 1100, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Box sx={{ width: '100%', height: '100%', maxHeight: '100%', aspectRatio: '16/9' }}>
+          <YouTube
+            key={gameState?.roomCode || 'global-player'}
+            videoId={youtubeId}
+            opts={opts}
+            onReady={onReady}
+            className="youtube-embed"
+          />
+        </Box>
+      </Box>
+
       {phase === 'ROUND_PLAYING' && (
         <div className="audio-only-overlay">
           <div className="audio-icon">🔊</div>
@@ -104,6 +104,6 @@ export const VideoPlayer: React.FC = () => {
           </div>
         </div>
       )}
-    </div>
+    </Box>
   );
 };

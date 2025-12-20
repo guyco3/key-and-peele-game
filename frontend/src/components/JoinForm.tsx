@@ -2,115 +2,128 @@ import React, { useState } from 'react';
 import { useGame } from '../context/GameContext';
 import { SKETCHES } from '../../../shared/sketches';
 import { GameConfig } from '../../../shared';
+import { Box, Container, Paper, Typography, TextField, Slider, Button, Stack, Divider } from '@mui/material';
 
 export const JoinForm: React.FC = () => {
   const { createRoom, identify } = useGame();
-  
-  // User Info
+
+  // User & Navigation State
   const [name, setName] = useState(localStorage.getItem('kp_username') || '');
   const [roomCode, setRoomCode] = useState('');
+  const [isVetting, setIsVetting] = useState(false);
 
   // Game Settings (Defaults)
-  const [numRounds, setNumRounds] = useState(5);
-  const [roundLength, setRoundLength] = useState(30);
-  const [roundEndLength, setRoundEndLength] = useState(10);
-  const [clipLength, setClipLength] = useState(5);
+  const [numRounds, setNumRounds] = useState<number>(5);
+  const [roundLength, setRoundLength] = useState<number>(30);
+  const [roundEndLength, setRoundEndLength] = useState<number>(10);
+  const [clipLength, setClipLength] = useState<number>(5);
 
+  /**
+   * Helper: Checks if a YouTube video is likely available.
+   * YouTube returns a 120px wide placeholder image for blocked/dead IDs.
+   */
+  const checkVideoAvailability = (videoId: string): Promise<boolean> => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.src = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+      img.onload = () => {
+        // If width is 120, it's the 'Video Unavailable' placeholder
+        if (img.width === 120) resolve(false);
+        else resolve(true);
+      };
+      img.onerror = () => resolve(false);
+    });
+  };
+
+  /**
+   * CREATE ROOM logic with Video Vetting
+   */
   const handleCreate = async () => {
     if (!name) return alert("Enter a name first!");
+    setIsVetting(true);
     localStorage.setItem('kp_username', name);
 
-    // Construct config from state
+    // 1. Shuffle all available sketches
+    const pool = [...SKETCHES].sort(() => 0.5 - Math.random());
+    const verifiedSketches = [];
+
+    // 2. Loop through pool until we find enough valid videos
+    for (const sketch of pool) {
+      if (verifiedSketches.length >= numRounds) break;
+      
+      const isAvailable = await checkVideoAvailability(sketch.youtubeId);
+      if (isAvailable) {
+        verifiedSketches.push(sketch);
+      }
+    }
+
+    // 3. Check if we met the requirement
+    if (verifiedSketches.length < numRounds) {
+      alert(`Only found ${verifiedSketches.length} playable videos. Try a lower round count.`);
+      setIsVetting(false);
+      return;
+    }
+
+    // 4. Construct final config and send to server
     const config: GameConfig = {
       numRounds,
       clipLength,
       roundLength,
       roundEndLength,
-      // Randomly pick sketches based on the chosen number of rounds
-      sketches: [...SKETCHES].sort(() => 0.5 - Math.random()).slice(0, numRounds)
+      sketches: verifiedSketches
     };
 
     await createRoom(name, config);
+    setIsVetting(false);
   };
 
+  /**
+   * JOIN ROOM logic
+   */
   const handleJoin = () => {
     if (!name || !roomCode) return alert("Missing name or code!");
     localStorage.setItem('kp_username', name);
     identify(name, roomCode.toUpperCase());
   };
-
   return (
-    <div className="join-container">
-      <h1>Key & Peele Mystery</h1>
-      
-      <div className="card">
-        <section className="input-group">
-          <label>Your Name</label>
-          <input 
-            type="text" 
-            placeholder="e.g. A-A-Ron" 
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </section>
+    <Container maxWidth="sm" sx={{ height: '100vh', display: 'flex', alignItems: 'center' }}>
+      <Paper sx={{ p: 4, width: '100%', borderRadius: 3 }} elevation={8}>
+        <Typography variant="h4" sx={{ mb: 2, color: 'primary.main' }}>Key & Peele Mystery</Typography>
 
-        <div className="setup-sections">
-          {/* CREATE SECTION */}
-          <section className="create-section">
-            <h3>Create a Game</h3>
-            <div className="settings-grid">
-              <div className="setting-item">
-                <label>Rounds: {numRounds}</label>
-                <input 
-                  type="range" min="1" max="20" step="1" 
-                  value={numRounds} onChange={(e) => setNumRounds(Number(e.target.value))} 
-                />
-              </div>
-              <div className="setting-item">
-                <label>Guess Time: {roundLength}s</label>
-                <input 
-                  type="range" min="10" max="60" step="5" 
-                  value={roundLength} onChange={(e) => setRoundLength(Number(e.target.value))} 
-                />
-              </div>
-              <div className="setting-item">
-                <label>Reveal Time: {roundEndLength}s</label>
-                <input 
-                  type="range" min="5" max="30" step="5" 
-                  value={roundEndLength} onChange={(e) => setRoundEndLength(Number(e.target.value))} 
-                />
-              </div>
-              <div className="setting-item">
-                <label>Clip Loop: {clipLength}s</label>
-                <input 
-                  type="range" min="2" max="15" step="1" 
-                  value={clipLength} onChange={(e) => setClipLength(Number(e.target.value))} 
-                />
-              </div>
-            </div>
-            <button className="btn-primary" onClick={handleCreate}>
-              Create New Room
-            </button>
-          </section>
+        <Stack spacing={2}>
+          <TextField label="Your Name" value={name} onChange={(e) => setName(e.target.value)} disabled={isVetting} fullWidth />
 
-          <div className="divider"><span>OR</span></div>
+          <Box>
+            <Typography variant="subtitle1" sx={{ mb: 1 }}>Create a Game</Typography>
 
-          {/* JOIN SECTION */}
-          <section className="join-section">
-            <h3>Join a Game</h3>
-            <div className="join-row">
-              <input 
-                type="text" 
-                placeholder="Room Code" 
-                maxLength={4}
-                value={roomCode}
-                onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
-              />
-              <button className="btn-secondary" onClick={handleJoin}>Join</button>
-            </div>
-          </section>
-        </div>
-      </div>
-    </div>
+            <Typography variant="caption">Rounds: {numRounds}</Typography>
+            <Slider min={1} max={15} value={numRounds} onChange={(_, v) => setNumRounds(Number(v))} sx={{ mb: 1 }} />
+
+            <Typography variant="caption">Guess Time: {roundLength}s</Typography>
+            <Slider min={10} max={60} step={5} value={roundLength} onChange={(_, v) => setRoundLength(Number(v))} sx={{ mb: 1 }} />
+
+            <Typography variant="caption">Reveal Time: {roundEndLength}s</Typography>
+            <Slider min={5} max={30} step={5} value={roundEndLength} onChange={(_, v) => setRoundEndLength(Number(v))} sx={{ mb: 1 }} />
+
+            <Typography variant="caption">Loop Length: {clipLength}s</Typography>
+            <Slider min={2} max={10} value={clipLength} onChange={(_, v) => setClipLength(Number(v))} sx={{ mb: 1 }} />
+
+            <Button variant="contained" color="primary" fullWidth onClick={handleCreate} disabled={isVetting || !name} sx={{ mt: 1 }}>
+              {isVetting ? 'Vetting Sketches...' : 'Create New Room'}
+            </Button>
+          </Box>
+
+          <Divider>OR</Divider>
+
+          <Box>
+            <Typography variant="subtitle1" sx={{ mb: 1 }}>Join a Game</Typography>
+            <Stack direction="row" spacing={1}>
+              <TextField placeholder="Room Code" inputProps={{ maxLength: 4 }} value={roomCode} onChange={(e) => setRoomCode(e.target.value.toUpperCase())} disabled={isVetting} />
+              <Button variant="outlined" onClick={handleJoin} disabled={isVetting || !name || !roomCode}>Join</Button>
+            </Stack>
+          </Box>
+        </Stack>
+      </Paper>
+    </Container>
   );
 };
