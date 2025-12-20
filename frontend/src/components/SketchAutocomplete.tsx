@@ -44,63 +44,31 @@ export default function SketchAutocomplete({
   };
 
   return (
-    <div style={{ position: "relative", flex: 1 }}>
+    <div style={{ position: "relative", width: "100%" }}>
       <input
+        className="input"
         value={value}
         onChange={(e) => handleChange(e.target.value)}
         onFocus={() => setShowDropdown(true)}
         onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
         placeholder="Type to search sketch names..."
-        style={{ width: 500, padding: "8px", fontSize: 14 }}
       />
       {showDropdown && (
-        <div
-          style={{
-            position: "absolute",
-            top: "100%",
-            left: 0,
-            width: 500,
-            backgroundColor: "#fff",
-            border: "1px solid #ccc",
-            borderRadius: 4,
-            maxHeight: 300,
-            overflowY: "auto",
-            zIndex: 1000,
-            boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-          }}
-        >
+        <div className="dropdown">
           {filteredSketches.length > 0 ? (
             filteredSketches.map((sketch) => (
               <div
                 key={sketch.id}
                 onClick={() => handleSelect(sketch.name)}
-                style={{
-                  padding: "10px 12px",
-                  cursor: "pointer",
-                  borderBottom: "1px solid #eee",
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.backgroundColor = "#f0f0f0")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.backgroundColor = "#fff")
-                }
+                className="dropdown__item"
               >
-                <div style={{ fontSize: 14, fontWeight: "bold", marginBottom: 4 }}>
-                  {sketch.name}
-                </div>
-                <div style={{ fontSize: 12, color: "#666", marginBottom: 2 }}>
-                  {sketch.description}
-                </div>
-                <div style={{ fontSize: 11, color: "#999" }}>
-                  {sketch.tags.join(", ")}
-                </div>
+                <div className="dropdown__title">{sketch.name}</div>
+                <div className="dropdown__description">{sketch.description}</div>
+                <div className="dropdown__tags">{sketch.tags.join(", ")}</div>
               </div>
             ))
           ) : (
-            <div style={{ padding: "10px 12px", color: "#999", fontSize: 13 }}>
-              No sketches found
-            </div>
+            <div className="dropdown__item">No sketches found</div>
           )}
         </div>
       )}

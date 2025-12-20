@@ -143,6 +143,30 @@ io.on("connection", (socket) => {
     io.to(roomId).emit("player_list", { players: room.players });
   });
 
+  // --- Show Leaderboard (Host) ---
+  socket.on("show_leaderboard", ({ roomId }) => {
+    logger.info(`SOCKET_EVENT: show_leaderboard by ${socket.id} for room=${roomId}`);
+    const room = rooms[roomId];
+    if (!room) {
+      socket.emit("error_message", { message: "Room not found" });
+      return;
+    }
+
+    if (room.status === "game_over") {
+      socket.emit("error_message", { message: "Game has ended" });
+      return;
+    }
+
+    const player = room?.players[socket.id];
+    if (!player || player.clientId !== room.hostClientId) {
+      logger.warn(`Unauthorized show_leaderboard attempt by ${socket.id}`);
+      return;
+    }
+
+    room.status = "leaderboard";
+    io.to(roomId).emit("show_leaderboard");
+  });
+
   // --- Start Game ---
   socket.on("start_game", ({ roomId }) => {
     logger.info(`SOCKET_EVENT: start_game by ${socket.id} for room=${roomId}`);
@@ -210,6 +234,7 @@ io.on("connection", (socket) => {
       return;
     }
 
+    room.status = "round_end";
     io.to(roomId).emit("round_end", {
       scores: room.players,
       correctVideo: room.currentVideo,
@@ -246,6 +271,7 @@ io.on("connection", (socket) => {
       });
     } else {
       room.currentRound += 1;
+      room.status = "round";
       startRound(roomId);
     }
   });
@@ -301,6 +327,7 @@ io.on("connection", (socket) => {
 // --- Start a Round ---
 function startRound(roomId: string) {
   const room = rooms[roomId];
+  room.status = "round";
   const sketch = getRandomSketch();
   room.currentSketch = sketch;
   

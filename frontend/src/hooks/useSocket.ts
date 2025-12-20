@@ -25,6 +25,7 @@ export function useSocket() {
     s.on("round_start", game.onRoundStart);
     s.on("round_end", game.onRoundEnd);
     s.on("game_over", game.onGameOver);
+    s.on("show_leaderboard", game.onShowLeaderboard);
     s.on("state_snapshot", game.onStateSnapshot);
     
     // Handle errors (room not found, game ended, etc.)
@@ -75,6 +76,7 @@ export function useSocket() {
       s.off("round_start");
       s.off("round_end");
       s.off("game_over");
+      s.off("show_leaderboard");
       s.off("state_snapshot");
       s.off("error_message");
       s.off("connect");
@@ -116,6 +118,10 @@ export function useSocketActions() {
 
     nextRound: (roomId: string) => {
       socket.emit("next_round", { roomId });
+    },
+
+    showLeaderboard: (roomId: string) => {
+      socket.emit("show_leaderboard", { roomId });
     },
 
     syncState: (roomId: string) => {

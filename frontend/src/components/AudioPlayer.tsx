@@ -8,21 +8,12 @@ interface AudioPlayerProps {
 
 export default function AudioPlayer({ video, iframeRef }: AudioPlayerProps) {
   return (
-    <>
-      <div
-        style={{
-          width: 420,
-          height: 315,
-          backgroundColor: "#1a1a1a",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginBottom: 16,
-        }}
-      >
-        <div style={{ textAlign: "center", color: "#fff" }}>
-          <div style={{ fontSize: 48, marginBottom: 8 }}>🎵</div>
-          <div>Audio Only - Guess the sketch!</div>
+    <div className="audio-shell">
+      <div className="audio-shell__label">
+        <div style={{ fontSize: 42, lineHeight: 1 }}>🎙️</div>
+        <div>
+          <h3 style={{ margin: 0 }}>Audio Only</h3>
+          <p className="muted">Listen close and call the Key & Peele sketch.</p>
         </div>
       </div>
       <iframe
@@ -35,6 +26,6 @@ export default function AudioPlayer({ video, iframeRef }: AudioPlayerProps) {
         frameBorder="0"
         title="YouTube video player"
       />
-    </>
+    </div>
   );
 }

@@ -7,6 +7,7 @@ import LobbyScreen from "./screens/LobbyScreen";
 import RoundScreen from "./screens/RoundScreen";
 import RoundEndScreen from "./screens/RoundEndScreen";
 import GameOverScreen from "./screens/GameOverScreen";
+import LeaderboardScreen from "./screens/LeaderboardScreen";
 
 function GameRouter() {
   const game = useGameState();
@@ -34,6 +35,7 @@ function GameRouter() {
       <Route path="/:roomId/lobby" element={<LobbyScreen />} />
       <Route path="/:roomId/round" element={<RoundScreen />} />
       <Route path="/:roomId/round-end" element={<RoundEndScreen />} />
+      <Route path="/:roomId/leaderboard" element={<LeaderboardScreen />} />
       <Route path="/:roomId/game-over" element={<GameOverScreen />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

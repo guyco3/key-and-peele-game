@@ -22,6 +22,7 @@ export interface GameContextValue extends GameState {
   onRoundStart: (data: { roundNumber: number; video: Video }) => void;
   onRoundEnd: (data: { scores: Record<string, Player>; correctVideo: Video }) => void;
   onGameOver: () => void;
+  onShowLeaderboard: () => void;
   onStateSnapshot: (state: Partial<GameState>) => void;
   clearGameData: () => void;
 }
@@ -116,6 +117,10 @@ export function GameProvider({ children }: { children: ReactNode }) {
     // Keep game_clientId for next game
   };
 
+  const onShowLeaderboard = () => {
+    setStatus("leaderboard");
+  };
+
   const clearGameData = () => {
     setStatus("landing");
     setRoomId("");
@@ -199,6 +204,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
     onRoundStart,
     onRoundEnd,
     onGameOver,
+    onShowLeaderboard,
     onStateSnapshot,
     clearGameData,
   };

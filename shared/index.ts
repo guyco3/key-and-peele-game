@@ -1,7 +1,7 @@
 // Shared types for Key & Peele Game
 
 // Game status constants
-export type GameStatus = 'landing' | 'lobby' | 'round' | 'round_end' | 'game_over';
+export type GameStatus = 'landing' | 'lobby' | 'round' | 'round_end' | 'leaderboard' | 'game_over';
 
 // Player interface
 export interface Player {
@@ -120,6 +120,7 @@ export const SocketEvents = {
   SUBMIT_GUESS: 'submit_guess',
   END_ROUND: 'end_round',
   NEXT_ROUND: 'next_round',
+  SHOW_LEADERBOARD: 'show_leaderboard',
   SYNC_STATE: 'sync_state',
   
   // Server -> Client
@@ -128,6 +129,7 @@ export const SocketEvents = {
   PLAYER_LIST: 'player_list',
   ROUND_START: 'round_start',
   ROUND_END: 'round_end',
+  SHOW_LEADERBOARD: 'show_leaderboard',
   GAME_OVER: 'game_over',
   STATE_SNAPSHOT: 'state_snapshot',
   ERROR_MESSAGE: 'error_message',

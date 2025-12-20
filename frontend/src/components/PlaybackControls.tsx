@@ -33,56 +33,49 @@ export default function PlaybackControls({
   const duration = video.endTime - video.startTime;
 
   return (
-    <div>
-      {/* Play/Pause Controls */}
-      <div style={{ marginBottom: 16 }}>
-        <button
-          onClick={onTogglePlayPause}
-          style={{ fontSize: 20, padding: "8px 16px" }}
-        >
+    <div className="controls">
+      <div className="controls__row">
+        <button onClick={onTogglePlayPause} className="btn btn-primary">
           {isPlaying ? "⏸️ Pause" : "▶️ Play"}
         </button>
-        <button
-          onClick={onRestart}
-          style={{ marginLeft: 8, padding: "8px 16px" }}
-        >
+        <button onClick={onRestart} className="btn btn-ghost">
           ⏮️ Restart
         </button>
       </div>
 
-      {/* Seek Slider */}
-      <div style={{ marginBottom: 16 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ minWidth: 40 }}>{currentTime.toFixed(1)}s</span>
-          <input
-            type="range"
-            min={0}
-            max={duration}
-            step={0.1}
-            value={currentTime}
-            onChange={(e) => onSeek(Number(e.target.value))}
-            style={{ flex: 1, minWidth: 200 }}
-          />
-          <span style={{ minWidth: 40 }}>{duration.toFixed(1)}s</span>
-        </div>
+      <div className="controls__row">
+        <span className="pill">{currentTime.toFixed(1)}s</span>
+        <input
+          className="range"
+          type="range"
+          min={0}
+          max={duration}
+          step={0.1}
+          value={currentTime}
+          onChange={(e) => onSeek(Number(e.target.value))}
+        />
+        <span className="pill">{duration.toFixed(1)}s</span>
       </div>
 
-      {/* Volume Controls */}
-      <div style={{ marginTop: 8 }}>
-        <button onClick={onToggleMute}>
+      <div className="controls__row">
+        <button onClick={onToggleMute} className="btn btn-ghost">
           {isMuted ? "🔇 Unmute" : "🔊 Mute"}
         </button>
-        <button onClick={onDecreaseVolume}>-</button>
+        <button onClick={onDecreaseVolume} className="btn btn-quiet">
+          -
+        </button>
         <input
+          className="range"
           type="range"
           min={0}
           max={100}
           value={isMuted ? 0 : volume}
           onChange={(e) => onVolumeChange(Number(e.target.value))}
-          style={{ width: 100 }}
         />
-        <button onClick={onIncreaseVolume}>+</button>
-        <span style={{ marginLeft: 8 }}>Volume: {isMuted ? 0 : volume}</span>
+        <button onClick={onIncreaseVolume} className="btn btn-quiet">
+          +
+        </button>
+        <span className="pill">Volume: {isMuted ? 0 : volume}</span>
       </div>
     </div>
   );
