@@ -1,14 +1,22 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import YouTube, { YouTubeProps } from 'react-youtube';
 import { useGame } from '../context/GameContext';
 
 export const VideoPlayer: React.FC = () => {
-  const { gameState } = useGame();
+  const { gameState, socket, clientId, roomCode } = useGame();
   const playerRef = useRef<any>(null);
+  const errorReportedRef = useRef(false);
+  const [videoError, setVideoError] = useState<string | null>(null);
 
   const phase = gameState?.phase;
   const youtubeId = gameState?.currentSketch?.youtubeId;
   const clipLength = gameState?.config?.clipLength || 5;
+
+  // Reset error state when the video changes
+  useEffect(() => {
+    errorReportedRef.current = false;
+    setVideoError(null);
+  }, [youtubeId]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -44,6 +52,29 @@ export const VideoPlayer: React.FC = () => {
     playerRef.current.setVolume(100);
   };
 
+  const onError: YouTubeProps['onError'] = (event) => {
+    if (errorReportedRef.current) return;
+
+    const code = event.data;
+    const codeDescriptions: Record<number, string> = {
+      2: 'The video ID looks invalid.',
+      5: 'This video cannot be played in HTML5.',
+      100: 'The video was removed or set to private.',
+      101: 'Playback is blocked by the owner.',
+      150: 'Playback is blocked by the owner.',
+    };
+
+    const friendly = codeDescriptions[code] || 'Video is unavailable in this region or network.';
+    const message = `Video unavailable (error ${code}). ${friendly}`;
+
+    setVideoError(message);
+    errorReportedRef.current = true;
+
+    if (socket && roomCode && clientId && youtubeId) {
+      socket.emit('video_error', { clientId, roomCode, youtubeId, errorCode: code, message });
+    }
+  };
+
   if (!youtubeId) return <div className="video-placeholder">Waiting for sketch...</div>;
 
   const opts: YouTubeProps['opts'] = {
@@ -64,6 +95,7 @@ export const VideoPlayer: React.FC = () => {
         videoId={youtubeId} 
         opts={opts} 
         onReady={onReady} 
+        onError={onError}
         className="youtube-embed"
       />
       
@@ -75,6 +107,14 @@ export const VideoPlayer: React.FC = () => {
           <div className="audio-waves">
             <span></span><span></span><span></span><span></span>
           </div>
+        </div>
+      )}
+
+      {videoError && (
+        <div className="video-error-banner">
+          <div className="error-title">Video unavailable</div>
+          <p>{videoError}</p>
+          <p>We'll try a different video for this round.</p>
         </div>
       )}
     </div>

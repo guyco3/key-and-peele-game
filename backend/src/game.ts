@@ -5,6 +5,7 @@ export class GameInstance {
   public state: GameState;
   public lastActivityAt: number = Date.now();
   private timerRef: NodeJS.Timeout | null = null;
+  private activeSketch: Sketch | null = null;
 
     constructor(
         public id: string,
@@ -35,6 +36,18 @@ export class GameInstance {
     this.nextRound();
   }
 
+  private pickRandomSketch(excludeId?: string): Sketch {
+    const pool = this.config.sketches || [];
+    if (pool.length === 0) {
+      throw new Error(`No sketches available for game ${this.roomCode}`);
+    }
+
+    const filtered = excludeId ? pool.filter(s => s.id !== excludeId) : pool;
+    const choicePool = filtered.length > 0 ? filtered : pool;
+    const choice = choicePool[Math.floor(Math.random() * choicePool.length)];
+    return choice;
+  }
+
   private nextRound() {
     if (this.state.currentRound >= this.config.numRounds) {
       logger.info(`[Game ${this.roomCode}] All rounds complete. Transitioning to GAME_OVER.`);
@@ -46,7 +59,8 @@ export class GameInstance {
     // Reset "hasGuessed" for everyone
     Object.values(this.state.players).forEach(p => p.hasGuessed = false);
     
-    const sketch = this.config.sketches[this.state.currentRound - 1];
+    this.activeSketch = this.pickRandomSketch();
+    const sketch = this.activeSketch;
     
     // DATA MASKING: Only send the ID and Video during the round
     this.state.currentSketch = { 
@@ -59,7 +73,7 @@ export class GameInstance {
   }
 
   private revealRound() {
-    const fullSketch = this.config.sketches[this.state.currentRound - 1];
+    const fullSketch = this.activeSketch || this.config.sketches[0];
     this.state.currentSketch = fullSketch; // Full reveal (name, desc)
     
     logger.info(`[Game ${this.roomCode}] Round ${this.state.currentRound} revealed. Sketch: ${fullSketch.name}`);
@@ -95,7 +109,7 @@ export class GameInstance {
     }
 
     player.hasGuessed = true;
-    const actualSketch = this.config.sketches[this.state.currentRound - 1];
+    const actualSketch = this.activeSketch || this.config.sketches[0];
     const isCorrect = guessName.toLowerCase().trim() === actualSketch.name.toLowerCase().trim();
 
     if (isCorrect) {
@@ -142,6 +156,29 @@ export class GameInstance {
       this.onUpdate({ ...this.state });
       logger.debug(`[Game ${this.roomCode}] Player ${player.name} connection status: ${status ? 'ONLINE' : 'OFFLINE'}`);
     }
+  }
+
+  public rerollVideoForError(clientId: string, errorCode: number, message?: string) {
+    if (this.state.phase !== "ROUND_PLAYING") {
+      logger.debug(`[Game ${this.roomCode}] Ignoring video error; phase=${this.state.phase}`);
+      return;
+    }
+
+    const reporter = this.state.players[clientId];
+    const playerName = reporter?.name || "Someone";
+
+    const newSketch = this.pickRandomSketch(this.activeSketch?.id);
+    this.activeSketch = newSketch;
+    this.state.currentSketch = { id: newSketch.id, youtubeId: newSketch.youtubeId };
+    this.state.guessFeed.push({
+      playerName: "System",
+      text: `Video didn't work for ${playerName}. Finding a new video.`,
+      isCorrect: false
+    });
+    this.lastActivityAt = Date.now();
+    this.onUpdate({ ...this.state });
+
+    logger.warn(`[Game ${this.roomCode}] Video error from ${playerName}; swapping video. Code=${errorCode}. ${message || ""}`);
   }
 
   public destroy() {

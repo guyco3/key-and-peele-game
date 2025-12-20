@@ -26,8 +26,8 @@ export const JoinForm: React.FC = () => {
       clipLength,
       roundLength,
       roundEndLength,
-      // Randomly pick sketches based on the chosen number of rounds
-      sketches: [...SKETCHES].sort(() => 0.5 - Math.random()).slice(0, numRounds)
+      // Send full catalog; rounds will pick randomly server-side
+      sketches: [...SKETCHES]
     };
 
     await createRoom(name, config);

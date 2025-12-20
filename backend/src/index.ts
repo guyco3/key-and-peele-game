@@ -127,6 +127,18 @@ io.on('connection', (socket) => {
     }
   });
 
+  socket.on('video_error', ({ clientId, roomCode, youtubeId, errorCode, message }) => {
+    const gameId = roomCodeToId.get(roomCode);
+    const game = games.get(gameId || '');
+    if (!game) return;
+
+    const currentVideo = game.state.currentSketch?.youtubeId;
+    if (game.state.phase !== "ROUND_PLAYING") return;
+    if (currentVideo && youtubeId && currentVideo !== youtubeId) return; // stale report
+
+    game.rerollVideoForError(clientId, errorCode, message);
+  });
+
   socket.on('disconnect', () => {
     let dClientId: string | undefined;
     for (const [cId, sId] of clientIdToSocketId.entries()) {

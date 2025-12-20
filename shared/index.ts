@@ -26,10 +26,10 @@ export interface GameConfig {
 
 export interface GameState {
   phase: GamePhase;
-  hostId: string; 
+  hostId: string;
   currentRound: number;
   endsAt: number;
   players: Record<string, Player>;
-  currentSketch?: Partial<Sketch>; 
+  currentSketch?: Partial<Sketch>;
   guessFeed: Array<{ playerName: string; text: string; isCorrect: boolean }>;
 }
