@@ -21,7 +21,6 @@ export interface GameConfig {
   clipLength: number;
   roundLength: number;
   roundEndLength: number;
-  sketches: Sketch[];
 }
 
 export interface GameState {
