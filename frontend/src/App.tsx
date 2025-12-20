@@ -5,9 +5,11 @@ import { JoinForm } from './components/JoinForm';
 import { Lobby } from './components/Lobby';
 
 const App: React.FC = () => {
-  const { gameState } = useGame();
+  const { gameState, roomCode } = useGame();
 
-  if (!gameState) return <JoinForm />;
+  if (!gameState && !roomCode) return <JoinForm />;
+  if (!gameState) return <div className="loading-screen">Syncing...</div>;
+
   if (gameState.phase === 'LOBBY') return <Lobby />;
   
   return <GameView />;
