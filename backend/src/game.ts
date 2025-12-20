@@ -1,5 +1,6 @@
 import { GameConfig, GameState, Player, GamePhase, Sketch } from "../../shared";
 import logger from "./logger";
+import { SKETCHES } from "../../shared/sketches";
 
 export class GameInstance {
   public state: GameState;
@@ -37,11 +38,10 @@ export class GameInstance {
   }
 
   private pickRandomSketch(excludeId?: string): Sketch {
-    const pool = this.config.sketches || [];
+    const pool = SKETCHES;
     if (pool.length === 0) {
       throw new Error(`No sketches available for game ${this.roomCode}`);
     }
-
     const filtered = excludeId ? pool.filter(s => s.id !== excludeId) : pool;
     const choicePool = filtered.length > 0 ? filtered : pool;
     const choice = choicePool[Math.floor(Math.random() * choicePool.length)];

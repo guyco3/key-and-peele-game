@@ -42,7 +42,7 @@ app.post('/create-room', (req, res) => {
   
   let roomCode = "";
   do {
-    roomCode = Math.random().toString(36).substring(2, 6).toUpperCase();
+    roomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
   } while (roomCodeToId.has(roomCode));
 
   const host: Player = { 
