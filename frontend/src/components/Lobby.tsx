@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useGame } from '../context/GameContext';
 
 export const Lobby: React.FC = () => {
   const { gameState, socket, clientId, roomCode, leaveGame } = useGame();
+
+  // Settings state (for host to adjust before starting)
+  const [numRounds, setNumRounds] = useState(5);
+  const [roundLength, setRoundLength] = useState(30);
+  const [roundEndLength, setRoundEndLength] = useState(10);
+  const [clipLength, setClipLength] = useState(5);
 
   if (!gameState) return null;
 
@@ -10,7 +16,16 @@ export const Lobby: React.FC = () => {
   const isHost = gameState.hostId === clientId;
 
   const handleStart = () => {
-    socket?.emit('start_game', { roomCode, clientId });
+    socket?.emit('start_game', { 
+      roomCode, 
+      clientId,
+      config: {
+        numRounds,
+        roundLength,
+        roundEndLength,
+        clipLength
+      }
+    });
   };
 
   return (

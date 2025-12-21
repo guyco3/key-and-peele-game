@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useGame } from '../context/GameContext';
+import { SKETCHES } from '../../../shared/sketches';
 import { GameConfig } from '../../../shared';
 
 export const JoinForm: React.FC = () => {
   const { createRoom, identify } = useGame();
   
-  // User Info
   const [name, setName] = useState(localStorage.getItem('kp_username') || '');
+  const [showJoinModal, setShowJoinModal] = useState(false);
   const [roomCode, setRoomCode] = useState('');
 
   // Game Settings (Defaults)
@@ -30,7 +31,12 @@ export const JoinForm: React.FC = () => {
   };
 
   const handleJoin = () => {
-    if (!name || !roomCode) return alert("Missing name or code!");
+    if (!name.trim()) return alert("Enter your name first!");
+    setShowJoinModal(true);
+  };
+
+  const submitJoin = () => {
+    if (!roomCode.trim()) return alert("Enter a room code!");
     localStorage.setItem('kp_username', name);
     identify(name, roomCode.toUpperCase());
   };
@@ -47,6 +53,7 @@ export const JoinForm: React.FC = () => {
             placeholder="e.g. A-A-Ron"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            autoFocus
           />
         </section>
 
