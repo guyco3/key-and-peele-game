@@ -16,7 +16,7 @@ export const GuessFeed: React.FC = () => {
 
   return (
     <div className="guess-feed-container">
-      <h4>Activity</h4>
+      <h4>Guesses</h4>
       <div className="guess-list" ref={scrollRef}>
         {gameState.guessFeed.map((guess, index) => (
           <div 

@@ -25,14 +25,11 @@ export const Podium: React.FC = () => {
         ))}
       </div>
       
-      <div className="podium-actions">
-        <button className="btn-primary" onClick={() => window.location.reload()}>
-          Play Again
-        </button>
+      {/* <div className="podium-actions">
         <button className="leave-btn" onClick={leaveGame}>
           Back to Menu
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

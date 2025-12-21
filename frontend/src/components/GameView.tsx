@@ -19,10 +19,6 @@ export const GameView: React.FC = () => {
     <div className="game-layout">
       {/* 📒 SIDEBAR: The Teacher's Record Book */}
       <aside className="sidebar-classroom">
-        <div className="sidebar-header">
-          <h3>Class Records</h3>
-        </div>
-        
         <div className="sidebar-scroll-area">
           <Leaderboard />
 
@@ -48,12 +44,6 @@ export const GameView: React.FC = () => {
         {isGameOver ? (
           /* 🏆 GAME OVER: Show the Final Results (The Podium) */
           <div className="board-container">
-            <header className="board-header">
-              <div className="round-info">
-                <span className="chalk-label">FINAL</span>
-                <span className="chalk-value">RESULTS</span>
-              </div>
-            </header>
             <Podium />
           </div>
         ) : (
@@ -84,7 +74,6 @@ export const GameView: React.FC = () => {
                     {/* Guess feed shown under the video (vertical, scrollable) - hidden during reveal */}
                     {gameState.phase !== 'ROUND_REVEAL' && (
                       <div className="guess-feed-under-video">
-                        <div className="feed-divider">Recent Activity</div>
                         <GuessFeed />
                       </div>
                     )}

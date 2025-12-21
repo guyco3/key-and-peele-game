@@ -140,6 +140,19 @@ export class GameInstance {
       text: isCorrect ? "guessed the sketch!" : guessName, 
       isCorrect 
     });
+
+    // --- NEW LOGIC: Check if everyone has guessed ---
+    if (isCorrect) {
+      const players = Object.values(this.state.players);
+      const allCorrect = players.every(p => p.hasGuessed);
+
+      if (allCorrect) {
+        logger.info(`[Game ${this.roomCode}] Everyone guessed correctly! Ending round early.`);
+        // We trigger revealRound immediately
+        this.revealRound();
+        return; // transitionTo is handled inside revealRound
+      }
+    }
     
     this.onUpdate({ ...this.state });
   }
@@ -175,11 +188,22 @@ export class GameInstance {
   }
 
   public removePlayer(clientId: string) {
-    if (this.state.players[clientId]) {
-      delete this.state.players[clientId];
-      this.onUpdate({ ...this.state });
+      if (this.state.players[clientId]) {
+        delete this.state.players[clientId];
+        
+        // If a round is active, check if the remaining players have all finished
+        if (this.state.phase === "ROUND_PLAYING") {
+          const players = Object.values(this.state.players);
+          // Ensure there is at least one player left, and they've all guessed
+          if (players.length > 0 && players.every(p => p.hasGuessed)) {
+            this.revealRound();
+            return;
+          }
+        }
+
+        this.onUpdate({ ...this.state });
+      }
     }
-  }
 
   public setConnectionStatus(clientId: string, status: boolean) {
     const player = this.state.players[clientId];
