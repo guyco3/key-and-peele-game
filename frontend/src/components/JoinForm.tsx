@@ -15,18 +15,16 @@ export const JoinForm: React.FC = () => {
   const [roundEndLength, setRoundEndLength] = useState(10);
   const [clipLength, setClipLength] = useState(5);
 
-  const handleCreate = async () => {
+  // Modal visibility for host settings
+  const [showHostModal, setShowHostModal] = useState(false);
+
+  const handleCreate = async (cfg?: GameConfig) => {
     if (!name) return alert("Enter a name first!");
     localStorage.setItem('kp_username', name);
 
-    // Construct config from state
-    const config: GameConfig = {
-      numRounds,
-      clipLength,
-      roundLength,
-      roundEndLength,
-    };
+    const config: GameConfig = cfg || { numRounds, clipLength, roundLength, roundEndLength };
 
+    setShowHostModal(false);
     await createRoom(name, config);
   };
 
@@ -38,76 +36,78 @@ export const JoinForm: React.FC = () => {
 
   return (
     <div className="join-container">
-      <h1>Key & Peele Mystery</h1>
-      
+      <h1>The Unoffical Key & Peele Guessing Game </h1>
+
       <div className="card">
         <section className="input-group">
           <label>Your Name</label>
-          <input 
-            type="text" 
-            placeholder="e.g. A-A-Ron" 
+          <input
+            type="text"
+            placeholder="e.g. A-A-Ron"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </section>
 
-        <div className="setup-sections">
-          {/* CREATE SECTION */}
-          <section className="create-section">
-            <h3>Create a Game</h3>
+        <div className="actions-row">
+          <button className="btn-primary" onClick={() => setShowHostModal(true)}>Host Game</button>
+          <div className="or-sep">OR</div>
+          <div className="join-inline">
+            <input
+              type="text"
+              placeholder="Room Code"
+              maxLength={4}
+              value={roomCode}
+              onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
+            />
+            <button className="btn-secondary" onClick={handleJoin}>Join</button>
+          </div>
+        </div>
+      </div>
+
+      {/* Host Settings Modal */}
+      {showHostModal && (
+        <div className="modal-backdrop">
+          <div className="modal">
+            <h3>Host Game Settings</h3>
             <div className="settings-grid">
               <div className="setting-item">
                 <label>Rounds: {numRounds}</label>
-                <input 
-                  type="range" min="1" max="20" step="1" 
-                  value={numRounds} onChange={(e) => setNumRounds(Number(e.target.value))} 
+                <input
+                  type="range" min="1" max="20" step="1"
+                  value={numRounds} onChange={(e) => setNumRounds(Number(e.target.value))}
                 />
               </div>
               <div className="setting-item">
                 <label>Guess Time: {roundLength}s</label>
-                <input 
-                  type="range" min="10" max="60" step="5" 
-                  value={roundLength} onChange={(e) => setRoundLength(Number(e.target.value))} 
+                <input
+                  type="range" min="10" max="60" step="5"
+                  value={roundLength} onChange={(e) => setRoundLength(Number(e.target.value))}
                 />
               </div>
               <div className="setting-item">
                 <label>Reveal Time: {roundEndLength}s</label>
-                <input 
-                  type="range" min="5" max="30" step="5" 
-                  value={roundEndLength} onChange={(e) => setRoundEndLength(Number(e.target.value))} 
+                <input
+                  type="range" min="5" max="30" step="5"
+                  value={roundEndLength} onChange={(e) => setRoundEndLength(Number(e.target.value))}
                 />
               </div>
               <div className="setting-item">
                 <label>Clip Loop: {clipLength}s</label>
-                <input 
-                  type="range" min="2" max="15" step="1" 
-                  value={clipLength} onChange={(e) => setClipLength(Number(e.target.value))} 
+                <input
+                  type="range" min="2" max="15" step="1"
+                  value={clipLength} onChange={(e) => setClipLength(Number(e.target.value))}
                 />
               </div>
             </div>
-            <button className="btn-primary" onClick={handleCreate}>
-              Create New Room
-            </button>
-          </section>
 
-          <div className="divider"><span>OR</span></div>
-
-          {/* JOIN SECTION */}
-          <section className="join-section">
-            <h3>Join a Game</h3>
-            <div className="join-row">
-              <input 
-                type="text" 
-                placeholder="Room Code" 
-                maxLength={4}
-                value={roomCode}
-                onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
-              />
-              <button className="btn-secondary" onClick={handleJoin}>Join</button>
+            <div className="modal-actions">
+              <button className="btn-secondary" onClick={() => setShowHostModal(false)}>Cancel</button>
+              <button className="btn-primary" onClick={() => handleCreate({ numRounds, roundLength, roundEndLength, clipLength })}>Create & Host</button>
             </div>
-          </section>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

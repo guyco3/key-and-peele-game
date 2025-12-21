@@ -5,53 +5,103 @@ import { SketchSearch } from './SketchSearch';
 import { Timer } from './Timer';
 import { Leaderboard } from './Leaderboard';
 import { GuessFeed } from './GuessFeed';
-import { Podium } from './Podium'; // 👈 Import new component
+import { Podium } from './Podium';
 
 export const GameView: React.FC = () => {
   const { gameState, leaveGame } = useGame();
 
+  // 🛡️ Safety Check
   if (!gameState) return null;
 
   const isGameOver = gameState.phase === 'GAME_OVER';
 
   return (
     <div className="game-layout">
-      <aside className="sidebar">
-        <Leaderboard />
-        <GuessFeed />
+      {/* 📒 SIDEBAR: The Teacher's Record Book */}
+      <aside className="sidebar-classroom">
+        <div className="sidebar-header">
+          <h3>Class Records</h3>
+        </div>
+        
+        <div className="sidebar-scroll-area">
+          <Leaderboard />
+
+          {/* Search moved into sidebar — under the leaderboard */}
+          <div className="sidebar-search-wrapper">
+            {gameState.phase === 'ROUND_PLAYING' && (
+              <div className="search-wrapper-chalk">
+                <SketchSearch />
+              </div>
+            )}
+          </div>
+        </div>
+
         <div className="sidebar-footer">
-          <button className="leave-btn-small" onClick={leaveGame}>
-            Leave Game
+          <button className="chalk-btn-exit" onClick={leaveGame}>
+            Exit Classroom
           </button>
         </div>
       </aside>
 
-      <main className="content">
+      {/* 🏫 MAIN STAGE: The Chalkboard Content */}
+      <main className="main-classroom">
         {isGameOver ? (
-          /* 🏆 SHOW THIS AT THE END */
-          <Podium />
+          /* 🏆 GAME OVER: Show the Final Results (The Podium) */
+          <div className="board-container">
+            <header className="board-header">
+              <div className="round-info">
+                <span className="chalk-label">FINAL</span>
+                <span className="chalk-value">RESULTS</span>
+              </div>
+            </header>
+            <Podium />
+          </div>
         ) : (
-          /* 🎮 SHOW THIS DURING PLAY */
-          <>
-            <header className="top-bar">
-              <div className="round-counter">Round {gameState.currentRound}</div>
+          /* 🎮 ACTIVE PLAY: Show Video and Search */
+          <div className="board-container">
+            <header className="board-header">
+              <div className="round-info">
+                <span className="chalk-label">ROUND</span>
+                <span className="chalk-value">{gameState.currentRound}</span>
+              </div>
               <Timer />
             </header>
 
-            <section className="video-section">
-              <VideoPlayer />
-              {gameState.phase === 'ROUND_REVEAL' && (
-                <div className="reveal-overlay">
-                  <h2>{gameState.currentSketch?.name}</h2>
-                  <p>{gameState.currentSketch?.description}</p>
-                </div>
-              )}
-            </section>
+            <div className="stage-area">
+                  <section className="video-container-centered">
+                    <div className="video-frame">
+                      <VideoPlayer />
+                    </div>
 
-            <footer className="interaction-section">
-              {gameState.phase === 'ROUND_PLAYING' && <SketchSearch />}
-            </footer>
-          </>
+                    {/* Show sketch name & description under the video when revealing */}
+                    {gameState.phase === 'ROUND_REVEAL' && (
+                      <div className="sketch-reveal">
+                        <h3 className="chalk-textured-text">{gameState.currentSketch?.name}</h3>
+                        <p className="chalk-description">{gameState.currentSketch?.description}</p>
+                      </div>
+                    )}
+
+                    {/* Guess feed shown under the video (vertical, scrollable) - hidden during reveal */}
+                    {gameState.phase !== 'ROUND_REVEAL' && (
+                      <div className="guess-feed-under-video">
+                        <div className="feed-divider">Recent Activity</div>
+                        <GuessFeed />
+                      </div>
+                    )}
+                  </section>
+
+                  {/* ✍️ INPUT: The Wide Chalk Underline is now in the left column */}
+                  <footer className="search-footer">
+                    {/* keep the success notice here so it's visible near the stage */}
+                    {gameState.phase === 'ROUND_PLAYING' && 
+                     gameState.players[gameState.hostId]?.hasGuessed && (
+                      <div className="success-notice chalk-textured-text">
+                        PRESENT! (Correct)
+                      </div>
+                    )}
+                  </footer>
+                </div>
+          </div>
         )}
       </main>
     </div>
