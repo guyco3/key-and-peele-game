@@ -4,19 +4,15 @@
 :root {
   --chalk-white: rgba(255, 255, 255, 0.98);
   --chalk-yellow: #fffca3;
-  --board-green: #2e4d35; 
+  --board-green: #2e4d35;
 }
 
 .chalkboard-theme {
   position: fixed;
   inset: 0;
+  /* Graphic board: solid color with subtle radial focus */
   background-color: var(--board-green);
-  background-image: 
-    radial-gradient(circle at center, rgba(255,255,255,0.12) 0%, rgba(0,0,0,0.6) 100%),
-    url("https://www.transparenttextures.com/patterns/dust.png"),
-    url("https://www.transparenttextures.com/patterns/scratched-metal.png"),
-    url("https://www.transparenttextures.com/patterns/dark-slate.png");
-  background-blend-mode: soft-light, soft-light, overlay, normal;
+  background-image: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.2) 100%);
   overflow: hidden;
   z-index: 0; /* Base Layer */
 }
@@ -26,9 +22,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: 
-    radial-gradient(circle at 15% 25%, rgba(255,255,255,0.06) 0%, transparent 45%),
-    radial-gradient(circle at 85% 75%, rgba(255,255,255,0.05) 0%, transparent 40%);
+  background-image: radial-gradient(circle at 15% 25%, rgba(255,255,255,0.04) 0%, transparent 45%);
   pointer-events: none;
   z-index: -1; 
 }
@@ -45,7 +39,8 @@
   font-family: 'Permanent Marker', cursive; 
   user-select: none;
   pointer-events: none;
-  opacity: 0.4; 
+  opacity: 0.2; 
+  color: #000; /* Ink black for graphic look */
   z-index: 1; /* Below UI, Above Board */
 }
 

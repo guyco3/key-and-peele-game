@@ -23,9 +23,12 @@ export const GuessFeed: React.FC = () => {
             key={index} 
             className={`guess-item ${guess.isCorrect ? 'is-correct' : 'is-wrong'}`}
           >
-            <span className="player-name">{guess.playerName}</span>
+            <div className="guess-left">
+              <span className="player-name">{guess.playerName}</span>
+              {!guess.isCorrect && <span className="delim">:</span>}
+            </div>
             <span className="guess-text">
-              {guess.isCorrect ? " guessed correctly! 🎉" : `: ${guess.text}`}
+              {guess.isCorrect ? 'guessed correctly! 🎉' : guess.text}
             </span>
           </div>
         ))}

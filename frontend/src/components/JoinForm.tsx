@@ -37,9 +37,13 @@ export const JoinForm: React.FC = () => {
 
   return (
     <div className="join-container">
-      <h1>The Unoffical Key & Peele Guessing Game </h1>
+      <h1>
+        Key & Peele
+        <br />
+        Guessing Game
+      </h1>
 
-      <div className="card">
+      <div className="card join-card">
         <section className="input-group">
           <label>Your Name</label>
           <input
@@ -50,18 +54,23 @@ export const JoinForm: React.FC = () => {
           />
         </section>
 
-        <div className="actions-row">
-          <button className="btn-primary" onClick={() => setShowHostModal(true)}>Host Game</button>
-          <div className="or-sep">OR</div>
-          <div className="join-inline">
+        <div style={{marginTop:12}}>
+          <button className="btn-host" onClick={() => setShowHostModal(true)} style={{width:'100%'}}>Host Game</button>
+        </div>
+
+        <div style={{marginTop:12, display:'flex', gap:12}}>
+          <div className="input-group" style={{flex:1}}>
             <input
               type="text"
               placeholder="Room Code"
               maxLength={4}
               value={roomCode}
               onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
+              style={{width:'100%', textAlign:'center'}}
             />
-            <button className="btn-secondary" onClick={handleJoin}>Join</button>
+          </div>
+          <div style={{width:160}}>
+            <button className="btn-join" onClick={handleJoin} style={{width:'100%'}}>Join</button>
           </div>
         </div>
       </div>
@@ -111,8 +120,8 @@ export const JoinForm: React.FC = () => {
             </div>
 
             <div className="modal-actions">
-              <button className="btn-secondary" onClick={() => setShowHostModal(false)}>Cancel</button>
-              <button className="btn-primary" onClick={() => handleCreate({ numRounds, roundLength, roundEndLength, clipLength, randomStartTime })}>Create & Host</button>
+              <button className="btn-host" onClick={() => setShowHostModal(false)}>Cancel</button>
+              <button className="btn-join" onClick={() => handleCreate({ numRounds, roundLength, roundEndLength, clipLength, randomStartTime })}>Create & Host</button>
             </div>
           </div>
         </div>

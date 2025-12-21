@@ -3,6 +3,9 @@
   --chalk-white: #ffffff;
   --chalk-yellow: #fffca3;
   --sidebar-w: 320px;
+  --ink-black: #000000;
+  --paper-white: #ffffff;
+  --join-yellow: #FFD700;
 }
 
 body {
@@ -278,7 +281,7 @@ body {
 
 .leaderboard .rank { color: rgba(255,255,255,0.7); width: 36px; }
 .leaderboard .name { flex: 1; }
-.leaderboard .score { color: var(--chalk-yellow); }
+.leaderboard .score { color: var(--ink-black); }
 
 /* Horizontal leaderboard when placed under the video */
 .leaderboard.horizontal-mode { }
@@ -293,7 +296,11 @@ body {
 
 /* Make guess feed text subtle and like chalk handwriting */
 .guess-list .player-name { font-weight: 700; margin-right: 6px; }
-.guess-list .guess-text { color: rgba(255,255,255,0.9); }
+.guess-list .guess-text { color: var(--ink-black); max-width: 60%; text-align: right; }
+
+/* Left group containing name + delim so colon stays next to name */
+.guess-left { display: flex; align-items: center; gap: 6px; }
+.guess-list .delim { color: var(--ink-black); }
 
 /* --- Search box and suggestions improvements --- */
 .search-container {
@@ -357,6 +364,8 @@ body {
   font-size: 3rem;
   margin: 0;
   text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+  text-align: center;
+  line-height: 1.05;
 }
 
 .card {
@@ -365,6 +374,13 @@ body {
   padding: 1.2rem 1.4rem;
   border-radius: 10px;
   width: min(680px, 92%);
+}
+
+/* Narrowed join card to keep inputs compact and centered */
+.join-card {
+  width: min(420px, 92%);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .input-group label { color: var(--chalk-yellow); display: block; margin-bottom: 6px; }
@@ -385,6 +401,110 @@ body {
 
 .btn-primary { background: var(--chalk-yellow); color: black; }
 .btn-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.08); color: var(--chalk-white); }
+
+/* --- Stylized / Neo-brutalist rules --- */
+.stylized-comp {
+  border: 4px solid var(--ink-black);
+  box-shadow: 5px 5px 0px var(--ink-black);
+  transition: all 0.1s ease;
+}
+.stylized-comp:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--ink-black);
+}
+
+/* Join form specific */
+.join-container .input-group input {
+  background: var(--paper-white);
+  border: 4px solid var(--ink-black);
+  color: var(--ink-black);
+  padding: 12px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 1.2rem;
+  width: 100%;
+  box-shadow: 4px 4px 0px var(--ink-black);
+}
+
+.btn-host {
+  background: var(--paper-white);
+  color: var(--ink-black);
+  border: 4px solid var(--ink-black);
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.1rem;
+  padding: 12px 24px;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0px var(--ink-black);
+}
+
+.btn-host:active { transform: translate(2px,2px); box-shadow: 2px 2px 0px var(--ink-black); }
+
+.btn-join {
+  background: var(--join-yellow);
+  color: var(--ink-black);
+  border: 4px solid var(--ink-black);
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.1rem;
+  padding: 12px 24px;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0px var(--ink-black);
+}
+
+.btn-join:active { transform: translate(2px,2px); box-shadow: 2px 2px 0px var(--ink-black); }
+
+/* Player / guess cards adopt the white-paper look */
+.player-list .leaderboard-row,
+.guess-list .guess-item {
+  background: var(--paper-white);
+  border: 4px solid var(--ink-black);
+  color: var(--ink-black);
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  box-shadow: 3px 3px 0px var(--ink-black);
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Video frame stylized border */
+.video-frame {
+  border: 6px solid var(--ink-black);
+  box-shadow: 8px 8px 0px var(--ink-black);
+}
+
+/* --- Podium --- */
+.podium-container { text-align: center; color: var(--chalk-white); }
+.podium-container h1 { font-family: 'Permanent Marker', cursive; color: var(--chalk-yellow); }
+.podium-grid { display:flex; align-items:flex-end; justify-content:center; gap:24px; margin-top:18px; }
+
+/* Podium place base styling */
+.podium-place { width:160px; border: 6px solid var(--ink-black); box-shadow: 6px 6px 0 var(--ink-black); background: var(--paper-white); color: var(--ink-black); display:flex; flex-direction:column; align-items:center; }
+.podium-top { width:100%; display:flex; align-items:center; justify-content:center; gap:8px; padding:12px 8px 6px 8px; border-bottom: 3px solid rgba(0,0,0,0.08); }
+.podium-top .medal { font-size:1.6rem; }
+.podium-top .position-label { font-weight:900; font-size:0.95rem; }
+.podium-body { padding:10px 8px 14px 8px; display:flex; flex-direction:column; align-items:center; gap:6px; }
+.podium-name { font-weight:800; }
+.podium-score { opacity:0.95; }
+
+/* Heights and color accents per place */
+.podium-place.place-1 { height:230px; background: linear-gradient(180deg,#fff8d6,#fff); }
+.podium-place.place-2 { height:190px; background: linear-gradient(180deg,#eef2f6,#fff); }
+.podium-place.place-3 { height:160px; background: linear-gradient(180deg,#f7efe6,#fff); }
+
+/* Give first/second/third a medal-like accent */
+.podium-place.place-1 .podium-top { background: linear-gradient(180deg,#ffd70055,#fff0); }
+.podium-place.place-2 .podium-top { background: linear-gradient(180deg,#c0c0c055,#fff0); }
+.podium-place.place-3 .podium-top { background: linear-gradient(180deg,#b8733355,#fff0); }
+
+/* Podium base (stand) */
+.podium-place::after { content: ""; display:block; width:100%; height:20px; background:#222; margin-top:8px; border-top:4px solid var(--ink-black); }
+
+/* Layout tweaks when fewer than 3 stands */
+.podium-grid.count-1 { justify-content:center; }
+.podium-grid.count-2 { justify-content:center; gap:36px; }
+.podium-grid.count-2 .place-2 { transform: translateX(-30px); }
+.podium-grid.count-2 .place-1 { transform: translateX(10px); }
 
 /* Modal */
 .modal-backdrop { position: fixed; inset: 0; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.6); z-index: 200; }
