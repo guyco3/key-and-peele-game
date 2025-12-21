@@ -8,6 +8,15 @@ export class GameInstance {
   private timerRef: NodeJS.Timeout | null = null;
   private activeSketch: Sketch | null = null;
   private blockedSketchIds: Set<string> = new Set();
+  
+  /**
+   * 🎲 Helper: Calculates a random start time (seconds) when enabled in config.
+   */
+  private calculateStartTime(): number {
+    if (!this.config.randomStartTime) return 0;
+    // Choose random integer between 0 and 90 (inclusive)
+    return Math.floor(Math.random() * 91);
+  }
 
   constructor(
     public id: string,
@@ -71,9 +80,10 @@ export class GameInstance {
     this.activeSketch = sketch;
     
     // 🛡️ DATA MASKING: Only send non-spoiler data to the clients
-    this.state.currentSketch = { 
+    this.state.currentSketch = {
       youtubeId: this.activeSketch.youtubeId,
-      id: this.activeSketch.id 
+      id: this.activeSketch.id,
+      startTime: this.calculateStartTime()
     };
 
     logger.info(`[Game ${this.roomCode}] Round ${this.state.currentRound} started.`);
@@ -148,7 +158,7 @@ export class GameInstance {
     // 2. Pick a new sketch (which will now filter out the blocked one)
     const newSketch = this.pickRandomSketch();
     this.activeSketch = newSketch;
-    this.state.currentSketch = { id: newSketch.id, youtubeId: newSketch.youtubeId };
+    this.state.currentSketch = { id: newSketch.id, youtubeId: newSketch.youtubeId, startTime: this.calculateStartTime() };
     
     this.state.guessFeed.push({
       playerName: "System",

@@ -14,6 +14,7 @@ export const JoinForm: React.FC = () => {
   const [roundLength, setRoundLength] = useState(30);
   const [roundEndLength, setRoundEndLength] = useState(10);
   const [clipLength, setClipLength] = useState(5);
+  const [randomStartTime, setRandomStartTime] = useState(false);
 
   // Modal visibility for host settings
   const [showHostModal, setShowHostModal] = useState(false);
@@ -22,7 +23,7 @@ export const JoinForm: React.FC = () => {
     if (!name) return alert("Enter a name first!");
     localStorage.setItem('kp_username', name);
 
-    const config: GameConfig = cfg || { numRounds, clipLength, roundLength, roundEndLength };
+    const config: GameConfig = cfg || { numRounds, clipLength, roundLength, roundEndLength, randomStartTime };
 
     setShowHostModal(false);
     await createRoom(name, config);
@@ -99,11 +100,19 @@ export const JoinForm: React.FC = () => {
                   value={clipLength} onChange={(e) => setClipLength(Number(e.target.value))}
                 />
               </div>
+
+              <div className="setting-item">
+                <label>
+                  <input type="checkbox" checked={randomStartTime} onChange={e => setRandomStartTime(e.target.checked)} />
+                  {' '}Random Start Times
+                </label>
+                <small style={{display:'block',opacity:0.8}}>If enabled, each clip will start at a random second.</small>
+              </div>
             </div>
 
             <div className="modal-actions">
               <button className="btn-secondary" onClick={() => setShowHostModal(false)}>Cancel</button>
-              <button className="btn-primary" onClick={() => handleCreate({ numRounds, roundLength, roundEndLength, clipLength })}>Create & Host</button>
+              <button className="btn-primary" onClick={() => handleCreate({ numRounds, roundLength, roundEndLength, clipLength, randomStartTime })}>Create & Host</button>
             </div>
           </div>
         </div>

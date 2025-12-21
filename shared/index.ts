@@ -6,6 +6,7 @@ export interface Sketch {
   youtubeId: string;
   description: string;
   tags: string[];
+  startTime?: number;
 }
 
 export interface Player {
@@ -21,6 +22,7 @@ export interface GameConfig {
   clipLength: number;
   roundLength: number;
   roundEndLength: number;
+  randomStartTime?: boolean;
 }
 
 export interface GameState {
@@ -30,7 +32,7 @@ export interface GameState {
   currentRound: number;
   endsAt: number;
   players: Record<string, Player>;
-  currentSketch?: Partial<Sketch>;
+  currentSketch?: Partial<Sketch> & { startTime?: number };
   guessFeed: Array<{ playerName: string; text: string; isCorrect: boolean }>;
   config: GameConfig;
 }

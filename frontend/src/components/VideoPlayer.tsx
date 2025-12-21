@@ -13,6 +13,7 @@ export const VideoPlayer: React.FC = () => {
 
   const phase = gameState?.phase;
   const youtubeId = gameState?.currentSketch?.youtubeId;
+  const startSec = gameState?.currentSketch?.startTime || 0;
   const clipLength = gameState?.config?.clipLength || 5;
 
   const callPlayer = (method: string, ...args: any[]) => {
@@ -32,29 +33,42 @@ export const VideoPlayer: React.FC = () => {
     setVideoError(null);
   }, [youtubeId]);
 
+  // Load new video or jump to new start time if either changes
   useEffect(() => {
     if (isReady && youtubeId) {
       const currentData = playerRef.current?.getVideoData();
+      // If the ID is different, load the new one at the correct start time
       if (currentData && currentData.video_id !== youtubeId) {
-        callPlayer('loadVideoById', { videoId: youtubeId, startSeconds: 0 });
+        callPlayer('loadVideoById', { videoId: youtubeId, startSeconds: startSec });
+      } else {
+        // If ID is the same but startSec changed (e.g. reroll), just seek
+        callPlayer('seekTo', startSec, true);
       }
     }
-  }, [youtubeId, isReady]);
+  }, [youtubeId, startSec, isReady]);
 
+  // 🔄 THE LOOP LOGIC FIX
   useEffect(() => {
     let interval: NodeJS.Timeout;
+    
+    // Only loop during the playing phase
     if (phase === 'ROUND_PLAYING' && isReady) {
+      const endSec = startSec + clipLength; // 👈 Define the "Window"
+
       interval = setInterval(() => {
         try {
           const currentTime = playerRef.current.getCurrentTime();
-          if (currentTime >= clipLength) {
-            callPlayer('seekTo', 0, true);
+          
+          // 🛡️ Check if we've played past the end of our clip window
+          if (currentTime >= endSec) {
+            callPlayer('seekTo', startSec, true);
           }
         } catch (e) {}
       }, 500);
     }
+    
     return () => clearInterval(interval);
-  }, [phase, clipLength, isReady]);
+  }, [phase, startSec, clipLength, isReady]); // 👈 Added startSec here
 
   useEffect(() => {
     if (phase === 'ROUND_PLAYING' || phase === 'ROUND_REVEAL') {
@@ -67,9 +81,14 @@ export const VideoPlayer: React.FC = () => {
   const onReady: YouTubeProps['onReady'] = (event) => {
     playerRef.current = event.target;
     setIsReady(true);
-    event.target.playVideo();
-    event.target.unMute();
-    event.target.setVolume(100);
+    
+    // Set initial state
+    try {
+      event.target.seekTo(startSec, true);
+      event.target.playVideo();
+      event.target.unMute();
+      event.target.setVolume(100);
+    } catch (e) {}
   };
 
   const onError: YouTubeProps['onError'] = (event) => {
@@ -106,14 +125,14 @@ export const VideoPlayer: React.FC = () => {
       modestbranding: 1,
       rel: 0,
       disablekb: 1,
-      enablejsapi: 1, // 👈 Required for the API to talk to your code
+      start: startSec, // 👈 Ensures initial load starts at the right spot
+      enablejsapi: 1,
       origin: window.location.origin
     },
   };
 
   return (
     <div className={`video-wrapper phase-${phase}`}>
-      {/* 🛡️ STABLE KEY: Prevents React from killing the player between rounds */}
       <YouTube 
         key={roomCode || 'global-player'}
         videoId={youtubeId} 
@@ -123,13 +142,17 @@ export const VideoPlayer: React.FC = () => {
         className="youtube-embed"
       />
       
+      {/* 🛡️ AUDIO OVERLAY: Blocks the video pixels during play phase */}
       {phase === 'ROUND_PLAYING' && (
-        <div className="audio-only-overlay">
-          <div className="audio-icon">🔊</div>
-          <p>Listen closely...</p>
-          <div className="audio-waves">
-            <span></span><span></span><span></span><span></span>
-          </div>
+        <div className="video-overlay">
+           <div className="audio-visualizer">
+              <span className="chalk-textured-text" style={{fontSize: '2rem'}}>
+                LISTENING MODE...
+              </span>
+              <div className="audio-waves">
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </div>
         </div>
       )}
 
