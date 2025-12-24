@@ -15,6 +15,8 @@ export interface Player {
   score: number;
   connected: boolean;
   hasGuessed: boolean;
+  lastGuessCorrect: boolean;
+  lastGuessSketch: string;
 }
 
 export interface GameConfig {
@@ -23,6 +25,7 @@ export interface GameConfig {
   roundLength: number;
   roundEndLength: number;
   randomStartTime?: boolean;
+  isPublic: boolean;
 }
 
 export interface GameState {

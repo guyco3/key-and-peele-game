@@ -26,7 +26,7 @@ describe('GameInstance: New Implementation Tests', () => {
   beforeEach(() => {
     jest.useFakeTimers();
     updateFn = jest.fn();
-    host = { clientId: 'H1', name: 'Guy', score: 0, connected: true, hasGuessed: false };
+    host = { clientId: 'H1', name: 'Guy', score: 0, connected: true, hasGuessed: false, lastGuessCorrect: false, lastGuessSketch: '' };
     game = new GameInstance('g1', 'ROOM', mockConfig, host, updateFn);
   });
 

@@ -117,20 +117,22 @@ body {
 
 /* Make reveal look handwritten on the chalkboard */
 .sketch-reveal .chalk-textured-text {
-  font-size: 1.6rem;
+  font-size: 1.9rem;
   color: var(--chalk-yellow);
   font-family: 'Permanent Marker', cursive;
   text-shadow: 2px 2px 0 rgba(0,0,0,0.55), -0.5px -0.5px 0 rgba(255,255,255,0.02);
   display: inline-block;
   transform: rotate(-1deg);
+  margin-bottom: 4px;
 }
 
 .sketch-reveal .chalk-description {
-  margin-top: 6px;
+  margin-top: 4px;
   opacity: 0.95;
   font-family: 'Gochi Hand', cursive;
   font-size: 1rem;
-  color: rgba(255,255,255,0.92);
+  line-height: 1.25;
+  color: rgba(255,255,255,0.95);
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
@@ -184,8 +186,8 @@ body {
 /* Compact suggestion items for the sidebar */
 .sidebar-search-wrapper .suggestions-list { background: rgba(0,0,0,0.18); max-height: calc(100% - 56px); overflow:auto; padding:6px; }
 .sidebar-search-wrapper .sketch-item { padding:6px 6px; }
-.sidebar-search-wrapper .sketch-name { font-size: 0.95rem; }
-.sidebar-search-wrapper .sketch-desc { font-size: 0.75rem; margin-top:3px; }
+.sidebar-search-wrapper .sketch-name { font-size: 1.2rem; }
+.sidebar-search-wrapper .sketch-desc { font-size: 1rem; margin-top:6px; }
 
 /* finished */
 
@@ -230,7 +232,7 @@ body {
 }
 
 .reveal-overlay h2 {
-  font-size: 3.5rem;
+  font-size: 4.5rem;
   color: var(--chalk-yellow);
   margin: 0;
 }
@@ -271,7 +273,7 @@ body {
   display: flex;
   gap: 8px;
   align-items: center;
-  font-size: 0.98rem;
+  font-size: 1.15rem;
 }
 
 .player-list .leaderboard-row + .leaderboard-row,
@@ -280,7 +282,7 @@ body {
 }
 
 .leaderboard .rank { color: rgba(255,255,255,0.7); width: 36px; }
-.leaderboard .name { flex: 1; }
+.leaderboard .name { flex: 1; font-size: 1.15rem; }
 .leaderboard .score { color: var(--ink-black); }
 
 /* Horizontal leaderboard when placed under the video */
@@ -341,8 +343,8 @@ body {
 
 .sketch-item:hover { background: rgba(255,255,255,0.03); }
 
-.sketch-name { color: var(--chalk-yellow); font-size: 1rem; }
-.sketch-desc { color: rgba(255,255,255,0.85); margin: 4px 0 0 0; font-size: 0.85rem; }
+.sketch-name { color: var(--chalk-yellow); font-size: 1.2rem; }
+.sketch-desc { color: rgba(255,255,255,0.85); margin: 6px 0 0 0; font-size: 1rem; }
 .tag { margin-right: 6px; color: rgba(255,255,255,0.45); font-size: 0.75rem; }
 
 /* Small helper for locked search */
@@ -397,6 +399,31 @@ body {
   border: none;
   cursor: pointer;
   font-weight: 700;
+}
+
+/* --- Guess display styles --- */
+.your-guess-chalk {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2px;
+  text-transform: uppercase;
+}
+
+.status-notice {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+/* Smaller result notices shown under the guess */
+.status-notice .success-notice,
+.status-notice .failure-notice {
+  font-size: 0.95rem;
+  margin: 0;
+  padding: 0;
 }
 
 .btn-primary { background: var(--chalk-yellow); color: black; }
@@ -465,6 +492,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 1.15rem;
 }
 
 /* Video frame stylized border */
@@ -676,5 +704,32 @@ input[type="range"]::-webkit-slider-thumb {
   width: 4px;
   background: #fff;
   margin-top: -10px;
+  cursor: pointer;
+}
+
+/* Quick Play loading state */
+.quick-play-error-box {
+  background: rgba(255, 68, 68, 0.15);
+  border: 2px dashed #ff4444;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #ffcccc;
+  font-family: 'Gochi Hand', cursive;
+}
+
+.quick-play-error-box p {
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;
+}
+
+.quick-play-error-box .btn-secondary {
+  padding: 5px 15px;
+  font-size: 0.9rem;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  border-radius: 4px;
   cursor: pointer;
 }

@@ -11,7 +11,7 @@ describe('Server & Socket Integration Logic', () => {
   });
 
   test('Connection Logic: Identify handles re-joining existing players', () => {
-    const host = { clientId: 'H1', name: 'Guy', score: 1000, connected: false, hasGuessed: false };
+    const host = { clientId: 'H1', name: 'Guy', score: 1000, connected: false, hasGuessed: false, lastGuessCorrect: false, lastGuessSketch: '' };
     const game = new GameInstance('g1', 'ROOM', {} as any, host, jest.fn());
     games.set('g1', game);
 
@@ -27,8 +27,8 @@ describe('Server & Socket Integration Logic', () => {
   });
 
   test('GC: Only removes games when ALL players are offline', () => {
-    const p1 = { clientId: 'H1', name: 'Guy', score: 0, connected: false, hasGuessed: false };
-    const p2 = { clientId: 'P2', name: 'A-A-Ron', score: 0, connected: true, hasGuessed: false };
+    const p1 = { clientId: 'H1', name: 'Guy', score: 0, connected: false, hasGuessed: false, lastGuessCorrect: false, lastGuessSketch: '' };
+    const p2 = { clientId: 'P2', name: 'A-A-Ron', score: 0, connected: true, hasGuessed: false, lastGuessCorrect: false, lastGuessSketch: '' };
     
     const game = new GameInstance('g1', 'ROOM', {} as any, p1, jest.fn());
     game.addPlayer(p2);

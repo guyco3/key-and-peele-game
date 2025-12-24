@@ -1,32 +1,57 @@
 import React, { useState } from 'react';
+import { 
+  Dialog, 
+  DialogTitle, 
+  DialogContent, 
+  DialogActions, 
+  IconButton, 
+  Typography, 
+  Box 
+} from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import { useGame } from '../context/GameContext';
 import { GameConfig } from '../../../shared';
 
 export const JoinForm: React.FC = () => {
-  const { createRoom, identify } = useGame();
+  const { 
+    createRoom, 
+    identify, 
+    quickPlay, 
+    isSearching, 
+    quickPlayError, 
+    setQuickPlayError 
+  } = useGame();
   
-  // User Info
   const [name, setName] = useState(localStorage.getItem('kp_username') || '');
   const [roomCode, setRoomCode] = useState('');
-
-  // Game Settings (Defaults)
   const [numRounds, setNumRounds] = useState(5);
   const [roundLength, setRoundLength] = useState(30);
   const [roundEndLength, setRoundEndLength] = useState(10);
   const [clipLength, setClipLength] = useState(5);
   const [randomStartTime, setRandomStartTime] = useState(false);
-
-  // Modal visibility for host settings
   const [showHostModal, setShowHostModal] = useState(false);
+  const [isPublic, setIsPublic] = useState(true);
 
-  const handleCreate = async (cfg?: GameConfig) => {
+  const handleCreate = async (cfg?: Partial<GameConfig>) => {
     if (!name) return alert("Enter a name first!");
     localStorage.setItem('kp_username', name);
 
-    const config: GameConfig = cfg || { numRounds, clipLength, roundLength, roundEndLength, randomStartTime };
+    const baseConfig = cfg || { numRounds, clipLength, roundLength, roundEndLength, randomStartTime };
+    const config = { ...baseConfig, isPublic };
 
     setShowHostModal(false);
+    setQuickPlayError(null);
     await createRoom(name, config);
+  };
+
+  const onQuickPlay = () => {
+    if (!name.trim()) return alert("Enter a name first!");
+    quickPlay(name);
+  };
+
+  const handleTryAgain = () => {
+    setQuickPlayError(null); // Clear the error modal
+    onQuickPlay(); // Trigger search again
   };
 
   const handleJoin = () => {
@@ -37,13 +62,50 @@ export const JoinForm: React.FC = () => {
 
   return (
     <div className="join-container">
-      <h1>
-        Key & Peele
-        <br />
-        Guessing Game
-      </h1>
+      <h1>Key & Peele<br />Guessing Game</h1>
 
       <div className="card join-card">
+        {/* --- MUI QUICK PLAY ERROR MODAL --- */}
+        <Dialog 
+          open={!!quickPlayError} 
+          onClose={() => setQuickPlayError(null)}
+          PaperProps={{
+            sx: { 
+              backgroundColor: 'rgba(30, 30, 30, 0.95)', 
+              color: 'white',
+              border: '2px dashed #ff4444',
+              borderRadius: '12px',
+              minWidth: '300px'
+            }
+          }}
+        >
+          <DialogTitle sx={{ m: 0, p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Typography variant="h6" sx={{ fontFamily: 'Permanent Marker, cursive', color: '#ffcccc' }}>
+              No Rooms Found
+            </Typography>
+            <IconButton
+              aria-label="close"
+              onClick={() => setQuickPlayError(null)}
+              sx={{ color: 'white' }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent>
+            <Typography sx={{ fontFamily: 'Gochi Hand, cursive', fontSize: '1.2rem' }}>
+              {quickPlayError}
+            </Typography>
+          </DialogContent>
+          <DialogActions sx={{ p: 2, justifyContent: 'center', gap: 2 }}>
+            <button className="btn-host" onClick={() => { setQuickPlayError(null); setShowHostModal(true); }}>
+              Host Instead
+            </button>
+            <button className="btn-join" onClick={handleTryAgain}>
+              Try Again
+            </button>
+          </DialogActions>
+        </Dialog>
+
         <section className="input-group">
           <label>Your Name</label>
           <input
@@ -51,11 +113,24 @@ export const JoinForm: React.FC = () => {
             placeholder="e.g. A-A-Ron"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            disabled={isSearching}
           />
         </section>
 
-        <div style={{marginTop:12}}>
-          <button className="btn-host" onClick={() => setShowHostModal(true)} style={{width:'100%'}}>Host Game</button>
+        <div style={{marginTop:12, display:'flex', gap:12}}>
+          <button 
+            className={isSearching ? 'btn-host btn-loading' : 'btn-host'} 
+            onClick={onQuickPlay} 
+            style={{flex:1}} 
+            disabled={isSearching}
+          >
+            {isSearching ? (
+              <span className="loading-content"><span className="spinner">⌛</span> FINDING ROOM...</span>
+            ) : (
+              'QUICK PLAY'
+            )}
+          </button>
+          <button className="btn-host" onClick={() => setShowHostModal(true)} style={{width:160}} disabled={isSearching}>Host Game</button>
         </div>
 
         <div style={{marginTop:12, display:'flex', gap:12}}>
@@ -63,14 +138,15 @@ export const JoinForm: React.FC = () => {
             <input
               type="text"
               placeholder="Room Code"
-              maxLength={4}
+              maxLength={6}
               value={roomCode}
               onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
+              disabled={isSearching}
               style={{width:'100%', textAlign:'center'}}
             />
           </div>
           <div style={{width:160}}>
-            <button className="btn-join" onClick={handleJoin} style={{width:'100%'}}>Join</button>
+            <button className="btn-join" onClick={handleJoin} style={{width:'100%'}} disabled={isSearching}>Join</button>
           </div>
         </div>
       </div>
@@ -117,11 +193,18 @@ export const JoinForm: React.FC = () => {
                 </label>
                 <small style={{display:'block',opacity:0.8}}>If enabled, each clip will start at a random second.</small>
               </div>
+
+              <div className="setting-item">
+                <label>
+                  <input type="checkbox" checked={isPublic} onChange={e => setIsPublic(e.target.checked)} />
+                  {' '}Public Room
+                </label>
+              </div>
             </div>
 
             <div className="modal-actions">
               <button className="btn-host" onClick={() => setShowHostModal(false)}>Cancel</button>
-              <button className="btn-join" onClick={() => handleCreate({ numRounds, roundLength, roundEndLength, clipLength, randomStartTime })}>Create & Host</button>
+              <button className="btn-join" onClick={() => handleCreate()}>Create & Host</button>
             </div>
           </div>
         </div>

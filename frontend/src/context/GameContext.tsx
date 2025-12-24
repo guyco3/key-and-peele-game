@@ -9,8 +9,12 @@ interface GameContextType {
   clientId: string;
   serverOffset: number;
   roomCode: string | null;
+  isSearching: boolean;
+  quickPlayError: string | null; // 👈 NEW
+  setQuickPlayError: (msg: string | null) => void; // 👈 NEW
   identify: (name: string, code: string) => void;
   createRoom: (name: string, config: any) => Promise<void>;
+  quickPlay: (name: string) => void;
   leaveGame: () => void;
 }
 
@@ -20,9 +24,9 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [roomCode, setRoomCode] = useState<string | null>(localStorage.getItem('kp_room_code'));
   const [serverOffset, setServerOffset] = useState(0);
+  const [isSearching, setIsSearching] = useState(false);
+  const [quickPlayError, setQuickPlayError] = useState<string | null>(null); //
   const socketRef = useRef<Socket | null>(null);
-  
-  // 🛡️ The Guard: Prevents re-identification during the unmounting/leaving process
   const leavingRef = useRef(false);
 
   const [clientId] = useState(() => {
@@ -38,13 +42,20 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     socketRef.current = socket;
 
     socket.on('connect', () => {
-      // 🛡️ Only auto-reconnect if we aren't intentionally trying to leave
       if (leavingRef.current) return;
-
       const savedName = localStorage.getItem('kp_username');
       const savedRoom = localStorage.getItem('kp_room_code');
       if (savedName && savedRoom) {
         socket.emit('identify', { clientId, name: savedName, roomCode: savedRoom });
+      }
+    });
+
+    socket.on('quick_play_found', ({ roomCode }: { roomCode: string }) => {
+      setIsSearching(false);
+      setQuickPlayError(null); // Clear errors on success
+      const savedName = localStorage.getItem('kp_username');
+      if (savedName) {
+        identify(savedName, roomCode);
       }
     });
 
@@ -53,23 +64,26 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
 
     socket.on('game_update', (state: GameState) => {
-        if (leavingRef.current) return;
-
-        if (state) {
-            setGameState(state);
-            
-            if (state.roomCode) {
-                setRoomCode(state.roomCode);
-                localStorage.setItem('kp_room_code', state.roomCode);
-            }
+      if (leavingRef.current) return;
+      if (state) {
+        setGameState(state);
+        if (state.roomCode) {
+          setRoomCode(state.roomCode);
+          localStorage.setItem('kp_room_code', state.roomCode);
         }
+      }
     });
 
     socket.on('error', (msg: string) => {
-        if (msg === 'Game not found' || msg === 'Host closed the room') {
-            handleCleanState();
-        }
-        alert(msg);
+      if (msg.includes('No public games available')) {
+        setIsSearching(false);
+        setQuickPlayError('No public rooms available right now. Why not host one?'); //
+        return;
+      }
+      if (msg === 'Game not found' || msg === 'Host closed the room') {
+        handleCleanState();
+      }
+      alert(msg);
     });
 
     return () => { socket.disconnect(); };
@@ -83,7 +97,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const createRoom = async (hostName: string, config: any) => {
     try {
-      leavingRef.current = false; // Reset guard in case they previously left
+      leavingRef.current = false;
       const res = await fetch('http://localhost:3001/create-room', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -97,8 +111,16 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  const quickPlay = (name: string) => {
+    setIsSearching(true);
+    setQuickPlayError(null); // Reset error state when starting search
+    leavingRef.current = false;
+    localStorage.setItem('kp_username', name);
+    socketRef.current?.emit('quick_play', { clientId, name });
+  };
+
   const identify = (name: string, code: string) => {
-    leavingRef.current = false; // Reset guard
+    leavingRef.current = false;
     const upperCode = code.toUpperCase();
     setRoomCode(upperCode);
     localStorage.setItem('kp_username', name);
@@ -107,21 +129,12 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const leaveGame = () => {
-    // 1. Instantly flip the guard to ignore any incoming 'game_update' messages
     leavingRef.current = true;
-
-    // 2. Notify server
     if (socketRef.current && roomCode) {
       socketRef.current.emit('leave_game', { clientId, roomCode });
     }
-    
-    // 3. Wipe local state and storage
     handleCleanState();
-
-    // 4. (Optional) Small delay to ensure all re-renders finish before allowing new joins
-    setTimeout(() => {
-        leavingRef.current = false;
-    }, 500);
+    setTimeout(() => { leavingRef.current = false; }, 500);
   };
 
   return (
@@ -131,8 +144,12 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
       clientId, 
       serverOffset, 
       roomCode, 
+      isSearching,
+      quickPlayError, //
+      setQuickPlayError, //
       identify, 
       createRoom,
+      quickPlay,
       leaveGame 
     }}>
       {children}

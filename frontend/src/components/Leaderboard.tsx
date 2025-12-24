@@ -20,12 +20,14 @@ export const Leaderboard: React.FC<{ horizontal?: boolean }> = ({ horizontal }) 
 
       <div className="player-list">
         {sortedPlayers.map((p, idx) => (
-          <div key={p.clientId} className={`leaderboard-row ${p.clientId === clientId ? 'me' : ''}`}>
+          <div key={p.clientId} className={`leaderboard-row ${p.clientId === clientId ? 'me' : ''} ${p.hasGuessed ? 'locked-in' : ''}`}>
             <span className="rank">#{idx + 1}</span>
             <span className="name">{p.name}</span>
             <span className="score">{p.score}</span>
             <span className="status">
-              {p.hasGuessed ? "✅" : "⏳"}
+              {!p.hasGuessed && <span title="Hasn't guessed yet">⏳</span>}
+              {p.hasGuessed && p.lastGuessCorrect && <span title="Correct">✅</span>}
+              {p.hasGuessed && !p.lastGuessCorrect && <span title="Incorrect">❌</span>}
             </span>
           </div>
         ))}

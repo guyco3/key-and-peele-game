@@ -35,6 +35,13 @@ export class GameInstance {
       guessFeed: [],
       config: this.config,
     };
+    // Ensure the host player has required round-tracking fields
+    const h = this.state.players[host.clientId];
+    if (h) {
+      h.hasGuessed = !!h.hasGuessed;
+      h.lastGuessCorrect = !!h.lastGuessCorrect;
+      h.lastGuessSketch = h.lastGuessSketch || "";
+    }
     logger.info(`[Game ${this.roomCode}] Instance created.`);
   }
 
@@ -68,8 +75,12 @@ export class GameInstance {
     }
 
     this.state.currentRound++;
-    // Reset "hasGuessed" for everyone
-    Object.values(this.state.players).forEach(p => p.hasGuessed = false);
+    // Reset round-related state for everyone
+    Object.values(this.state.players).forEach(p => {
+      p.hasGuessed = false;
+      p.lastGuessCorrect = false;
+      p.lastGuessSketch = "";
+    });
     
     const sketch = this.pickRandomSketch();
     if (!sketch) {
@@ -120,6 +131,8 @@ export class GameInstance {
     const player = this.state.players[clientId];
     const actual = this.activeSketch;
 
+    // 🛡️ Block if player doesn't exist, sketch isn't active, 
+    // round isn't playing, or they already used their one guess.
     if (!player || !actual || this.state.phase !== "ROUND_PLAYING" || player.hasGuessed) {
       return;
     }
@@ -128,30 +141,34 @@ export class GameInstance {
     const normalizedAnswer = actual.name.toLowerCase().trim();
     const isCorrect = normalizedGuess === normalizedAnswer;
 
+    // MARK AS GUESSED: They used their one attempt
+    player.hasGuessed = true;
+    // Record correctness directly on the player
+    player.lastGuessCorrect = isCorrect;
+    // Store the raw guess so the player can see what they submitted
+    player.lastGuessSketch = guessName;
+
     if (isCorrect) {
-      player.hasGuessed = true;
       const remainingMs = Math.max(0, this.state.endsAt - Date.now());
       const bonus = Math.floor((remainingMs / (this.config.roundLength * 1000)) * 500);
       player.score += (500 + bonus);
     }
 
-    this.state.guessFeed.push({ 
-      playerName: player.name, 
-      text: isCorrect ? "guessed the sketch!" : guessName, 
-      isCorrect 
-    });
+    // Push the guess to the feed so others see the attempt
+    // this.state.guessFeed.push({ 
+    //   playerName: player.name, 
+    //   text: isCorrect ? "guessed the sketch!" : guessName, 
+    //   isCorrect 
+    // });
 
-    // --- NEW LOGIC: Check if everyone has guessed ---
-    if (isCorrect) {
-      const players = Object.values(this.state.players);
-      const allCorrect = players.every(p => p.hasGuessed);
+    // Check if everyone has now submitted their one guess
+    const players = Object.values(this.state.players);
+    const everyoneFinished = players.every(p => p.hasGuessed);
 
-      if (allCorrect) {
-        logger.info(`[Game ${this.roomCode}] Everyone guessed correctly! Ending round early.`);
-        // We trigger revealRound immediately
-        this.revealRound();
-        return; // transitionTo is handled inside revealRound
-      }
+    if (everyoneFinished) {
+      logger.info(`[Game ${this.roomCode}] All players have submitted their guess. Ending round.`);
+      this.revealRound();
+      return;
     }
     
     this.onUpdate({ ...this.state });
@@ -183,6 +200,10 @@ export class GameInstance {
   }
 
   public addPlayer(player: Player) {
+    // Ensure new players have the round-tracking defaults
+    player.hasGuessed = !!player.hasGuessed;
+    player.lastGuessCorrect = !!player.lastGuessCorrect;
+    player.lastGuessSketch = player.lastGuessSketch || "";
     this.state.players[player.clientId] = player;
     this.onUpdate({ ...this.state });
   }

@@ -12,7 +12,8 @@ export const VideoPlayer: React.FC = () => {
 
   // --- STATE FOR MANUAL CONTROLS ---
   const [volume, setVolume] = useState(100);
-  const [isPlaying, setIsPlaying] = useState(true);
+  // Default to false on load to match browser's likely blocked state
+  const [isPlaying, setIsPlaying] = useState(false); 
   const [progress, setProgress] = useState(0); 
   const [currentTime, setCurrentTime] = useState(0);
 
@@ -33,6 +34,13 @@ export const VideoPlayer: React.FC = () => {
     }
   };
 
+  // 🔄 Sync UI state with actual YouTube player state
+  const onStateChange: YouTubeProps['onStateChange'] = (event) => {
+    // 1 = Playing, 2 = Paused, 3 = Buffering
+    if (event.data === 1) setIsPlaying(true);
+    else if (event.data === 2) setIsPlaying(false);
+  };
+
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = parseInt(e.target.value);
     setVolume(val);
@@ -42,17 +50,15 @@ export const VideoPlayer: React.FC = () => {
   const togglePlay = () => {
     if (isPlaying) {
       callPlayer('pauseVideo');
-      setIsPlaying(false);
     } else {
       callPlayer('playVideo');
-      setIsPlaying(true);
     }
+    // We don't set state here; onStateChange will handle it
   };
 
   const restartClip = () => {
     callPlayer('seekTo', startSec, true);
     callPlayer('playVideo');
-    setIsPlaying(true);
   };
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,6 +73,7 @@ export const VideoPlayer: React.FC = () => {
     setVideoError(null);
   }, [youtubeId]);
 
+  // Load new video or jump to new start time
   useEffect(() => {
     if (isReady && youtubeId) {
       const currentData = playerRef.current?.getVideoData();
@@ -74,11 +81,12 @@ export const VideoPlayer: React.FC = () => {
         callPlayer('loadVideoById', { videoId: youtubeId, startSeconds: startSec });
       } else {
         callPlayer('seekTo', startSec, true);
+        callPlayer('playVideo');
       }
-      setIsPlaying(true);
     }
   }, [youtubeId, startSec, isReady]);
 
+  // Loop & Progress tracking
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (phase === 'ROUND_PLAYING' && isReady) {
@@ -88,6 +96,7 @@ export const VideoPlayer: React.FC = () => {
           const relativePos = ((rawTime - startSec) / clipLength) * 100;
           setCurrentTime(Math.max(0, rawTime - startSec));
           setProgress(Math.min(Math.max(relativePos, 0), 100));
+          
           if (rawTime >= endSec) {
             callPlayer('seekTo', startSec, true);
           }
@@ -97,23 +106,25 @@ export const VideoPlayer: React.FC = () => {
     return () => clearInterval(interval);
   }, [phase, startSec, clipLength, isReady, endSec]);
 
+  // Force play on phase transitions
   useEffect(() => {
     if (phase === 'ROUND_PLAYING' || phase === 'ROUND_REVEAL') {
       callPlayer('playVideo');
       callPlayer('unMute');
       callPlayer('setVolume', volume);
-      setIsPlaying(true);
     }
   }, [phase, isReady, volume]);
 
   const onReady: YouTubeProps['onReady'] = (event) => {
     playerRef.current = event.target;
     setIsReady(true);
+    
+    // Attempt initial play
     try {
       event.target.seekTo(startSec, true);
-      event.target.playVideo();
       event.target.unMute();
       event.target.setVolume(volume);
+      event.target.playVideo();
     } catch (e) {}
   };
 
@@ -135,10 +146,20 @@ export const VideoPlayer: React.FC = () => {
       <YouTube 
         key={roomCode || 'global-player'}
         videoId={youtubeId} 
+        onStateChange={onStateChange} // 👈 Added state listener
         opts={{
           height: '100%',
           width: '100%',
-          playerVars: { autoplay: 1, controls: 0, modestbranding: 1, rel: 0, disablekb: 1, start: startSec, enablejsapi: 1 }
+          playerVars: { 
+            autoplay: 1, 
+            controls: 0, 
+            modestbranding: 1, 
+            rel: 0, 
+            disablekb: 1, 
+            start: startSec, 
+            enablejsapi: 1,
+            origin: window.location.origin 
+          }
         }} 
         onReady={onReady} 
         onError={onError}
@@ -149,20 +170,22 @@ export const VideoPlayer: React.FC = () => {
         <div className="video-overlay centered-ui">
            <div className="audio-visualizer">
               <span className="chalk-textured-text header-text">
-                Audio is playing... 
+                {isPlaying ? "Audio is playing..." : "Playback blocked by browser"} 
               </span>
               
               <div className="audio-waves">
-                <span></span><span></span><span></span><span></span>
+                {isPlaying && ( // Only animate waves if playing
+                  <><span></span><span></span><span></span><span></span></>
+                )}
               </div>
 
               <div className="manual-controls">
                 <div className="control-row-btns">
                   <button onClick={togglePlay} className="btn-host ghost" title={isPlaying ? "Pause" : "Play"}>
-                    <span>{isPlaying ? 'Ⅱ' : '▶'}</span>
+                    <span style={{fontSize: '1.5rem'}}>{isPlaying ? 'Ⅱ' : '▶'}</span>
                   </button>
                   <button onClick={restartClip} className="btn-join ghost" title="Restart Clip">
-                    <span>↻</span>
+                    <span style={{fontSize: '1.5rem'}}>↻</span>
                   </button>
                 </div>
 

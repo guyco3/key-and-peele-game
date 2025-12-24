@@ -7,6 +7,8 @@ import { GameInstance } from './game';
 import logger from './logger';
 import { Player } from '../../shared';
 
+const MAX_PLAYERS_PER_GAME = 50;
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -50,7 +52,9 @@ app.post('/create-room', (req, res) => {
     name: hostName, 
     score: 0, 
     connected: true, 
-    hasGuessed: false 
+    hasGuessed: false,
+    lastGuessCorrect: false,
+    lastGuessSketch: ''
   };
 
   const game = new GameInstance(gameId, roomCode, config, host, (state) => {
@@ -66,12 +70,42 @@ app.post('/create-room', (req, res) => {
 
 io.on('connection', (socket) => {
 
+  // 🌐 NEW: Quick Play Logic
+  socket.on('quick_play', ({ clientId, name }) => {
+    // Find all games that are PUBLIC and in LOBBY phase
+  const availableGames = Array.from(games.values()).filter(
+      (g) => 
+        g.state.config.isPublic && 
+        g.state.phase === "LOBBY" &&
+        Object.keys(g.state.players).length < MAX_PLAYERS_PER_GAME // 👈 ADD THIS
+    );
+
+    if (availableGames.length === 0) {
+      return socket.emit('error', 'No public games available. Why not host one?');
+    }
+
+    // Pick a random public game
+    const randomGame = availableGames[Math.floor(Math.random() * availableGames.length)];
+    
+    // Tell the client which room they found so they can "identify" normally
+    socket.emit('quick_play_found', { roomCode: randomGame.roomCode });
+  });
+
   socket.on('identify', ({ clientId, name, roomCode }) => {
     const gameId = roomCodeToId.get(roomCode);
     const game = games.get(gameId || '');
     
     if (!game) {
       return socket.emit('error', 'Game not found');
+    }
+
+    // 🛡️ CAPACITY GUARD: Check if room is full
+    const playerCount = Object.keys(game.state.players).length;
+    const isExistingPlayer = !!game.state.players[clientId];
+
+    // Only block if it's a NEW player joining a full room
+    if (!isExistingPlayer && playerCount >= MAX_PLAYERS_PER_GAME) {
+      return socket.emit('error', `This room is full (Max ${MAX_PLAYERS_PER_GAME} players).`);
     }
 
     // Update session mappings
@@ -83,7 +117,7 @@ io.on('connection', (socket) => {
       game.setConnectionStatus(clientId, true);
       logger.info(`[Reconnected] ${name} to ${roomCode}`);
     } else {
-      game.addPlayer({ clientId, name, score: 0, connected: true, hasGuessed: false });
+      game.addPlayer({ clientId, name, score: 0, connected: true, hasGuessed: false, lastGuessCorrect: false, lastGuessSketch: '' });
       logger.info(`[Joined] ${name} to ${roomCode}`);
     }
     

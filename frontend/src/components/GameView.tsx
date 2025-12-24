@@ -8,7 +8,7 @@ import { GuessFeed } from './GuessFeed';
 import { Podium } from './Podium';
 
 export const GameView: React.FC = () => {
-  const { gameState, leaveGame } = useGame();
+  const { gameState, leaveGame, clientId } = useGame();
 
   // 🛡️ Safety Check
   if (!gameState) return null;
@@ -24,19 +24,19 @@ export const GameView: React.FC = () => {
 
           {/* Search moved into sidebar — under the leaderboard */}
           <div className="sidebar-search-wrapper">
-            {gameState.phase === 'ROUND_PLAYING' && (
-              <div className="search-wrapper-chalk">
-                <SketchSearch />
-              </div>
-            )}
-          </div>
+          {gameState.phase === 'ROUND_PLAYING' && !gameState.players[clientId]?.hasGuessed && (
+            <div className="search-wrapper-chalk">
+              <SketchSearch />
+            </div>
+          )}
+</div>
         </div>
 
         
       </aside>
 
       {/* Exit button moved out of the sidebar so it can be fixed to the top-right */}
-      <button className="chalk-btn-exit exit-top-right" onClick={leaveGame}>
+      <button className="leave-btn exit-top-right" onClick={leaveGame}>
         Quit 
       </button>
 
@@ -73,20 +73,29 @@ export const GameView: React.FC = () => {
                     )}
 
                     {/* Guess feed shown under the video (vertical, scrollable) - hidden during reveal */}
-                    {gameState.phase !== 'ROUND_REVEAL' && (
+                    {/* {gameState.phase !== 'ROUND_REVEAL' && (
                       <div className="guess-feed-under-video">
                         <GuessFeed />
                       </div>
-                    )}
+                    )} */}
                   </section>
 
                   {/* ✍️ INPUT: The Wide Chalk Underline is now in the left column */}
                   <footer className="search-footer">
-                    {/* keep the success notice here so it's visible near the stage */}
-                    {gameState.phase === 'ROUND_PLAYING' && 
-                     gameState.players[gameState.hostId]?.hasGuessed && (
-                      <div className="success-notice chalk-textured-text">
-                        PRESENT! (Correct)
+                    {gameState.phase === 'ROUND_PLAYING' && gameState.players[clientId]?.hasGuessed && (
+                      <div className="status-notice">
+                        <div className="your-guess-chalk">
+                          You guessed "{gameState.players[clientId].lastGuessSketch}"
+                        </div>
+
+                        {/* Read correctness directly from the player object */}
+                        {gameState.players[clientId].lastGuessCorrect ? (
+                          <div className="success-notice chalk-textured-text">PRESENT! (Correct)</div>
+                        ) : (
+                          <div className="failure-notice chalk-textured-text" style={{ color: '#ff4444' }}>
+                            OUT! (Incorrect)
+                          </div>
+                        )}
                       </div>
                     )}
                   </footer>
