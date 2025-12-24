@@ -73,11 +73,15 @@ io.on('connection', (socket) => {
   // 🌐 NEW: Quick Play Logic
   socket.on('quick_play', ({ clientId, name }) => {
     // Find all games that are PUBLIC and in LOBBY phase
-  const availableGames = Array.from(games.values()).filter(
+    const availableGames = Array.from(games.values()).filter(
       (g) => 
         g.state.config.isPublic && 
         g.state.phase === "LOBBY" &&
-        Object.keys(g.state.players).length < MAX_PLAYERS_PER_GAME // 👈 ADD THIS
+        Object.keys(g.state.players).length < MAX_PLAYERS_PER_GAME 
+    );
+
+    availableGames.sort((a: GameInstance, b: GameInstance) => (
+      Object.keys(b.state.players).length - Object.keys(a.state.players).length)
     );
 
     if (availableGames.length === 0) {
