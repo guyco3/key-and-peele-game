@@ -173,13 +173,10 @@ export const VideoPlayer: React.FC = () => {
                 {isPlaying ? "Audio is playing..." : "Playback blocked by browser"} 
               </span>
               
-              <div className="audio-waves">
-                {isPlaying && ( // Only animate waves if playing
-                  <><span></span><span></span><span></span><span></span></>
-                )}
-              </div>
 
               <div className="manual-controls">
+
+
                 <div className="control-row-btns">
                   <button onClick={togglePlay} className="btn-host ghost" title={isPlaying ? "Pause" : "Play"}>
                     <span style={{fontSize: '1.5rem'}}>{isPlaying ? 'Ⅱ' : '▶'}</span>

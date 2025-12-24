@@ -98,6 +98,14 @@ export const GameView: React.FC = () => {
                         )}
                       </div>
                     )}
+                    {/* Mobile: render search here (visible only on small screens via CSS) */}
+                    <div className="search-main-mobile">
+                      {gameState.phase === 'ROUND_PLAYING' && !gameState.players[clientId]?.hasGuessed && (
+                        <div className="search-wrapper-chalk">
+                          <SketchSearch />
+                        </div>
+                      )}
+                    </div>
                   </footer>
                 </div>
           </div>

@@ -1,11 +1,11 @@
 /* src/index.css */
 :root {
   --chalk-white: #ffffff;
-  --chalk-yellow: #fffca3;
+  --chalk-yellow: #FFDD00;
   --sidebar-w: 320px;
   --ink-black: #000000;
   --paper-white: #ffffff;
-  --join-yellow: #FFD700;
+  --join-yellow: #FFDD00;
 }
 
 body {
@@ -81,6 +81,55 @@ body {
   border: none !important;
   box-shadow: none !important;
   background: transparent;
+}
+
+/* Mobile: stack layout vertically for small screens */
+@media (max-width: 700px) {
+  .game-layout {
+    flex-direction: column;
+    padding: 12px;
+    gap: 12px;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .sidebar-classroom,
+  .main-classroom {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Make board container full width on mobile */
+  .board-container { max-width: 100%; width: 100%; }
+
+  /* Header: stack round info + timer vertically */
+  .board-header { display: flex; flex-direction: column; gap: 6px; align-items: center; }
+
+  /* Place search under the video on mobile and hide the sidebar search */
+  .sidebar-search-wrapper { display: none !important; }
+  .search-main-mobile { display: block; width: 100%; margin-top: 10px; }
+
+  /* Make video fill the width and keep aspect ratio */
+  .video-container-centered { width: 100%; height: auto; }
+
+  /* Limit video height so footer (search) remains visible on small screens */
+  .video-container-centered .video-frame { max-height: 56vh; aspect-ratio: 16/9; }
+
+  /* Reduce large font sizes for mobile readability */
+  .search-wrapper-chalk input,
+  .sidebar-search-wrapper .search-container input { font-size: 1.6rem; }
+
+  /* Shrink large reveal headings */
+  .reveal-overlay h2 { font-size: 2.6rem; }
+}
+
+/* Hide the duplicate main search on desktop by default */
+.search-main-mobile { display: none; }
+
+/* Ensure mobile search is visible and above other elements */
+.search-main-mobile { z-index: 80; display: none; }
+@media (max-width: 700px) {
+  .search-main-mobile { display: block; }
 }
 
 /* During ROUND_PLAYING hide the visual video but keep audio playing */
@@ -521,7 +570,7 @@ body {
 .podium-place.place-3 { height:160px; background: linear-gradient(180deg,#f7efe6,#fff); }
 
 /* Give first/second/third a medal-like accent */
-.podium-place.place-1 .podium-top { background: linear-gradient(180deg,#ffd70055,#fff0); }
+.podium-place.place-1 .podium-top { background: linear-gradient(180deg,#FFDD0055,#fff0); }
 .podium-place.place-2 .podium-top { background: linear-gradient(180deg,#c0c0c055,#fff0); }
 .podium-place.place-3 .podium-top { background: linear-gradient(180deg,#b8733355,#fff0); }
 
@@ -733,3 +782,4 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 4px;
   cursor: pointer;
 }
+
