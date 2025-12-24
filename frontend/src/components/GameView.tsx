@@ -32,12 +32,13 @@ export const GameView: React.FC = () => {
           </div>
         </div>
 
-        <div className="sidebar-footer">
-          <button className="chalk-btn-exit" onClick={leaveGame}>
-            Exit Classroom
-          </button>
-        </div>
+        
       </aside>
+
+      {/* Exit button moved out of the sidebar so it can be fixed to the top-right */}
+      <button className="chalk-btn-exit exit-top-right" onClick={leaveGame}>
+        Quit 
+      </button>
 
       {/* 🏫 MAIN STAGE: The Chalkboard Content */}
       <main className="main-classroom">

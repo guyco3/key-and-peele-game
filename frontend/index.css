@@ -533,3 +533,148 @@ body {
 .sidebar-header h3 { margin: 0 0 8px 0; font-family: 'Permanent Marker', cursive; color: var(--chalk-yellow); }
 .sidebar-footer { background: transparent; border-top: none; padding-top: 12px; }
 .chalk-btn-exit { background: transparent; border: 1px solid rgba(255,255,255,0.06); color: var(--chalk-white); padding:8px 10px; border-radius:8px; }
+
+/* Fixed exit button positioned at the top-right of the viewport */
+.exit-top-right {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 220;
+}
+
+.video-frame {
+  position: relative;
+  overflow: hidden;
+  border: 6px solid var(--ink-black);
+  box-shadow: 8px 8px 0px var(--ink-black);
+}
+
+.video-frame .video-wrapper,
+.video-frame .youtube-embed,
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent;
+}
+
+/* During ROUND_PLAYING hide the visual video but keep audio playing */
+.video-wrapper.phase-ROUND_PLAYING .youtube-embed,
+.video-wrapper.phase-ROUND_PLAYING iframe {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Center the UI within the video player */
+.video-overlay.centered-ui {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* Removed background color to reveal chalkboard */
+  background: transparent; 
+  z-index: 70;
+}
+
+.audio-visualizer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.header-text {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+  color: var(--chalk-white);
+}
+
+.audio-waves {
+  margin-bottom: 2.5rem;
+}
+
+/* --- HUD BOX (NOW TRANSPARENT) --- */
+.manual-controls {
+  /* Removed background and blur completely */
+  background: transparent; 
+  padding: 30px;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 80%;
+  max-width: 420px;
+  pointer-events: all;
+  /* Removed backdrop-filter to prevent glass effect */
+}
+
+.control-row-btns {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+
+/* --- GHOST BUTTONS --- */
+.control-btn.ghost {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.control-btn.ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+}
+
+/* Sliders & Timestamp */
+.control-slider {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  align-items: center;
+  gap: 15px;
+}
+
+.timestamp-display {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #f0ad4e;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 24px;
+  width: 4px;
+  background: #fff;
+  margin-top: -10px;
+  cursor: pointer;
+}
