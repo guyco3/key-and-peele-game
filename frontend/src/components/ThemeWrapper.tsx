@@ -78,7 +78,7 @@ export const ThemeWrapper: React.FC<{ children: React.ReactNode }> = ({ children
         {children}
       </div>
 
-      <div className="chalk-tray" />
+      {/* <div className="chalk-tray" /> */}
     </div>
   );
 };
