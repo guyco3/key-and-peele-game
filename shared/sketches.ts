@@ -6,2533 +6,3202 @@ export const SKETCHES: Sketch[] = [
     "name": "7 Essential Travel Tips – Key & Peele",
     "youtubeId": "y4RliL4xJ-c",
     "description": "Essential and increasingly absurd tips for navigating the airport.",
-    "tags": ["travel", "airplane", "tips"]
+    "tags": [
+      "travel",
+      "airplane",
+      "tips"
+    ]
   },
   {
     "id": "a-different-kind-of-drive-by",
     "name": "A Different Kind of Drive-By - Key & Peele",
     "youtubeId": "fuOZZuvKNkI",
     "description": "A drive-by shooting that takes a surprisingly polite and supportive turn.",
-    "tags": ["gangsta", "urban", "twist"]
+    "tags": [
+      "gangsta",
+      "urban",
+      "twist"
+    ]
   },
   {
     "id": "master-class-girl-talk",
     "name": "A Key & Peele Master Class in Girl Talk",
     "youtubeId": "9cRp28wIIPM",
     "description": "Two men attempt to gossip exactly like a group of dramatic women.",
-    "tags": ["girl talk", "relationships", "parody"]
+    "tags": [
+      "girl talk",
+      "relationships",
+      "parody"
+    ]
   },
   {
     "id": "a-lot-of-crazies-out-there",
     "name": "A Lot of Crazies Out There - Key & Peele",
     "youtubeId": "iOwjEBacc3U",
     "description": "Two friends in a car discuss the weirdos in their neighborhood while being weird themselves.",
-    "tags": ["urban", "car", "social"]
+    "tags": [
+      "urban",
+      "car",
+      "social"
+    ]
   },
   {
     "id": "continental-breakfast",
     "name": "A Man Who Enjoys a Continental Breakfast - Key & Peele",
     "youtubeId": "yPhLlniGGVs",
     "description": "A hotel guest is disturbingly excited by the offerings of a continental breakfast.",
-    "tags": ["food", "hotel", "popular"]
+    "tags": [
+      "food",
+      "hotel",
+      "popular"
+    ]
   },
   {
     "id": "rapper-revealing-concept-album",
     "name": "A Rapper's Very Revealing Concept Album - Key & Peele",
     "youtubeId": "EXPPSQhUVss",
     "description": "A rapper's lyrics become a little too literal regarding a crime he committed.",
-    "tags": ["rap", "crime", "music"]
+    "tags": [
+      "rap",
+      "crime",
+      "music"
+    ]
   },
   {
     "id": "senator-sexting-scandal",
     "name": "A Senator’s Sexting Scandal - Key & Peele",
     "youtubeId": "FbGAaEnecfU",
     "description": "A politician tries to explain away explicit photos during a press conference.",
-    "tags": ["politics", "scandal", "press"]
+    "tags": [
+      "politics",
+      "scandal",
+      "press"
+    ]
   },
   {
     "id": "mindblowing-dance-audition",
     "name": "A Truly Mindblowing Dance Audition - Key & Peele",
     "youtubeId": "lxvGKEuJpEk",
     "description": "A dancer takes a 'mindblowing' performance literally.",
-    "tags": ["dance", "absurd", "audition"]
+    "tags": [
+      "dance",
+      "absurd",
+      "audition"
+    ]
   },
   {
     "id": "wise-bully",
     "name": "A Wise Bully - Key & Peele",
     "youtubeId": "lwvqCIAAd-M",
     "description": "A bully explains the psychological trauma driving his aggression to his victim.",
-    "tags": ["school", "bully", "psychology"]
+    "tags": [
+      "school",
+      "bully",
+      "psychology"
+    ]
   },
   {
     "id": "zombie-extra-first-day",
     "name": "A Zombie Extra’s First Day on Set - Key & Peele",
     "youtubeId": "-N0x_Tt7WVc",
     "description": "An extra takes his role as a zombie way too seriously on set.",
-    "tags": ["zombie", "movies", "horror"]
+    "tags": [
+      "zombie",
+      "movies",
+      "horror"
+    ]
   },
   {
     "id": "ass-slapping-addict",
     "name": "An Ass-Slapping Addict in Recovery - Key & Peele",
     "youtubeId": "72rNAVAI9RQ",
     "description": "A support group for those addicted to slapping butts.",
-    "tags": ["sports", "addiction", "slap-ass"]
+    "tags": [
+      "sports",
+      "addiction",
+      "slap-ass"
+    ]
   },
   {
     "id": "insult-comic-match",
     "name": "An Insult Comic Meets His Match - Key & Peele",
     "youtubeId": "aSe8Mx6X6Fg",
     "description": "An insult comic realizes he's gone too far with a specific audience member.",
-    "tags": ["comedy", "stand-up", "awkward"]
+    "tags": [
+      "comedy",
+      "stand-up",
+      "awkward"
+    ]
   },
   {
     "id": "office-prank-too-far",
     "name": "An Office Prank Goes Way Too Far - Key & Peele",
     "youtubeId": "Ie4YyBbkUrw",
     "description": "What starts as a simple desk prank turns into a psychological nightmare.",
-    "tags": ["office", "prank", "dark"]
+    "tags": [
+      "office",
+      "prank",
+      "dark"
+    ]
   },
   {
     "id": "unwelcome-reunion",
     "name": "An Unwelcome Reunion (feat. Wayne Brady & Robin Thede) - Key & Peele",
     "youtubeId": "rLIWRu22tdo",
     "description": "A man's past comes back to haunt him in the most public way possible.",
-    "tags": ["reunion", "wayne brady", "awkward"]
+    "tags": [
+      "reunion",
+      "wayne brady",
+      "awkward"
+    ]
   },
   {
     "id": "andre-stands-up-meegan",
     "name": "Andre Stands Up for Meegan - Key & Peele",
     "youtubeId": "9Ul6SFi5QJs",
     "description": "Andre tries to defend Meegan's honor, even though she's the one in the wrong.",
-    "tags": ["meegan", "andre", "relationships"]
+    "tags": [
+      "meegan",
+      "andre",
+      "relationships"
+    ]
   },
   {
     "id": "east-west-bowl",
     "name": "Annual East/West Bowl - Key & Peele",
     "youtubeId": "HDnaFWGYat4",
     "description": "Football players with increasingly ridiculous names introduce themselves.",
-    "tags": ["sports", "football", "names", "popular"]
+    "tags": [
+      "sports",
+      "football",
+      "names",
+      "popular"
+    ]
   },
   {
     "id": "awkward-apologies-white-people",
     "name": "Awkward Apologies from White People - Key & Peele",
     "youtubeId": "zrhWLfmfZ0Y",
     "description": "A look at the uncomfortable ways people try to prove they aren't racist.",
-    "tags": ["race", "social", "awkward"]
+    "tags": [
+      "race",
+      "social",
+      "awkward"
+    ]
   },
   {
     "id": "baby-forest-whitaker",
     "name": "Baby Forest Whitaker - Key & Peele",
     "youtubeId": "s_6xxzzcc68",
     "description": "An investigation into a very intense, very recognizable infant.",
-    "tags": ["impression", "celebrity", "forest whitaker"]
+    "tags": [
+      "impression",
+      "celebrity",
+      "forest whitaker"
+    ]
   },
   {
     "id": "bar-mitzvah-dancers",
     "name": "Bar Mitzvah Motivational Dancers - Key & Peele",
     "youtubeId": "E0ijTPri5us",
     "description": "Two professional dancers bring way too much energy to a Bar Mitzvah.",
-    "tags": ["dance", "party", "bar mitzvah"]
+    "tags": [
+      "dance",
+      "party",
+      "bar mitzvah"
+    ]
   },
   {
     "id": "obama-surveillance",
     "name": "Barack Obama and His Anger Tranlsator Speak About Government Surveillance - Key & Peele",
     "youtubeId": "eixQIBeyob4",
     "description": "Luther helps Obama express his true feelings about being watched.",
-    "tags": ["obama", "luther", "politics"]
+    "tags": [
+      "obama",
+      "luther",
+      "politics"
+    ]
   },
   {
     "id": "obama-atm-line",
     "name": "Barack Obama Holds Up an ATM Line - Key & Peele",
     "youtubeId": "z5ylqpCceeE",
     "description": "Even the President has trouble with technology and small talk at the bank.",
-    "tags": ["obama", "politics", "everyday"]
+    "tags": [
+      "obama",
+      "politics",
+      "everyday"
+    ]
   },
   {
     "id": "mouth-noise-artists",
     "name": "Battle of the Mouth-Noise Artists - Key & Peele",
     "youtubeId": "nCYWX5CkyjU",
     "description": "Two beatboxers engage in a sound-effect-heavy showdown.",
-    "tags": ["music", "battle", "beatbox"]
+    "tags": [
+      "music",
+      "battle",
+      "beatbox"
+    ]
   },
   {
     "id": "vr-sensors-walking-away",
     "name": "Be careful walking away wearing VR sensors | #keyandpeele #shorts",
     "youtubeId": "ACc6fbI7akM",
     "description": "A short warning about the physical dangers of virtual reality immersion.",
-    "tags": ["vr", "gaming", "shorts"]
+    "tags": [
+      "vr",
+      "gaming",
+      "shorts"
+    ]
   },
   {
     "id": "be-my-brother",
     "name": "Be My Brother - Key & Peele",
     "youtubeId": "Gki1VcUZOW8",
     "description": "A man tries to force a brotherhood with a stranger on a bus.",
-    "tags": ["social", "awkward", "brotherhood"]
+    "tags": [
+      "social",
+      "awkward",
+      "brotherhood"
+    ]
   },
   {
     "id": "becoming-the-loco-one",
     "name": "Becoming the Loco One - Key & Peele",
     "youtubeId": "XO1vtUvTe6Y",
     "description": "A gang member tries to prove he's the craziest person in the room.",
-    "tags": ["gangsta", "urban", "loco"]
+    "tags": [
+      "gangsta",
+      "urban",
+      "loco"
+    ]
   },
   {
     "id": "behind-your-ear",
     "name": "Behind Your Ear - Key & Peele",
     "youtubeId": "B8orrfIBKdw",
     "description": "A simple magic trick leads to a full-blown existential crisis.",
-    "tags": ["magic", "absurd", "trick"]
+    "tags": [
+      "magic",
+      "absurd",
+      "trick"
+    ]
   },
   {
     "id": "deranged-clown-prisoner",
     "name": "Being a Deranged Clown’s Prisoner - Key & Peele",
     "youtubeId": "Tele-K-sMbc",
     "description": "Being held captive by a clown is more annoying than scary.",
-    "tags": ["horror", "clown", "dark"]
-  },
-  {
-    "id": "best-celebrity-impressions",
-    "name": "Best Celebrity Impressions - Key & Peele",
-    "youtubeId": "2WEVEpaGM-4",
-    "description": "A compilation of the duo's most accurate and hilarious celebrity parodies.",
-    "tags": ["compilation", "impressions", "celebrity"]
-  },
-  {
-    "id": "best-tv-show-parodies",
-    "name": "Best TV Show Parodies - Key & Peele",
-    "youtubeId": "17R3JjrsiZw",
-    "description": "A collection of sketches mocking the tropes of popular television.",
-    "tags": ["compilation", "tv", "parody"]
+    "tags": [
+      "horror",
+      "clown",
+      "dark"
+    ]
   },
   {
     "id": "biracial-dating",
     "name": "Biracial Dating Is Complicated - Key & Peele",
     "youtubeId": "PhjoC0jghHo",
     "description": "Navigating the cultural expectations of being biracial while on a date.",
-    "tags": ["race", "dating", "biracial"]
+    "tags": [
+      "race",
+      "dating",
+      "biracial"
+    ]
   },
   {
     "id": "biracial-penis",
     "name": "Biracial Penis - Key & Peele",
     "youtubeId": "GLLXlngmbY4",
     "description": "A humorous take on the physical expectations of biracial identity.",
-    "tags": ["race", "absurd", "biracial"]
+    "tags": [
+      "race",
+      "absurd",
+      "biracial"
+    ]
   },
   {
     "id": "black-people-telepathy",
     "name": "Black People Telepathy - Key & Peele",
     "youtubeId": "jzVo2mCQIAk",
     "description": "Two Black men communicate across a crowded room using only subtle nods.",
-    "tags": ["race", "social", "telepathy"]
+    "tags": [
+      "race",
+      "social",
+      "telepathy"
+    ]
   },
   {
     "id": "bling-benzy-da-struggle",
     "name": "Bling Benzy & Da Struggle - Key & Peele",
     "youtubeId": "dwmw3TYOOdk",
     "description": "A rap duo tries to balance their wealth with their 'street cred.'",
-    "tags": ["rap", "music", "struggle"]
+    "tags": [
+      "rap",
+      "music",
+      "struggle"
+    ]
   },
   {
     "id": "boarding-a-plane",
     "name": "Boarding a Plane Shouldn’t Be This Hard - Key & Peele",
     "youtubeId": "qhxlZC8BZJ4",
     "description": "The frustration of the airline boarding process taken to the extreme.",
-    "tags": ["airplane", "travel", "frustration"]
+    "tags": [
+      "airplane",
+      "travel",
+      "frustration"
+    ]
   },
   {
     "id": "bonding-with-a-kid",
     "name": "Bonding with a Kid Shouldn’t Be This Hard - Key & Peele",
     "youtubeId": "c2PM_5LFgqc",
     "description": "A man tries to connect with a child using slang he doesn't understand.",
-    "tags": ["family", "awkward", "slang"]
+    "tags": [
+      "family",
+      "awkward",
+      "slang"
+    ]
   },
   {
     "id": "bone-thugs-n-homeless",
     "name": "Bone Thugs-N-Homeless - Key & Peele",
     "youtubeId": "gGeK8Qv5vLo",
     "description": "A harmony-heavy rap group that also happens to be destitute.",
-    "tags": ["rap", "music", "homeless"]
+    "tags": [
+      "rap",
+      "music",
+      "homeless"
+    ]
   },
   {
     "id": "bros-branding-bros",
     "name": "Bros Branding Bros - Key & Peele",
     "youtubeId": "7ZrHgAKfUEg",
     "description": "The logical and painful conclusion of fraternity branding.",
-    "tags": ["frat", "branding", "bros"]
+    "tags": [
+      "frat",
+      "branding",
+      "bros"
+    ]
   },
   {
     "id": "bros-do-it-together",
     "name": "Bros Do It Together - Key & Peele",
     "youtubeId": "b8TJBr00cuE",
     "description": "Two bros find out they have more in common than they realized.",
-    "tags": ["bros", "friendship", "social"]
+    "tags": [
+      "bros",
+      "friendship",
+      "social"
+    ]
   },
   {
     "id": "cable-news-debate",
     "name": "Cable News Debate - Key & Peele",
     "youtubeId": "AuUtKKZn9Lg",
     "description": "A satire of the shouting matches that define modern cable news.",
-    "tags": ["news", "politics", "debate"]
+    "tags": [
+      "news",
+      "politics",
+      "debate"
+    ]
   },
   {
     "id": "wrong-phrases",
     "name": "Can You Spot What’s Wrong with These Phrases? - Key & Peele",
     "youtubeId": "e81FPxnnx6Y",
     "description": "A breakdown of common idioms that make no sense.",
-    "tags": ["language", "idioms", "educational"]
+    "tags": [
+      "language",
+      "idioms",
+      "educational"
+    ]
   },
   {
     "id": "cia-interrogation",
     "name": "CIA Interrogation - Key & Peele",
     "youtubeId": "BhGo3IbTNP0",
     "description": "An interrogation where the suspect is way too comfortable.",
-    "tags": ["cia", "spy", "interrogation"]
+    "tags": [
+      "cia",
+      "spy",
+      "interrogation"
+    ]
   },
   {
     "id": "cooking-shows",
     "name": "Cooking Shows Can Mess with Your Head - Key & Peele",
     "youtubeId": "9wk4ApHloHM",
     "description": "The high-stress editing of cooking competitions applied to real life.",
-    "tags": ["cooking", "parody", "food"]
+    "tags": [
+      "cooking",
+      "parody",
+      "food"
+    ]
   },
   {
     "id": "cool-teacher-class-clown",
     "name": "Cool Teacher vs. Class Clown - Key & Peele",
     "youtubeId": "15B6rIgV7jU",
     "description": "A teacher tries to out-cool the student disrupting the class.",
-    "tags": ["school", "teacher", "class clown"]
+    "tags": [
+      "school",
+      "teacher",
+      "class clown"
+    ]
   },
   {
     "id": "craziest-pitch-meetings",
     "name": "Craziest Pitch Meetings - Key & Peele",
     "youtubeId": "xbRqLTZR0fY",
     "description": "A look at the bizarre ideas that get proposed in Hollywood.",
-    "tags": ["movies", "hollywood", "pitch"]
+    "tags": [
+      "movies",
+      "hollywood",
+      "pitch"
+    ]
   },
   {
     "id": "check-that-shit-out",
     "name": "Damn, Check That S**t Out - Key & Peele",
     "youtubeId": "ltUpdD02tlE",
     "description": "Two guys can't stop admiring things that are objectively terrible.",
-    "tags": ["urban", "friendship", "social"]
+    "tags": [
+      "urban",
+      "friendship",
+      "social"
+    ]
   },
   {
     "id": "delete-that-selfie",
     "name": "Delete that Selfie - Key & Peele",
     "youtubeId": "avYCWJaLkmM",
     "description": "The panic that ensues when a bad photo is taken and needs to be deleted.",
-    "tags": ["social media", "selfie", "panic"]
+    "tags": [
+      "social media",
+      "selfie",
+      "panic"
+    ]
   },
   {
     "id": "demonic-possession-tailor",
     "name": "Demonic Possession at the Tailor - Key & Peele",
     "youtubeId": "SlU3I2hzN38",
     "description": "Getting a suit fitted is hard enough without being possessed by a demon.",
-    "tags": ["horror", "possession", "tailor"]
+    "tags": [
+      "horror",
+      "possession",
+      "tailor"
+    ]
   },
   {
     "id": "walk-button",
     "name": "Do Not Press the Walk Button - Key & Peele",
     "youtubeId": "QUg1t-JfAyY",
     "description": "The intense pressure of being the person responsible for the crosswalk button.",
-    "tags": ["urban", "social", "pressure"]
+    "tags": [
+      "urban",
+      "social",
+      "pressure"
+    ]
   },
   {
     "id": "save-the-children",
     "name": "Do You Have a Moment to Save the Children? - Key & Peele",
     "youtubeId": "RUfjOTY0Fz8",
     "description": "The aggressive tactics of street canvassers trying to get donations.",
-    "tags": ["social", "charity", "awkward"]
+    "tags": [
+      "social",
+      "charity",
+      "awkward"
+    ]
   },
   {
     "id": "dont-ask-sit-down",
     "name": "Don’t Ask This Guy to Sit Down - Key & Peele",
     "youtubeId": "_BFSLPjUCUU",
     "description": "A man has a very specific and violent reason for why he won't sit.",
-    "tags": ["absurd", "social", "office"]
+    "tags": [
+      "absurd",
+      "social",
+      "office"
+    ]
   },
   {
     "id": "dont-touch-bagels",
     "name": "Don’t You Dare Touch Those Bagels (feat. Rob Riggle) - Key & Peele",
     "youtubeId": "Mwfd1xi1udc",
     "description": "A marketing executive takes breakfast very, very seriously.",
-    "tags": ["office", "food", "rob riggle"]
+    "tags": [
+      "office",
+      "food",
+      "rob riggle"
+    ]
   },
   {
     "id": "dueling-hats",
     "name": "Dueling Hats - Key & Peele",
     "youtubeId": "5pKt4gaErvU",
     "description": "Two friends compete to see who can keep the stickers and tags on their hats the longest.",
-    "tags": ["fashion", "urban", "popular"]
+    "tags": [
+      "fashion",
+      "urban",
+      "popular"
+    ]
   },
   {
     "id": "east-west-bowl-rap",
     "name": "East/West Bowl Rap Showdown - Key & Peele",
     "youtubeId": "gsRrEx0Cntg",
     "description": "The legendary players from the East/West bowl release a rap track.",
-    "tags": ["sports", "rap", "football"]
+    "tags": [
+      "sports",
+      "rap",
+      "football"
+    ]
   },
   {
     "id": "east-west-bowl-pro",
     "name": "East/West Bowl: Pro Edition - Key & Peele",
     "youtubeId": "XxM-TxUizaw",
     "description": "Real NFL players join in on the ridiculous name introductions.",
-    "tags": ["sports", "nfl", "football"]
-  },
-  {
-    "id": "every-apocalypse-sketch",
-    "name": "Every Apocalypse Sketch - Key & Peele",
-    "youtubeId": "yziANFamTds",
-    "description": "A compilation of all sketches set at the end of the world.",
-    "tags": ["compilation", "apocalypse", "survival"]
-  },
-  {
-    "id": "every-church-sketch",
-    "name": "Every Church Sketch Ever - Key & Peele",
-    "youtubeId": "M6mInDdgJAU",
-    "description": "A collection of sketches poking fun at religious services and culture.",
-    "tags": ["compilation", "church", "religion"]
-  },
-  {
-    "id": "every-possession-sketch",
-    "name": "Every Demonic Possession Sketch - Key & Peele",
-    "youtubeId": "arhBLMBuxO4",
-    "description": "A compilation of the many times demons showed up in the show.",
-    "tags": ["compilation", "horror", "possession"]
-  },
-  {
-    "id": "every-dog-sketch",
-    "name": "Every Dog Sketch 🦴 Key & Peele",
-    "youtubeId": "9T2QjFYq9nI",
-    "description": "A collection of all the best sketches involving man's best friend.",
-    "tags": ["compilation", "dogs", "pets"]
-  },
-  {
-    "id": "every-east-west-bowl",
-    "name": "Every East/West Bowl Ever – Key & Peele",
-    "youtubeId": "gRhB2Oiy0Nc",
-    "description": "The complete collection of the iconic football name introductions.",
-    "tags": ["compilation", "sports", "names"]
-  },
-  {
-    "id": "every-obama-sketch",
-    "name": "Every Obama Sketch Ever - Key & Peele",
-    "youtubeId": "56483TG5DZ0",
-    "description": "Every single appearance of Barack Obama and his anger translator.",
-    "tags": ["compilation", "obama", "politics"]
-  },
-  {
-    "id": "every-phone-call-sketch",
-    "name": "Every Phone Call Sketch Ever - Key & Peele",
-    "youtubeId": "1CMB34GSKls",
-    "description": "A compilation of the best sketches involving phone conversations.",
-    "tags": ["compilation", "phone", "social"]
-  },
-  {
-    "id": "every-rap-song",
-    "name": "Every Rap Song - Key & Peele",
-    "youtubeId": "tDKqnjtZ484",
-    "description": "A musical compilation of the show's hip-hop parodies.",
-    "tags": ["compilation", "rap", "music"]
-  },
-  {
-    "id": "every-gangsta-sketch",
-    "name": "Every Single Gangsta Sketch - Key & Peele",
-    "youtubeId": "orvmQYG-hgA",
-    "description": "A compilation of urban street-life parodies.",
-    "tags": ["compilation", "gangsta", "urban"]
-  },
-  {
-    "id": "every-high-school-sketch",
-    "name": "Every Single High School Sketch - Key & Peele",
-    "youtubeId": "sOY661x0uS4",
-    "description": "A collection of all the substitute teacher and student sketches.",
-    "tags": ["compilation", "school", "teacher"]
-  },
-  {
-    "id": "every-mafia-sketch",
-    "name": "Every Single Mafia Sketch - Key & Peele",
-    "youtubeId": "KN0M83SRUbg",
-    "description": "A collection of sketches featuring mobsters and organized crime.",
-    "tags": ["compilation", "mafia", "crime"]
-  },
-  {
-    "id": "every-song-ever",
-    "name": "Every Song Ever - Key & Peele",
-    "youtubeId": "pycz5QaKGy0",
-    "description": "The ultimate compilation of every musical number from the series.",
-    "tags": ["compilation", "music", "songs"]
+    "tags": [
+      "sports",
+      "nfl",
+      "football"
+    ]
   },
   {
     "id": "men-on-periods",
     "name": "Everything Men Get Wrong About Periods - Key & Peele",
     "youtubeId": "XwfMctPtc1s",
     "description": "A humorous look at the ignorance surrounding menstruation.",
-    "tags": ["relationships", "gender", "social"]
+    "tags": [
+      "relationships",
+      "gender",
+      "social"
+    ]
   },
   {
     "id": "fucked-up-boss",
     "name": "Explaining to Your Boss How You F**ked Up - Key & Peele",
     "youtubeId": "vyfvQnkPTf4",
     "description": "The art of apologizing for a massive workplace mistake.",
-    "tags": ["office", "apology", "work"]
+    "tags": [
+      "office",
+      "apology",
+      "work"
+    ]
   },
   {
     "id": "explosions-slow-motion",
     "name": "Explosions in Slow Motion - Key & Peele",
     "youtubeId": "yEaQJf8mYjk",
     "description": "Action movie tropes taken to their cinematic, slow-motion extreme.",
-    "tags": ["movies", "action", "slow-motion"]
-  },
-  {
-    "id": "football-moments",
-    "name": "Fan-Favorite Football Moments 🏈 Key & Peele",
-    "youtubeId": "oooL9QWmO_o",
-    "description": "The best sketches involving America's favorite sport.",
-    "tags": ["compilation", "sports", "football"]
+    "tags": [
+      "movies",
+      "action",
+      "slow-motion"
+    ]
   },
   {
     "id": "feminist-pirate-chantey",
     "name": "Feminist Pirate Chantey - Key & Peele",
     "youtubeId": "3JVJSc-202w",
     "description": "A crew of pirates sings a song that is surprisingly progressive.",
-    "tags": ["pirates", "feminism", "music"]
+    "tags": [
+      "pirates",
+      "feminism",
+      "music"
+    ]
   },
   {
     "id": "fight-prep",
     "name": "Fight Prep - Key & Peele",
     "youtubeId": "mqPQhwUIyFc",
     "description": "Two fighters try to intimidate each other but get distracted by their own hype.",
-    "tags": ["mma", "fight", "sports"]
+    "tags": [
+      "mma",
+      "fight",
+      "sports"
+    ]
   },
   {
     "id": "filling-jimenez-shoes",
     "name": "Filling Jimenez’s Shoes - Key & Peele",
     "youtubeId": "NJQI1DSJMwg",
     "description": "A soldier tries to honor a fallen comrade with very specific items.",
-    "tags": ["military", "war", "absurd"]
+    "tags": [
+      "military",
+      "war",
+      "absurd"
+    ]
   },
   {
     "id": "finding-a-new-home",
     "name": "Finding a New Home Is Hard - Key & Peele",
     "youtubeId": "ObbSup-Xg50",
     "description": "The struggle of real estate and finding the perfect apartment.",
-    "tags": ["real estate", "housing", "social"]
+    "tags": [
+      "real estate",
+      "housing",
+      "social"
+    ]
   },
   {
     "id": "foreign-intervention",
     "name": "Foreign Intervention - Key & Peele",
     "youtubeId": "C7BCZCWlvEc",
     "description": "A geopolitical allegory told through the lens of a simple disagreement.",
-    "tags": ["politics", "satire", "international"]
-  },
-  {
-    "id": "funniest-car-rides",
-    "name": "Funniest Car Rides - Key & Peele",
-    "youtubeId": "8bpDAoH5Nu0",
-    "description": "Sketches that take place entirely inside a vehicle.",
-    "tags": ["compilation", "car", "travel"]
-  },
-  {
-    "id": "funniest-dining-moments",
-    "name": "Funniest Dining Moments – Key & Peele",
-    "youtubeId": "cvtOFHbENf0",
-    "description": "A collection of restaurant-based sketches.",
-    "tags": ["compilation", "food", "restaurant"]
-  },
-  {
-    "id": "funniest-games",
-    "name": "Funniest Games 🎲 - Key & Peele",
-    "youtubeId": "HtGd5EimYi0",
-    "description": "Compilations of sketches involving board games and competitions.",
-    "tags": ["compilation", "games", "sports"]
-  },
-  {
-    "id": "funniest-jokesters",
-    "name": "Funniest Jokesters 😆  Key & Peele",
-    "youtubeId": "XWxs_e7uOtI",
-    "description": "A collection of characters who think they are much funnier than they are.",
-    "tags": ["compilation", "pranks", "social"]
-  },
-  {
-    "id": "funniest-teachers",
-    "name": "Funniest Teachers - Key & Peele",
-    "youtubeId": "iiJmrrXwJAg",
-    "description": "Every major sketch involving the education system.",
-    "tags": ["compilation", "teacher", "school"]
+    "tags": [
+      "politics",
+      "satire",
+      "international"
+    ]
   },
   {
     "id": "getaway-driver",
     "name": "Getaway Driver - Key & Peele",
     "youtubeId": "M8kcjRrroOE",
     "description": "A getaway driver is a little too concerned with safety and protocol.",
-    "tags": ["crime", "driver", "heist"]
+    "tags": [
+      "crime",
+      "driver",
+      "heist"
+    ]
   },
   {
     "id": "out-frenched",
     "name": "Getting Out-Frenched at a French Restaurant - Key & Peele",
     "youtubeId": "0BzGlfm1wFo",
     "description": "A customer and a waiter battle for linguistic dominance.",
-    "tags": ["food", "restaurant", "french"]
+    "tags": [
+      "food",
+      "restaurant",
+      "french"
+    ]
   },
   {
     "id": "getting-way-too-hype",
     "name": "Getting Way Too Hype Before the Game - Key & Peele",
     "youtubeId": "PkUsK9cqt_E",
     "description": "The pre-game locker room energy goes a bit too far.",
-    "tags": ["sports", "locker room", "football"]
+    "tags": [
+      "sports",
+      "locker room",
+      "football"
+    ]
   },
   {
     "id": "go-back-to-70s",
     "name": "Go Back to the 70s with Key & Peele",
     "youtubeId": "g9v7lZYK9Ak",
     "description": "A journey through the funky and flared world of the 1970s.",
-    "tags": ["historical", "70s", "parody"]
+    "tags": [
+      "historical",
+      "70s",
+      "parody"
+    ]
   },
   {
     "id": "god-prayer-group",
     "name": "God Visits a Prayer Group - Key & Peele",
     "youtubeId": "asnQGz7BdfI",
     "description": "God actually shows up to a meeting and he's not what they expected.",
-    "tags": ["religion", "church", "god"]
+    "tags": [
+      "religion",
+      "church",
+      "god"
+    ]
   },
   {
     "id": "stop-second-amendment",
     "name": "Going Back in Time to Stop the Second Amendment - Key & Peele",
     "youtubeId": "BDZ6ujYN610",
     "description": "A time traveler tries to warn the founding fathers about modern weaponry.",
-    "tags": ["politics", "history", "time travel"]
+    "tags": [
+      "politics",
+      "history",
+      "time travel"
+    ]
   },
   {
     "id": "grown-ass-man",
     "name": "Grown Ass Man - Key & Peele",
     "youtubeId": "pE27MSkgehY",
     "description": "What it really means to be a mature, adult male in the modern world.",
-    "tags": ["social", "manhood", "absurd"]
+    "tags": [
+      "social",
+      "manhood",
+      "absurd"
+    ]
   },
   {
     "id": "harriet-tubman",
     "name": "Harriet Tubman - Key & Peele",
     "youtubeId": "S1dhATC-ekQ",
     "description": "The underground railroad has some very specific and difficult passengers.",
-    "tags": ["history", "harriet tubman", "satire"]
+    "tags": [
+      "history",
+      "harriet tubman",
+      "satire"
+    ]
   },
   {
     "id": "haunted-roommate-meeting",
     "name": "Haunted Roommate Meeting - Key & Peele",
     "youtubeId": "gtOyVg52jwg",
     "description": "A standard roommate meeting is interrupted by some supernatural occurrences.",
-    "tags": ["horror", "roommates", "supernatural"]
+    "tags": [
+      "horror",
+      "roommates",
+      "supernatural"
+    ]
   },
   {
     "id": "not-ready-hologram",
     "name": "He Wasn’t Ready for the Hologram - Key & Peele",
     "youtubeId": "9qD0Bjc8cnI",
     "description": "Technology at a news station goes horribly and hilariously wrong.",
-    "tags": ["news", "hologram", "tech"]
+    "tags": [
+      "news",
+      "hologram",
+      "tech"
+    ]
   },
   {
     "id": "hes-got-a-gun",
     "name": "He’s Got a Gun - Key & Peele",
     "youtubeId": "-NzEPICsEug",
     "description": "A misunderstanding at a park leads to an overreaction.",
-    "tags": ["urban", "misunderstanding", "social"]
+    "tags": [
+      "urban",
+      "misunderstanding",
+      "social"
+    ]
   },
   {
     "id": "hillary-anger-translator",
     "name": "Hillary’s Anger Translator - Key & Peele",
     "youtubeId": "UaJM7DRsWyk",
     "description": "Hillary Clinton gets her own version of Luther to help her speak out.",
-    "tags": ["politics", "hillary clinton", "anger translator"]
+    "tags": [
+      "politics",
+      "hillary clinton",
+      "anger translator"
+    ]
   },
   {
     "id": "hingle-mccringleberry-celebration",
     "name": "Hingle McCringleberry’s End Zone Celebration - Key & Peele",
     "youtubeId": "FA6ux8D5nUM",
     "description": "The strict rules regarding excessive celebration in football.",
-    "tags": ["sports", "football", "popular"]
+    "tags": [
+      "sports",
+      "football",
+      "popular"
+    ]
   },
   {
     "id": "hold-me-back-1",
     "name": "Hold Me Back - Key & Peele",
     "youtubeId": "lVqLIohA1UM",
     "description": "Two men pretend they want to fight while begging their friends to restrain them.",
-    "tags": ["fight", "social", "bros"]
+    "tags": [
+      "fight",
+      "social",
+      "bros"
+    ]
   },
   {
     "id": "hold-me-back-2",
     "name": "Hold Me Back - Key & Peele",
     "youtubeId": "4ds0ewPpu7U",
     "description": "The classic struggle of wanting to look tough without actually fighting.",
-    "tags": ["fight", "urban", "social"]
+    "tags": [
+      "fight",
+      "urban",
+      "social"
+    ]
   },
   {
     "id": "jaden-smith-role",
     "name": "How Jaden Smith Chooses a Role - Key & Peele",
     "youtubeId": "4RjWTEqJiMI",
     "description": "A parody of the deep and often confusing philosophy of Jaden Smith.",
-    "tags": ["celebrity", "jaden smith", "impression"]
+    "tags": [
+      "celebrity",
+      "jaden smith",
+      "impression"
+    ]
   },
   {
     "id": "parked-your-car",
     "name": "How Not to Remember Where You Parked Your Car - Key & Peele",
     "youtubeId": "m0FMk2zUHA0",
     "description": "The ultimate failure in trying to locate a vehicle in a parking garage.",
-    "tags": ["car", "frustration", "social"]
+    "tags": [
+      "car",
+      "frustration",
+      "social"
+    ]
   },
   {
     "id": "test-mattress",
     "name": "How Not to Test Out a Mattress - Key & Peele",
     "youtubeId": "fG_Uj7zPvmI",
     "description": "A simple shopping trip for a bed becomes incredibly awkward.",
-    "tags": ["shopping", "awkward", "mattress"]
+    "tags": [
+      "shopping",
+      "awkward",
+      "mattress"
+    ]
   },
   {
     "id": "anthropologists-laid",
     "name": "How Old-Timey Anthropologists Got Laid - Key & Peele",
     "youtubeId": "k_9CSr3nGqE",
     "description": "Historical dating tactics that are as scientific as they are creepy.",
-    "tags": ["history", "science", "dating"]
+    "tags": [
+      "history",
+      "science",
+      "dating"
+    ]
   },
   {
     "id": "help-a-friend",
     "name": "How to Help a Friend in Need - Key & Peele",
     "youtubeId": "Usu8Dg-qZJg",
     "description": "Giving advice to a friend who is clearly beyond help.",
-    "tags": ["friendship", "advice", "social"]
+    "tags": [
+      "friendship",
+      "advice",
+      "social"
+    ]
   },
   {
     "id": "ruin-a-joke",
     "name": "How to Ruin a Joke - Key & Peele",
     "youtubeId": "46zTCXaOl3I",
     "description": "A master class in failing to deliver a punchline correctly.",
-    "tags": ["comedy", "awkward", "joke"]
+    "tags": [
+      "comedy",
+      "awkward",
+      "joke"
+    ]
   },
   {
     "id": "alien-imposter",
     "name": "How to Tell if Someone Is an Alien Imposter  - Key & Peele",
     "youtubeId": "U8yzhumtZ4w",
     "description": "A group of survivors tries to root out an alien using very specific tests.",
-    "tags": ["sci-fi", "alien", "apocalypse"]
+    "tags": [
+      "sci-fi",
+      "alien",
+      "apocalypse"
+    ]
   },
   {
     "id": "black-republicans-vote",
     "name": "How Two Black Republicans “Get Out the Vote” - Key & Peele",
     "youtubeId": "251r0jHiW0A",
     "description": "The struggle of being a minority within a political minority.",
-    "tags": ["politics", "republicans", "race"]
+    "tags": [
+      "politics",
+      "republicans",
+      "race"
+    ]
   },
   {
     "id": "humiliated-slow-motion",
     "name": "Humiliated in Slow Motion - Key & Peele",
     "youtubeId": "TGIAT15Ma7o",
     "description": "A social faux pas is replayed with action-movie drama.",
-    "tags": ["social", "awkward", "slow-motion"]
+    "tags": [
+      "social",
+      "awkward",
+      "slow-motion"
+    ]
   },
   {
     "id": "hurting-at-the-bar",
     "name": "Hurting at the Bar - Key & Peele",
     "youtubeId": "xi42c1hNnz4",
     "description": "Men sharing their emotional pain in the least effective way possible.",
-    "tags": ["bar", "friendship", "social"]
+    "tags": [
+      "bar",
+      "friendship",
+      "social"
+    ]
   },
   {
     "id": "i-said-bitch",
     "name": "I Said Bitch - Key & Peele",
     "youtubeId": "9LVUvAjEYXM",
     "description": "Two men whisper about how they 'put their foot down' with their wives.",
-    "tags": ["relationships", "popular", "social"]
+    "tags": [
+      "relationships",
+      "popular",
+      "social"
+    ]
   },
   {
     "id": "ice-t-dog",
     "name": "Ice-T If He Was a Dog - Key & Peele",
     "youtubeId": "Xeh9YlRH688",
     "description": "The legendary rapper's voice and attitude inside a canine body.",
-    "tags": ["impression", "ice-t", "dogs"]
+    "tags": [
+      "impression",
+      "ice-t",
+      "dogs"
+    ]
   },
   {
     "id": "identifying-the-body",
     "name": "Identifying the Body - Key & Peele",
     "youtubeId": "DMxwU1ZYcRA",
     "description": "The morgue is a place for grief, and also for some very strange requests.",
-    "tags": ["crime", "morgue", "dark"]
+    "tags": [
+      "crime",
+      "morgue",
+      "dark"
+    ]
   },
   {
     "id": "civil-war-reenactments",
     "name": "If Civil War Reenactments Were Honest - Key & Peele",
     "youtubeId": "wjs68UszPh4",
     "description": "What really would have happened if modern sensibilities met the 1860s.",
-    "tags": ["history", "civil war", "satire"]
+    "tags": [
+      "history",
+      "civil war",
+      "satire"
+    ]
   },
   {
     "id": "human-parks",
     "name": "If Dogs Brought Their People to Human Parks - Key & Peele",
     "youtubeId": "MjRaORdVqdc",
     "description": "The tables are turned as dogs discuss their owners' behavior at the park.",
-    "tags": ["dogs", "absurd", "pets"]
+    "tags": [
+      "dogs",
+      "absurd",
+      "pets"
+    ]
   },
   {
     "id": "inner-city-hogwarts",
     "name": "If Hogwarts Were an Inner-City School - Key & Peele",
     "youtubeId": "j-2ZxldMO-M",
     "description": "Harry Potter tropes meet the realities of a tough public school.",
-    "tags": ["harry potter", "school", "parody"]
+    "tags": [
+      "harry potter",
+      "school",
+      "parody"
+    ]
   },
   {
     "id": "names-were-farts",
     "name": "If Names Were Farts - Key & Peele",
     "youtubeId": "i54TF13kBZk",
     "description": "A world where every name is a different kind of flatulence.",
-    "tags": ["absurd", "gross-out", "names"]
+    "tags": [
+      "absurd",
+      "gross-out",
+      "names"
+    ]
   },
   {
     "id": "sports-commentators-no-filter",
     "name": "If Sports Commentators Had No Filter - Key & Peele",
     "youtubeId": "BusChLgkLnA",
     "description": "Broadcasters finally say what they're actually thinking about the players.",
-    "tags": ["sports", "commentary", "social"]
+    "tags": [
+      "sports",
+      "commentary",
+      "social"
+    ]
   },
   {
     "id": "teachers-as-athletes",
     "name": "If We Treated Teachers Like Pro Athletes - Key & Peele",
     "youtubeId": "aYOg8EON29Y",
     "description": "A world where educators get the glory and the massive contracts of the NFL.",
-    "tags": ["teacher", "sports", "satire"]
+    "tags": [
+      "teacher",
+      "sports",
+      "satire"
+    ]
   },
   {
     "id": "sex-party-interruption",
     "name": "Interrupting a Sex Party - Key & Peele",
     "youtubeId": "yOzUVDzdM5E",
     "description": "The awkwardness of stumbling into a private event that is very, very active.",
-    "tags": ["social", "awkward", "adult"]
+    "tags": [
+      "social",
+      "awkward",
+      "adult"
+    ]
   },
   {
     "id": "investigating-disturbance",
     "name": "Investigating a Disturbance - Key & Peele",
     "youtubeId": "tzArj5VDTsc",
     "description": "Police respond to a call that is much weirder than reported.",
-    "tags": ["police", "urban", "crime"]
+    "tags": [
+      "police",
+      "urban",
+      "crime"
+    ]
   },
   {
     "id": "racist-country-song",
     "name": "Is This Country Song Racist? - Key & Peele",
     "youtubeId": "TLnUJzueBOQ",
     "description": "A musician tries to write a song that hits all the country tropes but might go too far.",
-    "tags": ["music", "country", "race"]
+    "tags": [
+      "music",
+      "country",
+      "race"
+    ]
   },
   {
     "id": "jordans-real-father",
     "name": "Is This Guy Jordan’s Real Father? - Key & Peele",
     "youtubeId": "xU1gjhY6cKo",
     "description": "An emotional discovery that is quickly derailed by reality.",
-    "tags": ["family", "emotional", "social"]
+    "tags": [
+      "family",
+      "emotional",
+      "social"
+    ]
   },
   {
     "id": "boss-isnt-real",
     "name": "Is This Guy’s Boss Even Real? - Key & Peele",
     "youtubeId": "YGgnza9hLMM",
     "description": "An employee suspects his superior might just be a figment of his imagination.",
-    "tags": ["office", "mystery", "absurd"]
+    "tags": [
+      "office",
+      "mystery",
+      "absurd"
+    ]
   },
   {
     "id": "ghostbusters-guy-songs",
     "name": "It Turns Out the “Ghostbusters” Guy Has a Lot More Songs - Key & Peele",
     "youtubeId": "GxjNOv5QPzM",
     "description": "Ray Parker Jr. reveals his extensive, very repetitive discography.",
-    "tags": ["music", "movies", "ghostbusters"]
+    "tags": [
+      "music",
+      "movies",
+      "ghostbusters"
+    ]
   },
   {
     "id": "holiday-song-twist",
     "name": "It's your classic holiday song... with a twist.",
     "youtubeId": "qw1i1GxSIaw",
     "description": "A Christmas duet that takes a dark and unexpected turn.",
-    "tags": ["christmas", "music", "shorts"]
+    "tags": [
+      "christmas",
+      "music",
+      "shorts"
+    ]
   },
   {
     "id": "hard-to-dump-someone",
     "name": "It’s Hard to Dump Someone  - Key & Peele",
     "youtubeId": "BYMcpl3Ikq8",
     "description": "The struggle of trying to end a relationship with someone who won't listen.",
-    "tags": ["relationships", "breakup", "social"]
+    "tags": [
+      "relationships",
+      "breakup",
+      "social"
+    ]
   },
   {
     "id": "jesus-pimp",
     "name": "Jesus Meets Mary Magdalene’s Pimp  - Key & Peele",
     "youtubeId": "U5d1K0JcgIs",
     "description": "Biblical figures meet modern-day street archetypes.",
-    "tags": ["religion", "history", "satire"]
+    "tags": [
+      "religion",
+      "history",
+      "satire"
+    ]
   },
   {
     "id": "karim-jahar-gym",
     "name": "Karim and Jahar Scope Out the Gym - Key & Peele",
     "youtubeId": "Q3hpL_rzMog",
     "description": "Two men look for 'the perfect workout environment' while being incredibly creepy.",
-    "tags": ["gym", "karim and jahar", "social"]
+    "tags": [
+      "gym",
+      "karim and jahar",
+      "social"
+    ]
   },
   {
     "id": "al-qaeda-meeting",
     "name": "Key & Peele - Al Qaeda Meeting",
     "youtubeId": "IHfiMoJUDVQ",
     "description": "Terrorists discuss the difficulties of modern security and branding.",
-    "tags": ["politics", "satire", "terrorist"]
+    "tags": [
+      "politics",
+      "satire",
+      "terrorist"
+    ]
   },
   {
     "id": "awesome-hitler-story",
     "name": "Key & Peele - Awesome Hitler Story",
     "youtubeId": "izh-j8KUYjs",
     "description": "A historical meeting that highlights the absolute worst person in history.",
-    "tags": ["history", "satire", "hitler"]
+    "tags": [
+      "history",
+      "satire",
+      "hitler"
+    ]
   },
   {
     "id": "key-peele-baby-forest",
     "name": "Key & Peele - Baby Forest",
     "youtubeId": "SxwMTAy1gP0",
     "description": "Another look at the most intense baby in the world.",
-    "tags": ["impression", "celebrity", "baby"]
+    "tags": [
+      "impression",
+      "celebrity",
+      "baby"
+    ]
   },
   {
     "id": "black-hawk-up",
     "name": "Key & Peele - Black Hawk Up",
     "youtubeId": "kblKi5wgyTs",
     "description": "A military operation that is much more optimistic than the movie it parodies.",
-    "tags": ["military", "movies", "parody"]
+    "tags": [
+      "military",
+      "movies",
+      "parody"
+    ]
   },
   {
     "id": "cunnilingus-class",
     "name": "Key & Peele - Cunnilingus Class",
     "youtubeId": "QyViuXFyIE4",
     "description": "Men take a very academic approach to a very personal subject.",
-    "tags": ["adult", "education", "relationships"]
+    "tags": [
+      "adult",
+      "education",
+      "relationships"
+    ]
   },
   {
     "id": "cute-puppies",
     "name": "Key & Peele - Cute Puppies",
     "youtubeId": "z6iC0Vi1yEg",
     "description": "Two men try to maintain their tough exterior while looking at puppies.",
-    "tags": ["dogs", "urban", "social"]
+    "tags": [
+      "dogs",
+      "urban",
+      "social"
+    ]
   },
   {
     "id": "dads-hollywood-secret",
     "name": "Key & Peele - Dad's Hollywood Secret",
     "youtubeId": "oh7xwI_0huM",
     "description": "A father reveals his past as a very specific type of movie extra.",
-    "tags": ["movies", "family", "secret"]
+    "tags": [
+      "movies",
+      "family",
+      "secret"
+    ]
   },
   {
     "id": "dicknanigans",
     "name": "Key & Peele - Dicknanigans",
     "youtubeId": "xdXo8uJ9NSk",
     "description": "A restaurant themed entirely around a certain body part.",
-    "tags": ["food", "absurd", "restaurant"]
+    "tags": [
+      "food",
+      "absurd",
+      "restaurant"
+    ]
   },
   {
     "id": "dubstep",
     "name": "Key & Peele - Dubstep",
     "youtubeId": "5Kod1q39ddE",
     "description": "What listening to dubstep feels like to people who don't like dubstep.",
-    "tags": ["music", "dubstep", "popular"]
+    "tags": [
+      "music",
+      "dubstep",
+      "popular"
+    ]
   },
   {
     "id": "fraternity-branding",
     "name": "Key & Peele - Fraternity Branding",
     "youtubeId": "vBzPsY3D58k",
     "description": "The ritual of fraternity branding becomes a competition of pain.",
-    "tags": ["frat", "college", "branding"]
+    "tags": [
+      "frat",
+      "college",
+      "branding"
+    ]
   },
   {
     "id": "futbol-flop",
     "name": "Key & Peele - Fútbol Flop",
     "youtubeId": "07mBfR8erMY",
     "description": "A soccer player's injury is clearly a little bit exaggerated.",
-    "tags": ["sports", "soccer", "flop"]
+    "tags": [
+      "sports",
+      "soccer",
+      "flop"
+    ]
   },
   {
     "id": "gangsta-standoff",
     "name": "Key & Peele - Gangsta Standoff",
     "youtubeId": "leL_bsHEZdM",
     "description": "A Mexican standoff that lasts way too long.",
-    "tags": ["gangsta", "urban", "crime"]
+    "tags": [
+      "gangsta",
+      "urban",
+      "crime"
+    ]
   },
   {
     "id": "hoodie",
     "name": "Key & Peele - Hoodie",
     "youtubeId": "ztRSm_SJP58",
     "description": "A magical hoodie that provides more than just warmth.",
-    "tags": ["fashion", "absurd", "urban"]
+    "tags": [
+      "fashion",
+      "absurd",
+      "urban"
+    ]
   },
   {
     "id": "karim-jahar",
     "name": "Key & Peele - Karim and Jahar",
     "youtubeId": "IkTZ8BVAlFE",
     "description": "The introduction of the two most overly-confident men in the world.",
-    "tags": ["karim and jahar", "social", "urban"]
+    "tags": [
+      "karim and jahar",
+      "social",
+      "urban"
+    ]
   },
   {
     "id": "la-vice",
     "name": "Key & Peele - L.A. Vice",
     "youtubeId": "_ycih6B6iqM",
     "description": "A parody of 80s cop shows and their very dramatic tropes.",
-    "tags": ["movies", "80s", "police"]
+    "tags": [
+      "movies",
+      "80s",
+      "police"
+    ]
   },
   {
     "id": "landos-fan",
     "name": "Key & Peele - Lando's Fan",
     "youtubeId": "RN0U1EnuNro",
     "description": "Lando Calrissian meets his biggest and most persistent fan.",
-    "tags": ["star wars", "sci-fi", "celebrity"]
+    "tags": [
+      "star wars",
+      "sci-fi",
+      "celebrity"
+    ]
   },
   {
     "id": "les-mis",
     "name": "Key & Peele - Les Mis",
     "youtubeId": "__d2FMCtgi4",
     "description": "The epic music of Les Miserables applied to a very minor situation.",
-    "tags": ["music", "musical", "parody"]
+    "tags": [
+      "music",
+      "musical",
+      "parody"
+    ]
   },
   {
     "id": "movie-hecklers",
     "name": "Key & Peele - Movie Hecklers",
     "youtubeId": "ntfProwNYkE",
     "description": "Two men in a theater can't stop shouting at the screen.",
-    "tags": ["movies", "theater", "social"]
+    "tags": [
+      "movies",
+      "theater",
+      "social"
+    ]
   },
   {
     "id": "obama-anger-translator-uncensored",
     "name": "Key & Peele - Obama's Anger Translator - Meet Luther - Uncensored",
     "youtubeId": "-qv7k2_lc0M",
     "description": "The first meeting with the man who speaks for the President.",
-    "tags": ["obama", "luther", "politics"]
+    "tags": [
+      "obama",
+      "luther",
+      "politics"
+    ]
   },
   {
     "id": "party-games",
     "name": "Key & Peele - Party Games",
     "youtubeId": "UCW_UH-k-ec",
     "description": "A friendly game of charades becomes intensely competitive.",
-    "tags": ["games", "party", "social"]
+    "tags": [
+      "games",
+      "party",
+      "social"
+    ]
   },
   {
     "id": "pawn-shop",
     "name": "Key & Peele - Pawn Shop",
     "youtubeId": "WqBZVlgORbY",
     "description": "Trying to pawn something that is absolutely worthless.",
-    "tags": ["pawn shop", "shopping", "urban"]
+    "tags": [
+      "pawn shop",
+      "shopping",
+      "urban"
+    ]
   },
   {
     "id": "pegasus-sighting",
     "name": "Key & Peele - Pegasus Sighting",
     "youtubeId": "7uG9PGqaWeo",
     "description": "A man claims to have seen a pegasus, but his evidence is shaky.",
-    "tags": ["fantasy", "urban", "absurd"]
+    "tags": [
+      "fantasy",
+      "urban",
+      "absurd"
+    ]
   },
   {
     "id": "puppy-dog-ice-t",
     "name": "Key & Peele - Puppy Dog Ice-T",
     "youtubeId": "WV2xY7ixwro",
     "description": "Ice-T's distinct narration style applied to a very cute dog.",
-    "tags": ["ice-t", "dogs", "impression"]
+    "tags": [
+      "ice-t",
+      "dogs",
+      "impression"
+    ]
   },
   {
     "id": "quarterback-concussion-1",
     "name": "Key & Peele - Quarterback Concussion",
     "youtubeId": "cJ4tlOIo4A8",
     "description": "A player tries to hide the fact that he has no idea where he is.",
-    "tags": ["sports", "football", "concussion"]
+    "tags": [
+      "sports",
+      "football",
+      "concussion"
+    ]
   },
   {
     "id": "roommate-meeting",
     "name": "Key & Peele - Roommate Meeting",
     "youtubeId": "bxHEZU0AFcQ",
     "description": "A tense discussion about dishes and boundaries.",
-    "tags": ["roommates", "social", "frustration"]
+    "tags": [
+      "roommates",
+      "social",
+      "frustration"
+    ]
   },
   {
     "id": "slow-brotion",
     "name": "Key & Peele - Slow Brotion",
     "youtubeId": "_uScCrpAW4U",
     "description": "Bros doing bro things, but with cinematic slow-motion flair.",
-    "tags": ["bros", "slow-motion", "social"]
+    "tags": [
+      "bros",
+      "slow-motion",
+      "social"
+    ]
   },
   {
     "id": "strike-force-eagle-3-uncensored",
     "name": "Key & Peele - Strike Force Eagle 3: The Reckoning - Uncensored",
     "youtubeId": "3-jv7doUI8o",
     "description": "The ultimate 90s action movie parody, now without the bleeps.",
-    "tags": ["action", "movies", "parody"]
+    "tags": [
+      "action",
+      "movies",
+      "parody"
+    ]
   },
   {
     "id": "ultimate-cock-blocker",
     "name": "Key & Peele - Ultimate C**k Blocker",
     "youtubeId": "YrpoK7Askck",
     "description": "A friend who goes to extreme lengths to make sure his buddy doesn't get lucky.",
-    "tags": ["relationships", "friendship", "social"]
+    "tags": [
+      "relationships",
+      "friendship",
+      "social"
+    ]
   },
   {
     "id": "video-game-sensors",
     "name": "Key & Peele - Video Game Sensors",
     "youtubeId": "vNIe_UwHPU0",
     "description": "Motion controls in gaming are taken to an uncomfortable level.",
-    "tags": ["gaming", "tech", "absurd"]
+    "tags": [
+      "gaming",
+      "tech",
+      "absurd"
+    ]
   },
   {
     "id": "you-can-do-anything",
     "name": "Key & Peele - You Can Do Anything",
     "youtubeId": "nlD9JYP8u5E",
     "description": "A motivational speaker whose message is a little too broad.",
-    "tags": ["motivation", "social", "absurd"]
+    "tags": [
+      "motivation",
+      "social",
+      "absurd"
+    ]
   },
   {
     "id": "go-to-hollywood",
     "name": "Key & Peele Go to Hollywood",
     "youtubeId": "zPjuxQiXEgE",
     "description": "The duo navigates the glitz and weirdness of the entertainment capital.",
-    "tags": ["hollywood", "celebrity", "movies"]
-  },
-  {
-    "id": "presents-detectives",
-    "name": "Key & Peele Presents: Detectives",
-    "youtubeId": "reMt-OY5LJ0",
-    "description": "A collection of the duo's best police procedural parodies.",
-    "tags": ["compilation", "police", "crime"]
+    "tags": [
+      "hollywood",
+      "celebrity",
+      "movies"
+    ]
   },
   {
     "id": "presents-jordan-keegan",
     "name": "Key & Peele Presents: Jordan and Keegan",
     "youtubeId": "NeBtmPStMr0",
     "description": "A look back at the origins and the men behind the characters.",
-    "tags": ["documentary", "behind the scenes", "comedy"]
-  },
-  {
-    "id": "songs-to-jam-to",
-    "name": "Key & Peele Songs to Jam Out to All Day",
-    "youtubeId": "Q8Pf2vLdGeQ",
-    "description": "A mix of the show's most catchy musical parodies.",
-    "tags": ["compilation", "music", "jam"]
-  },
-  {
-    "id": "take-you-to-school",
-    "name": "Key & Peele Take You to School - Key & Peele",
-    "youtubeId": "BWAOAlzfgnY",
-    "description": "A compilation of educational and school-based sketches.",
-    "tags": ["compilation", "school", "education"]
-  },
-  {
-    "id": "most-watched-music-videos",
-    "name": "Key & Peele's 10 Most Watched Music Videos",
-    "youtubeId": "aXV59Jd2PyQ",
-    "description": "The top 10 most popular songs from the series.",
-    "tags": ["compilation", "music", "top 10"]
-  },
-  {
-    "id": "best-celebrity-impressions-2",
-    "name": "Key & Peele’s Best Celebrity Impressions, Volume Two - Key & Peele",
-    "youtubeId": "4O30WCdUZl0",
-    "description": "Even more incredible parodies of famous stars.",
-    "tags": ["compilation", "impressions", "celebrity"]
-  },
-  {
-    "id": "best-songs-vol-2",
-    "name": "Key & Peele’s Best Songs, Vol. 2 - Key & Peele",
-    "youtubeId": "ujxiX9XrcHw",
-    "description": "A second volume of musical highlights from the show.",
-    "tags": ["compilation", "music", "songs"]
-  },
-  {
-    "id": "biggest-miscommunications",
-    "name": "Key & Peele’s Biggest Miscommunications 🤨",
-    "youtubeId": "oQkjmb3aAls",
-    "description": "Sketches where nobody seems to be on the same page.",
-    "tags": ["compilation", "misunderstanding", "social"]
-  },
-  {
-    "id": "bravest-rule-breakers",
-    "name": "Key & Peele’s Bravest Rule Breakers 🤪",
-    "youtubeId": "q6wJPxnd49Y",
-    "description": "Characters who refuse to follow the rules, no matter how small.",
-    "tags": ["compilation", "rebellion", "social"]
-  },
-  {
-    "id": "craziest-plot-twists",
-    "name": "Key & Peele’s Craziest Plot Twists 😱",
-    "youtubeId": "qL4LiFpeOZY",
-    "description": "Sketches that end in ways you definitely won't see coming.",
-    "tags": ["compilation", "twist", "surprise"]
-  },
-  {
-    "id": "fiercest-rivalries",
-    "name": "Key & Peele’s Fiercest Rivalries 😡",
-    "youtubeId": "OKC2Nf5DkP4",
-    "description": "When competition between friends and enemies goes too far.",
-    "tags": ["compilation", "rivalry", "competition"]
-  },
-  {
-    "id": "most-chaotic-games",
-    "name": "Key & Peele’s Most Chaotic Games 🃏",
-    "youtubeId": "oIisw8CCdd8",
-    "description": "Board games and bets that descend into total madness.",
-    "tags": ["compilation", "games", "chaos"]
-  },
-  {
-    "id": "most-complicated-couples",
-    "name": "Key & Peele’s Most Complicated Couples 💕",
-    "youtubeId": "Q1BaXoPvoZE",
-    "description": "A collection of the show's best relationship sketches.",
-    "tags": ["compilation", "relationships", "love"]
-  },
-  {
-    "id": "most-convincing-accents",
-    "name": "Key & Peele’s Most Convincing Accents 🇬🇧🏴‍☠️",
-    "youtubeId": "SiRIcrElgMM",
-    "description": "A showcase of the duo's impressive vocal range and accents.",
-    "tags": ["compilation", "accents", "vocal"]
-  },
-  {
-    "id": "most-hardcore-fans",
-    "name": "Key & Peele’s Most Hardcore Fans 🤩",
-    "youtubeId": "eCsGnruUX2w",
-    "description": "Characters who take their fandom to a frightening level.",
-    "tags": ["compilation", "fandom", "movies"]
-  },
-  {
-    "id": "most-intense-competitions",
-    "name": "Key & Peele’s Most Intense Competitions 💪",
-    "youtubeId": "MEjWAnT2j3s",
-    "description": "Compilations of sketches where winning is the only thing that matters.",
-    "tags": ["compilation", "competition", "sports"]
-  },
-  {
-    "id": "most-intense-interrogations",
-    "name": "Key & Peele’s Most Intense Interrogations 🔎",
-    "youtubeId": "l5wdNy2qoaA",
-    "description": "Police and suspects in high-stakes, high-comedy showdowns.",
-    "tags": ["compilation", "interrogation", "police"]
-  },
-  {
-    "id": "most-intense-locker-rooms",
-    "name": "Key & Peele’s Most Intense Locker Rooms ⚾️",
-    "youtubeId": "5uqfx63e0KU",
-    "description": "The best pre-game and post-game sports moments.",
-    "tags": ["compilation", "sports", "locker room"]
-  },
-  {
-    "id": "most-over-the-top-fashion",
-    "name": "Key & Peele’s Most Over-The-Top Fashion 🎩",
-    "youtubeId": "D1ZPrcz0P4M",
-    "description": "From oversized hats to steampunk, a look at the show's style.",
-    "tags": ["compilation", "fashion", "style"]
-  },
-  {
-    "id": "most-socially-awkward",
-    "name": "Key & Peele’s Most Socially Awkward Moments",
-    "youtubeId": "nqoc2CCePPA",
-    "description": "A collection of sketches that are hard to watch but impossible not to.",
-    "tags": ["compilation", "awkward", "social"]
-  },
-  {
-    "id": "most-unforgettable-plane-rides",
-    "name": "Key & Peele’s Most Unforgettable Plane Rides 🛩",
-    "youtubeId": "f8ZkieyFydM",
-    "description": "Every major sketch set in the sky.",
-    "tags": ["compilation", "airplane", "travel"]
-  },
-  {
-    "id": "most-unpredictable-bosses",
-    "name": "Key & Peele’s Most Unpredictable Bosses 🤯",
-    "youtubeId": "gyavV_v19Uc",
-    "description": "Managers and CEOs who make work a living nightmare.",
-    "tags": ["compilation", "office", "boss"]
-  },
-  {
-    "id": "next-level-trash-talk",
-    "name": "Key & Peele’s Next-Level Trash Talk 🤬",
-    "youtubeId": "kVNixOxZgtE",
-    "description": "A compilation of insults and bravado.",
-    "tags": ["compilation", "trash talk", "insults"]
-  },
-  {
-    "id": "not-so-clever-criminals",
-    "name": "Key & Peele’s Not-So-Clever Criminals 😳",
-    "youtubeId": "qLvxc83GrM4",
-    "description": "Heists and robberies that go wrong in the dumbest ways possible.",
-    "tags": ["compilation", "crime", "robbery"]
-  },
-  {
-    "id": "questionable-doctor-visits",
-    "name": "Key & Peele’s Questionable Doctor Visits 🤔",
-    "youtubeId": "YdS8XFEFxWg",
-    "description": "Medical professionals who probably shouldn't have licenses.",
-    "tags": ["compilation", "doctor", "medical"]
-  },
-  {
-    "id": "supernatural-experiences",
-    "name": "Key & Peele’s Supernatural Experiences 👽",
-    "youtubeId": "JspfS_xTRMM",
-    "description": "Ghosts, aliens, and demons meet Key & Peele.",
-    "tags": ["compilation", "supernatural", "horror"]
-  },
-  {
-    "id": "unforgettable-alter-egos",
-    "name": "Key & Peele’s Unforgettable Alter Egos  🤔",
-    "youtubeId": "pRCTZwwvz1o",
-    "description": "A look at the recurring characters that made the show famous.",
-    "tags": ["compilation", "characters", "best of"]
-  },
-  {
-    "id": "worst-liars",
-    "name": "Key & Peele’s Worst Liars 🤥",
-    "youtubeId": "sMw001gS2Ps",
-    "description": "People who are incredibly bad at keeping secrets.",
-    "tags": ["compilation", "liars", "social"]
+    "tags": [
+      "documentary",
+      "behind the scenes",
+      "comedy"
+    ]
   },
   {
     "id": "soul-food-shorts",
     "name": "Key and Peele  - Soul Food #Shorts #KeyAndPeele #Comedy",
     "youtubeId": "7nGI6Wg_RhY",
     "description": "A short look at the legendary soul food ordering battle.",
-    "tags": ["food", "soul food", "shorts"]
-  },
-  {
-    "id": "greatest-battles",
-    "name": "Key vs. Peele: Greatest Battles - Key & Peele",
-    "youtubeId": "k_fcdIRVmMs",
-    "description": "The best sketches where the two leads are directly opposed.",
-    "tags": ["compilation", "battle", "rivalry"]
+    "tags": [
+      "food",
+      "soul food",
+      "shorts"
+    ]
   },
   {
     "id": "kobe-beef-burgers",
     "name": "Kobe Beef Burgers - Key & Peele",
     "youtubeId": "ZYLYDi2I0lY",
     "description": "High-end dining taken to a pretentious and confusing level.",
-    "tags": ["food", "restaurant", "pretentious"]
+    "tags": [
+      "food",
+      "restaurant",
+      "pretentious"
+    ]
   },
   {
     "id": "fronthand-backhand",
     "name": "Let’s Play Fronthand Backhand - Key & Peele",
     "youtubeId": "AKebtRtu6YU",
     "description": "A game where there is no way to win and it's always painful.",
-    "tags": ["games", "absurd", "popular"]
+    "tags": [
+      "games",
+      "absurd",
+      "popular"
+    ]
   },
   {
     "id": "local-news-dog-fail",
     "name": "Local News Dog Fail - Key & Peele",
     "youtubeId": "zqvm20dMgV4",
     "description": "A news broadcast that is completely derailed by a single dog.",
-    "tags": ["news", "dogs", "fail"]
+    "tags": [
+      "news",
+      "dogs",
+      "fail"
+    ]
   },
   {
     "id": "lying-dying-wife",
     "name": "Lying to Your Dying Wife (feat. Rashida Jones) - Key & Peele",
     "youtubeId": "4YzvpF5Owfc",
     "description": "A husband tries to fulfill his wife's final wishes with some very white lies.",
-    "tags": ["rashida jones", "relationships", "dark"]
+    "tags": [
+      "rashida jones",
+      "relationships",
+      "dark"
+    ]
   },
   {
     "id": "mafia-talks-ruined",
     "name": "Mafia Talks Get Ruined - Key & Peele",
     "youtubeId": "1rt0J1mcrDk",
     "description": "A serious mob meeting is interrupted by a very persistent distraction.",
-    "tags": ["mafia", "crime", "interruption"]
+    "tags": [
+      "mafia",
+      "crime",
+      "interruption"
+    ]
   },
   {
     "id": "magic-is-real",
     "name": "Magic Is Real, And It’s in This Apartment - Key & Peele",
     "youtubeId": "QnbqW263N4g",
     "description": "A magician performs tricks that are actually just crimes.",
-    "tags": ["magic", "urban", "crime"]
+    "tags": [
+      "magic",
+      "urban",
+      "crime"
+    ]
   },
   {
     "id": "magical-negro-fight",
     "name": "Magical Negro Fight - Key & Peele",
     "youtubeId": "jInlO6-JTww",
     "description": "Two mystical characters battle to see who can help a white man more.",
-    "tags": ["race", "movies", "satire"]
+    "tags": [
+      "race",
+      "movies",
+      "satire"
+    ]
   },
   {
     "id": "mlk-malcolm-x-theater",
     "name": "Martin Luther King Jr. vs. Malcolm X at the Theater - Key & Peele",
     "youtubeId": "dQkb5Phct1U",
     "description": "Two civil rights icons have very different ways of watching a movie.",
-    "tags": ["history", "politics", "theater"]
+    "tags": [
+      "history",
+      "politics",
+      "theater"
+    ]
   },
   {
     "id": "mc-mom",
     "name": "MC Mom Tears It Up - Key & Peele",
     "youtubeId": "B5FnlmfYldk",
     "description": "A mother shows off her rap skills, to her son's horror.",
-    "tags": ["rap", "music", "family"]
+    "tags": [
+      "rap",
+      "music",
+      "family"
+    ]
   },
   {
     "id": "meegan-andre-nightmare",
     "name": "Meegan and Andre Are a Moviegoer’s Nightmare - Key & Peele",
     "youtubeId": "0toviZNSUhs",
     "description": "Meegan and Andre take their drama to the cinema.",
-    "tags": ["meegan", "andre", "movies"]
+    "tags": [
+      "meegan",
+      "andre",
+      "movies"
+    ]
   },
   {
     "id": "meegan-andre-love-story",
     "name": "Meegan and Andre: A Love Story - Key & Peele",
     "youtubeId": "z92Rlqc2cUE",
     "description": "A look back at the most toxic yet consistent couple on TV.",
-    "tags": ["meegan", "andre", "relationships"]
+    "tags": [
+      "meegan",
+      "andre",
+      "relationships"
+    ]
   },
   {
     "id": "meegan-andre-worst-fight",
     "name": "Meegan and Andre’s Worst Fight Ever - Key & Peele",
     "youtubeId": "tvrQht5i1II",
     "description": "A public argument that reaches levels of absurdity only Meegan can achieve.",
-    "tags": ["meegan", "andre", "relationships"]
-  },
-  {
-    "id": "meegans-craziest-moments",
-    "name": "Meegan’s Craziest Moments 💋 - Key & Peele",
-    "youtubeId": "GCThLOXqsqc",
-    "description": "A compilation of the queen of selfishness.",
-    "tags": ["compilation", "meegan", "andre"]
+    "tags": [
+      "meegan",
+      "andre",
+      "relationships"
+    ]
   },
   {
     "id": "meeting-bigoted-parents",
     "name": "Meeting Bigoted Parents - Key & Peele",
     "youtubeId": "AFVrb4hD8a4",
     "description": "The absolute awkwardness of meeting your partner's narrow-minded family.",
-    "tags": ["race", "relationships", "awkward"]
+    "tags": [
+      "race",
+      "relationships",
+      "awkward"
+    ]
   },
   {
     "id": "meeting-black-republicans",
     "name": "Meeting of the Black Republicans - Key & Peele",
     "youtubeId": "99PR2mWDb9w",
     "description": "A group of Black Republicans try to find things they have in common.",
-    "tags": ["politics", "race", "republicans"]
+    "tags": [
+      "politics",
+      "race",
+      "republicans"
+    ]
   },
   {
     "id": "messing-with-driver",
     "name": "Messing with the Driver - Key & Peele",
     "youtubeId": "UCFMGy5L-6E",
     "description": "A passenger thinks he's being funny, but the driver is not amused.",
-    "tags": ["car", "social", "awkward"]
+    "tags": [
+      "car",
+      "social",
+      "awkward"
+    ]
   },
   {
     "id": "metta-world-news",
     "name": "Metta World News - Key & Peele",
     "youtubeId": "1p3Av-ZrTVM",
     "description": "Metta World Peace gives his unique and confusing take on the news.",
-    "tags": ["news", "sports", "metta world peace"]
+    "tags": [
+      "news",
+      "sports",
+      "metta world peace"
+    ]
   },
   {
     "id": "michelle-obama-anger-translator",
     "name": "Michelle Obama Has an Anger Translator Too - Key & Peele",
     "youtubeId": "I5QUpyQmRDw",
     "description": "Michelle gets her own help to deal with the public and her husband.",
-    "tags": ["politics", "obama", "michelle obama"]
-  },
-  {
-    "id": "moments-in-history",
-    "name": "Moments in History - Key & Peele",
-    "youtubeId": "PV_59CAD-Pw",
-    "description": "A collection of sketches that rewrite the history books.",
-    "tags": ["compilation", "history", "satire"]
-  },
-  {
-    "id": "more-best-songs",
-    "name": "More of Key & Peele’s Best Songs - Key & Peele",
-    "youtubeId": "KGVpNu0T5E8",
-    "description": "Even more musical parody gold.",
-    "tags": ["compilation", "music", "songs"]
-  },
-  {
-    "id": "badass-action-stars",
-    "name": "Most Badass Action Stars 💥- Key & Peele",
-    "youtubeId": "QN488Ao-G20",
-    "description": "A compilation of the duo's most explosive action parodies.",
-    "tags": ["compilation", "action", "movies"]
-  },
-  {
-    "id": "iconic-historical-figures",
-    "name": "Most Iconic Historical Figures - Key & Peele",
-    "youtubeId": "NXew6tJcFGQ",
-    "description": "The best historical parodies from the series.",
-    "tags": ["compilation", "history", "figures"]
-  },
-  {
-    "id": "most-memorable-catchphrases",
-    "name": "Most Memorable Catchphrases - Key & Peele",
-    "youtubeId": "FIGbegFyMxY",
-    "description": "Nooice, Slap-Ass, and all the rest in one place.",
-    "tags": ["compilation", "catchphrases", "popular"]
-  },
-  {
-    "id": "unforgettable-celeb-cameos",
-    "name": "Most Unforgettable Celeb Cameos 🤩 – Key & Peele",
-    "youtubeId": "me9BfP-Pyt8",
-    "description": "A collection of the famous faces who appeared on the show.",
-    "tags": ["compilation", "celebrity", "cameo"]
+    "tags": [
+      "politics",
+      "obama",
+      "michelle obama"
+    ]
   },
   {
     "id": "most-wanted-terries",
     "name": "Most Wanted Terries - Key & Peele",
     "youtubeId": "McKiGAkzza4",
     "description": "Two men on a plane are ready to take down any 'terries' they see.",
-    "tags": ["airplane", "travel", "terries"]
-  },
-  {
-    "id": "most-watched-2021",
-    "name": "Most Watched of 2021 - Key & Peele",
-    "youtubeId": "HBFMysfLlJU",
-    "description": "A collection of the videos that defined the year.",
-    "tags": ["compilation", "best of", "2021"]
-  },
-  {
-    "id": "most-watched-2022",
-    "name": "Most Watched of 2022 🥳 Key & Peele",
-    "youtubeId": "Ln6wZHDFDtg",
-    "description": "The fan-favorite sketches of 2022.",
-    "tags": ["compilation", "best of", "2022"]
+    "tags": [
+      "airplane",
+      "travel",
+      "terries"
+    ]
   },
   {
     "id": "mr-garvey-substitute",
     "name": "Mr. Garvey Is Your Substitute Teacher - Key & Peele",
     "youtubeId": "OQaLic5SE_I",
     "description": "An inner-city teacher struggles with the names of suburban students.",
-    "tags": ["classroom", "popular", "mr. garvey"]
+    "tags": [
+      "classroom",
+      "popular",
+      "mr. garvey"
+    ]
   },
   {
     "id": "nervous-mob-boss",
     "name": "Nervous Mob Boss - Key & Peele",
     "youtubeId": "h0vkN7udQoo",
     "description": "A mob boss who is clearly in way over his head.",
-    "tags": ["mafia", "crime", "urban"]
-  },
-  {
-    "id": "nightmare-moving-stories",
-    "name": "Nightmare Moving Stories 📦 - Key & Peele",
-    "youtubeId": "wRWFAnMKsME",
-    "description": "Everything that can go wrong when you're moving house.",
-    "tags": ["compilation", "moving", "social"]
+    "tags": [
+      "mafia",
+      "crime",
+      "urban"
+    ]
   },
   {
     "id": "nobody-wants-to-help-move",
     "name": "Nobody Wants to Help You Move - Key & Peele",
     "youtubeId": "9G9mg3Z0bV8",
     "description": "The ultimate test of friendship is asking someone to help with boxes.",
-    "tags": ["friendship", "moving", "social"]
+    "tags": [
+      "friendship",
+      "moving",
+      "social"
+    ]
   },
   {
     "id": "non-scary-movie",
     "name": "Non-Scary Movie - Key & Peele",
     "youtubeId": "PtDOZ7pggBw",
     "description": "A horror movie that fails to be scary for a very specific reason.",
-    "tags": ["horror", "movies", "parody"]
+    "tags": [
+      "horror",
+      "movies",
+      "parody"
+    ]
   },
   {
     "id": "nooice",
     "name": "Nooice - Key & Peele",
     "youtubeId": "SAfq55aiqPc",
     "description": "Two guys can't stop complementing each other's accomplishments.",
-    "tags": ["nooice", "urban", "popular"]
+    "tags": [
+      "nooice",
+      "urban",
+      "popular"
+    ]
   },
   {
     "id": "obama-luther-farewell",
     "name": "Obama and Luther’s Farewell Address - Key & Peele",
     "youtubeId": "n2svSvVF_F0",
     "description": "One last time for Luther to say what Obama can't.",
-    "tags": ["politics", "obama", "luther"]
+    "tags": [
+      "politics",
+      "obama",
+      "luther"
+    ]
   },
   {
     "id": "obama-meet-greet",
     "name": "Obama Meet and Greet - Key & Peele",
     "youtubeId": "Yptn0gYJsdM",
     "description": "How the President greets different people according to their race.",
-    "tags": ["race", "politics", "obama"]
+    "tags": [
+      "race",
+      "politics",
+      "obama"
+    ]
   },
   {
     "id": "obama-college-years",
     "name": "Obama: The College Years - Key & Peele",
     "youtubeId": "yLVdqGv-tsk",
     "description": "A look back at a young Barack Obama trying to fit in at school.",
-    "tags": ["history", "obama", "college"]
-  },
-  {
-    "id": "luther-maddest-moments",
-    "name": "Obama’s Anger Translator’s Maddest Moments - Key & Peele",
-    "youtubeId": "VYmezIoii8U",
-    "description": "A collection of Luther's most explosive outbursts.",
-    "tags": ["compilation", "obama", "luther"]
-  },
-  {
-    "id": "oddest-elderly-characters",
-    "name": "Oddest Elderly Characters - Key & Peele",
-    "youtubeId": "vj6ilAuswWo",
-    "description": "A collection of sketches featuring old men and women.",
-    "tags": ["compilation", "elderly", "social"]
+    "tags": [
+      "history",
+      "obama",
+      "college"
+    ]
   },
   {
     "id": "old-men-dis-drake",
     "name": "Old Men Dis Drake - Key & Peele",
     "youtubeId": "-upVic7QGZ0",
     "description": "Two seniors give their very critical take on modern hip-hop.",
-    "tags": ["music", "drake", "elderly"]
+    "tags": [
+      "music",
+      "drake",
+      "elderly"
+    ]
   },
   {
     "id": "ordering-soul-food",
     "name": "Ordering Soul Food Like a Pro - Key & Peele",
     "youtubeId": "SXGgrM-lEsE",
     "description": "The competitive nature of ordering the most 'authentic' soul food.",
-    "tags": ["food", "soul food", "popular"]
+    "tags": [
+      "food",
+      "soul food",
+      "popular"
+    ]
   },
   {
     "id": "outmatched-strip-club",
     "name": "Outmatched at the Strip Club - Key & Peele",
     "youtubeId": "fLz5OUYxR6Q",
     "description": "Two men realize they are not prepared for the reality of a strip club.",
-    "tags": ["adult", "bar", "social"]
+    "tags": [
+      "adult",
+      "bar",
+      "social"
+    ]
   },
   {
     "id": "competitive-trumpeters",
     "name": "Overly Competitive Trumpeters - Key & Peele",
     "youtubeId": "-Pwf7Q6j3tI",
     "description": "A simple jazz solo turns into a brass-based battle of egos.",
-    "tags": ["music", "jazz", "rivalry"]
+    "tags": [
+      "music",
+      "jazz",
+      "rivalry"
+    ]
   },
   {
     "id": "pussy-on-the-chainwax",
     "name": "P***y on the Chainwax - Key & Peele",
     "youtubeId": "i9RmWK-G0ps",
     "description": "A man tries to make his own slang catchphrase happen.",
-    "tags": ["slang", "urban", "popular"]
+    "tags": [
+      "slang",
+      "urban",
+      "popular"
+    ]
   },
   {
     "id": "paint-titties",
     "name": "Paint Titties - Key & Peele",
     "youtubeId": "hhCo51aH2Dg",
     "description": "An artist has a very narrow focus for his latest work.",
-    "tags": ["art", "absurd", "social"]
+    "tags": [
+      "art",
+      "absurd",
+      "social"
+    ]
   },
   {
     "id": "planning-a-heist",
     "name": "Planning a Heist - Key & Peele",
     "youtubeId": "jgYYOUC10aM",
     "description": "A criminal mastermind's plan is a little too complex for his crew.",
-    "tags": ["crime", "heist", "urban"]
+    "tags": [
+      "crime",
+      "heist",
+      "urban"
+    ]
   },
   {
     "id": "pouring-one-out",
     "name": "Pouring One Out - Key & Peele",
     "youtubeId": "QACY04l5OHo",
     "description": "A tribute to a fallen friend that goes a bit too far.",
-    "tags": ["urban", "friendship", "absurd"]
+    "tags": [
+      "urban",
+      "friendship",
+      "absurd"
+    ]
   },
   {
     "id": "prepare-for-turbulence",
     "name": "Prepare for Turbulence - Key & Peele",
     "youtubeId": "-upqDjjtRzE",
     "description": "Two flight attendants try to calm passengers during a rough ride.",
-    "tags": ["airplane", "travel", "turbulence"]
+    "tags": [
+      "airplane",
+      "travel",
+      "turbulence"
+    ]
   },
   {
     "id": "obama-gop-meeting",
     "name": "President Obama Meets with the GOP - Key & Peele",
     "youtubeId": "B46km4V0CMY",
     "description": "The President tries to find common ground with his political rivals.",
-    "tags": ["politics", "obama", "gop"]
+    "tags": [
+      "politics",
+      "obama",
+      "gop"
+    ]
   },
   {
     "id": "pretending-lyrics",
     "name": "Pretending to Know the Lyrics - Key & Peele",
     "youtubeId": "btAa1JZczLQ",
     "description": "A car ride where nobody actually knows the words to the song.",
-    "tags": ["music", "car", "social"]
+    "tags": [
+      "music",
+      "car",
+      "social"
+    ]
   },
   {
     "id": "fake-sensei",
     "name": "Pretty Sure This Guy Isn’t a Real Sensei - Key & Peele",
     "youtubeId": "6HhCajvimEw",
     "description": "A martial arts teacher whose training methods are highly suspect.",
-    "tags": ["martial arts", "absurd", "social"]
+    "tags": [
+      "martial arts",
+      "absurd",
+      "social"
+    ]
   },
   {
     "id": "quackadilly",
     "name": "Quackadilly Goes Too Far - Key & Peele",
     "youtubeId": "wQDklcWKzRA",
     "description": "A man's nickname leads to a very strange confrontation.",
-    "tags": ["urban", "social", "absurd"]
+    "tags": [
+      "urban",
+      "social",
+      "absurd"
+    ]
   },
   {
     "id": "quarterback-concussion-2",
     "name": "Quarterback Concussion - Key & Peele",
     "youtubeId": "mt7dxzFP7nI",
     "description": "The medical team tries to determine if their star player is fit for duty.",
-    "tags": ["sports", "football", "medical"]
+    "tags": [
+      "sports",
+      "football",
+      "medical"
+    ]
   },
   {
     "id": "racist-suburbs",
     "name": "Racist Suburbs - Key & Peele",
     "youtubeId": "-eAdqq_3ccw",
     "description": "A look at the subtle and not-so-subtle bias in suburban neighborhoods.",
-    "tags": ["race", "social", "suburbs"]
+    "tags": [
+      "race",
+      "social",
+      "suburbs"
+    ]
   },
   {
     "id": "radio-hosts-commercial",
     "name": "Radio Hosts During the Commercial - Key & Peele",
     "youtubeId": "vvvMb1cY0EU",
     "description": "What happens when the mics are off and the hosts can be themselves.",
-    "tags": ["radio", "media", "social"]
+    "tags": [
+      "radio",
+      "media",
+      "social"
+    ]
   },
   {
     "id": "real-deal-fake-friends",
     "name": "Real Record Deal, Fake Friends - Key & Peele",
     "youtubeId": "92MSMP3V-Fk",
     "description": "A rapper's success reveals who his true friends are.",
-    "tags": ["rap", "music", "friendship"]
+    "tags": [
+      "rap",
+      "music",
+      "friendship"
+    ]
   },
   {
     "id": "retired-military-specialist",
     "name": "Retired Military Specialist - Key & Peele",
     "youtubeId": "lfSHRZsZ710",
     "description": "A former soldier is called back for one last, very strange mission.",
-    "tags": ["military", "war", "action"]
+    "tags": [
+      "military",
+      "war",
+      "action"
+    ]
   },
   {
     "id": "scat-duel",
     "name": "Scat Duel - Key & Peele",
     "youtubeId": "ywr4SzOFUYo",
     "description": "Two jazz singers engage in a battle of nonsense syllables.",
-    "tags": ["music", "jazz", "battle"]
+    "tags": [
+      "music",
+      "jazz",
+      "battle"
+    ]
   },
   {
     "id": "secret-emotions",
     "name": "Secret Emotions – Key & Peele",
     "youtubeId": "iW1CLKxdLwQ",
     "description": "Men trying to hide their feelings in the most dramatic way possible.",
-    "tags": ["social", "emotions", "manhood"]
+    "tags": [
+      "social",
+      "emotions",
+      "manhood"
+    ]
   },
   {
     "id": "severed-head-improv",
     "name": "Severed Head Improv - Key & Peele",
     "youtubeId": "Qr1qmsQnJw4",
     "description": "Improv comedy is hard, even when you're just a head.",
-    "tags": ["improv", "absurd", "comedy"]
+    "tags": [
+      "improv",
+      "absurd",
+      "comedy"
+    ]
   },
   {
     "id": "sex-detective",
     "name": "Sex Detective - Key & Peele",
     "youtubeId": "TMIkQcXXMHQ",
     "description": "A detective who is a little too good at figuring out what happened in the bedroom.",
-    "tags": ["crime", "police", "adult"]
+    "tags": [
+      "crime",
+      "police",
+      "adult"
+    ]
   },
   {
     "id": "sexy-vampires",
     "name": "Sexy Vampires - Key & Peele",
     "youtubeId": "f1fV_d5kNL4",
     "description": "Vampires try to be alluring, but they're mostly just creepy.",
-    "tags": ["horror", "vampires", "parody"]
+    "tags": [
+      "horror",
+      "vampires",
+      "parody"
+    ]
   },
   {
     "id": "shot-in-the-dick",
     "name": "Shot in the D**k (Official Music Video) - Key & Peele",
     "youtubeId": "F7FppXJ-3YY",
     "description": "A rap song about a very specific and painful injury.",
-    "tags": ["music", "rap", "absurd"]
+    "tags": [
+      "music",
+      "rap",
+      "absurd"
+    ]
   },
   {
     "id": "slap-ass",
     "name": "Slap-Ass - Key & Peele",
     "youtubeId": "5-uIwpo0dCU",
     "description": "A baseball player who can't stop slapping his teammates' butts.",
-    "tags": ["sports", "baseball", "popular"]
+    "tags": [
+      "sports",
+      "baseball",
+      "popular"
+    ]
   },
   {
     "id": "someones-gotta-say-it",
     "name": "Someone’s Gotta Say It - Key & Peele",
     "youtubeId": "WTLcsaRXpVw",
     "description": "The person who thinks they are being brave by saying what everyone is thinking.",
-    "tags": ["social", "awkward", "truth"]
+    "tags": [
+      "social",
+      "awkward",
+      "truth"
+    ]
   },
   {
     "id": "speaking-after-mlk",
     "name": "Speaking After MLK Jr. - Key & Peele",
     "youtubeId": "qcbO5Mvoo6E",
     "description": "The impossible task of following a legendary orator.",
-    "tags": ["history", "politics", "mlk"]
+    "tags": [
+      "history",
+      "politics",
+      "mlk"
+    ]
   },
   {
     "id": "spoiler-free-zone",
     "name": "Spoiler-Free Zone (feat. Regina Hall) - Key & Peele",
     "youtubeId": "vaPYYIFSKPc",
     "description": "The lengths people go to to avoid spoilers for their favorite show.",
-    "tags": ["tv", "spoilers", "social"]
+    "tags": [
+      "tv",
+      "spoilers",
+      "social"
+    ]
   },
   {
     "id": "standoff",
     "name": "Standoff - Key & Peele",
     "youtubeId": "o6Ai7x1krew",
     "description": "A high-stakes confrontation that quickly loses its tension.",
-    "tags": ["action", "crime", "urban"]
-  },
-  {
-    "id": "customer-service-encounters",
-    "name": "Strangest Customer Service Encounters 😤 Key & Peele",
-    "youtubeId": "3S5vHEozoVI",
-    "description": "A compilation of the worst retail and service experiences.",
-    "tags": ["compilation", "shopping", "frustration"]
+    "tags": [
+      "action",
+      "crime",
+      "urban"
+    ]
   },
   {
     "id": "strike-force-eagle-3",
     "name": "Strike Force Eagle 3: The Reckoning - Key & Peele",
     "youtubeId": "aqsF38j11b0",
     "description": "The quintessential parody of over-the-top 90s action films.",
-    "tags": ["action", "movies", "parody"]
+    "tags": [
+      "action",
+      "movies",
+      "parody"
+    ]
   },
   {
     "id": "substitute-traffic-reporter",
     "name": "Substitute Traffic Reporter - Key & Peele",
     "youtubeId": "FXDUmG3LGkc",
     "description": "A traffic report that focuses on all the wrong things.",
-    "tags": ["news", "traffic", "social"]
+    "tags": [
+      "news",
+      "traffic",
+      "social"
+    ]
   },
   {
     "id": "surprise-picture",
     "name": "Surprise Picture (ft. Michelle Buteau) - Key & Peele",
     "youtubeId": "IBIW82ICuHU",
     "description": "Taking a photo is harder than it looks when people won't cooperate.",
-    "tags": ["social", "photo", "michelle buteau"]
+    "tags": [
+      "social",
+      "photo",
+      "michelle buteau"
+    ]
   },
   {
     "id": "halloween-costume-too-far",
     "name": "Taking a Halloween Costume Too Far - Key & Peele",
     "youtubeId": "s7Vdk7s632k",
     "description": "A holiday party where one guest's outfit is a bit too realistic.",
-    "tags": ["halloween", "party", "horror"]
+    "tags": [
+      "halloween",
+      "party",
+      "horror"
+    ]
   },
   {
     "id": "awkward-friend",
     "name": "That One Friend Who Makes Everything Awkward - Key & Peele",
     "youtubeId": "EnBdGTX3vZc",
     "description": "A group of friends deals with the one person who can't read the room.",
-    "tags": ["friendship", "awkward", "social"]
+    "tags": [
+      "friendship",
+      "awkward",
+      "social"
+    ]
   },
   {
     "id": "deez-nuts",
     "name": "That One Guy Who Still Says “These Nuts” - Key & Peele",
     "youtubeId": "nxyiccilVKM",
     "description": "A man refuses to let a dead meme go.",
-    "tags": ["urban", "social", "memes"]
+    "tags": [
+      "urban",
+      "social",
+      "memes"
+    ]
   },
   {
     "id": "preaching-guy",
     "name": "That One Guy Who’s Always Preaching (ft. Leslie David Baker) - Key & Peele",
     "youtubeId": "GrYbMbudILQ",
     "description": "The person who turns every conversation into a moral lesson.",
-    "tags": ["religion", "social", "leslie david baker"]
+    "tags": [
+      "religion",
+      "social",
+      "leslie david baker"
+    ]
   },
   {
     "id": "911-call",
     "name": "The 911 Call That Will Change His Life - Key & Peele",
     "youtubeId": "O3nyadYevuY",
     "description": "An emergency call that takes a very personal and emotional turn.",
-    "tags": ["crime", "police", "urban"]
+    "tags": [
+      "crime",
+      "police",
+      "urban"
+    ]
   },
   {
     "id": "best-friend-song",
     "name": "The Best Friend Song - Key & Peele",
     "youtubeId": "tk6aSsOyHqI",
     "description": "A musical tribute to a friendship that is a bit too close.",
-    "tags": ["music", "friendship", "social"]
+    "tags": [
+      "music",
+      "friendship",
+      "social"
+    ]
   },
   {
     "id": "the-cheater",
     "name": "The Cheater - Key & Peele",
     "youtubeId": "ayizNcqep10",
     "description": "A man is caught in a lie and tries to dig his way out.",
-    "tags": ["relationships", "cheating", "social"]
+    "tags": [
+      "relationships",
+      "cheating",
+      "social"
+    ]
   },
   {
     "id": "continental-breakfast-airplane",
     "name": "The Continental Breakfast Guy Goes on an Airplane - Key & Peele",
     "youtubeId": "e2K3YIOO2zg",
     "description": "The man from the hotel breakfast takes his enthusiasm to the skies.",
-    "tags": ["airplane", "food", "travel"]
+    "tags": [
+      "airplane",
+      "food",
+      "travel"
+    ]
   },
   {
     "id": "funniest-kid-in-school",
     "name": "The Funniest Kid in School (feat. Gabriel Iglesias) - Key & Peele",
     "youtubeId": "YWl0V3J5zrE",
     "description": "Two students battle for the title of the funniest person in class.",
-    "tags": ["school", "gabriel iglesias", "comedy"]
+    "tags": [
+      "school",
+      "gabriel iglesias",
+      "comedy"
+    ]
   },
   {
     "id": "great-choir-fight",
     "name": "The Great Choir Fight - Key & Peele",
     "youtubeId": "LlFG9gxENkA",
     "description": "A church choir's performance turns into a physical confrontation.",
-    "tags": ["church", "religion", "music"]
+    "tags": [
+      "church",
+      "religion",
+      "music"
+    ]
   },
   {
     "id": "gremlins-2-sequel-doctor",
     "name": "The Hollywood Sequel Doctor Tackles \"Gremlins 2\" - Key & Peele",
     "youtubeId": "wHtH_SHhc6E",
     "description": "A look at the chaotic process of writing the weirdest sequel ever made.",
-    "tags": ["movies", "gremlins", "popular"]
+    "tags": [
+      "movies",
+      "gremlins",
+      "popular"
+    ]
   },
   {
     "id": "the-invitation",
     "name": "The Invitation - Key & Peele",
     "youtubeId": "wiCvE4xhn7A",
     "description": "A social invite that is much more complicated than it seems.",
-    "tags": ["social", "awkward", "friendship"]
-  },
-  {
-    "id": "guide-to-sports",
-    "name": "The Key & Peele Guide to Sports",
-    "youtubeId": "_UWtouPqYzE",
-    "description": "A compilation of the duo's best athletic-themed sketches.",
-    "tags": ["compilation", "sports", "football"]
+    "tags": [
+      "social",
+      "awkward",
+      "friendship"
+    ]
   },
   {
     "id": "rear-ended",
     "name": "The Last Person You Want to Get Rear-Ended By - Key & Peele",
     "youtubeId": "CI_mFIfFars",
     "description": "A car accident leads to an encounter with an extremely strange person.",
-    "tags": ["car", "urban", "social"]
+    "tags": [
+      "car",
+      "urban",
+      "social"
+    ]
   },
   {
     "id": "cop-side-gig",
     "name": "The Last Side Gig You’d Expect a Cop to Have - Key & Peele",
     "youtubeId": "qYn6ARB4q9g",
     "description": "A police officer has a very artistic and surprising hobby.",
-    "tags": ["police", "crime", "social"]
+    "tags": [
+      "police",
+      "crime",
+      "social"
+    ]
   },
   {
     "id": "meanest-sleep-talker",
     "name": "The Meanest Sleep Talker - Key & Peele",
     "youtubeId": "SFbd_OEz1xo",
     "description": "What someone says in their sleep might reveal their true feelings.",
-    "tags": ["relationships", "social", "sleep"]
+    "tags": [
+      "relationships",
+      "social",
+      "sleep"
+    ]
   },
   {
     "id": "awkward-run-in",
     "name": "The Most Awkward Run-In You Can Have With an Old Acquaintance - Key & Peele",
     "youtubeId": "kYWZYWHkqe0",
     "description": "Meeting someone you haven't seen in years is a social nightmare.",
-    "tags": ["social", "awkward", "reunion"]
+    "tags": [
+      "social",
+      "awkward",
+      "reunion"
+    ]
   },
   {
     "id": "undercover-boss-awkward",
     "name": "The Most Awkward “Undercover Boss” Ever - Key & Peele",
     "youtubeId": "5eb2mQwZ1gc",
     "description": "A CEO tries to go undercover, but he's not very good at it.",
-    "tags": ["office", "parody", "social"]
+    "tags": [
+      "office",
+      "parody",
+      "social"
+    ]
   },
   {
     "id": "gullible-guard-shorts",
     "name": "The most gullible guard in the world | #shorts #keyandpeele",
     "youtubeId": "oYdPKX25ue0",
     "description": "A short clip of a guard who believes everything he's told.",
-    "tags": ["prison", "crime", "shorts"]
+    "tags": [
+      "prison",
+      "crime",
+      "shorts"
+    ]
   },
   {
     "id": "gullible-prison-guard",
     "name": "The Most Gullible Prison Guard Ever - Key & Peele",
     "youtubeId": "NQNAdgo91JE",
     "description": "An inmate tries to talk his way out of jail with a very simple trick.",
-    "tags": ["prison", "crime", "urban"]
+    "tags": [
+      "prison",
+      "crime",
+      "urban"
+    ]
   },
   {
     "id": "brain-freeze-intense",
     "name": "The Most Intense Brain Freeze of All Time - Key & Peele",
     "youtubeId": "kszZpPLSBRk",
     "description": "Drinking a cold drink takes a turn for the dramatic.",
-    "tags": ["food", "absurd", "social"]
+    "tags": [
+      "food",
+      "absurd",
+      "social"
+    ]
   },
   {
     "id": "stressful-restaurant",
     "name": "The Most Stressful Restaurant Experience Ever - Key & Peele",
     "youtubeId": "52YOsjGINSc",
     "description": "A dining experience that is much more work than it's worth.",
-    "tags": ["food", "restaurant", "frustration"]
+    "tags": [
+      "food",
+      "restaurant",
+      "frustration"
+    ]
   },
   {
     "id": "new-black-panther-party",
     "name": "The New Black Panther Party - Key & Peele",
     "youtubeId": "pIn4npQ8Zio",
     "description": "A political group whose message is a little bit confused.",
-    "tags": ["politics", "race", "satire"]
+    "tags": [
+      "politics",
+      "race",
+      "satire"
+    ]
   },
   {
     "id": "froyo-shop-perks",
     "name": "The Perks of Working at a Froyo Shop - Key & Peele",
     "youtubeId": "r_igfKnvaks",
     "description": "The high-stakes world of frozen yogurt service.",
-    "tags": ["food", "shopping", "social"]
+    "tags": [
+      "food",
+      "shopping",
+      "social"
+    ]
   },
   {
     "id": "puppet-parole-officer",
     "name": "The Puppet Parole Officer from Hell - Key & Peele",
     "youtubeId": "NqENz8ETMis",
     "description": "A parole officer uses a puppet to communicate with his charges.",
-    "tags": ["crime", "police", "urban"]
+    "tags": [
+      "crime",
+      "police",
+      "urban"
+    ]
   },
   {
     "id": "saddest-sibling-rivalry",
     "name": "The Saddest Sibling Rivalry of All Time - Key & Peele",
     "youtubeId": "rxhKrtb3XsE",
     "description": "Two brothers compete over who has the more miserable life.",
-    "tags": ["family", "social", "rivalry"]
+    "tags": [
+      "family",
+      "social",
+      "rivalry"
+    ]
   },
   {
     "id": "scariest-make-a-wish-kid",
     "name": "The Scariest Make-a-Wish Kid Ever (ft. Lauren Lapkus) - Key & Peele",
     "youtubeId": "9sER9ll7fE4",
     "description": "A child's final wish is much darker than anyone expected.",
-    "tags": ["horror", "social", "lauren lapkus"]
+    "tags": [
+      "horror",
+      "social",
+      "lauren lapkus"
+    ]
   },
   {
     "id": "signs-of-snitch",
     "name": "The Tell-Tale Signs that Someone’s a Snitch (feat. Mekhi Phifer) - Key & Peele",
     "youtubeId": "myTt4S46o8g",
     "description": "A criminal tries to identify the mole in his organization.",
-    "tags": ["crime", "urban", "mekhi phifer"]
-  },
-  {
-    "id": "ultimate-smackdowns",
-    "name": "The Ultimate Smackdowns 🥊 - Key & Peele",
-    "youtubeId": "WD6EoVuGLlI",
-    "description": "A compilation of the duo's most physical confrontations.",
-    "tags": ["compilation", "fight", "sports"]
+    "tags": [
+      "crime",
+      "urban",
+      "mekhi phifer"
+    ]
   },
   {
     "id": "valets-anne-hathaway",
     "name": "The Valets Love Anne Hathaway - Key & Peele",
     "youtubeId": "qQrYjOU6qMw",
     "description": "The valets discuss their admiration for Hathaway's filmography.",
-    "tags": ["valets", "celebrity", "movies"]
+    "tags": [
+      "valets",
+      "celebrity",
+      "movies"
+    ]
   },
   {
     "id": "valets-batman",
     "name": "The Valets Love Batman – Key & Peele",
     "youtubeId": "2wXQXvaI2QY",
     "description": "The valets break down why the Dark Knight is the best.",
-    "tags": ["valets", "movies", "batman"]
+    "tags": [
+      "valets",
+      "movies",
+      "batman"
+    ]
   },
   {
     "id": "valets-liam-neesons",
     "name": "The Valets Love Liam Neesons - Key & Peele",
     "youtubeId": "hhfHu6IHBiI",
     "description": "The iconic sketch where the valets discuss 'Liam Neesons.'",
-    "tags": ["valets", "celebrity", "movies", "popular"]
+    "tags": [
+      "valets",
+      "celebrity",
+      "movies",
+      "popular"
+    ]
   },
   {
     "id": "valets-daenerys",
     "name": "The Valets Still Love Daenerys on “Game of Thrones” - Key & Peele",
     "youtubeId": "KouUVfyM1r0",
     "description": "The valets give their take on the Mother of Dragons.",
-    "tags": ["valets", "tv", "game of thrones"]
+    "tags": [
+      "valets",
+      "tv",
+      "game of thrones"
+    ]
   },
   {
     "id": "valets-mel-gibson",
     "name": "The Valets Talk Mel Gibsons - Key & Peele",
     "youtubeId": "CgQk_WiXVf4",
     "description": "The valets discuss the films and controversy of Mel Gibson.",
-    "tags": ["valets", "celebrity", "movies"]
+    "tags": [
+      "valets",
+      "celebrity",
+      "movies"
+    ]
   },
   {
     "id": "weirdest-laugh",
     "name": "The Weirdest Laugh of All Time - Key & Peele",
     "youtubeId": "ARPzNBahjEg",
     "description": "A person's laugh is much more distracting than their story.",
-    "tags": ["social", "awkward", "laugh"]
-  },
-  {
-    "id": "world-of-football",
-    "name": "The World of Football - Key & Peele",
-    "youtubeId": "LocCZNAlIPM",
-    "description": "A collection of sketches about everything involving the gridiron.",
-    "tags": ["compilation", "sports", "football"]
+    "tags": [
+      "social",
+      "awkward",
+      "laugh"
+    ]
   },
   {
     "id": "aggressive-telemarketer",
     "name": "The World’s Most Aggressive Telemarketer - Key & Peele",
     "youtubeId": "3znzIslrQXg",
     "description": "A salesman who won't take 'no' for an answer, or even a 'yes.'",
-    "tags": ["shopping", "social", "frustration"]
+    "tags": [
+      "shopping",
+      "social",
+      "frustration"
+    ]
   },
   {
     "id": "worst-high-school-assembly",
     "name": "The World’s Worst High School Assembly Speaker - Key & Peele",
     "youtubeId": "Be9IfJxHyDY",
     "description": "A speaker whose message is not appropriate for students.",
-    "tags": ["school", "education", "social"]
+    "tags": [
+      "school",
+      "education",
+      "social"
+    ]
   },
   {
     "id": "worst-liar-usual-suspects",
     "name": "The World’s Worst Liar (“The Usual Suspects” Parody) - Key & Peele",
     "youtubeId": "3HI5CQ4Oc1I",
     "description": "A suspect tries to pull a Keyser Söze but fails miserably.",
-    "tags": ["crime", "movies", "parody"]
-  },
-  {
-    "id": "worst-airline-experiences",
-    "name": "The Worst Airline Experiences - Key & Peele",
-    "youtubeId": "v4lpI8t4ySY",
-    "description": "Every major sketch set in the sky or at the airport.",
-    "tags": ["compilation", "airplane", "travel"]
+    "tags": [
+      "crime",
+      "movies",
+      "parody"
+    ]
   },
   {
     "id": "worst-drug-ever",
     "name": "The Worst Drug Ever (feat. Kumail Nanjiani) - Key & Peele",
     "youtubeId": "lnqWbop4PHY",
     "description": "A substance that has much more negative than positive effects.",
-    "tags": ["adult", "social", "kumail nanjiani"]
+    "tags": [
+      "adult",
+      "social",
+      "kumail nanjiani"
+    ]
   },
   {
     "id": "worst-evil-henchman",
     "name": "The Worst Evil Henchman of All Time - Key & Peele",
     "youtubeId": "71sj1LVELoc",
     "description": "A villain's assistant who can't do anything right.",
-    "tags": ["crime", "movies", "parody"]
+    "tags": [
+      "crime",
+      "movies",
+      "parody"
+    ]
   },
   {
     "id": "worst-guy-apocalypse",
     "name": "The Worst Guy to Run Into After the Apocalypse - Key & Peele",
     "youtubeId": "RzSheGgz1xk",
     "description": "Survival is hard enough without having to deal with this person.",
-    "tags": ["apocalypse", "survival", "social"]
-  },
-  {
-    "id": "worst-airplane-neighbors",
-    "name": "The Worst Guys to Sit Next To on an Airplane - Key & Peele",
-    "youtubeId": "StrAy4c_VRw",
-    "description": "A collection of sketches about terrible fellow passengers.",
-    "tags": ["compilation", "airplane", "travel"]
+    "tags": [
+      "apocalypse",
+      "survival",
+      "social"
+    ]
   },
   {
     "id": "medical-marijuana-worst-way",
     "name": "The Worst Way to Get Medical Marijuana - Key & Peele",
     "youtubeId": "_8JtnUpkP0s",
     "description": "Trying to get a prescription is much harder than it should be.",
-    "tags": ["adult", "medical", "social"]
+    "tags": [
+      "adult",
+      "medical",
+      "social"
+    ]
   },
   {
     "id": "murderer-hall-of-mirrors",
     "name": "There’s a Murderer in the Hall of Mirrors - Key & Peele",
     "youtubeId": "NoEzrwZFWHU",
     "description": "A tense chase through a carnival attraction.",
-    "tags": ["horror", "urban", "crime"]
+    "tags": [
+      "horror",
+      "urban",
+      "crime"
+    ]
   },
   {
     "id": "fake-beards-charity",
     "name": "These Fake Beards Will Save an African Child’s Life - Key & Peele",
     "youtubeId": "mSOzdD5GuUc",
     "description": "A charity whose methods are very questionable.",
-    "tags": ["social", "charity", "absurd"]
+    "tags": [
+      "social",
+      "charity",
+      "absurd"
+    ]
   },
   {
     "id": "definitely-in-a-cult",
     "name": "These Guys Are Definitely in a Cult - Key & Peele",
     "youtubeId": "5JFSjAs4Qxc",
     "description": "A group of friends suspects they might be part of something dangerous.",
-    "tags": ["social", "cult", "absurd"]
+    "tags": [
+      "social",
+      "cult",
+      "absurd"
+    ]
   },
   {
     "id": "othello-parody",
     "name": "They Really Did That to Othello - Key & Peele",
     "youtubeId": "4NPmWyqDBXw",
     "description": "A historical look at the performance of Shakespeare.",
-    "tags": ["history", "theater", "race"]
+    "tags": [
+      "history",
+      "theater",
+      "race"
+    ]
   },
   {
     "id": "dad-live-forever",
     "name": "This Dad Will Live Forever - Key & Peele",
     "youtubeId": "G68m8v2EjCk",
     "description": "A father whose legacy is much larger than his life.",
-    "tags": ["family", "social", "absurd"]
+    "tags": [
+      "family",
+      "social",
+      "absurd"
+    ]
   },
   {
     "id": "dj-specific-shout-outs",
     "name": "This DJ’s Shout-Outs Are Way Too Specific - Key & Peele",
     "youtubeId": "sFCfy13enzE",
     "description": "A club DJ whose messages are only for a very small group of people.",
-    "tags": ["music", "club", "social"]
+    "tags": [
+      "music",
+      "club",
+      "social"
+    ]
   },
   {
     "id": "hype-man-too-much",
     "name": "This Hype Man Is Too Much - Key & Peele",
     "youtubeId": "b5i_mQReNus",
     "description": "A rapper's assistant who steals the spotlight in all the wrong ways.",
-    "tags": ["rap", "music", "hype man"]
+    "tags": [
+      "rap",
+      "music",
+      "hype man"
+    ]
   },
   {
     "id": "substitute-teacher-not-messing",
     "name": "This Substitute Teacher Is Not Messing Around - Key & Peele",
     "youtubeId": "EqZjo_gSBVM",
     "description": "Mr. Garvey returns for another round of name-calling.",
-    "tags": ["classroom", "popular", "mr. garvey"]
+    "tags": [
+      "classroom",
+      "popular",
+      "mr. garvey"
+    ]
   },
   {
     "id": "superhero-squad-discrimination",
     "name": "This Superhero Squad Has a Discrimination Problem (feat. Brenda Song & Rob Huebel) - Key & Peele",
     "youtubeId": "mOyE_l80D4Y",
     "description": "Even heroes have to deal with prejudice within their ranks.",
-    "tags": ["superheroes", "movies", "race"]
+    "tags": [
+      "superheroes",
+      "movies",
+      "race"
+    ]
   },
   {
     "id": "tv-judge-overqualified",
     "name": "This TV Judge Is Overqualified - Key & Peele",
     "youtubeId": "HQsP2dWIT5Q",
     "description": "A legal expert whose skills are wasted on small claims court.",
-    "tags": ["legal", "tv", "social"]
+    "tags": [
+      "legal",
+      "tv",
+      "social"
+    ]
   },
   {
     "id": "tim-cook-apple-keynote",
     "name": "Tim Cook Loses His S**t at His First Apple Keynote - Key & Peele",
     "youtubeId": "WGFLPbpdMS8",
     "description": "A high-stakes tech presentation goes horribly wrong.",
-    "tags": ["tech", "apple", "celebrity"]
+    "tags": [
+      "tech",
+      "apple",
+      "celebrity"
+    ]
   },
   {
     "id": "time-travel-60s",
     "name": "Time Travel to the 60s with Key & Peele",
     "youtubeId": "fwczhLCz7-Y",
     "description": "A look at the civil rights era through a modern lens.",
-    "tags": ["history", "60s", "race"]
-  },
-  {
-    "id": "top-15-watched-shorts",
-    "name": "Top 15 Most Watched Key & Peele Shorts 🏆",
-    "youtubeId": "r0RO3Q63K5o",
-    "description": "The best quick hits from the series.",
-    "tags": ["compilation", "best of", "shorts"]
+    "tags": [
+      "history",
+      "60s",
+      "race"
+    ]
   },
   {
     "id": "town-hall-audience",
     "name": "Town Hall Audience Member - Key & Peele",
     "youtubeId": "9-GRzu6zbS0",
     "description": "A politician deals with an extremely persistent questioner.",
-    "tags": ["politics", "social", "awkward"]
+    "tags": [
+      "politics",
+      "social",
+      "awkward"
+    ]
   },
   {
     "id": "aerobics-tragedy",
     "name": "Tragedy Strikes at an Aerobics Competition - Key & Peele",
     "youtubeId": "cK98jx7gw7w",
     "description": "High energy meets high drama in this 80s-themed sketch.",
-    "tags": ["dance", "80s", "tragedy"]
+    "tags": [
+      "dance",
+      "80s",
+      "tragedy"
+    ]
   },
   {
     "id": "friend-crying-laughing",
     "name": "Trying Not to Laugh When Your Friend Is Crying - Key & Peele",
     "youtubeId": "OjFUJEoq8k0",
     "description": "The social pressure of being supportive when something is actually funny.",
-    "tags": ["friendship", "awkward", "social"]
+    "tags": [
+      "friendship",
+      "awkward",
+      "social"
+    ]
   },
   {
     "id": "church-ladies-vs-satan",
     "name": "Two Church Ladies vs. Satan - Key & Peele",
     "youtubeId": "1uNpJyPpzXc",
     "description": "Faith meets the ultimate evil in a parking lot.",
-    "tags": ["religion", "church", "horror"]
+    "tags": [
+      "religion",
+      "church",
+      "horror"
+    ]
   },
   {
     "id": "ultimate-fighting-next-level",
     "name": "Ultimate Fighting Goes to the Next Level - Key & Peele",
     "youtubeId": "0z-oJTZ1b5Q",
     "description": "The evolution of MMA becomes something very strange.",
-    "tags": ["sports", "mma", "absurd"]
+    "tags": [
+      "sports",
+      "mma",
+      "absurd"
+    ]
   },
   {
     "id": "urinal-neighbor",
     "name": "Urinal Neighbor - Key & Peele",
     "youtubeId": "fhx21Y2bUmM",
     "description": "The unwritten rules of the men's room are broken.",
-    "tags": ["social", "awkward", "bathroom"]
+    "tags": [
+      "social",
+      "awkward",
+      "bathroom"
+    ]
   },
   {
     "id": "wendell-power-of-wings",
     "name": "Wendell - The Power of Wings - Key & Peele",
     "youtubeId": "tW5FP5bhvGI",
     "description": "Wendell reveals his true source of power.",
-    "tags": ["wendell", "food", "absurd"]
+    "tags": [
+      "wendell",
+      "food",
+      "absurd"
+    ]
   },
   {
     "id": "wendell-sex-addict",
     "name": "Wendell May Not Really Be Addicted to Sex - Key & Peele",
     "youtubeId": "YevjfzV4-qQ",
     "description": "Wendell tries to convince his support group of his many conquests.",
-    "tags": ["wendell", "social", "adult"]
+    "tags": [
+      "wendell",
+      "social",
+      "adult"
+    ]
   },
   {
     "id": "wendell-orders-pizza",
     "name": "Wendell Orders a Pizza - Key & Peele",
     "youtubeId": "zk0En8mOEDM",
     "description": "The quintessential Wendell sketch where he orders for 'many' people.",
-    "tags": ["wendell", "food", "popular"]
+    "tags": [
+      "wendell",
+      "food",
+      "popular"
+    ]
   },
   {
     "id": "wendell-superman-bed",
     "name": "Wendell’s Broken Superman Bed - Key & Peele",
     "youtubeId": "-crCdw5c1oc",
     "description": "Wendell explains why his favorite piece of furniture is damaged.",
-    "tags": ["wendell", "social", "nerdy"]
+    "tags": [
+      "wendell",
+      "social",
+      "nerdy"
+    ]
   },
   {
     "id": "what-about-iron-man",
     "name": "What About Iron Man, Though? - Key & Peele",
     "youtubeId": "UnUq2AQww8U",
     "description": "A discussion about superheroes that takes a strange turn.",
-    "tags": ["movies", "marvel", "social"]
+    "tags": [
+      "movies",
+      "marvel",
+      "social"
+    ]
   },
   {
     "id": "catcalling-olden-days",
     "name": "What Catcalling Was Like in the Olden Days - Key & Peele",
     "youtubeId": "ir_OzWzbnC0",
     "description": "Historical street harassment was much more formal.",
-    "tags": ["history", "social", "satire"]
+    "tags": [
+      "history",
+      "social",
+      "satire"
+    ]
   },
   {
     "id": "darius-rucker-concert",
     "name": "What Every Darius Rucker Concert Must Be Like - Key & Peele",
     "youtubeId": "FE9PUexeUv0",
     "description": "A parody of the musician and his very specific fan base.",
-    "tags": ["music", "country", "celebrity"]
+    "tags": [
+      "music",
+      "country",
+      "celebrity"
+    ]
   },
   {
     "id": "getting-high-long-time",
     "name": "What Getting High Is Like When You Haven’t Smoked in a While - Key & Peele",
     "youtubeId": "-GmGBsHT1-4",
     "description": "The paranoia and confusion of re-entering the world of marijuana.",
-    "tags": ["adult", "social", "paranoia"]
+    "tags": [
+      "adult",
+      "social",
+      "paranoia"
+    ]
   },
   {
     "id": "married-to-neil-degrasse-tyson",
     "name": "What It’s Like Being Married to Neil deGrasse Tyson - Key & Peele",
     "youtubeId": "TyZSBqQ813c",
     "description": "Even a simple dinner is an opportunity for a scientific lecture.",
-    "tags": ["science", "celebrity", "relationships"]
+    "tags": [
+      "science",
+      "celebrity",
+      "relationships"
+    ]
   },
   {
     "id": "whats-so-funny",
     "name": "What’s So Funny? - Key & Peele",
     "youtubeId": "KIQtyGFtR8E",
     "description": "A man who takes a joke way too personally.",
-    "tags": ["social", "awkward", "joke"]
+    "tags": [
+      "social",
+      "awkward",
+      "joke"
+    ]
   },
   {
     "id": "text-conversation-wrong",
     "name": "When a Text Conversation Goes Very Wrong - Key & Peele",
     "youtubeId": "sngRrkQayDA",
     "description": "How punctuation and tone can be misread in a digital message.",
-    "tags": ["social", "phone", "popular"]
+    "tags": [
+      "social",
+      "phone",
+      "popular"
+    ]
   },
   {
     "id": "hip-hop-dnd-collide",
     "name": "When Hip-Hop and D&D Collide - Key & Peele",
     "youtubeId": "EBqCSseQXsI",
     "description": "Two worlds that you wouldn't expect to work together actually do.",
-    "tags": ["rap", "nerdy", "urban"]
+    "tags": [
+      "rap",
+      "nerdy",
+      "urban"
+    ]
   },
   {
     "id": "when-meegan-met-andre",
     "name": "When Meegan Met Andre - Key & Peele",
     "youtubeId": "esI5efO5mAw",
     "description": "The origin story of the world's most dramatic couple.",
-    "tags": ["meegan", "andre", "relationships"]
+    "tags": [
+      "meegan",
+      "andre",
+      "relationships"
+    ]
   },
   {
     "id": "mr-t-wont-leave-alone",
     "name": "When Mr. T Won’t Leave You Alone - Key & Peele",
     "youtubeId": "50kr23cMUBc",
     "description": "A celebrity encounter that becomes much more than just a quick photo.",
-    "tags": ["celebrity", "mr. t", "social"]
+    "tags": [
+      "celebrity",
+      "mr. t",
+      "social"
+    ]
   },
   {
     "id": "a-cappella-one-black-guy",
     "name": "When the A Cappella Group Already Has One Black Guy (feat. Bo Burnham) - Key & Peele",
     "youtubeId": "zda8H32pyeI",
     "description": "A battle for the soul of a vocal group.",
-    "tags": ["music", "bo burnham", "race"]
+    "tags": [
+      "music",
+      "bo burnham",
+      "race"
+    ]
   },
   {
     "id": "party-dont-stop",
     "name": "When the Party Don’t Stop (But You Wish It Would) - Key & Peele",
     "youtubeId": "42hLntSxUeM",
     "description": "The absolute exhaustion of trying to keep up with a group of partiers.",
-    "tags": ["party", "social", "frustration"]
+    "tags": [
+      "party",
+      "social",
+      "frustration"
+    ]
   },
   {
     "id": "counting-money",
     "name": "When You Don’t Know How to Count Money - Key & Peele",
     "youtubeId": "ymRqYz-Mxnw",
     "description": "A financial transaction that is much more difficult than it should be.",
-    "tags": ["social", "awkward", "money"]
+    "tags": [
+      "social",
+      "awkward",
+      "money"
+    ]
   },
   {
     "id": "health-insurance-finally",
     "name": "When You Finally Get Health Insurance - Key & Peele",
     "youtubeId": "pscn71o-FRw",
     "description": "The freedom of knowing you can finally afford to get hurt.",
-    "tags": ["social", "medical", "absurd"]
+    "tags": [
+      "social",
+      "medical",
+      "absurd"
+    ]
   },
   {
     "id": "friend-goes-steampunk",
     "name": "When Your Friend Goes Steampunk - Key & Peele",
     "youtubeId": "Nbq6Wfh9fi4",
     "description": "How to tell someone that their new fashion choice is a bit much.",
-    "tags": ["fashion", "social", "steampunk"]
+    "tags": [
+      "fashion",
+      "social",
+      "steampunk"
+    ]
   },
   {
     "id": "weird-landlord",
     "name": "When Your Weird Landlord Shows Up Unannounced - Key & Peele",
     "youtubeId": "bmTNBVeThhE",
     "description": "A visit that is much more than just a quick check-up on the pipes.",
-    "tags": ["housing", "social", "awkward"]
+    "tags": [
+      "housing",
+      "social",
+      "awkward"
+    ]
   },
   {
     "id": "old-school-isnt-enough",
     "name": "When “Old-School” Just Isn’t Old-School Enough - Key & Peele",
     "youtubeId": "3d1phCytJyg",
     "description": "A journey through the history of hip-hop and what it means to be classic.",
-    "tags": ["rap", "music", "history"]
+    "tags": [
+      "rap",
+      "music",
+      "history"
+    ]
   },
   {
     "id": "where-dookie-goes",
     "name": "Where Dookie Goes - Key & Peele",
     "youtubeId": "Q54izUfIndI",
     "description": "A philosophical investigation into where waste actually ends up.",
-    "tags": ["social", "absurd", "gross-out"]
+    "tags": [
+      "social",
+      "absurd",
+      "gross-out"
+    ]
   },
   {
     "id": "white-zombies",
     "name": "White Zombies - Key & Peele",
     "youtubeId": "p42dEEIlAN0",
     "description": "A look at the undead through a racial lens.",
-    "tags": ["horror", "zombies", "race"]
+    "tags": [
+      "horror",
+      "zombies",
+      "race"
+    ]
   },
   {
     "id": "whose-governor-shorts",
     "name": "Whose governor is this? | #keyandpeele",
     "youtubeId": "R27ghfDIeLQ",
     "description": "A short look at a very unusual politician.",
-    "tags": ["politics", "social", "shorts"]
+    "tags": [
+      "politics",
+      "social",
+      "shorts"
+    ]
   },
   {
     "id": "british-actors-roles",
     "name": "Why British Actors End Up with All the Good Roles - Key & Peele",
     "youtubeId": "lgYfRGDiPDs",
     "description": "A look at the dominance of UK performers in Hollywood.",
-    "tags": ["movies", "celebrity", "satire"]
+    "tags": [
+      "movies",
+      "celebrity",
+      "satire"
+    ]
   },
   {
     "id": "the-wire-parody",
     "name": "Why Didn’t This Happen More on “The Wire”? - Key & Peele",
     "youtubeId": "RCFxdiV-MzU",
     "description": "What would have happened if the characters on the show were a bit more reasonable.",
-    "tags": ["tv", "the wire", "parody"]
+    "tags": [
+      "tv",
+      "the wire",
+      "parody"
+    ]
   },
   {
     "id": "barbershops-love",
     "name": "Why Does Everyone Love Hanging Out at Barbershops? (ft. Billy Dee Williams) - Key & Peele",
     "youtubeId": "OTUIxtoHxNQ",
     "description": "The cultural significance of the neighborhood hair salon.",
-    "tags": ["urban", "social", "billy dee williams"]
+    "tags": [
+      "urban",
+      "social",
+      "billy dee williams"
+    ]
   },
   {
     "id": "mess-with-batmans",
     "name": "Why Would You Mess with the Batmans? - Key & Peele",
     "youtubeId": "OZBaIrMOoBg",
     "description": "Two fans discuss the darker side of the Caped Crusader.",
-    "tags": ["movies", "batman", "social"]
+    "tags": [
+      "movies",
+      "batman",
+      "social"
+    ]
   },
   {
     "id": "outkast-reunion",
     "name": "Why You’ll Never Get that Outkast Reunion - Key & Peele",
     "youtubeId": "5U9rMkgoGL8",
     "description": "A meeting between Big Boi and André 3000 explains a lot.",
-    "tags": ["music", "outkast", "celebrity"]
-  },
-  {
-    "id": "worst-bar-experiences",
-    "name": "Worst Bar Experiences - Key & Peele",
-    "youtubeId": "wjxOiQG3DTA",
-    "description": "A compilation of the duo's best sketches set at the local watering hole.",
-    "tags": ["compilation", "bar", "social"]
-  },
-  {
-    "id": "worst-breakups",
-    "name": "Worst Breakups of All Time 💔 - Key & Peele",
-    "youtubeId": "S8nJo3jOM9E",
-    "description": "A collection of relationships that ended in the most dramatic way possible.",
-    "tags": ["compilation", "relationships", "breakup"]
-  },
-  {
-    "id": "worst-dating-fails",
-    "name": "Worst Dating Fails - Key & Peele",
-    "youtubeId": "ObpZjJTOP5o",
-    "description": "A compilation of sketches about romance gone wrong.",
-    "tags": ["compilation", "dating", "social"]
+    "tags": [
+      "music",
+      "outkast",
+      "celebrity"
+    ]
   },
   {
     "id": "eat-marbles",
     "name": "You Can't Eat Marbles - Key & Peele",
     "youtubeId": "3zBzsj5PfTY",
     "description": "A simple truth that is much harder for some to understand.",
-    "tags": ["absurd", "social", "funny"]
+    "tags": [
+      "absurd",
+      "social",
+      "funny"
+    ]
   },
   {
     "id": "con-a-con-artist",
     "name": "You Can’t Con a Con Artist If You’re Also a Con Artist - Key & Peele",
     "youtubeId": "ZgyU0LyWZ9M",
     "description": "A battle of wits between two people who are both full of it.",
-    "tags": ["crime", "urban", "con artist"]
+    "tags": [
+      "crime",
+      "urban",
+      "con artist"
+    ]
   },
   {
     "id": "fight-guy-with-baby",
     "name": "You Can’t Fight a Guy with a Baby - Key & Peele",
     "youtubeId": "xYxEMalkzBA",
     "description": "The ultimate defense in a street confrontation.",
-    "tags": ["urban", "social", "absurd"]
+    "tags": [
+      "urban",
+      "social",
+      "absurd"
+    ]
   },
   {
     "id": "funk-band",
     "name": "You Gotta Hear This Funk Band - Key & Peele",
     "youtubeId": "ccvB00h6EnI",
     "description": "A musical discovery that is much more than just a good beat.",
-    "tags": ["music", "funk", "social"]
+    "tags": [
+      "music",
+      "funk",
+      "social"
+    ]
   },
   {
     "id": "yo-mama-health",
     "name": "Yo’ Mama Has Health Problems - Key & Peele",
     "youtubeId": "vYWSuugDVmM",
     "description": "A classic roast that takes a very sympathetic and medical turn.",
-    "tags": ["roast", "medical", "social"]
+    "tags": [
+      "roast",
+      "medical",
+      "social"
+    ]
   },
   {
     "id": "zombie-attack",
     "name": "Zombie Attack! - Key & Peele",
     "youtubeId": "zNkvxxJIVTE",
     "description": "Survival is hard when you're not sure if your friend is already turned.",
-    "tags": ["horror", "zombies", "survival"]
-  },
-  {
-    "id": "zombies-zombies-zombies",
-    "name": "Zombies, Zombies & More Zombies - Key & Peele",
-    "youtubeId": "oturoq59GxE",
-    "description": "A compilation of the show's best undead-themed sketches.",
-    "tags": ["compilation", "zombies", "horror"]
+    "tags": [
+      "horror",
+      "zombies",
+      "survival"
+    ]
   },
   {
     "id": "baby-its-cold-outside-creepy",
     "name": "“Baby, It’s Cold Outside” Is Super Creepy (Parody Song) - Key & Peele",
     "youtubeId": "Oqd84F6R33g",
     "description": "A modern look at a holiday classic and its very questionable lyrics.",
-    "tags": ["christmas", "music", "satire"]
+    "tags": [
+      "christmas",
+      "music",
+      "satire"
+    ]
   },
   {
     "id": "ratatouille-worse",
     "name": "“Ratatouille,” But Much, Much Worse - Key & Peele",
     "youtubeId": "XWAWgEsbrXI",
     "description": "A look at the real-life consequences of a rodent in the kitchen.",
-    "tags": ["food", "movies", "parody"]
+    "tags": [
+      "food",
+      "movies",
+      "parody"
+    ]
   },
   {
     "id": "lion-king-explain-anything",
     "name": "“The Lion King” Can Explain Anything - Key & Peele",
     "youtubeId": "oXbR-1XBr1A",
     "description": "How the classic Disney film can be applied to every social situation.",
-    "tags": ["movies", "disney", "social"]
+    "tags": [
+      "movies",
+      "disney",
+      "social"
+    ]
   }
 ]
