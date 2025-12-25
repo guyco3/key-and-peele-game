@@ -2,7 +2,11 @@ import React, { useState, useMemo } from 'react';
 import { SKETCHES } from '../../../shared/sketches';
 import { useGame } from '../context/GameContext';
 
-export const SketchSearch: React.FC = () => {
+interface SketchSearchProps {
+  onSelect?: () => void;
+}
+
+export const SketchSearch: React.FC<SketchSearchProps> = ({ onSelect }) => {
   const { socket, clientId, gameState, roomCode } = useGame();
   const [query, setQuery] = useState('');
 
@@ -19,6 +23,7 @@ export const SketchSearch: React.FC = () => {
   const handleGuess = (name: string) => {
     socket?.emit('submit_guess', { clientId, roomCode, guess: name });
     setQuery('');
+    if (onSelect) onSelect(); // Close the drawer if applicable
   };
 
   if (gameState?.players[clientId]?.hasGuessed) {
