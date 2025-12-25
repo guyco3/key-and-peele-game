@@ -7,7 +7,7 @@ import { GameInstance } from './game';
 import logger from './logger';
 import { Player } from '../../shared';
 
-const MAX_PLAYERS_PER_GAME = 50;
+const MAX_PLAYERS_PER_GAME = 25;
 
 const app = express();
 app.use(cors());

@@ -960,3 +960,16 @@ input[type="range"]::-webkit-slider-thumb {
   margin: 0;             /* Remove any existing margins that might push them apart */
   flex-shrink: 0;        /* Prevents buttons from squishing */
 }
+
+/* Ensure main stage takes full width when sidebar is hidden at Game Over */
+.main-classroom.full-width {
+  grid-column: 1 / -1; /* Spans across the entire grid */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.podium-container {
+  width: 100%;
+  padding-top: 50px;
+}
