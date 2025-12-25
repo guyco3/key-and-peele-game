@@ -9,6 +9,7 @@ import { Podium } from './Podium';
 export const GameView: React.FC = () => {
   const { gameState, leaveGame, clientId } = useGame();
   const [leaderboardOpen, setLeaderboardOpen] = useState(false);
+  const [confirmLeaveOpen, setConfirmLeaveOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -40,6 +41,11 @@ export const GameView: React.FC = () => {
         </button>
       )}
 
+      {/* Confirm leave keyboard handler */}
+      {confirmLeaveOpen && typeof window !== 'undefined' && (
+        <ConfirmLeaveKeyHandler onClose={() => setConfirmLeaveOpen(false)} />
+      )}
+
       <nav className="game-navbar">
         <div className="nav-left">
           <button
@@ -60,7 +66,7 @@ export const GameView: React.FC = () => {
            {!isGameOver && <Timer />}
         </div>
         <div className="nav-right">
-          <button className="leave-btn-nav" onClick={leaveGame}>Quit</button>
+          <button className="leave-btn-nav" onClick={() => setConfirmLeaveOpen(true)} aria-label="Quit">x</button>
         </div>
       </nav>
 
@@ -132,6 +138,30 @@ export const GameView: React.FC = () => {
       </div>
 
       <Leaderboard isModal open={leaderboardOpen} onClose={() => setLeaderboardOpen(false)} />
+      {confirmLeaveOpen && (
+        <div className="modal-backdrop" onClick={(e) => { if (e.target === e.currentTarget) setConfirmLeaveOpen(false); }}>
+          <div className="modal">
+            <h3>Confirm Leave</h3>
+            <p>Are you sure you want to leave the game? You will be removed from the room.</p>
+            <div className="modal-actions">
+              <button className="btn-host" onClick={() => setConfirmLeaveOpen(false)}>Cancel</button>
+              <button className="leave-btn-nav" onClick={() => { setConfirmLeaveOpen(false); leaveGame(); }}>Quit Game</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
+};
+
+// Small helper component to handle Escape key for the confirm modal
+const ConfirmLeaveKeyHandler: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
+  return null;
 };
