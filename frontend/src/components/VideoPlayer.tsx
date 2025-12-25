@@ -9,20 +9,18 @@ export const VideoPlayer: React.FC = () => {
   const { gameState, socket, clientId, roomCode } = useGame();
   const playerRef = useRef<any>(null);
   const errorReportedRef = useRef(false);
-  const manualPauseRef = useRef(false);
+  
+  // This flag keeps the overlay hidden once the user has started the audio
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   const [videoError, setVideoError] = useState<string | null>(null);
   const [isReady, setIsReady] = useState(false);
-  
-  // Strict Mobile Detection (OS Level Only)
-  const [isActualMobileDevice, setIsActualMobileDevice] = useState(false);
+  const [isActualMobile, setIsActualMobile] = useState(false);
 
   const [volume, setVolume] = useState(100);
   const [isPlaying, setIsPlaying] = useState(false); 
-  const [isBuffering, setIsBuffering] = useState(false);
   const [progress, setProgress] = useState(0); 
   const [currentTime, setCurrentTime] = useState(0);
-  const [showOverlay, setShowOverlay] = useState(false);
 
   const phase = gameState?.phase;
   const youtubeId = gameState?.currentSketch?.youtubeId;
@@ -30,10 +28,9 @@ export const VideoPlayer: React.FC = () => {
   const clipLength = gameState?.config?.clipLength || 5;
   const endSec = startSec + clipLength;
 
-  // --- 1. STRICT DEVICE CHECK ---
+  // 1. Strict OS-level mobile check
   useEffect(() => {
-    const isMobileOS = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    setIsActualMobileDevice(isMobileOS);
+    setIsActualMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
   }, []);
 
   const callPlayer = (method: string, ...args: any[]) => {
@@ -46,56 +43,26 @@ export const VideoPlayer: React.FC = () => {
   };
 
   const onStateChange: YouTubeProps['onStateChange'] = (event) => {
-    if (event.data === 1) {
-      setIsPlaying(true);
-      setIsBuffering(false);
-    } else if (event.data === 3) {
-      setIsBuffering(true);
-    } else {
-      setIsPlaying(false);
-      setIsBuffering(false);
-    }
+    if (event.data === 1) setIsPlaying(true);
+    else setIsPlaying(false);
   };
-
-  // --- 2. OPTIMIZED OVERLAY LOGIC ---
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-
-    // Condition: Round is active, we are on a mobile device, video isn't moving, 
-    // it's not currently buffering a loop, and the user hasn't manually paused.
-    const needsManualTrigger = 
-      phase === 'ROUND_PLAYING' && 
-      isActualMobileDevice && 
-      !isPlaying && 
-      !isBuffering && 
-      !manualPauseRef.current;
-
-    if (needsManualTrigger) {
-      // Small 400ms buffer allows the API to transition 
-      // without flickering the UI during loops or unpausing.
-      timer = setTimeout(() => setShowOverlay(true), 200);
-    } else {
-      setShowOverlay(false);
-    }
-
-    return () => clearTimeout(timer);
-  }, [isPlaying, isBuffering, phase, isActualMobileDevice]);
 
   const togglePlay = () => {
     if (playerRef.current) {
       const internalState = playerRef.current.getPlayerState();
+      // Once they click anything, we consider the "Autoplay Block" bypassed
+      setHasInteracted(true); 
+
       if (internalState === 1) {
-        manualPauseRef.current = true;
         callPlayer('pauseVideo');
       } else {
-        manualPauseRef.current = false;
         callPlayer('playVideo');
       }
     }
   };
 
   const restartClip = () => {
-    manualPauseRef.current = false;
+    setHasInteracted(true);
     callPlayer('seekTo', startSec, true);
     callPlayer('playVideo');
   };
@@ -107,15 +74,14 @@ export const VideoPlayer: React.FC = () => {
     setProgress(percent);
   };
 
+  // 2. Reset everything when a new sketch starts
   useEffect(() => {
     errorReportedRef.current = false;
     setVideoError(null);
     setIsPlaying(false);
-    setIsBuffering(false);
-    setShowOverlay(false);
+    setHasInteracted(false); // Reset interaction for new round
     setProgress(0);
     setCurrentTime(0);
-    manualPauseRef.current = false;
   }, [youtubeId]);
 
   useEffect(() => {
@@ -137,10 +103,7 @@ export const VideoPlayer: React.FC = () => {
         try {
           const internalState = playerRef.current.getPlayerState();
           const actuallyPlaying = internalState === 1;
-          const actuallyBuffering = internalState === 3;
-          
           if (actuallyPlaying !== isPlaying) setIsPlaying(actuallyPlaying);
-          if (actuallyBuffering !== isBuffering) setIsBuffering(actuallyBuffering);
 
           const rawTime = playerRef.current.getCurrentTime();
           const relativePos = ((rawTime - startSec) / clipLength) * 100;
@@ -149,13 +112,14 @@ export const VideoPlayer: React.FC = () => {
           
           if (rawTime >= endSec) {
             callPlayer('seekTo', startSec, true);
+            // On some mobile browsers, re-triggering play helps loop smoothly
             callPlayer('playVideo');
           }
         } catch (e) {}
-      }, 200);
+      }, 150);
     }
     return () => clearInterval(interval);
-  }, [phase, startSec, clipLength, isReady, endSec, isPlaying, isBuffering]);
+  }, [phase, startSec, clipLength, isReady, endSec, isPlaying]);
 
   useEffect(() => {
     if (phase === 'ROUND_PLAYING' || phase === 'ROUND_REVEAL') {
@@ -178,15 +142,16 @@ export const VideoPlayer: React.FC = () => {
 
   const onError: YouTubeProps['onError'] = (event) => {
     if (errorReportedRef.current) return;
-    const code = event.data;
-    setVideoError(`Video error ${code}.`);
+    setVideoError(`Video error ${event.data}.`);
     errorReportedRef.current = true;
-    if (socket && roomCode && clientId && youtubeId) {
-      socket.emit('video_error', { clientId, roomCode, youtubeId, errorCode: code, message: `Error ${code}` });
-    }
   };
 
   if (!youtubeId) return <div className="video-placeholder">Waiting for sketch...</div>;
+
+  // 3. SNAPPY LOGIC:
+  // Show overlay INSTANTLY if it's mobile, the round is playing, 
+  // and the user hasn't successfully tapped to play yet.
+  const showMobileOverlay = isActualMobile && phase === 'ROUND_PLAYING' && !hasInteracted && !isPlaying;
 
   return (
     <div className={`video-wrapper phase-${phase}`}>
@@ -215,7 +180,8 @@ export const VideoPlayer: React.FC = () => {
       
       {phase === 'ROUND_PLAYING' && (
         <div className="video-overlay centered-ui">
-           {showOverlay && (
+           
+           {showMobileOverlay && (
              <div className="mobile-force-play-overlay" onClick={togglePlay}>
                 <div className="play-prompt-card">
                   <PlayArrowIcon sx={{ fontSize: '4rem', color: 'white' }} />
@@ -238,33 +204,21 @@ export const VideoPlayer: React.FC = () => {
                     <ReplayIcon sx={{ fontSize: '1.8rem' }} />
                   </button>
                 </div>
-
+                {/* Sliders remain here... */}
                 <div className="control-slider">
                   <span className="slider-icon">🔊</span>
-                  <input 
-                    type="range" min="0" max="100" 
-                    value={volume} onChange={(e) => setVolume(parseInt(e.target.value))} 
-                  />
+                  <input type="range" min="0" max="100" value={volume} onChange={(e) => {
+                    const val = parseInt(e.target.value);
+                    setVolume(val);
+                    callPlayer('setVolume', val);
+                  }} />
                 </div>
-
                 <div className="control-slider">
-                  <span className="timestamp-display">
-                    {currentTime.toFixed(1)}s
-                  </span>
-                  <input 
-                    type="range" min="0" max="100" step="0.1"
-                    value={progress} onChange={handleSeek} 
-                  />
+                  <span className="timestamp-display">{currentTime.toFixed(1)}s</span>
+                  <input type="range" min="0" max="100" step="0.1" value={progress} onChange={handleSeek} />
                 </div>
               </div>
             </div>
-        </div>
-      )}
-
-      {videoError && (
-        <div className="video-error-banner">
-          <div className="error-title">Video unavailable</div>
-          <p>{videoError}</p>
         </div>
       )}
     </div>

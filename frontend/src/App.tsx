@@ -16,8 +16,10 @@ const App: React.FC = () => {
         style={{
           position: "fixed",
           bottom: 20,
-          left: "50%",
-          transform: "translateX(-50%)",
+          left: 0,
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
           zIndex: 100,
         }}
       >

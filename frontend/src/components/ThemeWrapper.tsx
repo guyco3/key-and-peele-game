@@ -13,9 +13,9 @@ const mulberry32 = (seed: number) => {
 
 const QUOTES = [
   "A-A-RON", "BALAKAY", "DE-NICE", "JAY-QUELLIN", "TIM-O-THEE",
-  "O-SHAG-HENNESSY", "INSOBORDINATE!", "CHICANEROUS!", "DEPLORABLE!", 
-  "I GOT MY EYE ON YOU", "YA DONE MESSED UP NOW!", "PRESENT.",
-  "MR. GARVEY", "CLASS IS IN SESSION", "DON'T TEST ME", "SON OF A BITCH!"
+  "O-SHAG-HENNESSY", "CHICANEROUS!", "DEPLORABLE!", 
+   "YA DONE MESSED UP NOW!", "PRESENT.",
+  "MR. GARVEY"
 ];
 
 export const ThemeWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
