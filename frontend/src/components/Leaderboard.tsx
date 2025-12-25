@@ -48,11 +48,11 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ isModal, open, onClose
         fullWidth 
         maxWidth="xs"
         PaperProps={{
-          sx: { backgroundColor: '#1a1a1a', color: 'white', border: '2px solid #40DCA5' }
+          sx: { backgroundColor: '#1a1a1a', color: 'white' }
         }}
       >
         <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography variant="h6" sx={{ fontFamily: 'Permanent Marker' }}>Class Standings</Typography>
+          <Typography variant="h6" sx={{ fontFamily: 'Permanent Marker' }}>Leaderboard</Typography>
           <IconButton onClick={onClose} sx={{ color: 'white' }}><CloseIcon /></IconButton>
         </DialogTitle>
         <DialogContent>{content}</DialogContent>
@@ -63,7 +63,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ isModal, open, onClose
   return (
     <div className={`leaderboard ${collapsed ? 'collapsed' : ''}`}>
       <div className="leaderboard-header">
-        <h3>Standings</h3>
+        <h3>Leaderboard</h3>
         <button className="leaderboard-toggle" onClick={() => setCollapsed(!collapsed)}>
           {collapsed ? '▸' : '▾'}
         </button>

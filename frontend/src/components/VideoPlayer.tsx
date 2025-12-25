@@ -173,7 +173,7 @@ export const VideoPlayer: React.FC = () => {
         <div className="video-overlay centered-ui">
            <div className="audio-visualizer">
               <span className="chalk-textured-text header-text">
-                {isPlaying ? "Audio is playing..." : "Playback blocked by browser"} 
+                {isPlaying ? "Audio is playing..." : "Audio paused"} 
               </span>
               
 

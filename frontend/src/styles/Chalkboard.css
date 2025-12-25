@@ -32,6 +32,11 @@
   z-index: 10; /* UI Layer */
   height: 100%;
   width: 100%;
+  /* Prevent child top margins (like the lobby header) from collapsing
+     outside this container and creating a visible gap above the board. */
+  padding-top: env(safe-area-inset-top, 12px);
+  /* Prevent child margins from collapsing through this container */
+  overflow: hidden;
 }
 
 .bg-chalk-text {
@@ -53,4 +58,22 @@
   background-blend-mode: multiply;
   border-top: 5px solid #3e2723;
   z-index: 100; /* Top Layer */
+}
+
+/* On small screens allow the chalkboard container to flow with the page
+   so the document can grow taller than the viewport and be scrolled. */
+@media (max-width: 779px) {
+  .chalkboard-theme {
+    position: relative;
+    inset: auto;
+    overflow: visible; /* permit page scrolling to show full content */
+    /* Ensure the board background fills the full viewport including
+       any extra bottom padding so no white page shows through. */
+    min-height: 100vh;
+  }
+
+  .chalkboard-surface {
+    height: auto; /* let surface expand with its children */
+    min-height: 100vh;
+  }
 }

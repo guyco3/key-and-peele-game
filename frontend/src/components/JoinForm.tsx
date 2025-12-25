@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Dialog, 
   DialogTitle, 
@@ -59,6 +59,19 @@ export const JoinForm: React.FC = () => {
     localStorage.setItem('kp_username', name);
     identify(name, roomCode.toUpperCase());
   };
+
+  // If a roomCode query param exists, pre-fill the room code input
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const rc = params.get('roomCode') || params.get('roomcode');
+      if (rc && rc.trim()) {
+        setRoomCode(rc.toUpperCase());
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, []);
 
   return (
     <div className="join-container">

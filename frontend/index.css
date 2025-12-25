@@ -14,6 +14,11 @@ body {
   color: var(--chalk-white);
   min-height: 100vh;
 }
+/* FIX: ensure the page background matches the chalkboard so collapsed
+   margins don't reveal white behind the board */
+body {
+  background-color: #2e4d35;
+}
 
 .game-screen-wrapper {
   min-height: 100vh;
@@ -386,6 +391,15 @@ body {
 .sketch-desc { color: rgba(255,255,255,0.85); margin: 6px 0 0 0; font-size: 1rem; }
 .tag { margin-right: 6px; color: rgba(255,255,255,0.45); font-size: 0.75rem; }
 
+/* Make the search input inside sketch search panels match the
+   compact size used by sketch/video names so typing feels consistent. */
+.mobile-search-panel .search-container input,
+.sidebar-search-desktop .search-container input,
+.sidebar-search-wrapper .search-container input {
+  font-size: 1.2rem; /* same as .sketch-name */
+  padding: 6px 6px;
+}
+
 /* Small helper for locked search */
 .status-locked { color: rgba(255,255,255,0.9); padding: 8px; }
 
@@ -582,7 +596,7 @@ body {
 .modal-actions { display:flex; justify-content:flex-end; gap:12px; margin-top:12px; }
 
 /* --- Lobby styling --- */
-.lobby-container { max-width: 900px; margin: 40px auto; background: transparent; padding: 18px; border-radius: 10px; border: none; }
+.lobby-container { max-width: 900px; margin: 0 auto; padding: 40px 18px 18px 18px; background: transparent; border-radius: 10px; border: none; }
 .lobby-container header h2 { margin:0 0 6px 0; color: var(--chalk-yellow); font-family: 'Permanent Marker', cursive; font-size: 1.8rem; }
 .lobby-container header p { margin:6px 0 12px 0; color: rgba(255,255,255,0.9); }
 .player-list-chalk { display:flex; flex-direction:column; gap:8px; margin: 12px 0; }
@@ -1053,4 +1067,150 @@ input[type="range"]::-webkit-slider-thumb {
 .podium-container {
   width: 100%;
   padding-top: 50px;
-} */
+}
+
+/* --- MOBILE SCROLL FIXES --- */
+@media (max-width: 779px) {
+  /* 1. Unlock the body and wrapper so they can grow with the content */
+  html, body {
+    height: auto !important;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+  }
+
+  .game-screen-wrapper {
+    height: auto !important;
+    min-height: 100vh;
+    display: block !important; /* Switch from flex to block to allow natural stacking */
+    overflow: visible !important;
+  }
+
+  .game-layout {
+    display: block !important;
+    height: auto !important;
+  }
+
+  .main-classroom, .board-container {
+    height: auto !important;
+    min-height: auto !important;
+    display: block !important;
+  }
+
+  /* 2. Kill internal scrollbars so the whole PAGE scrolls instead */
+  .mobile-search-panel {
+    display: block !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+     /* Give extra bottom spacing so the VERY end of long suggestion lists
+       can be scrolled into view on small/mobile browsers (incl. iOS).
+       Keep this reasonably sized to avoid large blank space during reveals. */
+     padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .suggestions-list {
+    max-height: none !important;
+    overflow: visible !important;
+    background: rgba(0,0,0,0.3);
+    /* ensure the list has a little internal breathing room at the bottom */
+    padding-bottom: 12px !important;
+  }
+
+  /* Move page bottom spacing into the game wrapper so the chalkboard
+     background still fills the viewport (avoid white gap). */
+  .game-screen-wrapper {
+    padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* 3. Keep the video at the top */
+  .video-container-centered {
+    position: relative;
+    z-index: 10;
+  }
+}
+
+/* --- BACK TO TOP BUTTON --- */
+.back-to-top-chalk {
+  position: fixed;
+  bottom: 25px;
+  right: 20px;
+  z-index: 2000;
+  
+  background: var(--paper-white);
+  color: var(--ink-black);
+  border: 4px solid var(--ink-black);
+  box-shadow: 4px 4px 0px var(--ink-black);
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+  font-family: 'Permanent Marker', cursive;
+}
+
+.back-to-top-chalk:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--ink-black);
+}
+
+.back-to-top-chalk .arrow {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.back-to-top-chalk .text {
+  font-size: 0.65rem;
+  margin-top: -2px;
+}
+
+/* --- SKETCH REVEAL PLACEMENT --- */
+
+/* Sidebar-specific reveal styling */
+.sidebar-sketch-reveal {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px dashed rgba(255, 255, 255, 0.15);
+  animation: fadeIn 0.4s ease-out;
+}
+
+.sidebar-sketch-reveal .chalk-textured-text {
+  /* Match the mobile reveal styling so titles look identical
+     across small and large screens. */
+  font-size: 1.9rem;
+  color: var(--chalk-yellow);
+  font-family: 'Permanent Marker', cursive;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.55), -0.5px -0.5px 0 rgba(255,255,255,0.02);
+  display: inline-block;
+  transform: rotate(-1deg);
+  line-height: 1.05;
+  margin-bottom: 6px;
+}
+
+.sidebar-sketch-reveal .chalk-description {
+  font-size: 1rem;
+  opacity: 0.95;
+}
+
+/* Hide the main-stage reveal on desktop */
+@media (min-width: 780px) {
+  .mobile-only-reveal {
+    display: none !important;
+  }
+}
+
+/* Ensure the main-stage reveal looks correct on mobile */
+@media (max-width: 779px) {
+  .sketch-reveal {
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Smooth fade for the reveal reveal */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
