@@ -9,16 +9,20 @@ export const VideoPlayer: React.FC = () => {
   const { gameState, socket, clientId, roomCode } = useGame();
   const playerRef = useRef<any>(null);
   const errorReportedRef = useRef(false);
-  
+  const manualPauseRef = useRef(false);
+
   const [videoError, setVideoError] = useState<string | null>(null);
   const [isReady, setIsReady] = useState(false);
+  
+  // Strict Mobile Detection (OS Level Only)
+  const [isActualMobileDevice, setIsActualMobileDevice] = useState(false);
 
-  // --- STATE FOR MANUAL CONTROLS ---
   const [volume, setVolume] = useState(100);
-  // Default to false on load to match browser's likely blocked state
   const [isPlaying, setIsPlaying] = useState(false); 
+  const [isBuffering, setIsBuffering] = useState(false);
   const [progress, setProgress] = useState(0); 
   const [currentTime, setCurrentTime] = useState(0);
+  const [showOverlay, setShowOverlay] = useState(false);
 
   const phase = gameState?.phase;
   const youtubeId = gameState?.currentSketch?.youtubeId;
@@ -26,40 +30,72 @@ export const VideoPlayer: React.FC = () => {
   const clipLength = gameState?.config?.clipLength || 5;
   const endSec = startSec + clipLength;
 
+  // --- 1. STRICT DEVICE CHECK ---
+  useEffect(() => {
+    const isMobileOS = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    setIsActualMobileDevice(isMobileOS);
+  }, []);
+
   const callPlayer = (method: string, ...args: any[]) => {
     if (!playerRef.current || !isReady) return;
     try {
       if (playerRef.current.getIframe()) {
         playerRef.current[method](...args);
       }
-    } catch (e) {
-      console.warn(`YouTube call ${method} failed:`, e);
+    } catch (e) {}
+  };
+
+  const onStateChange: YouTubeProps['onStateChange'] = (event) => {
+    if (event.data === 1) {
+      setIsPlaying(true);
+      setIsBuffering(false);
+    } else if (event.data === 3) {
+      setIsBuffering(true);
+    } else {
+      setIsPlaying(false);
+      setIsBuffering(false);
     }
   };
 
-  // 🔄 Sync UI state with actual YouTube player state
-  const onStateChange: YouTubeProps['onStateChange'] = (event) => {
-    // 1 = Playing, 2 = Paused, 3 = Buffering
-    if (event.data === 1) setIsPlaying(true);
-    else if (event.data === 2) setIsPlaying(false);
-  };
+  // --- 2. OPTIMIZED OVERLAY LOGIC ---
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
 
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = parseInt(e.target.value);
-    setVolume(val);
-    callPlayer('setVolume', val);
-  };
+    // Condition: Round is active, we are on a mobile device, video isn't moving, 
+    // it's not currently buffering a loop, and the user hasn't manually paused.
+    const needsManualTrigger = 
+      phase === 'ROUND_PLAYING' && 
+      isActualMobileDevice && 
+      !isPlaying && 
+      !isBuffering && 
+      !manualPauseRef.current;
+
+    if (needsManualTrigger) {
+      // Small 400ms buffer allows the API to transition 
+      // without flickering the UI during loops or unpausing.
+      timer = setTimeout(() => setShowOverlay(true), 200);
+    } else {
+      setShowOverlay(false);
+    }
+
+    return () => clearTimeout(timer);
+  }, [isPlaying, isBuffering, phase, isActualMobileDevice]);
 
   const togglePlay = () => {
-    if (isPlaying) {
-      callPlayer('pauseVideo');
-    } else {
-      callPlayer('playVideo');
+    if (playerRef.current) {
+      const internalState = playerRef.current.getPlayerState();
+      if (internalState === 1) {
+        manualPauseRef.current = true;
+        callPlayer('pauseVideo');
+      } else {
+        manualPauseRef.current = false;
+        callPlayer('playVideo');
+      }
     }
-    // We don't set state here; onStateChange will handle it
   };
 
   const restartClip = () => {
+    manualPauseRef.current = false;
     callPlayer('seekTo', startSec, true);
     callPlayer('playVideo');
   };
@@ -74,9 +110,14 @@ export const VideoPlayer: React.FC = () => {
   useEffect(() => {
     errorReportedRef.current = false;
     setVideoError(null);
+    setIsPlaying(false);
+    setIsBuffering(false);
+    setShowOverlay(false);
+    setProgress(0);
+    setCurrentTime(0);
+    manualPauseRef.current = false;
   }, [youtubeId]);
 
-  // Load new video or jump to new start time
   useEffect(() => {
     if (isReady && youtubeId) {
       const currentData = playerRef.current?.getVideoData();
@@ -89,12 +130,18 @@ export const VideoPlayer: React.FC = () => {
     }
   }, [youtubeId, startSec, isReady]);
 
-  // Loop & Progress tracking
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (phase === 'ROUND_PLAYING' && isReady) {
       interval = setInterval(() => {
         try {
+          const internalState = playerRef.current.getPlayerState();
+          const actuallyPlaying = internalState === 1;
+          const actuallyBuffering = internalState === 3;
+          
+          if (actuallyPlaying !== isPlaying) setIsPlaying(actuallyPlaying);
+          if (actuallyBuffering !== isBuffering) setIsBuffering(actuallyBuffering);
+
           const rawTime = playerRef.current.getCurrentTime();
           const relativePos = ((rawTime - startSec) / clipLength) * 100;
           setCurrentTime(Math.max(0, rawTime - startSec));
@@ -102,14 +149,14 @@ export const VideoPlayer: React.FC = () => {
           
           if (rawTime >= endSec) {
             callPlayer('seekTo', startSec, true);
+            callPlayer('playVideo');
           }
         } catch (e) {}
-      }, 100);
+      }, 200);
     }
     return () => clearInterval(interval);
-  }, [phase, startSec, clipLength, isReady, endSec]);
+  }, [phase, startSec, clipLength, isReady, endSec, isPlaying, isBuffering]);
 
-  // Force play on phase transitions
   useEffect(() => {
     if (phase === 'ROUND_PLAYING' || phase === 'ROUND_REVEAL') {
       callPlayer('playVideo');
@@ -121,8 +168,6 @@ export const VideoPlayer: React.FC = () => {
   const onReady: YouTubeProps['onReady'] = (event) => {
     playerRef.current = event.target;
     setIsReady(true);
-    
-    // Attempt initial play
     try {
       event.target.seekTo(startSec, true);
       event.target.unMute();
@@ -134,11 +179,10 @@ export const VideoPlayer: React.FC = () => {
   const onError: YouTubeProps['onError'] = (event) => {
     if (errorReportedRef.current) return;
     const code = event.data;
-    const message = `Video error ${code}.`;
-    setVideoError(message);
+    setVideoError(`Video error ${code}.`);
     errorReportedRef.current = true;
     if (socket && roomCode && clientId && youtubeId) {
-      socket.emit('video_error', { clientId, roomCode, youtubeId, errorCode: code, message });
+      socket.emit('video_error', { clientId, roomCode, youtubeId, errorCode: code, message: `Error ${code}` });
     }
   };
 
@@ -149,7 +193,7 @@ export const VideoPlayer: React.FC = () => {
       <YouTube 
         key={roomCode || 'global-player'}
         videoId={youtubeId} 
-        onStateChange={onStateChange} // 👈 Added state listener
+        onStateChange={onStateChange} 
         opts={{
           height: '100%',
           width: '100%',
@@ -171,15 +215,21 @@ export const VideoPlayer: React.FC = () => {
       
       {phase === 'ROUND_PLAYING' && (
         <div className="video-overlay centered-ui">
+           {showOverlay && (
+             <div className="mobile-force-play-overlay" onClick={togglePlay}>
+                <div className="play-prompt-card">
+                  <PlayArrowIcon sx={{ fontSize: '4rem', color: 'white' }} />
+                  <p>Tap to Play Audio</p>
+                </div>
+             </div>
+           )}
+
            <div className="audio-visualizer">
               <span className="chalk-textured-text header-text">
                 {isPlaying ? "Audio is playing..." : "Audio paused"} 
               </span>
               
-
               <div className="manual-controls">
-
-
                 <div className="control-row-btns">
                   <button onClick={togglePlay} className="btn-host ghost" title={isPlaying ? "Pause" : "Play"}>
                     {isPlaying ? <PauseIcon sx={{ fontSize: '1.8rem' }} /> : <PlayArrowIcon sx={{ fontSize: '1.8rem' }} />}
@@ -193,7 +243,7 @@ export const VideoPlayer: React.FC = () => {
                   <span className="slider-icon">🔊</span>
                   <input 
                     type="range" min="0" max="100" 
-                    value={volume} onChange={handleVolumeChange} 
+                    value={volume} onChange={(e) => setVolume(parseInt(e.target.value))} 
                   />
                 </div>
 

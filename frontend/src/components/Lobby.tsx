@@ -16,7 +16,7 @@ export const Lobby: React.FC = () => {
   const [copied, setCopied] = useState(false);
 
   const handleShare = async () => {
-    const url = `${window.location.origin}${window.location.pathname}?roomCode=${encodeURIComponent(roomCode)}`;
+    const url = `${window.location.origin}${window.location.pathname}?roomCode=${encodeURIComponent(roomCode!!)}`;
     try {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         await navigator.clipboard.writeText(url);

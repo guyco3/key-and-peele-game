@@ -29,7 +29,7 @@ const App: React.FC = () => {
             color: "#ffffff",
             textDecoration: "none",
             fontWeight: "bold",
-            fontSize: "1.5rem",
+            fontSize: "1.2rem",
           }}
         >
           ☕ Support this Project

@@ -83,7 +83,10 @@ body {
   aspect-ratio: 16/9;
   position: relative; /* so overlays inset:0 match exactly */
   overflow: hidden;
-  border: 6px solid var(--ink-black);
+  /* Remove heavy black border for a cleaner look on the board */
+  border: none;
+  border-radius: 10px;
+  margin: 12px 0; /* slight vertical breathing room */
   /* box-shadow: 8px 8px 0px var(--ink-black); */
 }
 
@@ -637,6 +640,47 @@ body {
   z-index: 70;
 }
 
+/* Mobile tap-to-play full overlay */
+.mobile-force-play-overlay {
+  display: none; /* default hidden; only show on small screens */
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45); /* semi-transparent so video is visible */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 80;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-force-play-overlay .play-prompt-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.06);
+  border: 2px solid rgba(255,255,255,0.12);
+  padding: 14px 18px;
+  border-radius: 12px;
+  color: var(--chalk-white);
+  text-align: center;
+  transform: translateY(-6px);
+}
+
+.mobile-force-play-overlay .play-prompt-card p {
+  margin: 0;
+  font-family: 'Gochi Hand', cursive;
+  color: rgba(255,255,255,0.95);
+  font-size: 1rem;
+}
+
+@media (max-width: 779px) {
+  .mobile-force-play-overlay {
+    display: flex; /* show overlay on small screens only */
+  }
+}
+
 .audio-visualizer {
   display: flex;
   flex-direction: column;
@@ -661,7 +705,8 @@ body {
   /* Removed background and blur completely */
   background: transparent;
   padding: 12px;
-  border: 2px dashed rgba(255, 255, 255, 0.3);
+  /* Remove the visible dashed border that created a white/dotted outline */
+  border: none;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -670,6 +715,10 @@ body {
   max-width: 280px;
   pointer-events: all;
   /* Removed backdrop-filter to prevent glass effect */
+}
+
+.manual-controls:focus {
+  outline: none;
 }
 
 .control-row-btns {
@@ -779,6 +828,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 .nav-left,
 .nav-center,
+.nav-left,
 .nav-right {
   display: flex;
   align-items: center;
@@ -789,7 +839,39 @@ input[type="range"]::-webkit-slider-thumb {
   flex: 1;
   justify-content: center;
   text-align: center;
+  /* Keep center items horizontally aligned */
+  flex-direction: row;
+  align-items: center;
+  gap: 20px; /* wider gap between round number and timer */
 }
+
+.round-hud {
+  font-family: 'Permanent Marker', cursive;
+  color: var(--chalk-yellow);
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+}
+
+/* Timer styling and clock icon */
+.timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0,0,0,0.15);
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-family: 'Permanent Marker', cursive;
+  color: var(--chalk-white);
+  font-size: 1rem;
+}
+.timer.urgent {
+  /* Do not change background — only highlight the text/icon in red */
+  background: rgba(0,0,0,0.15);
+  color: #ff4444;
+  font-weight: 800;
+}
+.timer .timer-icon { display:inline-flex; width:18px; height:18px; }
+.timer .timer-icon svg { width:100%; height:100%; display:block; }
 
 .round-hud {
   font-family: 'Permanent Marker', cursive;
@@ -801,16 +883,45 @@ input[type="range"]::-webkit-slider-thumb {
 .player-hud-card {
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: var(--paper-white);
-  color: var(--ink-black);
-  padding: 6px 12px;
-  border: 4px solid var(--ink-black);
-  box-shadow: 4px 4px 0px var(--ink-black);
-  cursor: pointer;
+  gap: 8px;
+  background: transparent;
+  color: var(--chalk-white);
+  padding: 4px 6px;
+  border: none;
+  box-shadow: none;
+  cursor: default;
   font-family: 'Permanent Marker', cursive;
   font-size: 0.95rem;
 }
+
+.player-hud-card .hud-score {
+  color: var(--chalk-yellow);
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+.player-hud-card .hud-name {
+  color: var(--chalk-white);
+  font-weight: 700;
+}
+
+/* Small button to open the leaderboard, placed next to the player hud */
+.leaderboard-btn {
+  background: var(--paper-white);
+  color: var(--ink-black);
+  border: 4px solid var(--ink-black);
+  box-shadow: 4px 4px 0px var(--ink-black);
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.leaderboard-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0px var(--ink-black); }
+.nav-left > .leaderboard-btn + .player-hud-card { margin-left: 8px; }
 
 .hud-score {
   font-weight: 800;

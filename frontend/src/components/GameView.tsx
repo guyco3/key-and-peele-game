@@ -42,7 +42,15 @@ export const GameView: React.FC = () => {
 
       <nav className="game-navbar">
         <div className="nav-left">
-          <div className="player-hud-card" onClick={() => setLeaderboardOpen(true)}>
+          <button
+            className="leaderboard-btn"
+            onClick={() => setLeaderboardOpen(true)}
+            aria-label="Open leaderboard"
+          >
+            🏆
+          </button>
+
+          <div className="player-hud-card">
              <span className="hud-score">{me?.score || 0}</span>
              <span className="hud-name">{me?.name}</span>
           </div>
