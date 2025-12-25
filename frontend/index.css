@@ -12,62 +12,74 @@ body {
   margin: 0;
   font-family: 'Gochi Hand', cursive;
   color: var(--chalk-white);
-  height: 100vh;
+  min-height: 100vh;
+}
+
+.game-screen-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px;
+  box-sizing: border-box;
 }
 
 .game-layout {
   display: flex;
-  height: 100vh;
-  padding: 30px;
-  gap: 40px; /* Space between column and stage */
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: 0;
 }
 
 /* --- SIDEBAR --- */
 .sidebar-classroom {
-  width: var(--sidebar-w);
+  width: 100%;
   display: flex;
   flex-direction: column;
   background: transparent; /* blend directly with chalkboard */
   border: none;
-  padding: 1.5rem;
+  padding: 0;
   backdrop-filter: none;
   color: var(--chalk-white);
 }
 
 /* --- MAIN STAGE --- */
 .main-classroom {
-  flex: 1;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 .board-container {
   width: 100%;
-  max-width: 1100px; /* Expanded for a larger video */
+  max-width: 100%;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
 }
 
 .video-container-centered {
   width: 100%;
   position: relative;
-  display: flex; 
-  flex-direction: column; 
-  gap: 10px; 
-  height: 100%; 
-  /* Removed white border as requested */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: auto;
   background: transparent; /* sit directly on chalkboard */
   box-shadow: none; /* remove surrounding shadow/card */
 }
 
 .video-frame {
-  width: 100%;
   aspect-ratio: 16/9;
-}
-
-/* Ensure the video and overlays fill the frame exactly */
-.video-frame {
   position: relative; /* so overlays inset:0 match exactly */
   overflow: hidden;
+  border: 6px solid var(--ink-black);
+  /* box-shadow: 8px 8px 0px var(--ink-black); */
 }
 
 /* The YouTube player and wrappers should occupy the full frame with no border */
@@ -83,53 +95,26 @@ body {
   background: transparent;
 }
 
-/* Mobile: stack layout vertically for small screens */
-@media (max-width: 700px) {
-  .game-layout {
-    flex-direction: column;
-    padding: 12px;
-    gap: 12px;
-    height: auto;
-    min-height: 100vh;
-  }
-
-  .sidebar-classroom,
-  .main-classroom {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  /* Make board container full width on mobile */
-  .board-container { max-width: 100%; width: 100%; }
-
-  /* Header: stack round info + timer vertically */
-  .board-header { display: flex; flex-direction: column; gap: 6px; align-items: center; }
-
-  /* Place search under the video on mobile and hide the sidebar search */
-  .sidebar-search-wrapper { display: none !important; }
-  .search-main-mobile { display: block; width: 100%; margin-top: 10px; }
-
-  /* Make video fill the width and keep aspect ratio */
-  .video-container-centered { width: 100%; height: auto; }
-
-  /* Limit video height so footer (search) remains visible on small screens */
-  .video-container-centered .video-frame { max-height: 56vh; aspect-ratio: 16/9; }
-
-  /* Reduce large font sizes for mobile readability */
-  .search-wrapper-chalk input,
-  .sidebar-search-wrapper .search-container input { font-size: 1.6rem; }
-
-  /* Shrink large reveal headings */
-  .reveal-overlay h2 { font-size: 2.6rem; }
+/* Keep video compact on small screens to leave room for search/results */
+.video-container-centered .video-frame {
+  max-height: min(58vh, calc(100vh - 200px));
+  aspect-ratio: 16/9;
 }
 
-/* Hide the duplicate main search on desktop by default */
-.search-main-mobile { display: none; }
+.mobile-search-panel {
+  display: block;
+  margin-top: 8px;
+  padding: 10px 6px 0 6px;
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+  overflow: auto;
+  transition: max-height 160ms ease, padding 160ms ease;
+}
 
-/* Ensure mobile search is visible and above other elements */
-.search-main-mobile { z-index: 80; display: none; }
-@media (max-width: 700px) {
-  .search-main-mobile { display: block; }
+.mobile-search-panel.expanded {
+  max-height: none;
+  padding-top: 2px;
 }
 
 /* During ROUND_PLAYING hide the visual video but keep audio playing */
@@ -189,30 +174,30 @@ body {
 
 /* Make the video feel more natural by removing strong shadows */
 .video-container-centered {
-  box-shadow: none; 
+  box-shadow: none;
 }
 
 /* Limit heights so each sidebar section is scrollable */
-.leaderboard .player-list { 
-  max-height: 22vh; 
-  overflow:auto; 
-  padding-right:6px; 
+.leaderboard .player-list {
+  max-height: 22vh;
+  overflow:auto;
+  padding-right:6px;
 }
-.guess-list { 
-  max-height: 22vh; 
-  overflow:auto; 
-  padding-right:6px; 
+.guess-list {
+  max-height: 22vh;
+  overflow:auto;
+  padding-right:6px;
 }
 
 /* Sidebar search wrapper should occupy roughly half the sidebar height */
-.sidebar-search-wrapper { 
-  height: 48%; 
-  min-height: 180px; 
-  display:flex; 
-  align-items:flex-start; 
+.sidebar-search-wrapper {
+  height: 48%;
+  min-height: 180px;
+  display:flex;
+  align-items:flex-start;
 }
-.sidebar-search-wrapper .search-container { 
-  width:100%; 
+.sidebar-search-wrapper .search-container {
+  width:100%;
 }
 
 /* Make the search input smaller when placed inside the sidebar */
@@ -233,7 +218,12 @@ body {
 }
 
 /* Compact suggestion items for the sidebar */
-.sidebar-search-wrapper .suggestions-list { background: rgba(0,0,0,0.18); max-height: calc(100% - 56px); overflow:auto; padding:6px; }
+.sidebar-search-wrapper .suggestions-list {
+  background: rgba(0,0,0,0.18);
+  max-height: calc(100% - 56px);
+  overflow:auto;
+  padding:6px;
+}
 .sidebar-search-wrapper .sketch-item { padding:6px 6px; }
 .sidebar-search-wrapper .sketch-name { font-size: 1.2rem; }
 .sidebar-search-wrapper .sketch-desc { font-size: 1rem; margin-top:6px; }
@@ -254,7 +244,7 @@ body {
   border-bottom: 6px solid var(--chalk-white) !important;
   color: var(--chalk-yellow) !important;
   font-family: 'Permanent Marker', cursive;
-  font-size: 2.8rem; /* Big and bold like the sketch title */
+  font-size: 1.8rem; /* Mobile-first size */
   padding: 10px 0;
   text-align: center;
   outline: none;
@@ -265,7 +255,7 @@ body {
 
 .search-wrapper-chalk input::placeholder {
   color: rgba(255, 255, 255, 0.2);
-  font-size: 2rem;
+  font-size: 1.4rem;
 }
 
 /* Reveal Overlay Clarity */
@@ -281,7 +271,7 @@ body {
 }
 
 .reveal-overlay h2 {
-  font-size: 4.5rem;
+  font-size: 2.8rem;
   color: var(--chalk-yellow);
   margin: 0;
 }
@@ -365,7 +355,7 @@ body {
   border-bottom: 6px solid var(--chalk-white);
   color: var(--chalk-yellow);
   font-family: 'Permanent Marker', cursive;
-  font-size: 2.4rem;
+  font-size: 1.8rem;
   padding: 8px 6px;
   text-align: center;
   outline: none;
@@ -376,7 +366,7 @@ body {
   list-style: none;
   margin: 0.6rem 0 0 0;
   padding: 6px;
-  max-height: 260px;
+  /* max-height: 260px; */
   overflow: auto;
   background: rgba(0,0,0,0.25);
   border-radius: 6px;
@@ -432,10 +422,17 @@ body {
   width: min(420px, 92%);
   margin-left: auto;
   margin-right: auto;
+  padding: 10px;
 }
 
 .input-group label { color: var(--chalk-yellow); display: block; margin-bottom: 6px; }
-.input-group input { width: 100%; padding: 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); color: var(--chalk-white); }
+.input-group input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  color: var(--chalk-white);
+}
 
 .actions-row { display:flex; align-items:center; gap:12px; justify-content:space-between; margin-top:12px; }
 .or-sep { color: rgba(255,255,255,0.6); font-weight:700; }
@@ -497,7 +494,7 @@ body {
   padding: 12px;
   font-family: 'Inter', Arial, sans-serif;
   font-size: 1.2rem;
-  width: 100%;
+  width: 90%;
   box-shadow: 4px 4px 0px var(--ink-black);
 }
 
@@ -542,12 +539,6 @@ body {
   align-items: center;
   justify-content: space-between;
   font-size: 1.15rem;
-}
-
-/* Video frame stylized border */
-.video-frame {
-  border: 6px solid var(--ink-black);
-  box-shadow: 8px 8px 0px var(--ink-black);
 }
 
 /* --- Podium --- */
@@ -619,32 +610,6 @@ body {
   z-index: 220;
 }
 
-.video-frame {
-  position: relative;
-  overflow: hidden;
-  border: 6px solid var(--ink-black);
-  box-shadow: 8px 8px 0px var(--ink-black);
-}
-
-.video-frame .video-wrapper,
-.video-frame .youtube-embed,
-.video-frame iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: none !important;
-  box-shadow: none !important;
-  background: transparent;
-}
-
-/* During ROUND_PLAYING hide the visual video but keep audio playing */
-.video-wrapper.phase-ROUND_PLAYING .youtube-embed,
-.video-wrapper.phase-ROUND_PLAYING iframe {
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
 /* Center the UI within the video player */
 .video-overlay.centered-ui {
   position: absolute;
@@ -654,7 +619,7 @@ body {
   align-items: center;
   text-align: center;
   /* Removed background color to reveal chalkboard */
-  background: transparent; 
+  background: transparent;
   z-index: 70;
 }
 
@@ -667,9 +632,9 @@ body {
 
 .header-text {
   font-family: 'Permanent Marker', cursive;
-  font-size: 2.2rem;
-  margin-bottom: 1.5rem;
-  letter-spacing: 2px;
+  font-size: 1.4rem;
+  margin-bottom: 0.85rem;
+  letter-spacing: 1px;
   color: var(--chalk-white);
 }
 
@@ -680,15 +645,15 @@ body {
 /* --- HUD BOX (NOW TRANSPARENT) --- */
 .manual-controls {
   /* Removed background and blur completely */
-  background: transparent; 
-  padding: 30px;
+  background: transparent;
+  padding: 12px;
   border: 2px dashed rgba(255, 255, 255, 0.3);
-  border-radius: 24px;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  width: 80%;
-  max-width: 420px;
+  gap: 12px;
+  width: 100%;
+  max-width: 280px;
   pointer-events: all;
   /* Removed backdrop-filter to prevent glass effect */
 }
@@ -783,83 +748,94 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
 }
 
-/* Sidebar Layout */
-.game-layout {
-  display: grid;
-  grid-template-columns: 350px 1fr; /* Set sidebar width */
-  gap: 40px;
-  padding: 30px;
-  height: calc(100vh - 80px); /* Adjust for navbar */
-}
-
-/* Navbar HUD */
+/* Game HUD & responsive layout */
 .game-navbar {
-  height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 140;
+  min-height: 64px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 30px;
-  background: rgba(0,0,0,0.3);
+  gap: 10px;
+  padding: 12px 14px;
+  background: rgba(0,0,0,0.35);
   border-bottom: 2px dashed rgba(255,255,255,0.1);
+}
+
+.nav-left,
+.nav-center,
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-center {
+  flex: 1;
+  justify-content: center;
+  text-align: center;
+}
+
+.round-hud {
+  font-family: 'Permanent Marker', cursive;
+  color: var(--chalk-yellow);
+  letter-spacing: 1px;
+  font-size: 1.1rem;
 }
 
 .player-hud-card {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
   background: var(--paper-white);
   color: var(--ink-black);
-  padding: 8px 18px;
+  padding: 6px 12px;
   border: 4px solid var(--ink-black);
   box-shadow: 4px 4px 0px var(--ink-black);
   cursor: pointer;
   font-family: 'Permanent Marker', cursive;
+  font-size: 0.95rem;
+}
+
+.hud-score {
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.hud-name {
+  font-weight: 700;
+}
+
+.nav-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 }
 
 .search-trigger-mobile {
-  display: none; /* Hidden on desktop */
+  display: inline-flex;
+  align-items: center;
+  background: var(--chalk-yellow);
+  color: black;
+  border: 3px solid black;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 /* Sidebar Search specific height */
 .sidebar-search-desktop {
+  display: none;
+  width: 100%;
   max-height: 100%;
   overflow-y: auto;
 }
 
 .sidebar-search-desktop .suggestions-list {
   max-height: calc(100vh - 250px);
-}
-
-/* --- MOBILE RESPONSIVE --- */
-@media (max-width: 900px) {
-  .game-layout {
-    grid-template-columns: 1fr;
-    padding: 15px;
-  }
-
-  .sidebar-search-desktop {
-    display: none; /* Hide desktop search */
-  }
-
-  .search-trigger-mobile {
-    display: inline-flex;
-    align-items: center;
-    background: var(--chalk-yellow);
-    color: black;
-    border: 3px solid black;
-    padding: 8px;
-    border-radius: 8px;
-    margin-right: 15px;
-    cursor: pointer;
-  }
-
-  .drawer-search-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    border-bottom: 2px solid rgba(255,255,255,0.1);
-  }
 }
 
 .status-notice-under {
@@ -869,6 +845,13 @@ input[type="range"]::-webkit-slider-thumb {
   font-size: 1.4rem;
 }
 
+.waiting-chalk {
+  color: rgba(255,255,255,0.85);
+  font-family: 'Gochi Hand', cursive;
+  font-size: 1rem;
+  text-align: center;
+}
+
 /* --- MOBILE SEARCH DRAWER ADJUSTMENTS --- */
 .drawer-search-header {
   display: flex;
@@ -876,6 +859,7 @@ input[type="range"]::-webkit-slider-thumb {
   align-items: center;
   margin-bottom: 20px;
   flex-shrink: 0; /* Header won't shrink */
+  border-bottom: 2px solid rgba(255,255,255,0.1);
 }
 
 /* Ensure the search component fills available space */
@@ -892,28 +876,139 @@ input[type="range"]::-webkit-slider-thumb {
   margin-top: 15px;
 }
 
-/* --- OTHER MOBILE TWEAKS --- */
-@media (max-width: 900px) {
+@media (min-width: 780px) {
+  .game-screen-wrapper {
+    padding: 16px 18px;
+  }
+
   .game-layout {
-    grid-template-columns: 1fr;
-    padding: 10px;
+    display: grid;
+    grid-template-columns: minmax(280px, 340px) 1fr;
+    align-items: start;
+    gap: 24px;
   }
 
   .sidebar-search-desktop {
+    display: block;
+  }
+
+  .search-trigger-mobile {
     display: none;
   }
 
-  /* Make sure the navbar stays fixed while scrolling search */
   .game-navbar {
-    position: sticky;
-    top: 0;
-    z-index: 110;
+    position: static;
+    min-height: 72px;
+    padding: 12px 22px;
   }
 
-  /* Adjust HUD for smaller screens */
   .player-hud-card {
-    padding: 5px 12px;
-    font-size: 0.9rem;
+    padding: 8px 16px;
+    gap: 12px;
+    font-size: 1rem;
+  }
+
+  .hud-score {
+    font-size: 1.2rem;
+  }
+
+  .nav-right {
+    gap: 12px;
+  }
+
+  .board-container {
+    max-width: 980px;
+  }
+
+  .video-container-centered {
+    gap: 16px;
+  }
+
+  .video-container-centered .video-frame {
+    max-height: calc(100vh - 240px);
+  }
+
+  .mobile-search-panel {
+    display: none;
+  }
+
+  .search-container input {
+    font-size: 2rem;
+    padding: 10px 8px;
+  }
+
+  .search-wrapper-chalk input {
+    font-size: 2.2rem;
+  }
+
+  .reveal-overlay h2 {
+    font-size: 3.6rem;
+  }
+
+  .header-text {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+    letter-spacing: 1.5px;
+  }
+
+  .manual-controls {
+    padding: 24px;
+    border-radius: 20px;
+    gap: 20px;
+    width: 80%;
+    max-width: 380px;
+  }
+}
+@media (min-width: 1200px) {
+  .game-screen-wrapper {
+    padding: 20px 26px;
+  }
+
+  .game-layout {
+    grid-template-columns: 360px 1fr;
+    gap: 32px;
+  }
+
+  .game-navbar {
+    padding: 16px 30px;
+  }
+
+  .player-hud-card {
+    padding: 10px 18px;
+    gap: 15px;
+    font-size: 1.05rem;
+  }
+
+  .hud-score {
+    font-size: 1.35rem;
+  }
+
+  .nav-right {
+    gap: 14px;
+  }
+
+  .board-container {
+    max-width: 1100px;
+  }
+
+  .search-container input {
+    font-size: 2.4rem;
+  }
+
+  .search-wrapper-chalk input {
+    font-size: 2.8rem;
+  }
+
+  .reveal-overlay h2 {
+    font-size: 4.5rem;
+  }
+
+  .header-text {
+    font-size: 2.2rem;
+  }
+
+  .video-container-centered .video-frame {
+    max-height: calc(100vh - 170px);
   }
 }
 
@@ -932,6 +1027,7 @@ input[type="range"]::-webkit-slider-thumb {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 /* Hover effect to make it feel interactive */
@@ -946,21 +1042,6 @@ input[type="range"]::-webkit-slider-thumb {
   box-shadow: 2px 2px 0px var(--ink-black);
 }
 
-/* --- Updated Nav Right Container --- */
-.nav-right {
-  display: flex;         /* Enables horizontal alignment */
-  flex-direction: row;   /* Ensures they stay in a row */
-  align-items: center;   /* Centers them vertically in the nav */
-  gap: 12px;             /* Adds space between the buttons */
-}
-
-/* --- Ensure buttons don't stack --- */
-.search-trigger-mobile, 
-.leave-btn-nav {
-  margin: 0;             /* Remove any existing margins that might push them apart */
-  flex-shrink: 0;        /* Prevents buttons from squishing */
-}
-
 /* Ensure main stage takes full width when sidebar is hidden at Game Over */
 .main-classroom.full-width {
   grid-column: 1 / -1; /* Spans across the entire grid */
@@ -972,4 +1053,4 @@ input[type="range"]::-webkit-slider-thumb {
 .podium-container {
   width: 100%;
   padding-top: 50px;
-}
+} */

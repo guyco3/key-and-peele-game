@@ -1,5 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import YouTube, { YouTubeProps } from 'react-youtube';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PauseIcon from '@mui/icons-material/Pause';
+import ReplayIcon from '@mui/icons-material/Replay';
 import { useGame } from '../context/GameContext';
 
 export const VideoPlayer: React.FC = () => {
@@ -179,10 +182,10 @@ export const VideoPlayer: React.FC = () => {
 
                 <div className="control-row-btns">
                   <button onClick={togglePlay} className="btn-host ghost" title={isPlaying ? "Pause" : "Play"}>
-                    <span style={{fontSize: '1.5rem'}}>{isPlaying ? 'Ⅱ' : '▶'}</span>
+                    {isPlaying ? <PauseIcon sx={{ fontSize: '1.8rem' }} /> : <PlayArrowIcon sx={{ fontSize: '1.8rem' }} />}
                   </button>
                   <button onClick={restartClip} className="btn-join ghost" title="Restart Clip">
-                    <span style={{fontSize: '1.5rem'}}>↻</span>
+                    <ReplayIcon sx={{ fontSize: '1.8rem' }} />
                   </button>
                 </div>
 
