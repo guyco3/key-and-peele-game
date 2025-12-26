@@ -84,14 +84,14 @@ export const GameView: React.FC = () => {
                     ) : (
                         <div className="failure-notice chalk-textured-text" style={{color: '#ff4444'}}>INCORRECT</div>
                     )}
+                  </div>
+                )}
 
-                    {/* 📒 REVEAL INFO IN SIDEBAR (Desktop Only) */}
-                    {isReveal && (
-                      <div className="sidebar-sketch-reveal">
-                        <h3 className="chalk-textured-text">{gameState.currentSketch?.name}</h3>
-                        <p className="chalk-description">{gameState.currentSketch?.description}</p>
-                      </div>
-                    )}
+                {/* 📒 REVEAL INFO IN SIDEBAR (Desktop Only) - show for everyone during reveal */}
+                {isReveal && (
+                  <div className="sidebar-sketch-reveal">
+                    <h3 className="chalk-textured-text">{gameState.currentSketch?.name}</h3>
+                    <p className="chalk-description">{gameState.currentSketch?.description}</p>
                   </div>
                 )}
               </div>
