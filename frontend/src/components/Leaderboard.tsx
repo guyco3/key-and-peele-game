@@ -52,7 +52,9 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ isModal, open, onClose
         }}
       >
         <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography variant="h6" sx={{ fontFamily: 'Permanent Marker' }}>Leaderboard</Typography>
+          <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+            <Typography variant="h6" sx={{ fontFamily: 'Permanent Marker' }}>Leaderboard</Typography>
+          </div>
           <IconButton onClick={onClose} sx={{ color: 'white' }}><CloseIcon /></IconButton>
         </DialogTitle>
         <DialogContent>{content}</DialogContent>
@@ -63,7 +65,9 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ isModal, open, onClose
   return (
     <div className={`leaderboard ${collapsed ? 'collapsed' : ''}`}>
       <div className="leaderboard-header">
-        <h3>Leaderboard</h3>
+        <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+          <h3>Leaderboard</h3>
+        </div>
         <button className="leaderboard-toggle" onClick={() => setCollapsed(!collapsed)}>
           {collapsed ? '▸' : '▾'}
         </button>

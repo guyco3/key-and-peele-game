@@ -310,6 +310,14 @@ body {
   opacity: 0.95;
 }
 
+/* Icon used next to the leaderboard title */
+.leaderboard-icon {
+  width: 22px;
+  height: 22px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
 .player-list .leaderboard-row,
 .guess-list .guess-item {
   background: transparent;
@@ -681,6 +689,38 @@ body {
   }
 }
 
+/* Reduce vertical gaps for reveal + guess areas on small screens */
+@media (max-width: 779px) {
+  /* tighten the space above the mobile search/guess panel */
+  .mobile-search-panel {
+    margin-top: 4px;
+    padding: 6px 6px 0 6px;
+  }
+
+  /* reduce the reveal title spacing and font slightly */
+  .sketch-reveal {
+    margin-top: 6px;
+  }
+  .sketch-reveal .chalk-textured-text {
+    font-size: 1.25rem; /* smaller handwritten title on mobile */
+    transform: rotate(-0.8deg);
+  }
+  .sketch-reveal .chalk-description {
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+
+  /* tighten the user's guess block spacing */
+  .status-notice-under {
+    margin-top: 6px;
+    gap: 6px;
+  }
+  .your-guess-chalk {
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+  }
+}
+
 .audio-visualizer {
   display: flex;
   flex-direction: column;
@@ -826,6 +866,17 @@ input[type="range"]::-webkit-slider-thumb {
   border-bottom: 2px dashed rgba(255,255,255,0.1);
 }
 
+/* When the game is over, center the nav-center content horizontally */
+.game-navbar.game-over .nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  justify-content: center;
+  pointer-events: none; /* non-interactive when centered */
+}
+.game-navbar.game-over .nav-center * { pointer-events: auto; }
+
 .nav-left,
 .nav-center,
 .nav-left,
@@ -849,7 +900,7 @@ input[type="range"]::-webkit-slider-thumb {
   font-family: 'Permanent Marker', cursive;
   color: var(--chalk-yellow);
   letter-spacing: 1px;
-  font-size: 1.1rem;
+  font-size: 1rem; /* match timer font size */
 }
 
 /* Timer styling and clock icon */
@@ -891,17 +942,18 @@ input[type="range"]::-webkit-slider-thumb {
   box-shadow: none;
   cursor: default;
   font-family: 'Permanent Marker', cursive;
-  font-size: 0.95rem;
+  font-size: 1rem; /* match timer */
 }
 
 .player-hud-card .hud-score {
   color: var(--chalk-yellow);
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: 1rem;
 }
 .player-hud-card .hud-name {
   color: var(--chalk-white);
   font-weight: 700;
+  font-size: 1rem;
 }
 
 /* Small button to open the leaderboard, placed next to the player hud */
@@ -910,14 +962,17 @@ input[type="range"]::-webkit-slider-thumb {
   color: var(--ink-black);
   border: 4px solid var(--ink-black);
   box-shadow: 4px 4px 0px var(--ink-black);
-  padding: 8px 10px;
-  border-radius: 8px;
-  font-size: 1.05rem;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1rem;
+  padding: 6px 0px; 
+  padding-left: 5px;
+  text-transform: uppercase;
   cursor: pointer;
-  display: inline-flex;
+  transition: all 0.1s ease;
+  display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
+  flex-shrink: 0;
 }
 
 .leaderboard-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0px var(--ink-black); }
@@ -1144,8 +1199,8 @@ input[type="range"]::-webkit-slider-thumb {
   border: 4px solid var(--ink-black);
   box-shadow: 4px 4px 0px var(--ink-black);
   font-family: 'Permanent Marker', cursive;
-  font-size: 1.1rem;
-  padding: 8px 18px;
+  font-size: 1rem; /* match timer */
+  padding: 6px 10px; /* smaller button */
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.1s ease;

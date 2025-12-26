@@ -245,17 +245,6 @@ export const SKETCHES: Sketch[] = [
     ]
   },
   {
-    "id": "vr-sensors-walking-away",
-    "name": "Be careful walking away wearing VR sensors | #keyandpeele #shorts",
-    "youtubeId": "ACc6fbI7akM",
-    "description": "A short warning about the physical dangers of virtual reality immersion.",
-    "tags": [
-      "vr",
-      "gaming",
-      "shorts"
-    ]
-  },
-  {
     "id": "be-my-brother",
     "name": "Be My Brother - Key & Peele",
     "youtubeId": "Gki1VcUZOW8",
@@ -1103,17 +1092,6 @@ export const SKETCHES: Sketch[] = [
     ]
   },
   {
-    "id": "holiday-song-twist",
-    "name": "It's your classic holiday song... with a twist.",
-    "youtubeId": "qw1i1GxSIaw",
-    "description": "A Christmas duet that takes a dark and unexpected turn.",
-    "tags": [
-      "christmas",
-      "music",
-      "shorts"
-    ]
-  },
-  {
     "id": "hard-to-dump-someone",
     "name": "It’s Hard to Dump Someone  - Key & Peele",
     "youtubeId": "BYMcpl3Ikq8",
@@ -1496,17 +1474,6 @@ export const SKETCHES: Sketch[] = [
       "documentary",
       "behind the scenes",
       "comedy"
-    ]
-  },
-  {
-    "id": "soul-food-shorts",
-    "name": "Key and Peele  - Soul Food #Shorts #KeyAndPeele #Comedy",
-    "youtubeId": "7nGI6Wg_RhY",
-    "description": "A short look at the legendary soul food ordering battle.",
-    "tags": [
-      "food",
-      "soul food",
-      "shorts"
     ]
   },
   {
@@ -2335,17 +2302,6 @@ export const SKETCHES: Sketch[] = [
     ]
   },
   {
-    "id": "gullible-guard-shorts",
-    "name": "The most gullible guard in the world | #shorts #keyandpeele",
-    "youtubeId": "oYdPKX25ue0",
-    "description": "A short clip of a guard who believes everything he's told.",
-    "tags": [
-      "prison",
-      "crime",
-      "shorts"
-    ]
-  },
-  {
     "id": "gullible-prison-guard",
     "name": "The Most Gullible Prison Guard Ever - Key & Peele",
     "youtubeId": "NQNAdgo91JE",
@@ -3037,17 +2993,6 @@ export const SKETCHES: Sketch[] = [
       "horror",
       "zombies",
       "race"
-    ]
-  },
-  {
-    "id": "whose-governor-shorts",
-    "name": "Whose governor is this? | #keyandpeele",
-    "youtubeId": "R27ghfDIeLQ",
-    "description": "A short look at a very unusual politician.",
-    "tags": [
-      "politics",
-      "social",
-      "shorts"
     ]
   },
   {

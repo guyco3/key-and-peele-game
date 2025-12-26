@@ -5,6 +5,7 @@ import { SketchSearch } from './SketchSearch';
 import { Timer } from './Timer';
 import { Leaderboard } from './Leaderboard';
 import { Podium } from './Podium';
+import podiumIcon from '../assets/icons/podium.svg';
 
 export const GameView: React.FC = () => {
   const { gameState, leaveGame, clientId } = useGame();
@@ -46,14 +47,14 @@ export const GameView: React.FC = () => {
         <ConfirmLeaveKeyHandler onClose={() => setConfirmLeaveOpen(false)} />
       )}
 
-      <nav className="game-navbar">
+      <nav className={`game-navbar ${isGameOver ? 'game-over' : ''}`}>
         <div className="nav-left">
           <button
             className="leaderboard-btn"
             onClick={() => setLeaderboardOpen(true)}
             aria-label="Open leaderboard"
           >
-            🏆
+            <img src={podiumIcon} alt="Podium" className="leaderboard-icon" />
           </button>
 
           <div className="player-hud-card">
