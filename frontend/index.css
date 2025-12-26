@@ -266,6 +266,31 @@ body {
   font-size: 1.4rem;
 }
 
+/* Style select inputs in host settings to match chalkboard handwriting */
+.chalk-select {
+  width: 100%;
+  padding: 8px 10px;
+  background: transparent;
+  color: var(--chalk-white);
+  border: none;
+  border-bottom: 2px solid var(--chalk-white);
+  font-family: 'Gochi Hand', cursive;
+  font-size: 1rem;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+}
+
+.chalk-select option {
+  background: #2e4d35;
+  color: var(--chalk-white);
+  font-family: 'Gochi Hand', cursive;
+}
+
+/* Small spacing utility for host settings */
+.setting-gap-bottom { margin-bottom: 10px; }
+
 /* Reveal Overlay Clarity */
 .reveal-overlay {
   position: absolute;

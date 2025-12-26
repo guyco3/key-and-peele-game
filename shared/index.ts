@@ -1,11 +1,15 @@
 export type GamePhase = "LOBBY" | "ROUND_PLAYING" | "ROUND_REVEAL" | "GAME_OVER";
-
+ 
+export type DifficultyMode = "easy" | "medium" | "hard" | "all";
 export interface Sketch {
   id: string;
   name: string;
   youtubeId: string;
   description: string;
   tags: string[];
+  // Difficulty is optional on existing data; new sketches should include it.
+  difficulty?: DifficultyMode;
+  views?: number;
   startTime?: number;
 }
 
@@ -26,6 +30,7 @@ export interface GameConfig {
   roundEndLength: number;
   randomStartTime?: boolean;
   isPublic: boolean;
+  difficulty?: DifficultyMode;
 }
 
 export interface GameState {

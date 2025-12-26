@@ -14,11 +14,21 @@ export const SketchSearch: React.FC<SketchSearchProps> = ({ onSelect }) => {
 
   const filteredSketches = useMemo(() => {
     const search = normalize(query);
-    if (!search) {
-      return [...SKETCHES].sort((a, b) => a.name.localeCompare(b.name));
+
+    const difficultyMode = gameState?.config?.difficulty || 'all';
+
+    // Apply difficulty filter first
+    let pool = SKETCHES;
+    if (difficultyMode !== 'all') {
+      pool = SKETCHES.filter(s => (s.difficulty || 'medium') === difficultyMode);
     }
-    return SKETCHES.filter(s => normalize(s.name).includes(search));
-  }, [query]);
+
+    if (!search) {
+      return [...pool].sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    return pool.filter(s => normalize(s.name).includes(search));
+  }, [query, gameState?.config?.difficulty]);
 
   const handleGuess = (name: string) => {
     socket?.emit('submit_guess', { clientId, roomCode, guess: name });
@@ -36,6 +46,7 @@ export const SketchSearch: React.FC<SketchSearchProps> = ({ onSelect }) => {
 
   return (
     <div className="search-container">
+      <div>{gameState?.config.difficulty}</div>
       <input 
         value={query} 
         onChange={e => setQuery(e.target.value)} 

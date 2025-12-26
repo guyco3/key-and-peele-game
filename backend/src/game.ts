@@ -55,16 +55,25 @@ export class GameInstance {
    * 🎲 Logic: Picks a random sketch, excluding known blocked ones.
    */
   private pickRandomSketch(): Sketch {
-    // Filter out sketches that have been flagged as blocked in this session
-    const availablePool = SKETCHES.filter(s => !this.blockedSketchIds.has(s.id));
-    
-    // Fallback: If somehow everything is blocked (unlikely), use the full list
-    const choicePool = availablePool.length > 0 ? availablePool : SKETCHES;
+    // Respect configured difficulty when selecting sketches
+    const mode = (this.config && this.config.difficulty) ? this.config.difficulty : "all";
+
+    // First, build a pool filtered by difficulty (treat missing difficulty on sketches as 'medium')
+    let difficultyPool = SKETCHES;
+    if (mode !== "all") {
+      difficultyPool = SKETCHES.filter(s => (s.difficulty || "medium") === mode);
+    }
+
+    // Then filter out sketches that have been flagged as blocked in this session
+    const availablePool = difficultyPool.filter(s => !this.blockedSketchIds.has(s.id));
+
+    // Fallbacks: prefer availablePool, then difficultyPool, then full SKETCHES
+    let choicePool = availablePool.length > 0 ? availablePool : (difficultyPool.length > 0 ? difficultyPool : SKETCHES);
 
     if (choicePool.length === 0) {
       throw new Error(`Critical Error: The SKETCHES data list is empty for room ${this.roomCode}`);
     }
-    
+
     return choicePool[Math.floor(Math.random() * choicePool.length)];
   }
 

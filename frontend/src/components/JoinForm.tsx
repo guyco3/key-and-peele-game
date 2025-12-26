@@ -6,11 +6,10 @@ import {
   DialogActions, 
   IconButton, 
   Typography, 
-  Box 
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useGame } from '../context/GameContext';
-import { GameConfig } from '../../../shared';
+import { GameConfig, DifficultyMode } from '../../../shared';
 
 export const JoinForm: React.FC = () => {
   const { 
@@ -31,12 +30,13 @@ export const JoinForm: React.FC = () => {
   const [randomStartTime, setRandomStartTime] = useState(false);
   const [showHostModal, setShowHostModal] = useState(false);
   const [isPublic, setIsPublic] = useState(true);
+  const [difficulty, setDifficulty] = useState<DifficultyMode>('easy');
 
   const handleCreate = async (cfg?: Partial<GameConfig>) => {
     if (!name) return alert("Enter a name first!");
     localStorage.setItem('kp_username', name);
 
-    const baseConfig = cfg || { numRounds, clipLength, roundLength, roundEndLength, randomStartTime };
+    const baseConfig = cfg || { numRounds, clipLength, roundLength, roundEndLength, randomStartTime, difficulty };
     const config = { ...baseConfig, isPublic };
 
     setShowHostModal(false);
@@ -199,7 +199,7 @@ export const JoinForm: React.FC = () => {
                 />
               </div>
 
-              <div className="setting-item">
+              <div className="setting-item setting-gap-bottom">
                 <label>
                   <input type="checkbox" checked={randomStartTime} onChange={e => setRandomStartTime(e.target.checked)} />
                   {' '}Random Start Times
@@ -212,6 +212,20 @@ export const JoinForm: React.FC = () => {
                   <input type="checkbox" checked={isPublic} onChange={e => setIsPublic(e.target.checked)} />
                   {' '}Public Room
                 </label>
+              </div>
+
+              <div className="setting-item">
+                <label>Difficulty Mode</label>
+                <select
+                  value={difficulty}
+                  onChange={(e) => setDifficulty(e.target.value as DifficultyMode)}
+                  className="chalk-select"
+                >
+                  <option value="easy">Easy (Viral Hits)</option>
+                  <option value="medium">Medium (Fan Favorites)</option>
+                  <option value="hard">Hard (Deep Cuts)</option>
+                  <option value="all">Mixed (All Sketches)</option>
+                </select>
               </div>
             </div>
 

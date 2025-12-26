@@ -3,14 +3,16 @@ import { Sketch } from "."
 export const SKETCHES: Sketch[] = [
   {
     "id": "7-essential-travel-tips",
-    "name": "7 Essential Travel Tips – Key & Peele",
+    "name": "7 Essential Travel Tips \u2013 Key & Peele",
     "youtubeId": "y4RliL4xJ-c",
     "description": "Essential and increasingly absurd tips for navigating the airport.",
     "tags": [
       "travel",
       "airplane",
       "tips"
-    ]
+    ],
+    "views": 1249888,
+    "difficulty": "hard"
   },
   {
     "id": "a-different-kind-of-drive-by",
@@ -21,7 +23,9 @@ export const SKETCHES: Sketch[] = [
       "gangsta",
       "urban",
       "twist"
-    ]
+    ],
+    "views": 11729391,
+    "difficulty": "medium"
   },
   {
     "id": "master-class-girl-talk",
@@ -32,7 +36,9 @@ export const SKETCHES: Sketch[] = [
       "girl talk",
       "relationships",
       "parody"
-    ]
+    ],
+    "views": 4459245,
+    "difficulty": "medium"
   },
   {
     "id": "a-lot-of-crazies-out-there",
@@ -43,7 +49,9 @@ export const SKETCHES: Sketch[] = [
       "urban",
       "car",
       "social"
-    ]
+    ],
+    "views": 2823016,
+    "difficulty": "hard"
   },
   {
     "id": "continental-breakfast",
@@ -54,7 +62,9 @@ export const SKETCHES: Sketch[] = [
       "food",
       "hotel",
       "popular"
-    ]
+    ],
+    "views": 1531666,
+    "difficulty": "hard"
   },
   {
     "id": "rapper-revealing-concept-album",
@@ -65,18 +75,22 @@ export const SKETCHES: Sketch[] = [
       "rap",
       "crime",
       "music"
-    ]
+    ],
+    "views": 10473395,
+    "difficulty": "medium"
   },
   {
     "id": "senator-sexting-scandal",
-    "name": "A Senator’s Sexting Scandal - Key & Peele",
+    "name": "A Senator\u2019s Sexting Scandal - Key & Peele",
     "youtubeId": "FbGAaEnecfU",
     "description": "A politician tries to explain away explicit photos during a press conference.",
     "tags": [
       "politics",
       "scandal",
       "press"
-    ]
+    ],
+    "views": 6786218,
+    "difficulty": "medium"
   },
   {
     "id": "mindblowing-dance-audition",
@@ -87,7 +101,9 @@ export const SKETCHES: Sketch[] = [
       "dance",
       "absurd",
       "audition"
-    ]
+    ],
+    "views": 1370803,
+    "difficulty": "hard"
   },
   {
     "id": "wise-bully",
@@ -98,18 +114,22 @@ export const SKETCHES: Sketch[] = [
       "school",
       "bully",
       "psychology"
-    ]
+    ],
+    "views": 7522114,
+    "difficulty": "medium"
   },
   {
     "id": "zombie-extra-first-day",
-    "name": "A Zombie Extra’s First Day on Set - Key & Peele",
+    "name": "A Zombie Extra\u2019s First Day on Set - Key & Peele",
     "youtubeId": "-N0x_Tt7WVc",
     "description": "An extra takes his role as a zombie way too seriously on set.",
     "tags": [
       "zombie",
       "movies",
       "horror"
-    ]
+    ],
+    "views": 16074612,
+    "difficulty": "easy"
   },
   {
     "id": "ass-slapping-addict",
@@ -120,7 +140,9 @@ export const SKETCHES: Sketch[] = [
       "sports",
       "addiction",
       "slap-ass"
-    ]
+    ],
+    "views": 5225620,
+    "difficulty": "medium"
   },
   {
     "id": "insult-comic-match",
@@ -131,7 +153,9 @@ export const SKETCHES: Sketch[] = [
       "comedy",
       "stand-up",
       "awkward"
-    ]
+    ],
+    "views": 7885556,
+    "difficulty": "medium"
   },
   {
     "id": "office-prank-too-far",
@@ -142,7 +166,9 @@ export const SKETCHES: Sketch[] = [
       "office",
       "prank",
       "dark"
-    ]
+    ],
+    "views": 18001184,
+    "difficulty": "easy"
   },
   {
     "id": "unwelcome-reunion",
@@ -153,7 +179,9 @@ export const SKETCHES: Sketch[] = [
       "reunion",
       "wayne brady",
       "awkward"
-    ]
+    ],
+    "views": 4436761,
+    "difficulty": "medium"
   },
   {
     "id": "andre-stands-up-meegan",
@@ -164,7 +192,9 @@ export const SKETCHES: Sketch[] = [
       "meegan",
       "andre",
       "relationships"
-    ]
+    ],
+    "views": 546297,
+    "difficulty": "hard"
   },
   {
     "id": "east-west-bowl",
@@ -176,7 +206,9 @@ export const SKETCHES: Sketch[] = [
       "football",
       "names",
       "popular"
-    ]
+    ],
+    "views": 679586,
+    "difficulty": "hard"
   },
   {
     "id": "awkward-apologies-white-people",
@@ -187,7 +219,9 @@ export const SKETCHES: Sketch[] = [
       "race",
       "social",
       "awkward"
-    ]
+    ],
+    "views": 9451606,
+    "difficulty": "medium"
   },
   {
     "id": "baby-forest-whitaker",
@@ -198,7 +232,9 @@ export const SKETCHES: Sketch[] = [
       "impression",
       "celebrity",
       "forest whitaker"
-    ]
+    ],
+    "views": 531629,
+    "difficulty": "hard"
   },
   {
     "id": "bar-mitzvah-dancers",
@@ -209,7 +245,9 @@ export const SKETCHES: Sketch[] = [
       "dance",
       "party",
       "bar mitzvah"
-    ]
+    ],
+    "views": 6308939,
+    "difficulty": "medium"
   },
   {
     "id": "obama-surveillance",
@@ -220,7 +258,9 @@ export const SKETCHES: Sketch[] = [
       "obama",
       "luther",
       "politics"
-    ]
+    ],
+    "views": 559936,
+    "difficulty": "hard"
   },
   {
     "id": "obama-atm-line",
@@ -231,7 +271,9 @@ export const SKETCHES: Sketch[] = [
       "obama",
       "politics",
       "everyday"
-    ]
+    ],
+    "views": 2989147,
+    "difficulty": "hard"
   },
   {
     "id": "mouth-noise-artists",
@@ -242,7 +284,9 @@ export const SKETCHES: Sketch[] = [
       "music",
       "battle",
       "beatbox"
-    ]
+    ],
+    "views": 2901416,
+    "difficulty": "hard"
   },
   {
     "id": "be-my-brother",
@@ -253,7 +297,9 @@ export const SKETCHES: Sketch[] = [
       "social",
       "awkward",
       "brotherhood"
-    ]
+    ],
+    "views": 1857046,
+    "difficulty": "hard"
   },
   {
     "id": "becoming-the-loco-one",
@@ -264,7 +310,9 @@ export const SKETCHES: Sketch[] = [
       "gangsta",
       "urban",
       "loco"
-    ]
+    ],
+    "views": 2215985,
+    "difficulty": "hard"
   },
   {
     "id": "behind-your-ear",
@@ -275,18 +323,22 @@ export const SKETCHES: Sketch[] = [
       "magic",
       "absurd",
       "trick"
-    ]
+    ],
+    "views": 976994,
+    "difficulty": "hard"
   },
   {
     "id": "deranged-clown-prisoner",
-    "name": "Being a Deranged Clown’s Prisoner - Key & Peele",
+    "name": "Being a Deranged Clown\u2019s Prisoner - Key & Peele",
     "youtubeId": "Tele-K-sMbc",
     "description": "Being held captive by a clown is more annoying than scary.",
     "tags": [
       "horror",
       "clown",
       "dark"
-    ]
+    ],
+    "views": 2057821,
+    "difficulty": "hard"
   },
   {
     "id": "biracial-dating",
@@ -297,7 +349,9 @@ export const SKETCHES: Sketch[] = [
       "race",
       "dating",
       "biracial"
-    ]
+    ],
+    "views": 5910050,
+    "difficulty": "medium"
   },
   {
     "id": "biracial-penis",
@@ -308,7 +362,9 @@ export const SKETCHES: Sketch[] = [
       "race",
       "absurd",
       "biracial"
-    ]
+    ],
+    "views": 4425056,
+    "difficulty": "medium"
   },
   {
     "id": "black-people-telepathy",
@@ -319,7 +375,9 @@ export const SKETCHES: Sketch[] = [
       "race",
       "social",
       "telepathy"
-    ]
+    ],
+    "views": 8901339,
+    "difficulty": "medium"
   },
   {
     "id": "bling-benzy-da-struggle",
@@ -330,29 +388,35 @@ export const SKETCHES: Sketch[] = [
       "rap",
       "music",
       "struggle"
-    ]
+    ],
+    "views": 3612767,
+    "difficulty": "hard"
   },
   {
     "id": "boarding-a-plane",
-    "name": "Boarding a Plane Shouldn’t Be This Hard - Key & Peele",
+    "name": "Boarding a Plane Shouldn\u2019t Be This Hard - Key & Peele",
     "youtubeId": "qhxlZC8BZJ4",
     "description": "The frustration of the airline boarding process taken to the extreme.",
     "tags": [
       "airplane",
       "travel",
       "frustration"
-    ]
+    ],
+    "views": 13030250,
+    "difficulty": "medium"
   },
   {
     "id": "bonding-with-a-kid",
-    "name": "Bonding with a Kid Shouldn’t Be This Hard - Key & Peele",
+    "name": "Bonding with a Kid Shouldn\u2019t Be This Hard - Key & Peele",
     "youtubeId": "c2PM_5LFgqc",
     "description": "A man tries to connect with a child using slang he doesn't understand.",
     "tags": [
       "family",
       "awkward",
       "slang"
-    ]
+    ],
+    "views": 8346911,
+    "difficulty": "medium"
   },
   {
     "id": "bone-thugs-n-homeless",
@@ -363,18 +427,9 @@ export const SKETCHES: Sketch[] = [
       "rap",
       "music",
       "homeless"
-    ]
-  },
-  {
-    "id": "bros-branding-bros",
-    "name": "Bros Branding Bros - Key & Peele",
-    "youtubeId": "7ZrHgAKfUEg",
-    "description": "The logical and painful conclusion of fraternity branding.",
-    "tags": [
-      "frat",
-      "branding",
-      "bros"
-    ]
+    ],
+    "views": 3559086,
+    "difficulty": "hard"
   },
   {
     "id": "bros-do-it-together",
@@ -385,7 +440,9 @@ export const SKETCHES: Sketch[] = [
       "bros",
       "friendship",
       "social"
-    ]
+    ],
+    "views": 1873810,
+    "difficulty": "hard"
   },
   {
     "id": "cable-news-debate",
@@ -396,18 +453,22 @@ export const SKETCHES: Sketch[] = [
       "news",
       "politics",
       "debate"
-    ]
+    ],
+    "views": 1938881,
+    "difficulty": "hard"
   },
   {
     "id": "wrong-phrases",
-    "name": "Can You Spot What’s Wrong with These Phrases? - Key & Peele",
+    "name": "Can You Spot What\u2019s Wrong with These Phrases? - Key & Peele",
     "youtubeId": "e81FPxnnx6Y",
     "description": "A breakdown of common idioms that make no sense.",
     "tags": [
       "language",
       "idioms",
       "educational"
-    ]
+    ],
+    "views": 2182192,
+    "difficulty": "hard"
   },
   {
     "id": "cia-interrogation",
@@ -418,7 +479,9 @@ export const SKETCHES: Sketch[] = [
       "cia",
       "spy",
       "interrogation"
-    ]
+    ],
+    "views": 7237379,
+    "difficulty": "medium"
   },
   {
     "id": "cooking-shows",
@@ -429,7 +492,9 @@ export const SKETCHES: Sketch[] = [
       "cooking",
       "parody",
       "food"
-    ]
+    ],
+    "views": 7754833,
+    "difficulty": "medium"
   },
   {
     "id": "cool-teacher-class-clown",
@@ -440,7 +505,9 @@ export const SKETCHES: Sketch[] = [
       "school",
       "teacher",
       "class clown"
-    ]
+    ],
+    "views": 7978796,
+    "difficulty": "medium"
   },
   {
     "id": "craziest-pitch-meetings",
@@ -451,7 +518,9 @@ export const SKETCHES: Sketch[] = [
       "movies",
       "hollywood",
       "pitch"
-    ]
+    ],
+    "views": 538937,
+    "difficulty": "hard"
   },
   {
     "id": "check-that-shit-out",
@@ -462,7 +531,9 @@ export const SKETCHES: Sketch[] = [
       "urban",
       "friendship",
       "social"
-    ]
+    ],
+    "views": 8867719,
+    "difficulty": "medium"
   },
   {
     "id": "delete-that-selfie",
@@ -473,7 +544,9 @@ export const SKETCHES: Sketch[] = [
       "social media",
       "selfie",
       "panic"
-    ]
+    ],
+    "views": 1920409,
+    "difficulty": "hard"
   },
   {
     "id": "demonic-possession-tailor",
@@ -484,7 +557,9 @@ export const SKETCHES: Sketch[] = [
       "horror",
       "possession",
       "tailor"
-    ]
+    ],
+    "views": 4571820,
+    "difficulty": "medium"
   },
   {
     "id": "walk-button",
@@ -495,7 +570,9 @@ export const SKETCHES: Sketch[] = [
       "urban",
       "social",
       "pressure"
-    ]
+    ],
+    "views": 10567970,
+    "difficulty": "medium"
   },
   {
     "id": "save-the-children",
@@ -506,29 +583,35 @@ export const SKETCHES: Sketch[] = [
       "social",
       "charity",
       "awkward"
-    ]
+    ],
+    "views": 4916180,
+    "difficulty": "medium"
   },
   {
     "id": "dont-ask-sit-down",
-    "name": "Don’t Ask This Guy to Sit Down - Key & Peele",
+    "name": "Don\u2019t Ask This Guy to Sit Down - Key & Peele",
     "youtubeId": "_BFSLPjUCUU",
     "description": "A man has a very specific and violent reason for why he won't sit.",
     "tags": [
       "absurd",
       "social",
       "office"
-    ]
+    ],
+    "views": 6498522,
+    "difficulty": "medium"
   },
   {
     "id": "dont-touch-bagels",
-    "name": "Don’t You Dare Touch Those Bagels (feat. Rob Riggle) - Key & Peele",
+    "name": "Don\u2019t You Dare Touch Those Bagels (feat. Rob Riggle) - Key & Peele",
     "youtubeId": "Mwfd1xi1udc",
     "description": "A marketing executive takes breakfast very, very seriously.",
     "tags": [
       "office",
       "food",
       "rob riggle"
-    ]
+    ],
+    "views": 10179183,
+    "difficulty": "medium"
   },
   {
     "id": "dueling-hats",
@@ -539,7 +622,9 @@ export const SKETCHES: Sketch[] = [
       "fashion",
       "urban",
       "popular"
-    ]
+    ],
+    "views": 23052815,
+    "difficulty": "easy"
   },
   {
     "id": "east-west-bowl-rap",
@@ -550,7 +635,9 @@ export const SKETCHES: Sketch[] = [
       "sports",
       "rap",
       "football"
-    ]
+    ],
+    "views": 1081668,
+    "difficulty": "hard"
   },
   {
     "id": "east-west-bowl-pro",
@@ -561,7 +648,9 @@ export const SKETCHES: Sketch[] = [
       "sports",
       "nfl",
       "football"
-    ]
+    ],
+    "views": 1476771,
+    "difficulty": "hard"
   },
   {
     "id": "men-on-periods",
@@ -572,7 +661,9 @@ export const SKETCHES: Sketch[] = [
       "relationships",
       "gender",
       "social"
-    ]
+    ],
+    "views": 3301962,
+    "difficulty": "hard"
   },
   {
     "id": "fucked-up-boss",
@@ -583,7 +674,9 @@ export const SKETCHES: Sketch[] = [
       "office",
       "apology",
       "work"
-    ]
+    ],
+    "views": 6792945,
+    "difficulty": "medium"
   },
   {
     "id": "explosions-slow-motion",
@@ -594,7 +687,9 @@ export const SKETCHES: Sketch[] = [
       "movies",
       "action",
       "slow-motion"
-    ]
+    ],
+    "views": 879370,
+    "difficulty": "hard"
   },
   {
     "id": "feminist-pirate-chantey",
@@ -605,7 +700,9 @@ export const SKETCHES: Sketch[] = [
       "pirates",
       "feminism",
       "music"
-    ]
+    ],
+    "views": 3511981,
+    "difficulty": "hard"
   },
   {
     "id": "fight-prep",
@@ -616,18 +713,22 @@ export const SKETCHES: Sketch[] = [
       "mma",
       "fight",
       "sports"
-    ]
+    ],
+    "views": 1111717,
+    "difficulty": "hard"
   },
   {
     "id": "filling-jimenez-shoes",
-    "name": "Filling Jimenez’s Shoes - Key & Peele",
+    "name": "Filling Jimenez\u2019s Shoes - Key & Peele",
     "youtubeId": "NJQI1DSJMwg",
     "description": "A soldier tries to honor a fallen comrade with very specific items.",
     "tags": [
       "military",
       "war",
       "absurd"
-    ]
+    ],
+    "views": 6397607,
+    "difficulty": "medium"
   },
   {
     "id": "finding-a-new-home",
@@ -638,7 +739,9 @@ export const SKETCHES: Sketch[] = [
       "real estate",
       "housing",
       "social"
-    ]
+    ],
+    "views": 3731323,
+    "difficulty": "hard"
   },
   {
     "id": "foreign-intervention",
@@ -649,7 +752,9 @@ export const SKETCHES: Sketch[] = [
       "politics",
       "satire",
       "international"
-    ]
+    ],
+    "views": 3096918,
+    "difficulty": "hard"
   },
   {
     "id": "getaway-driver",
@@ -660,7 +765,9 @@ export const SKETCHES: Sketch[] = [
       "crime",
       "driver",
       "heist"
-    ]
+    ],
+    "views": 1566040,
+    "difficulty": "hard"
   },
   {
     "id": "out-frenched",
@@ -671,7 +778,9 @@ export const SKETCHES: Sketch[] = [
       "food",
       "restaurant",
       "french"
-    ]
+    ],
+    "views": 17315835,
+    "difficulty": "easy"
   },
   {
     "id": "getting-way-too-hype",
@@ -682,7 +791,9 @@ export const SKETCHES: Sketch[] = [
       "sports",
       "locker room",
       "football"
-    ]
+    ],
+    "views": 2199064,
+    "difficulty": "hard"
   },
   {
     "id": "go-back-to-70s",
@@ -693,7 +804,9 @@ export const SKETCHES: Sketch[] = [
       "historical",
       "70s",
       "parody"
-    ]
+    ],
+    "views": 415988,
+    "difficulty": "hard"
   },
   {
     "id": "god-prayer-group",
@@ -704,7 +817,9 @@ export const SKETCHES: Sketch[] = [
       "religion",
       "church",
       "god"
-    ]
+    ],
+    "views": 4170623,
+    "difficulty": "medium"
   },
   {
     "id": "stop-second-amendment",
@@ -715,7 +830,9 @@ export const SKETCHES: Sketch[] = [
       "politics",
       "history",
       "time travel"
-    ]
+    ],
+    "views": 3046067,
+    "difficulty": "hard"
   },
   {
     "id": "grown-ass-man",
@@ -726,7 +843,9 @@ export const SKETCHES: Sketch[] = [
       "social",
       "manhood",
       "absurd"
-    ]
+    ],
+    "views": 7801109,
+    "difficulty": "medium"
   },
   {
     "id": "harriet-tubman",
@@ -737,7 +856,9 @@ export const SKETCHES: Sketch[] = [
       "history",
       "harriet tubman",
       "satire"
-    ]
+    ],
+    "views": 1451389,
+    "difficulty": "hard"
   },
   {
     "id": "haunted-roommate-meeting",
@@ -748,51 +869,61 @@ export const SKETCHES: Sketch[] = [
       "horror",
       "roommates",
       "supernatural"
-    ]
+    ],
+    "views": 627208,
+    "difficulty": "hard"
   },
   {
     "id": "not-ready-hologram",
-    "name": "He Wasn’t Ready for the Hologram - Key & Peele",
+    "name": "He Wasn\u2019t Ready for the Hologram - Key & Peele",
     "youtubeId": "9qD0Bjc8cnI",
     "description": "Technology at a news station goes horribly and hilariously wrong.",
     "tags": [
       "news",
       "hologram",
       "tech"
-    ]
+    ],
+    "views": 11061384,
+    "difficulty": "medium"
   },
   {
     "id": "hes-got-a-gun",
-    "name": "He’s Got a Gun - Key & Peele",
+    "name": "He\u2019s Got a Gun - Key & Peele",
     "youtubeId": "-NzEPICsEug",
     "description": "A misunderstanding at a park leads to an overreaction.",
     "tags": [
       "urban",
       "misunderstanding",
       "social"
-    ]
+    ],
+    "views": 1251441,
+    "difficulty": "hard"
   },
   {
     "id": "hillary-anger-translator",
-    "name": "Hillary’s Anger Translator - Key & Peele",
+    "name": "Hillary\u2019s Anger Translator - Key & Peele",
     "youtubeId": "UaJM7DRsWyk",
     "description": "Hillary Clinton gets her own version of Luther to help her speak out.",
     "tags": [
       "politics",
       "hillary clinton",
       "anger translator"
-    ]
+    ],
+    "views": 1557689,
+    "difficulty": "hard"
   },
   {
     "id": "hingle-mccringleberry-celebration",
-    "name": "Hingle McCringleberry’s End Zone Celebration - Key & Peele",
+    "name": "Hingle McCringleberry\u2019s End Zone Celebration - Key & Peele",
     "youtubeId": "FA6ux8D5nUM",
     "description": "The strict rules regarding excessive celebration in football.",
     "tags": [
       "sports",
       "football",
       "popular"
-    ]
+    ],
+    "views": 845257,
+    "difficulty": "hard"
   },
   {
     "id": "hold-me-back-1",
@@ -803,7 +934,9 @@ export const SKETCHES: Sketch[] = [
       "fight",
       "social",
       "bros"
-    ]
+    ],
+    "views": 1095250,
+    "difficulty": "hard"
   },
   {
     "id": "hold-me-back-2",
@@ -814,7 +947,9 @@ export const SKETCHES: Sketch[] = [
       "fight",
       "urban",
       "social"
-    ]
+    ],
+    "views": 1210948,
+    "difficulty": "hard"
   },
   {
     "id": "jaden-smith-role",
@@ -825,7 +960,9 @@ export const SKETCHES: Sketch[] = [
       "celebrity",
       "jaden smith",
       "impression"
-    ]
+    ],
+    "views": 11700834,
+    "difficulty": "medium"
   },
   {
     "id": "parked-your-car",
@@ -836,7 +973,9 @@ export const SKETCHES: Sketch[] = [
       "car",
       "frustration",
       "social"
-    ]
+    ],
+    "views": 6970045,
+    "difficulty": "medium"
   },
   {
     "id": "test-mattress",
@@ -847,7 +986,9 @@ export const SKETCHES: Sketch[] = [
       "shopping",
       "awkward",
       "mattress"
-    ]
+    ],
+    "views": 2763005,
+    "difficulty": "hard"
   },
   {
     "id": "anthropologists-laid",
@@ -858,7 +999,9 @@ export const SKETCHES: Sketch[] = [
       "history",
       "science",
       "dating"
-    ]
+    ],
+    "views": 3511790,
+    "difficulty": "hard"
   },
   {
     "id": "help-a-friend",
@@ -869,7 +1012,9 @@ export const SKETCHES: Sketch[] = [
       "friendship",
       "advice",
       "social"
-    ]
+    ],
+    "views": 1814878,
+    "difficulty": "hard"
   },
   {
     "id": "ruin-a-joke",
@@ -880,7 +1025,9 @@ export const SKETCHES: Sketch[] = [
       "comedy",
       "awkward",
       "joke"
-    ]
+    ],
+    "views": 7603501,
+    "difficulty": "medium"
   },
   {
     "id": "alien-imposter",
@@ -891,29 +1038,22 @@ export const SKETCHES: Sketch[] = [
       "sci-fi",
       "alien",
       "apocalypse"
-    ]
+    ],
+    "views": 9975778,
+    "difficulty": "medium"
   },
   {
     "id": "black-republicans-vote",
-    "name": "How Two Black Republicans “Get Out the Vote” - Key & Peele",
+    "name": "How Two Black Republicans \u201cGet Out the Vote\u201d - Key & Peele",
     "youtubeId": "251r0jHiW0A",
     "description": "The struggle of being a minority within a political minority.",
     "tags": [
       "politics",
       "republicans",
       "race"
-    ]
-  },
-  {
-    "id": "humiliated-slow-motion",
-    "name": "Humiliated in Slow Motion - Key & Peele",
-    "youtubeId": "TGIAT15Ma7o",
-    "description": "A social faux pas is replayed with action-movie drama.",
-    "tags": [
-      "social",
-      "awkward",
-      "slow-motion"
-    ]
+    ],
+    "views": 1393741,
+    "difficulty": "hard"
   },
   {
     "id": "hurting-at-the-bar",
@@ -924,7 +1064,9 @@ export const SKETCHES: Sketch[] = [
       "bar",
       "friendship",
       "social"
-    ]
+    ],
+    "views": 3952296,
+    "difficulty": "hard"
   },
   {
     "id": "i-said-bitch",
@@ -935,18 +1077,9 @@ export const SKETCHES: Sketch[] = [
       "relationships",
       "popular",
       "social"
-    ]
-  },
-  {
-    "id": "ice-t-dog",
-    "name": "Ice-T If He Was a Dog - Key & Peele",
-    "youtubeId": "Xeh9YlRH688",
-    "description": "The legendary rapper's voice and attitude inside a canine body.",
-    "tags": [
-      "impression",
-      "ice-t",
-      "dogs"
-    ]
+    ],
+    "views": 1933058,
+    "difficulty": "hard"
   },
   {
     "id": "identifying-the-body",
@@ -957,7 +1090,9 @@ export const SKETCHES: Sketch[] = [
       "crime",
       "morgue",
       "dark"
-    ]
+    ],
+    "views": 1466632,
+    "difficulty": "hard"
   },
   {
     "id": "civil-war-reenactments",
@@ -968,7 +1103,9 @@ export const SKETCHES: Sketch[] = [
       "history",
       "civil war",
       "satire"
-    ]
+    ],
+    "views": 7949194,
+    "difficulty": "medium"
   },
   {
     "id": "human-parks",
@@ -979,7 +1116,9 @@ export const SKETCHES: Sketch[] = [
       "dogs",
       "absurd",
       "pets"
-    ]
+    ],
+    "views": 1646494,
+    "difficulty": "hard"
   },
   {
     "id": "inner-city-hogwarts",
@@ -990,7 +1129,9 @@ export const SKETCHES: Sketch[] = [
       "harry potter",
       "school",
       "parody"
-    ]
+    ],
+    "views": 30400834,
+    "difficulty": "easy"
   },
   {
     "id": "names-were-farts",
@@ -1001,7 +1142,9 @@ export const SKETCHES: Sketch[] = [
       "absurd",
       "gross-out",
       "names"
-    ]
+    ],
+    "views": 4245797,
+    "difficulty": "medium"
   },
   {
     "id": "sports-commentators-no-filter",
@@ -1012,7 +1155,9 @@ export const SKETCHES: Sketch[] = [
       "sports",
       "commentary",
       "social"
-    ]
+    ],
+    "views": 11565311,
+    "difficulty": "medium"
   },
   {
     "id": "teachers-as-athletes",
@@ -1023,7 +1168,9 @@ export const SKETCHES: Sketch[] = [
       "teacher",
       "sports",
       "satire"
-    ]
+    ],
+    "views": 10086775,
+    "difficulty": "medium"
   },
   {
     "id": "sex-party-interruption",
@@ -1034,7 +1181,9 @@ export const SKETCHES: Sketch[] = [
       "social",
       "awkward",
       "adult"
-    ]
+    ],
+    "views": 1524918,
+    "difficulty": "hard"
   },
   {
     "id": "investigating-disturbance",
@@ -1045,7 +1194,9 @@ export const SKETCHES: Sketch[] = [
       "police",
       "urban",
       "crime"
-    ]
+    ],
+    "views": 4772089,
+    "difficulty": "medium"
   },
   {
     "id": "racist-country-song",
@@ -1056,62 +1207,74 @@ export const SKETCHES: Sketch[] = [
       "music",
       "country",
       "race"
-    ]
+    ],
+    "views": 30634217,
+    "difficulty": "easy"
   },
   {
     "id": "jordans-real-father",
-    "name": "Is This Guy Jordan’s Real Father? - Key & Peele",
+    "name": "Is This Guy Jordan\u2019s Real Father? - Key & Peele",
     "youtubeId": "xU1gjhY6cKo",
     "description": "An emotional discovery that is quickly derailed by reality.",
     "tags": [
       "family",
       "emotional",
       "social"
-    ]
+    ],
+    "views": 7965702,
+    "difficulty": "medium"
   },
   {
     "id": "boss-isnt-real",
-    "name": "Is This Guy’s Boss Even Real? - Key & Peele",
+    "name": "Is This Guy\u2019s Boss Even Real? - Key & Peele",
     "youtubeId": "YGgnza9hLMM",
     "description": "An employee suspects his superior might just be a figment of his imagination.",
     "tags": [
       "office",
       "mystery",
       "absurd"
-    ]
+    ],
+    "views": 12823432,
+    "difficulty": "medium"
   },
   {
     "id": "ghostbusters-guy-songs",
-    "name": "It Turns Out the “Ghostbusters” Guy Has a Lot More Songs - Key & Peele",
+    "name": "It Turns Out the \u201cGhostbusters\u201d Guy Has a Lot More Songs - Key & Peele",
     "youtubeId": "GxjNOv5QPzM",
     "description": "Ray Parker Jr. reveals his extensive, very repetitive discography.",
     "tags": [
       "music",
       "movies",
       "ghostbusters"
-    ]
+    ],
+    "views": 5702332,
+    "difficulty": "medium"
   },
   {
     "id": "hard-to-dump-someone",
-    "name": "It’s Hard to Dump Someone  - Key & Peele",
+    "name": "It\u2019s Hard to Dump Someone  - Key & Peele",
     "youtubeId": "BYMcpl3Ikq8",
     "description": "The struggle of trying to end a relationship with someone who won't listen.",
     "tags": [
       "relationships",
       "breakup",
       "social"
-    ]
+    ],
+    "views": 1615719,
+    "difficulty": "hard"
   },
   {
     "id": "jesus-pimp",
-    "name": "Jesus Meets Mary Magdalene’s Pimp  - Key & Peele",
+    "name": "Jesus Meets Mary Magdalene\u2019s Pimp  - Key & Peele",
     "youtubeId": "U5d1K0JcgIs",
     "description": "Biblical figures meet modern-day street archetypes.",
     "tags": [
       "religion",
       "history",
       "satire"
-    ]
+    ],
+    "views": 3806511,
+    "difficulty": "hard"
   },
   {
     "id": "karim-jahar-gym",
@@ -1122,7 +1285,9 @@ export const SKETCHES: Sketch[] = [
       "gym",
       "karim and jahar",
       "social"
-    ]
+    ],
+    "views": 7564654,
+    "difficulty": "medium"
   },
   {
     "id": "al-qaeda-meeting",
@@ -1133,7 +1298,9 @@ export const SKETCHES: Sketch[] = [
       "politics",
       "satire",
       "terrorist"
-    ]
+    ],
+    "views": 19989417,
+    "difficulty": "easy"
   },
   {
     "id": "awesome-hitler-story",
@@ -1144,7 +1311,9 @@ export const SKETCHES: Sketch[] = [
       "history",
       "satire",
       "hitler"
-    ]
+    ],
+    "views": 34090209,
+    "difficulty": "easy"
   },
   {
     "id": "key-peele-baby-forest",
@@ -1155,7 +1324,9 @@ export const SKETCHES: Sketch[] = [
       "impression",
       "celebrity",
       "baby"
-    ]
+    ],
+    "views": 21230559,
+    "difficulty": "easy"
   },
   {
     "id": "black-hawk-up",
@@ -1166,7 +1337,9 @@ export const SKETCHES: Sketch[] = [
       "military",
       "movies",
       "parody"
-    ]
+    ],
+    "views": 10398266,
+    "difficulty": "medium"
   },
   {
     "id": "cunnilingus-class",
@@ -1177,7 +1350,9 @@ export const SKETCHES: Sketch[] = [
       "adult",
       "education",
       "relationships"
-    ]
+    ],
+    "views": 12783616,
+    "difficulty": "medium"
   },
   {
     "id": "cute-puppies",
@@ -1188,7 +1363,9 @@ export const SKETCHES: Sketch[] = [
       "dogs",
       "urban",
       "social"
-    ]
+    ],
+    "views": 10201507,
+    "difficulty": "medium"
   },
   {
     "id": "dads-hollywood-secret",
@@ -1199,7 +1376,9 @@ export const SKETCHES: Sketch[] = [
       "movies",
       "family",
       "secret"
-    ]
+    ],
+    "views": 14297213,
+    "difficulty": "medium"
   },
   {
     "id": "dicknanigans",
@@ -1210,7 +1389,9 @@ export const SKETCHES: Sketch[] = [
       "food",
       "absurd",
       "restaurant"
-    ]
+    ],
+    "views": 13477459,
+    "difficulty": "medium"
   },
   {
     "id": "dubstep",
@@ -1221,7 +1402,9 @@ export const SKETCHES: Sketch[] = [
       "music",
       "dubstep",
       "popular"
-    ]
+    ],
+    "views": 24370983,
+    "difficulty": "easy"
   },
   {
     "id": "fraternity-branding",
@@ -1232,18 +1415,22 @@ export const SKETCHES: Sketch[] = [
       "frat",
       "college",
       "branding"
-    ]
+    ],
+    "views": 17588047,
+    "difficulty": "easy"
   },
   {
     "id": "futbol-flop",
-    "name": "Key & Peele - Fútbol Flop",
+    "name": "Key & Peele - F\u00fatbol Flop",
     "youtubeId": "07mBfR8erMY",
     "description": "A soccer player's injury is clearly a little bit exaggerated.",
     "tags": [
       "sports",
       "soccer",
       "flop"
-    ]
+    ],
+    "views": 21390211,
+    "difficulty": "easy"
   },
   {
     "id": "gangsta-standoff",
@@ -1254,7 +1441,9 @@ export const SKETCHES: Sketch[] = [
       "gangsta",
       "urban",
       "crime"
-    ]
+    ],
+    "views": 20850398,
+    "difficulty": "easy"
   },
   {
     "id": "hoodie",
@@ -1265,7 +1454,9 @@ export const SKETCHES: Sketch[] = [
       "fashion",
       "absurd",
       "urban"
-    ]
+    ],
+    "views": 16214399,
+    "difficulty": "easy"
   },
   {
     "id": "karim-jahar",
@@ -1276,7 +1467,9 @@ export const SKETCHES: Sketch[] = [
       "karim and jahar",
       "social",
       "urban"
-    ]
+    ],
+    "views": 19876370,
+    "difficulty": "easy"
   },
   {
     "id": "la-vice",
@@ -1287,7 +1480,9 @@ export const SKETCHES: Sketch[] = [
       "movies",
       "80s",
       "police"
-    ]
+    ],
+    "views": 8497866,
+    "difficulty": "medium"
   },
   {
     "id": "landos-fan",
@@ -1298,7 +1493,9 @@ export const SKETCHES: Sketch[] = [
       "star wars",
       "sci-fi",
       "celebrity"
-    ]
+    ],
+    "views": 8644807,
+    "difficulty": "medium"
   },
   {
     "id": "les-mis",
@@ -1309,7 +1506,9 @@ export const SKETCHES: Sketch[] = [
       "music",
       "musical",
       "parody"
-    ]
+    ],
+    "views": 15142152,
+    "difficulty": "easy"
   },
   {
     "id": "movie-hecklers",
@@ -1320,7 +1519,9 @@ export const SKETCHES: Sketch[] = [
       "movies",
       "theater",
       "social"
-    ]
+    ],
+    "views": 14224707,
+    "difficulty": "medium"
   },
   {
     "id": "obama-anger-translator-uncensored",
@@ -1331,7 +1532,9 @@ export const SKETCHES: Sketch[] = [
       "obama",
       "luther",
       "politics"
-    ]
+    ],
+    "views": 24680073,
+    "difficulty": "easy"
   },
   {
     "id": "party-games",
@@ -1342,7 +1545,9 @@ export const SKETCHES: Sketch[] = [
       "games",
       "party",
       "social"
-    ]
+    ],
+    "views": 24082631,
+    "difficulty": "easy"
   },
   {
     "id": "pawn-shop",
@@ -1353,7 +1558,9 @@ export const SKETCHES: Sketch[] = [
       "pawn shop",
       "shopping",
       "urban"
-    ]
+    ],
+    "views": 34342834,
+    "difficulty": "easy"
   },
   {
     "id": "pegasus-sighting",
@@ -1364,7 +1571,9 @@ export const SKETCHES: Sketch[] = [
       "fantasy",
       "urban",
       "absurd"
-    ]
+    ],
+    "views": 17142203,
+    "difficulty": "easy"
   },
   {
     "id": "puppy-dog-ice-t",
@@ -1375,7 +1584,9 @@ export const SKETCHES: Sketch[] = [
       "ice-t",
       "dogs",
       "impression"
-    ]
+    ],
+    "views": 11974810,
+    "difficulty": "medium"
   },
   {
     "id": "quarterback-concussion-1",
@@ -1386,7 +1597,9 @@ export const SKETCHES: Sketch[] = [
       "sports",
       "football",
       "concussion"
-    ]
+    ],
+    "views": 12287407,
+    "difficulty": "medium"
   },
   {
     "id": "roommate-meeting",
@@ -1397,7 +1610,9 @@ export const SKETCHES: Sketch[] = [
       "roommates",
       "social",
       "frustration"
-    ]
+    ],
+    "views": 14220569,
+    "difficulty": "medium"
   },
   {
     "id": "slow-brotion",
@@ -1408,7 +1623,9 @@ export const SKETCHES: Sketch[] = [
       "bros",
       "slow-motion",
       "social"
-    ]
+    ],
+    "views": 13641359,
+    "difficulty": "medium"
   },
   {
     "id": "strike-force-eagle-3-uncensored",
@@ -1419,7 +1636,9 @@ export const SKETCHES: Sketch[] = [
       "action",
       "movies",
       "parody"
-    ]
+    ],
+    "views": 15085923,
+    "difficulty": "easy"
   },
   {
     "id": "ultimate-cock-blocker",
@@ -1430,7 +1649,9 @@ export const SKETCHES: Sketch[] = [
       "relationships",
       "friendship",
       "social"
-    ]
+    ],
+    "views": 20979475,
+    "difficulty": "easy"
   },
   {
     "id": "video-game-sensors",
@@ -1441,7 +1662,9 @@ export const SKETCHES: Sketch[] = [
       "gaming",
       "tech",
       "absurd"
-    ]
+    ],
+    "views": 17079852,
+    "difficulty": "easy"
   },
   {
     "id": "you-can-do-anything",
@@ -1452,7 +1675,9 @@ export const SKETCHES: Sketch[] = [
       "motivation",
       "social",
       "absurd"
-    ]
+    ],
+    "views": 19560042,
+    "difficulty": "easy"
   },
   {
     "id": "go-to-hollywood",
@@ -1463,7 +1688,9 @@ export const SKETCHES: Sketch[] = [
       "hollywood",
       "celebrity",
       "movies"
-    ]
+    ],
+    "views": 326476,
+    "difficulty": "hard"
   },
   {
     "id": "presents-jordan-keegan",
@@ -1474,7 +1701,9 @@ export const SKETCHES: Sketch[] = [
       "documentary",
       "behind the scenes",
       "comedy"
-    ]
+    ],
+    "views": 492833,
+    "difficulty": "hard"
   },
   {
     "id": "kobe-beef-burgers",
@@ -1485,18 +1714,22 @@ export const SKETCHES: Sketch[] = [
       "food",
       "restaurant",
       "pretentious"
-    ]
+    ],
+    "views": 8465873,
+    "difficulty": "medium"
   },
   {
     "id": "fronthand-backhand",
-    "name": "Let’s Play Fronthand Backhand - Key & Peele",
+    "name": "Let\u2019s Play Fronthand Backhand - Key & Peele",
     "youtubeId": "AKebtRtu6YU",
     "description": "A game where there is no way to win and it's always painful.",
     "tags": [
       "games",
       "absurd",
       "popular"
-    ]
+    ],
+    "views": 1887718,
+    "difficulty": "hard"
   },
   {
     "id": "local-news-dog-fail",
@@ -1507,7 +1740,9 @@ export const SKETCHES: Sketch[] = [
       "news",
       "dogs",
       "fail"
-    ]
+    ],
+    "views": 939791,
+    "difficulty": "hard"
   },
   {
     "id": "lying-dying-wife",
@@ -1518,7 +1753,9 @@ export const SKETCHES: Sketch[] = [
       "rashida jones",
       "relationships",
       "dark"
-    ]
+    ],
+    "views": 13342025,
+    "difficulty": "medium"
   },
   {
     "id": "mafia-talks-ruined",
@@ -1529,18 +1766,22 @@ export const SKETCHES: Sketch[] = [
       "mafia",
       "crime",
       "interruption"
-    ]
+    ],
+    "views": 4006321,
+    "difficulty": "medium"
   },
   {
     "id": "magic-is-real",
-    "name": "Magic Is Real, And It’s in This Apartment - Key & Peele",
+    "name": "Magic Is Real, And It\u2019s in This Apartment - Key & Peele",
     "youtubeId": "QnbqW263N4g",
     "description": "A magician performs tricks that are actually just crimes.",
     "tags": [
       "magic",
       "urban",
       "crime"
-    ]
+    ],
+    "views": 8607321,
+    "difficulty": "medium"
   },
   {
     "id": "magical-negro-fight",
@@ -1551,7 +1792,9 @@ export const SKETCHES: Sketch[] = [
       "race",
       "movies",
       "satire"
-    ]
+    ],
+    "views": 7050534,
+    "difficulty": "medium"
   },
   {
     "id": "mlk-malcolm-x-theater",
@@ -1562,7 +1805,9 @@ export const SKETCHES: Sketch[] = [
       "history",
       "politics",
       "theater"
-    ]
+    ],
+    "views": 5982562,
+    "difficulty": "medium"
   },
   {
     "id": "mc-mom",
@@ -1573,18 +1818,22 @@ export const SKETCHES: Sketch[] = [
       "rap",
       "music",
       "family"
-    ]
+    ],
+    "views": 5358647,
+    "difficulty": "medium"
   },
   {
     "id": "meegan-andre-nightmare",
-    "name": "Meegan and Andre Are a Moviegoer’s Nightmare - Key & Peele",
+    "name": "Meegan and Andre Are a Moviegoer\u2019s Nightmare - Key & Peele",
     "youtubeId": "0toviZNSUhs",
     "description": "Meegan and Andre take their drama to the cinema.",
     "tags": [
       "meegan",
       "andre",
       "movies"
-    ]
+    ],
+    "views": 627872,
+    "difficulty": "hard"
   },
   {
     "id": "meegan-andre-love-story",
@@ -1595,18 +1844,22 @@ export const SKETCHES: Sketch[] = [
       "meegan",
       "andre",
       "relationships"
-    ]
+    ],
+    "views": 2055764,
+    "difficulty": "hard"
   },
   {
     "id": "meegan-andre-worst-fight",
-    "name": "Meegan and Andre’s Worst Fight Ever - Key & Peele",
+    "name": "Meegan and Andre\u2019s Worst Fight Ever - Key & Peele",
     "youtubeId": "tvrQht5i1II",
     "description": "A public argument that reaches levels of absurdity only Meegan can achieve.",
     "tags": [
       "meegan",
       "andre",
       "relationships"
-    ]
+    ],
+    "views": 911478,
+    "difficulty": "hard"
   },
   {
     "id": "meeting-bigoted-parents",
@@ -1617,7 +1870,9 @@ export const SKETCHES: Sketch[] = [
       "race",
       "relationships",
       "awkward"
-    ]
+    ],
+    "views": 3524755,
+    "difficulty": "hard"
   },
   {
     "id": "meeting-black-republicans",
@@ -1628,7 +1883,9 @@ export const SKETCHES: Sketch[] = [
       "politics",
       "race",
       "republicans"
-    ]
+    ],
+    "views": 2312844,
+    "difficulty": "hard"
   },
   {
     "id": "messing-with-driver",
@@ -1639,7 +1896,9 @@ export const SKETCHES: Sketch[] = [
       "car",
       "social",
       "awkward"
-    ]
+    ],
+    "views": 7877656,
+    "difficulty": "medium"
   },
   {
     "id": "metta-world-news",
@@ -1650,7 +1909,9 @@ export const SKETCHES: Sketch[] = [
       "news",
       "sports",
       "metta world peace"
-    ]
+    ],
+    "views": 499538,
+    "difficulty": "hard"
   },
   {
     "id": "michelle-obama-anger-translator",
@@ -1661,7 +1922,9 @@ export const SKETCHES: Sketch[] = [
       "politics",
       "obama",
       "michelle obama"
-    ]
+    ],
+    "views": 3634484,
+    "difficulty": "hard"
   },
   {
     "id": "most-wanted-terries",
@@ -1672,18 +1935,9 @@ export const SKETCHES: Sketch[] = [
       "airplane",
       "travel",
       "terries"
-    ]
-  },
-  {
-    "id": "mr-garvey-substitute",
-    "name": "Mr. Garvey Is Your Substitute Teacher - Key & Peele",
-    "youtubeId": "OQaLic5SE_I",
-    "description": "An inner-city teacher struggles with the names of suburban students.",
-    "tags": [
-      "classroom",
-      "popular",
-      "mr. garvey"
-    ]
+    ],
+    "views": 1379278,
+    "difficulty": "hard"
   },
   {
     "id": "nervous-mob-boss",
@@ -1694,7 +1948,9 @@ export const SKETCHES: Sketch[] = [
       "mafia",
       "crime",
       "urban"
-    ]
+    ],
+    "views": 6134345,
+    "difficulty": "medium"
   },
   {
     "id": "nobody-wants-to-help-move",
@@ -1705,7 +1961,9 @@ export const SKETCHES: Sketch[] = [
       "friendship",
       "moving",
       "social"
-    ]
+    ],
+    "views": 10477024,
+    "difficulty": "medium"
   },
   {
     "id": "non-scary-movie",
@@ -1716,7 +1974,9 @@ export const SKETCHES: Sketch[] = [
       "horror",
       "movies",
       "parody"
-    ]
+    ],
+    "views": 9994639,
+    "difficulty": "medium"
   },
   {
     "id": "nooice",
@@ -1727,18 +1987,22 @@ export const SKETCHES: Sketch[] = [
       "nooice",
       "urban",
       "popular"
-    ]
+    ],
+    "views": 5192402,
+    "difficulty": "medium"
   },
   {
     "id": "obama-luther-farewell",
-    "name": "Obama and Luther’s Farewell Address - Key & Peele",
+    "name": "Obama and Luther\u2019s Farewell Address - Key & Peele",
     "youtubeId": "n2svSvVF_F0",
     "description": "One last time for Luther to say what Obama can't.",
     "tags": [
       "politics",
       "obama",
       "luther"
-    ]
+    ],
+    "views": 750099,
+    "difficulty": "hard"
   },
   {
     "id": "obama-meet-greet",
@@ -1749,7 +2013,9 @@ export const SKETCHES: Sketch[] = [
       "race",
       "politics",
       "obama"
-    ]
+    ],
+    "views": 598259,
+    "difficulty": "hard"
   },
   {
     "id": "obama-college-years",
@@ -1760,7 +2026,9 @@ export const SKETCHES: Sketch[] = [
       "history",
       "obama",
       "college"
-    ]
+    ],
+    "views": 559863,
+    "difficulty": "hard"
   },
   {
     "id": "old-men-dis-drake",
@@ -1771,7 +2039,9 @@ export const SKETCHES: Sketch[] = [
       "music",
       "drake",
       "elderly"
-    ]
+    ],
+    "views": 2307750,
+    "difficulty": "hard"
   },
   {
     "id": "ordering-soul-food",
@@ -1782,7 +2052,9 @@ export const SKETCHES: Sketch[] = [
       "food",
       "soul food",
       "popular"
-    ]
+    ],
+    "views": 3861084,
+    "difficulty": "hard"
   },
   {
     "id": "outmatched-strip-club",
@@ -1793,7 +2065,9 @@ export const SKETCHES: Sketch[] = [
       "adult",
       "bar",
       "social"
-    ]
+    ],
+    "views": 4817979,
+    "difficulty": "medium"
   },
   {
     "id": "competitive-trumpeters",
@@ -1804,7 +2078,9 @@ export const SKETCHES: Sketch[] = [
       "music",
       "jazz",
       "rivalry"
-    ]
+    ],
+    "views": 3517015,
+    "difficulty": "hard"
   },
   {
     "id": "pussy-on-the-chainwax",
@@ -1815,7 +2091,9 @@ export const SKETCHES: Sketch[] = [
       "slang",
       "urban",
       "popular"
-    ]
+    ],
+    "views": 5696308,
+    "difficulty": "medium"
   },
   {
     "id": "paint-titties",
@@ -1826,18 +2104,9 @@ export const SKETCHES: Sketch[] = [
       "art",
       "absurd",
       "social"
-    ]
-  },
-  {
-    "id": "planning-a-heist",
-    "name": "Planning a Heist - Key & Peele",
-    "youtubeId": "jgYYOUC10aM",
-    "description": "A criminal mastermind's plan is a little too complex for his crew.",
-    "tags": [
-      "crime",
-      "heist",
-      "urban"
-    ]
+    ],
+    "views": 1308005,
+    "difficulty": "hard"
   },
   {
     "id": "pouring-one-out",
@@ -1848,7 +2117,9 @@ export const SKETCHES: Sketch[] = [
       "urban",
       "friendship",
       "absurd"
-    ]
+    ],
+    "views": 6976014,
+    "difficulty": "medium"
   },
   {
     "id": "prepare-for-turbulence",
@@ -1859,7 +2130,9 @@ export const SKETCHES: Sketch[] = [
       "airplane",
       "travel",
       "turbulence"
-    ]
+    ],
+    "views": 1839899,
+    "difficulty": "hard"
   },
   {
     "id": "obama-gop-meeting",
@@ -1870,7 +2143,9 @@ export const SKETCHES: Sketch[] = [
       "politics",
       "obama",
       "gop"
-    ]
+    ],
+    "views": 1824761,
+    "difficulty": "hard"
   },
   {
     "id": "pretending-lyrics",
@@ -1881,18 +2156,22 @@ export const SKETCHES: Sketch[] = [
       "music",
       "car",
       "social"
-    ]
+    ],
+    "views": 6924876,
+    "difficulty": "medium"
   },
   {
     "id": "fake-sensei",
-    "name": "Pretty Sure This Guy Isn’t a Real Sensei - Key & Peele",
+    "name": "Pretty Sure This Guy Isn\u2019t a Real Sensei - Key & Peele",
     "youtubeId": "6HhCajvimEw",
     "description": "A martial arts teacher whose training methods are highly suspect.",
     "tags": [
       "martial arts",
       "absurd",
       "social"
-    ]
+    ],
+    "views": 8674891,
+    "difficulty": "medium"
   },
   {
     "id": "quackadilly",
@@ -1903,7 +2182,9 @@ export const SKETCHES: Sketch[] = [
       "urban",
       "social",
       "absurd"
-    ]
+    ],
+    "views": 1768082,
+    "difficulty": "hard"
   },
   {
     "id": "quarterback-concussion-2",
@@ -1914,7 +2195,9 @@ export const SKETCHES: Sketch[] = [
       "sports",
       "football",
       "medical"
-    ]
+    ],
+    "views": 661892,
+    "difficulty": "hard"
   },
   {
     "id": "racist-suburbs",
@@ -1925,7 +2208,9 @@ export const SKETCHES: Sketch[] = [
       "race",
       "social",
       "suburbs"
-    ]
+    ],
+    "views": 2782728,
+    "difficulty": "hard"
   },
   {
     "id": "radio-hosts-commercial",
@@ -1936,7 +2221,9 @@ export const SKETCHES: Sketch[] = [
       "radio",
       "media",
       "social"
-    ]
+    ],
+    "views": 8084465,
+    "difficulty": "medium"
   },
   {
     "id": "real-deal-fake-friends",
@@ -1947,7 +2234,9 @@ export const SKETCHES: Sketch[] = [
       "rap",
       "music",
       "friendship"
-    ]
+    ],
+    "views": 2433331,
+    "difficulty": "hard"
   },
   {
     "id": "retired-military-specialist",
@@ -1958,7 +2247,9 @@ export const SKETCHES: Sketch[] = [
       "military",
       "war",
       "action"
-    ]
+    ],
+    "views": 2372871,
+    "difficulty": "hard"
   },
   {
     "id": "scat-duel",
@@ -1969,18 +2260,22 @@ export const SKETCHES: Sketch[] = [
       "music",
       "jazz",
       "battle"
-    ]
+    ],
+    "views": 2679748,
+    "difficulty": "hard"
   },
   {
     "id": "secret-emotions",
-    "name": "Secret Emotions – Key & Peele",
+    "name": "Secret Emotions \u2013 Key & Peele",
     "youtubeId": "iW1CLKxdLwQ",
     "description": "Men trying to hide their feelings in the most dramatic way possible.",
     "tags": [
       "social",
       "emotions",
       "manhood"
-    ]
+    ],
+    "views": 2736076,
+    "difficulty": "hard"
   },
   {
     "id": "severed-head-improv",
@@ -1991,7 +2286,9 @@ export const SKETCHES: Sketch[] = [
       "improv",
       "absurd",
       "comedy"
-    ]
+    ],
+    "views": 2897458,
+    "difficulty": "hard"
   },
   {
     "id": "sex-detective",
@@ -2002,7 +2299,9 @@ export const SKETCHES: Sketch[] = [
       "crime",
       "police",
       "adult"
-    ]
+    ],
+    "views": 5596393,
+    "difficulty": "medium"
   },
   {
     "id": "sexy-vampires",
@@ -2013,7 +2312,9 @@ export const SKETCHES: Sketch[] = [
       "horror",
       "vampires",
       "parody"
-    ]
+    ],
+    "views": 3813813,
+    "difficulty": "hard"
   },
   {
     "id": "shot-in-the-dick",
@@ -2024,7 +2325,9 @@ export const SKETCHES: Sketch[] = [
       "music",
       "rap",
       "absurd"
-    ]
+    ],
+    "views": 1467104,
+    "difficulty": "hard"
   },
   {
     "id": "slap-ass",
@@ -2035,18 +2338,22 @@ export const SKETCHES: Sketch[] = [
       "sports",
       "baseball",
       "popular"
-    ]
+    ],
+    "views": 7086172,
+    "difficulty": "medium"
   },
   {
     "id": "someones-gotta-say-it",
-    "name": "Someone’s Gotta Say It - Key & Peele",
+    "name": "Someone\u2019s Gotta Say It - Key & Peele",
     "youtubeId": "WTLcsaRXpVw",
     "description": "The person who thinks they are being brave by saying what everyone is thinking.",
     "tags": [
       "social",
       "awkward",
       "truth"
-    ]
+    ],
+    "views": 12515944,
+    "difficulty": "medium"
   },
   {
     "id": "speaking-after-mlk",
@@ -2057,7 +2364,9 @@ export const SKETCHES: Sketch[] = [
       "history",
       "politics",
       "mlk"
-    ]
+    ],
+    "views": 7255475,
+    "difficulty": "medium"
   },
   {
     "id": "spoiler-free-zone",
@@ -2068,18 +2377,9 @@ export const SKETCHES: Sketch[] = [
       "tv",
       "spoilers",
       "social"
-    ]
-  },
-  {
-    "id": "standoff",
-    "name": "Standoff - Key & Peele",
-    "youtubeId": "o6Ai7x1krew",
-    "description": "A high-stakes confrontation that quickly loses its tension.",
-    "tags": [
-      "action",
-      "crime",
-      "urban"
-    ]
+    ],
+    "views": 1371720,
+    "difficulty": "hard"
   },
   {
     "id": "strike-force-eagle-3",
@@ -2090,7 +2390,9 @@ export const SKETCHES: Sketch[] = [
       "action",
       "movies",
       "parody"
-    ]
+    ],
+    "views": 1253973,
+    "difficulty": "hard"
   },
   {
     "id": "substitute-traffic-reporter",
@@ -2101,29 +2403,9 @@ export const SKETCHES: Sketch[] = [
       "news",
       "traffic",
       "social"
-    ]
-  },
-  {
-    "id": "surprise-picture",
-    "name": "Surprise Picture (ft. Michelle Buteau) - Key & Peele",
-    "youtubeId": "IBIW82ICuHU",
-    "description": "Taking a photo is harder than it looks when people won't cooperate.",
-    "tags": [
-      "social",
-      "photo",
-      "michelle buteau"
-    ]
-  },
-  {
-    "id": "halloween-costume-too-far",
-    "name": "Taking a Halloween Costume Too Far - Key & Peele",
-    "youtubeId": "s7Vdk7s632k",
-    "description": "A holiday party where one guest's outfit is a bit too realistic.",
-    "tags": [
-      "halloween",
-      "party",
-      "horror"
-    ]
+    ],
+    "views": 1606109,
+    "difficulty": "hard"
   },
   {
     "id": "awkward-friend",
@@ -2134,29 +2416,35 @@ export const SKETCHES: Sketch[] = [
       "friendship",
       "awkward",
       "social"
-    ]
+    ],
+    "views": 16600751,
+    "difficulty": "easy"
   },
   {
     "id": "deez-nuts",
-    "name": "That One Guy Who Still Says “These Nuts” - Key & Peele",
+    "name": "That One Guy Who Still Says \u201cThese Nuts\u201d - Key & Peele",
     "youtubeId": "nxyiccilVKM",
     "description": "A man refuses to let a dead meme go.",
     "tags": [
       "urban",
       "social",
       "memes"
-    ]
+    ],
+    "views": 9850269,
+    "difficulty": "medium"
   },
   {
     "id": "preaching-guy",
-    "name": "That One Guy Who’s Always Preaching (ft. Leslie David Baker) - Key & Peele",
+    "name": "That One Guy Who\u2019s Always Preaching (ft. Leslie David Baker) - Key & Peele",
     "youtubeId": "GrYbMbudILQ",
     "description": "The person who turns every conversation into a moral lesson.",
     "tags": [
       "religion",
       "social",
       "leslie david baker"
-    ]
+    ],
+    "views": 10188283,
+    "difficulty": "medium"
   },
   {
     "id": "911-call",
@@ -2167,7 +2455,9 @@ export const SKETCHES: Sketch[] = [
       "crime",
       "police",
       "urban"
-    ]
+    ],
+    "views": 10652451,
+    "difficulty": "medium"
   },
   {
     "id": "best-friend-song",
@@ -2178,7 +2468,9 @@ export const SKETCHES: Sketch[] = [
       "music",
       "friendship",
       "social"
-    ]
+    ],
+    "views": 983859,
+    "difficulty": "hard"
   },
   {
     "id": "the-cheater",
@@ -2189,7 +2481,9 @@ export const SKETCHES: Sketch[] = [
       "relationships",
       "cheating",
       "social"
-    ]
+    ],
+    "views": 2973478,
+    "difficulty": "hard"
   },
   {
     "id": "continental-breakfast-airplane",
@@ -2200,7 +2494,9 @@ export const SKETCHES: Sketch[] = [
       "airplane",
       "food",
       "travel"
-    ]
+    ],
+    "views": 3497444,
+    "difficulty": "hard"
   },
   {
     "id": "funniest-kid-in-school",
@@ -2211,7 +2507,9 @@ export const SKETCHES: Sketch[] = [
       "school",
       "gabriel iglesias",
       "comedy"
-    ]
+    ],
+    "views": 3458155,
+    "difficulty": "hard"
   },
   {
     "id": "great-choir-fight",
@@ -2222,7 +2520,9 @@ export const SKETCHES: Sketch[] = [
       "church",
       "religion",
       "music"
-    ]
+    ],
+    "views": 7762452,
+    "difficulty": "medium"
   },
   {
     "id": "gremlins-2-sequel-doctor",
@@ -2233,7 +2533,9 @@ export const SKETCHES: Sketch[] = [
       "movies",
       "gremlins",
       "popular"
-    ]
+    ],
+    "views": 3127690,
+    "difficulty": "hard"
   },
   {
     "id": "the-invitation",
@@ -2244,7 +2546,9 @@ export const SKETCHES: Sketch[] = [
       "social",
       "awkward",
       "friendship"
-    ]
+    ],
+    "views": 1322663,
+    "difficulty": "hard"
   },
   {
     "id": "rear-ended",
@@ -2255,18 +2559,22 @@ export const SKETCHES: Sketch[] = [
       "car",
       "urban",
       "social"
-    ]
+    ],
+    "views": 15923532,
+    "difficulty": "easy"
   },
   {
     "id": "cop-side-gig",
-    "name": "The Last Side Gig You’d Expect a Cop to Have - Key & Peele",
+    "name": "The Last Side Gig You\u2019d Expect a Cop to Have - Key & Peele",
     "youtubeId": "qYn6ARB4q9g",
     "description": "A police officer has a very artistic and surprising hobby.",
     "tags": [
       "police",
       "crime",
       "social"
-    ]
+    ],
+    "views": 4756153,
+    "difficulty": "medium"
   },
   {
     "id": "meanest-sleep-talker",
@@ -2277,7 +2585,9 @@ export const SKETCHES: Sketch[] = [
       "relationships",
       "social",
       "sleep"
-    ]
+    ],
+    "views": 2550904,
+    "difficulty": "hard"
   },
   {
     "id": "awkward-run-in",
@@ -2288,18 +2598,22 @@ export const SKETCHES: Sketch[] = [
       "social",
       "awkward",
       "reunion"
-    ]
+    ],
+    "views": 12341771,
+    "difficulty": "medium"
   },
   {
     "id": "undercover-boss-awkward",
-    "name": "The Most Awkward “Undercover Boss” Ever - Key & Peele",
+    "name": "The Most Awkward \u201cUndercover Boss\u201d Ever - Key & Peele",
     "youtubeId": "5eb2mQwZ1gc",
     "description": "A CEO tries to go undercover, but he's not very good at it.",
     "tags": [
       "office",
       "parody",
       "social"
-    ]
+    ],
+    "views": 2853187,
+    "difficulty": "hard"
   },
   {
     "id": "gullible-prison-guard",
@@ -2310,7 +2624,9 @@ export const SKETCHES: Sketch[] = [
       "prison",
       "crime",
       "urban"
-    ]
+    ],
+    "views": 18893629,
+    "difficulty": "easy"
   },
   {
     "id": "brain-freeze-intense",
@@ -2321,7 +2637,9 @@ export const SKETCHES: Sketch[] = [
       "food",
       "absurd",
       "social"
-    ]
+    ],
+    "views": 2887240,
+    "difficulty": "hard"
   },
   {
     "id": "stressful-restaurant",
@@ -2332,7 +2650,9 @@ export const SKETCHES: Sketch[] = [
       "food",
       "restaurant",
       "frustration"
-    ]
+    ],
+    "views": 14768975,
+    "difficulty": "medium"
   },
   {
     "id": "new-black-panther-party",
@@ -2343,7 +2663,9 @@ export const SKETCHES: Sketch[] = [
       "politics",
       "race",
       "satire"
-    ]
+    ],
+    "views": 2915995,
+    "difficulty": "hard"
   },
   {
     "id": "froyo-shop-perks",
@@ -2354,7 +2676,9 @@ export const SKETCHES: Sketch[] = [
       "food",
       "shopping",
       "social"
-    ]
+    ],
+    "views": 12810874,
+    "difficulty": "medium"
   },
   {
     "id": "puppet-parole-officer",
@@ -2365,7 +2689,9 @@ export const SKETCHES: Sketch[] = [
       "crime",
       "police",
       "urban"
-    ]
+    ],
+    "views": 4191839,
+    "difficulty": "medium"
   },
   {
     "id": "saddest-sibling-rivalry",
@@ -2376,7 +2702,9 @@ export const SKETCHES: Sketch[] = [
       "family",
       "social",
       "rivalry"
-    ]
+    ],
+    "views": 26910410,
+    "difficulty": "easy"
   },
   {
     "id": "scariest-make-a-wish-kid",
@@ -2387,18 +2715,22 @@ export const SKETCHES: Sketch[] = [
       "horror",
       "social",
       "lauren lapkus"
-    ]
+    ],
+    "views": 1074562,
+    "difficulty": "hard"
   },
   {
     "id": "signs-of-snitch",
-    "name": "The Tell-Tale Signs that Someone’s a Snitch (feat. Mekhi Phifer) - Key & Peele",
+    "name": "The Tell-Tale Signs that Someone\u2019s a Snitch (feat. Mekhi Phifer) - Key & Peele",
     "youtubeId": "myTt4S46o8g",
     "description": "A criminal tries to identify the mole in his organization.",
     "tags": [
       "crime",
       "urban",
       "mekhi phifer"
-    ]
+    ],
+    "views": 8985871,
+    "difficulty": "medium"
   },
   {
     "id": "valets-anne-hathaway",
@@ -2409,18 +2741,22 @@ export const SKETCHES: Sketch[] = [
       "valets",
       "celebrity",
       "movies"
-    ]
+    ],
+    "views": 629141,
+    "difficulty": "hard"
   },
   {
     "id": "valets-batman",
-    "name": "The Valets Love Batman – Key & Peele",
+    "name": "The Valets Love Batman \u2013 Key & Peele",
     "youtubeId": "2wXQXvaI2QY",
     "description": "The valets break down why the Dark Knight is the best.",
     "tags": [
       "valets",
       "movies",
       "batman"
-    ]
+    ],
+    "views": 859009,
+    "difficulty": "hard"
   },
   {
     "id": "valets-liam-neesons",
@@ -2432,18 +2768,22 @@ export const SKETCHES: Sketch[] = [
       "celebrity",
       "movies",
       "popular"
-    ]
+    ],
+    "views": 823648,
+    "difficulty": "hard"
   },
   {
     "id": "valets-daenerys",
-    "name": "The Valets Still Love Daenerys on “Game of Thrones” - Key & Peele",
+    "name": "The Valets Still Love Daenerys on \u201cGame of Thrones\u201d - Key & Peele",
     "youtubeId": "KouUVfyM1r0",
     "description": "The valets give their take on the Mother of Dragons.",
     "tags": [
       "valets",
       "tv",
       "game of thrones"
-    ]
+    ],
+    "views": 1026316,
+    "difficulty": "hard"
   },
   {
     "id": "valets-mel-gibson",
@@ -2454,7 +2794,9 @@ export const SKETCHES: Sketch[] = [
       "valets",
       "celebrity",
       "movies"
-    ]
+    ],
+    "views": 542881,
+    "difficulty": "hard"
   },
   {
     "id": "weirdest-laugh",
@@ -2465,40 +2807,48 @@ export const SKETCHES: Sketch[] = [
       "social",
       "awkward",
       "laugh"
-    ]
+    ],
+    "views": 1617553,
+    "difficulty": "hard"
   },
   {
     "id": "aggressive-telemarketer",
-    "name": "The World’s Most Aggressive Telemarketer - Key & Peele",
+    "name": "The World\u2019s Most Aggressive Telemarketer - Key & Peele",
     "youtubeId": "3znzIslrQXg",
     "description": "A salesman who won't take 'no' for an answer, or even a 'yes.'",
     "tags": [
       "shopping",
       "social",
       "frustration"
-    ]
+    ],
+    "views": 16936313,
+    "difficulty": "easy"
   },
   {
     "id": "worst-high-school-assembly",
-    "name": "The World’s Worst High School Assembly Speaker - Key & Peele",
+    "name": "The World\u2019s Worst High School Assembly Speaker - Key & Peele",
     "youtubeId": "Be9IfJxHyDY",
     "description": "A speaker whose message is not appropriate for students.",
     "tags": [
       "school",
       "education",
       "social"
-    ]
+    ],
+    "views": 6040820,
+    "difficulty": "medium"
   },
   {
     "id": "worst-liar-usual-suspects",
-    "name": "The World’s Worst Liar (“The Usual Suspects” Parody) - Key & Peele",
+    "name": "The World\u2019s Worst Liar (\u201cThe Usual Suspects\u201d Parody) - Key & Peele",
     "youtubeId": "3HI5CQ4Oc1I",
-    "description": "A suspect tries to pull a Keyser Söze but fails miserably.",
+    "description": "A suspect tries to pull a Keyser S\u00f6ze but fails miserably.",
     "tags": [
       "crime",
       "movies",
       "parody"
-    ]
+    ],
+    "views": 13995472,
+    "difficulty": "medium"
   },
   {
     "id": "worst-drug-ever",
@@ -2509,7 +2859,9 @@ export const SKETCHES: Sketch[] = [
       "adult",
       "social",
       "kumail nanjiani"
-    ]
+    ],
+    "views": 3495907,
+    "difficulty": "hard"
   },
   {
     "id": "worst-evil-henchman",
@@ -2520,7 +2872,9 @@ export const SKETCHES: Sketch[] = [
       "crime",
       "movies",
       "parody"
-    ]
+    ],
+    "views": 10686186,
+    "difficulty": "medium"
   },
   {
     "id": "worst-guy-apocalypse",
@@ -2531,7 +2885,9 @@ export const SKETCHES: Sketch[] = [
       "apocalypse",
       "survival",
       "social"
-    ]
+    ],
+    "views": 9459282,
+    "difficulty": "medium"
   },
   {
     "id": "medical-marijuana-worst-way",
@@ -2542,29 +2898,35 @@ export const SKETCHES: Sketch[] = [
       "adult",
       "medical",
       "social"
-    ]
+    ],
+    "views": 9378068,
+    "difficulty": "medium"
   },
   {
     "id": "murderer-hall-of-mirrors",
-    "name": "There’s a Murderer in the Hall of Mirrors - Key & Peele",
+    "name": "There\u2019s a Murderer in the Hall of Mirrors - Key & Peele",
     "youtubeId": "NoEzrwZFWHU",
     "description": "A tense chase through a carnival attraction.",
     "tags": [
       "horror",
       "urban",
       "crime"
-    ]
+    ],
+    "views": 5139881,
+    "difficulty": "medium"
   },
   {
     "id": "fake-beards-charity",
-    "name": "These Fake Beards Will Save an African Child’s Life - Key & Peele",
+    "name": "These Fake Beards Will Save an African Child\u2019s Life - Key & Peele",
     "youtubeId": "mSOzdD5GuUc",
     "description": "A charity whose methods are very questionable.",
     "tags": [
       "social",
       "charity",
       "absurd"
-    ]
+    ],
+    "views": 5791561,
+    "difficulty": "medium"
   },
   {
     "id": "definitely-in-a-cult",
@@ -2575,7 +2937,9 @@ export const SKETCHES: Sketch[] = [
       "social",
       "cult",
       "absurd"
-    ]
+    ],
+    "views": 7004220,
+    "difficulty": "medium"
   },
   {
     "id": "othello-parody",
@@ -2586,7 +2950,9 @@ export const SKETCHES: Sketch[] = [
       "history",
       "theater",
       "race"
-    ]
+    ],
+    "views": 2971957,
+    "difficulty": "hard"
   },
   {
     "id": "dad-live-forever",
@@ -2597,18 +2963,22 @@ export const SKETCHES: Sketch[] = [
       "family",
       "social",
       "absurd"
-    ]
+    ],
+    "views": 4559213,
+    "difficulty": "medium"
   },
   {
     "id": "dj-specific-shout-outs",
-    "name": "This DJ’s Shout-Outs Are Way Too Specific - Key & Peele",
+    "name": "This DJ\u2019s Shout-Outs Are Way Too Specific - Key & Peele",
     "youtubeId": "sFCfy13enzE",
     "description": "A club DJ whose messages are only for a very small group of people.",
     "tags": [
       "music",
       "club",
       "social"
-    ]
+    ],
+    "views": 6688783,
+    "difficulty": "medium"
   },
   {
     "id": "hype-man-too-much",
@@ -2619,7 +2989,9 @@ export const SKETCHES: Sketch[] = [
       "rap",
       "music",
       "hype man"
-    ]
+    ],
+    "views": 6344155,
+    "difficulty": "medium"
   },
   {
     "id": "substitute-teacher-not-messing",
@@ -2630,7 +3002,9 @@ export const SKETCHES: Sketch[] = [
       "classroom",
       "popular",
       "mr. garvey"
-    ]
+    ],
+    "views": 5223696,
+    "difficulty": "medium"
   },
   {
     "id": "superhero-squad-discrimination",
@@ -2641,7 +3015,9 @@ export const SKETCHES: Sketch[] = [
       "superheroes",
       "movies",
       "race"
-    ]
+    ],
+    "views": 11949124,
+    "difficulty": "medium"
   },
   {
     "id": "tv-judge-overqualified",
@@ -2652,7 +3028,9 @@ export const SKETCHES: Sketch[] = [
       "legal",
       "tv",
       "social"
-    ]
+    ],
+    "views": 15555474,
+    "difficulty": "easy"
   },
   {
     "id": "tim-cook-apple-keynote",
@@ -2663,7 +3041,9 @@ export const SKETCHES: Sketch[] = [
       "tech",
       "apple",
       "celebrity"
-    ]
+    ],
+    "views": 5423880,
+    "difficulty": "medium"
   },
   {
     "id": "time-travel-60s",
@@ -2674,7 +3054,9 @@ export const SKETCHES: Sketch[] = [
       "history",
       "60s",
       "race"
-    ]
+    ],
+    "views": 316494,
+    "difficulty": "hard"
   },
   {
     "id": "town-hall-audience",
@@ -2685,7 +3067,9 @@ export const SKETCHES: Sketch[] = [
       "politics",
       "social",
       "awkward"
-    ]
+    ],
+    "views": 28292332,
+    "difficulty": "easy"
   },
   {
     "id": "aerobics-tragedy",
@@ -2696,7 +3080,9 @@ export const SKETCHES: Sketch[] = [
       "dance",
       "80s",
       "tragedy"
-    ]
+    ],
+    "views": 7826184,
+    "difficulty": "medium"
   },
   {
     "id": "friend-crying-laughing",
@@ -2707,7 +3093,9 @@ export const SKETCHES: Sketch[] = [
       "friendship",
       "awkward",
       "social"
-    ]
+    ],
+    "views": 14662595,
+    "difficulty": "medium"
   },
   {
     "id": "church-ladies-vs-satan",
@@ -2718,7 +3106,9 @@ export const SKETCHES: Sketch[] = [
       "religion",
       "church",
       "horror"
-    ]
+    ],
+    "views": 7773218,
+    "difficulty": "medium"
   },
   {
     "id": "ultimate-fighting-next-level",
@@ -2729,7 +3119,9 @@ export const SKETCHES: Sketch[] = [
       "sports",
       "mma",
       "absurd"
-    ]
+    ],
+    "views": 19340452,
+    "difficulty": "easy"
   },
   {
     "id": "urinal-neighbor",
@@ -2740,7 +3132,9 @@ export const SKETCHES: Sketch[] = [
       "social",
       "awkward",
       "bathroom"
-    ]
+    ],
+    "views": 3638899,
+    "difficulty": "hard"
   },
   {
     "id": "wendell-power-of-wings",
@@ -2751,7 +3145,9 @@ export const SKETCHES: Sketch[] = [
       "wendell",
       "food",
       "absurd"
-    ]
+    ],
+    "views": 2940174,
+    "difficulty": "hard"
   },
   {
     "id": "wendell-sex-addict",
@@ -2762,7 +3158,9 @@ export const SKETCHES: Sketch[] = [
       "wendell",
       "social",
       "adult"
-    ]
+    ],
+    "views": 9536922,
+    "difficulty": "medium"
   },
   {
     "id": "wendell-orders-pizza",
@@ -2773,18 +3171,22 @@ export const SKETCHES: Sketch[] = [
       "wendell",
       "food",
       "popular"
-    ]
+    ],
+    "views": 1051248,
+    "difficulty": "hard"
   },
   {
     "id": "wendell-superman-bed",
-    "name": "Wendell’s Broken Superman Bed - Key & Peele",
+    "name": "Wendell\u2019s Broken Superman Bed - Key & Peele",
     "youtubeId": "-crCdw5c1oc",
     "description": "Wendell explains why his favorite piece of furniture is damaged.",
     "tags": [
       "wendell",
       "social",
       "nerdy"
-    ]
+    ],
+    "views": 4637047,
+    "difficulty": "medium"
   },
   {
     "id": "what-about-iron-man",
@@ -2795,7 +3197,9 @@ export const SKETCHES: Sketch[] = [
       "movies",
       "marvel",
       "social"
-    ]
+    ],
+    "views": 4103219,
+    "difficulty": "medium"
   },
   {
     "id": "catcalling-olden-days",
@@ -2806,7 +3210,9 @@ export const SKETCHES: Sketch[] = [
       "history",
       "social",
       "satire"
-    ]
+    ],
+    "views": 15989064,
+    "difficulty": "easy"
   },
   {
     "id": "darius-rucker-concert",
@@ -2817,40 +3223,35 @@ export const SKETCHES: Sketch[] = [
       "music",
       "country",
       "celebrity"
-    ]
+    ],
+    "views": 4099359,
+    "difficulty": "medium"
   },
   {
     "id": "getting-high-long-time",
-    "name": "What Getting High Is Like When You Haven’t Smoked in a While - Key & Peele",
+    "name": "What Getting High Is Like When You Haven\u2019t Smoked in a While - Key & Peele",
     "youtubeId": "-GmGBsHT1-4",
     "description": "The paranoia and confusion of re-entering the world of marijuana.",
     "tags": [
       "adult",
       "social",
       "paranoia"
-    ]
-  },
-  {
-    "id": "married-to-neil-degrasse-tyson",
-    "name": "What It’s Like Being Married to Neil deGrasse Tyson - Key & Peele",
-    "youtubeId": "TyZSBqQ813c",
-    "description": "Even a simple dinner is an opportunity for a scientific lecture.",
-    "tags": [
-      "science",
-      "celebrity",
-      "relationships"
-    ]
+    ],
+    "views": 2091959,
+    "difficulty": "hard"
   },
   {
     "id": "whats-so-funny",
-    "name": "What’s So Funny? - Key & Peele",
+    "name": "What\u2019s So Funny? - Key & Peele",
     "youtubeId": "KIQtyGFtR8E",
     "description": "A man who takes a joke way too personally.",
     "tags": [
       "social",
       "awkward",
       "joke"
-    ]
+    ],
+    "views": 2790357,
+    "difficulty": "hard"
   },
   {
     "id": "text-conversation-wrong",
@@ -2861,7 +3262,9 @@ export const SKETCHES: Sketch[] = [
       "social",
       "phone",
       "popular"
-    ]
+    ],
+    "views": 5006054,
+    "difficulty": "medium"
   },
   {
     "id": "hip-hop-dnd-collide",
@@ -2872,7 +3275,9 @@ export const SKETCHES: Sketch[] = [
       "rap",
       "nerdy",
       "urban"
-    ]
+    ],
+    "views": 8445521,
+    "difficulty": "medium"
   },
   {
     "id": "when-meegan-met-andre",
@@ -2883,18 +3288,22 @@ export const SKETCHES: Sketch[] = [
       "meegan",
       "andre",
       "relationships"
-    ]
+    ],
+    "views": 3317089,
+    "difficulty": "hard"
   },
   {
     "id": "mr-t-wont-leave-alone",
-    "name": "When Mr. T Won’t Leave You Alone - Key & Peele",
+    "name": "When Mr. T Won\u2019t Leave You Alone - Key & Peele",
     "youtubeId": "50kr23cMUBc",
     "description": "A celebrity encounter that becomes much more than just a quick photo.",
     "tags": [
       "celebrity",
       "mr. t",
       "social"
-    ]
+    ],
+    "views": 5016113,
+    "difficulty": "medium"
   },
   {
     "id": "a-cappella-one-black-guy",
@@ -2905,29 +3314,35 @@ export const SKETCHES: Sketch[] = [
       "music",
       "bo burnham",
       "race"
-    ]
+    ],
+    "views": 14207298,
+    "difficulty": "medium"
   },
   {
     "id": "party-dont-stop",
-    "name": "When the Party Don’t Stop (But You Wish It Would) - Key & Peele",
+    "name": "When the Party Don\u2019t Stop (But You Wish It Would) - Key & Peele",
     "youtubeId": "42hLntSxUeM",
     "description": "The absolute exhaustion of trying to keep up with a group of partiers.",
     "tags": [
       "party",
       "social",
       "frustration"
-    ]
+    ],
+    "views": 7075205,
+    "difficulty": "medium"
   },
   {
     "id": "counting-money",
-    "name": "When You Don’t Know How to Count Money - Key & Peele",
+    "name": "When You Don\u2019t Know How to Count Money - Key & Peele",
     "youtubeId": "ymRqYz-Mxnw",
     "description": "A financial transaction that is much more difficult than it should be.",
     "tags": [
       "social",
       "awkward",
       "money"
-    ]
+    ],
+    "views": 13291074,
+    "difficulty": "medium"
   },
   {
     "id": "health-insurance-finally",
@@ -2938,7 +3353,9 @@ export const SKETCHES: Sketch[] = [
       "social",
       "medical",
       "absurd"
-    ]
+    ],
+    "views": 3813566,
+    "difficulty": "hard"
   },
   {
     "id": "friend-goes-steampunk",
@@ -2949,7 +3366,9 @@ export const SKETCHES: Sketch[] = [
       "fashion",
       "social",
       "steampunk"
-    ]
+    ],
+    "views": 11119793,
+    "difficulty": "medium"
   },
   {
     "id": "weird-landlord",
@@ -2960,18 +3379,22 @@ export const SKETCHES: Sketch[] = [
       "housing",
       "social",
       "awkward"
-    ]
+    ],
+    "views": 3828701,
+    "difficulty": "hard"
   },
   {
     "id": "old-school-isnt-enough",
-    "name": "When “Old-School” Just Isn’t Old-School Enough - Key & Peele",
+    "name": "When \u201cOld-School\u201d Just Isn\u2019t Old-School Enough - Key & Peele",
     "youtubeId": "3d1phCytJyg",
     "description": "A journey through the history of hip-hop and what it means to be classic.",
     "tags": [
       "rap",
       "music",
       "history"
-    ]
+    ],
+    "views": 10571332,
+    "difficulty": "medium"
   },
   {
     "id": "where-dookie-goes",
@@ -2982,7 +3405,9 @@ export const SKETCHES: Sketch[] = [
       "social",
       "absurd",
       "gross-out"
-    ]
+    ],
+    "views": 2184133,
+    "difficulty": "hard"
   },
   {
     "id": "white-zombies",
@@ -2993,7 +3418,9 @@ export const SKETCHES: Sketch[] = [
       "horror",
       "zombies",
       "race"
-    ]
+    ],
+    "views": 6161996,
+    "difficulty": "medium"
   },
   {
     "id": "british-actors-roles",
@@ -3004,18 +3431,22 @@ export const SKETCHES: Sketch[] = [
       "movies",
       "celebrity",
       "satire"
-    ]
+    ],
+    "views": 7642046,
+    "difficulty": "medium"
   },
   {
     "id": "the-wire-parody",
-    "name": "Why Didn’t This Happen More on “The Wire”? - Key & Peele",
+    "name": "Why Didn\u2019t This Happen More on \u201cThe Wire\u201d? - Key & Peele",
     "youtubeId": "RCFxdiV-MzU",
     "description": "What would have happened if the characters on the show were a bit more reasonable.",
     "tags": [
       "tv",
       "the wire",
       "parody"
-    ]
+    ],
+    "views": 5243659,
+    "difficulty": "medium"
   },
   {
     "id": "barbershops-love",
@@ -3026,7 +3457,9 @@ export const SKETCHES: Sketch[] = [
       "urban",
       "social",
       "billy dee williams"
-    ]
+    ],
+    "views": 7393507,
+    "difficulty": "medium"
   },
   {
     "id": "mess-with-batmans",
@@ -3037,18 +3470,22 @@ export const SKETCHES: Sketch[] = [
       "movies",
       "batman",
       "social"
-    ]
+    ],
+    "views": 807095,
+    "difficulty": "hard"
   },
   {
     "id": "outkast-reunion",
-    "name": "Why You’ll Never Get that Outkast Reunion - Key & Peele",
+    "name": "Why You\u2019ll Never Get that Outkast Reunion - Key & Peele",
     "youtubeId": "5U9rMkgoGL8",
-    "description": "A meeting between Big Boi and André 3000 explains a lot.",
+    "description": "A meeting between Big Boi and Andr\u00e9 3000 explains a lot.",
     "tags": [
       "music",
       "outkast",
       "celebrity"
-    ]
+    ],
+    "views": 13428833,
+    "difficulty": "medium"
   },
   {
     "id": "eat-marbles",
@@ -3059,29 +3496,35 @@ export const SKETCHES: Sketch[] = [
       "absurd",
       "social",
       "funny"
-    ]
+    ],
+    "views": 8719359,
+    "difficulty": "medium"
   },
   {
     "id": "con-a-con-artist",
-    "name": "You Can’t Con a Con Artist If You’re Also a Con Artist - Key & Peele",
+    "name": "You Can\u2019t Con a Con Artist If You\u2019re Also a Con Artist - Key & Peele",
     "youtubeId": "ZgyU0LyWZ9M",
     "description": "A battle of wits between two people who are both full of it.",
     "tags": [
       "crime",
       "urban",
       "con artist"
-    ]
+    ],
+    "views": 21945616,
+    "difficulty": "easy"
   },
   {
     "id": "fight-guy-with-baby",
-    "name": "You Can’t Fight a Guy with a Baby - Key & Peele",
+    "name": "You Can\u2019t Fight a Guy with a Baby - Key & Peele",
     "youtubeId": "xYxEMalkzBA",
     "description": "The ultimate defense in a street confrontation.",
     "tags": [
       "urban",
       "social",
       "absurd"
-    ]
+    ],
+    "views": 8129324,
+    "difficulty": "medium"
   },
   {
     "id": "funk-band",
@@ -3092,18 +3535,22 @@ export const SKETCHES: Sketch[] = [
       "music",
       "funk",
       "social"
-    ]
+    ],
+    "views": 5761466,
+    "difficulty": "medium"
   },
   {
     "id": "yo-mama-health",
-    "name": "Yo’ Mama Has Health Problems - Key & Peele",
+    "name": "Yo\u2019 Mama Has Health Problems - Key & Peele",
     "youtubeId": "vYWSuugDVmM",
     "description": "A classic roast that takes a very sympathetic and medical turn.",
     "tags": [
       "roast",
       "medical",
       "social"
-    ]
+    ],
+    "views": 2302558,
+    "difficulty": "hard"
   },
   {
     "id": "zombie-attack",
@@ -3114,39 +3561,47 @@ export const SKETCHES: Sketch[] = [
       "horror",
       "zombies",
       "survival"
-    ]
+    ],
+    "views": 3221268,
+    "difficulty": "hard"
   },
   {
     "id": "baby-its-cold-outside-creepy",
-    "name": "“Baby, It’s Cold Outside” Is Super Creepy (Parody Song) - Key & Peele",
+    "name": "\u201cBaby, It\u2019s Cold Outside\u201d Is Super Creepy (Parody Song) - Key & Peele",
     "youtubeId": "Oqd84F6R33g",
     "description": "A modern look at a holiday classic and its very questionable lyrics.",
     "tags": [
       "christmas",
       "music",
       "satire"
-    ]
+    ],
+    "views": 2589388,
+    "difficulty": "hard"
   },
   {
     "id": "ratatouille-worse",
-    "name": "“Ratatouille,” But Much, Much Worse - Key & Peele",
+    "name": "\u201cRatatouille,\u201d But Much, Much Worse - Key & Peele",
     "youtubeId": "XWAWgEsbrXI",
     "description": "A look at the real-life consequences of a rodent in the kitchen.",
     "tags": [
       "food",
       "movies",
       "parody"
-    ]
+    ],
+    "views": 3205186,
+    "difficulty": "hard"
   },
   {
     "id": "lion-king-explain-anything",
-    "name": "“The Lion King” Can Explain Anything - Key & Peele",
+    "name": "\u201cThe Lion King\u201d Can Explain Anything - Key & Peele",
     "youtubeId": "oXbR-1XBr1A",
     "description": "How the classic Disney film can be applied to every social situation.",
     "tags": [
       "movies",
       "disney",
       "social"
-    ]
+    ],
+    "views": 8286808,
+    "difficulty": "medium"
   }
 ]
