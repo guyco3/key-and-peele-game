@@ -20,7 +20,7 @@ export const SketchSearch: React.FC<SketchSearchProps> = ({ onSelect }) => {
     // Apply difficulty filter first
     let pool = SKETCHES;
     if (difficultyMode !== 'all') {
-      pool = SKETCHES.filter(s => (s.difficulty || 'medium') === difficultyMode);
+      pool = SKETCHES.filter(s => (s.difficulty) === difficultyMode);
     }
 
     if (!search) {

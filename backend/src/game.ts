@@ -61,7 +61,7 @@ export class GameInstance {
     // First, build a pool filtered by difficulty (treat missing difficulty on sketches as 'medium')
     let difficultyPool = SKETCHES;
     if (mode !== "all") {
-      difficultyPool = SKETCHES.filter(s => (s.difficulty || "medium") === mode);
+      difficultyPool = SKETCHES.filter(s => (s.difficulty) === mode);
     }
 
     // Then filter out sketches that have been flagged as blocked in this session
