@@ -6,8 +6,14 @@ import { v4 as uuidv4 } from 'uuid';
 import { GameInstance } from './game';
 import logger from './logger';
 import { Player } from '../../shared';
+import { RateLimiterMemory } from 'rate-limiter-flexible';
 
 const MAX_PLAYERS_PER_GAME = 25;
+
+const rateLimiter = new RateLimiterMemory({
+  points: 10, 
+  duration: 1, 
+});
 
 const app = express();
 app.use(cors());
@@ -69,6 +75,22 @@ app.post('/create-room', (req, res) => {
 });
 
 io.on('connection', (socket) => {
+
+  socket.use(async (_packet, next) => {
+
+    const forwarded = socket.handshake.headers['x-forwarded-for'];
+
+    const clientIP: string = Array.isArray(forwarded) 
+      ? forwarded[0] 
+      : forwarded || socket.handshake.address;
+    
+    try {
+      await rateLimiter.consume(clientIP);
+      next();
+    } catch (rejRes) {
+      socket.emit('error', 'Too many requests. Slow down!');
+    }
+  });
 
   // 🌐 NEW: Quick Play Logic
   socket.on('quick_play', ({ clientId, name }) => {
