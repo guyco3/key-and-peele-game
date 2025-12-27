@@ -12,6 +12,7 @@ const MAX_PLAYERS_PER_GAME = 25;
 // Aggressive memory management for 1GB RAM
 const GAME_INACTIVITY_TIMEOUT = 1000 * 60 * 2; // 2 minutes
 const GC_INTERVAL = 1000 * 60 * 1; // Check every 1 minute
+const STATS_SECRET = 'fake, changed on VM';
 
 const rateLimiter = new RateLimiterMemory({
   points: 10, 
@@ -80,6 +81,31 @@ export const cleanupAbandonedGames = () => {
 };
 
 // --- HTTP ROUTES ---
+
+app.get('/api/stats', (req, res) => {
+  // 1. Check key immediately before doing ANY heavy lifting
+  if (req.query.key !== STATS_SECRET) {
+    // End the request instantly with a 403. 
+    // .end() is faster than .json() because it doesn't parse a body.
+    return res.status(403).end(); 
+  }
+
+  // 2. Only calculate stats if the key is valid
+  const activeGames = games.size;
+  const totalPlayers = Array.from(games.values()).reduce(
+    (acc, game) => acc + Object.keys(game.state.players).length, 0
+  );
+  
+  const memory = process.memoryUsage();
+
+  res.json({
+    activeGames,
+    totalPlayers,
+    heapUsed: Math.round(memory.heapUsed / 1024 / 1024) + "MB",
+    uptime: Math.round(process.uptime()) + "s"
+  });
+});
+
 
 app.post('/create-room', (req, res) => {
   const { config, hostName, hostClientId } = req.body;
