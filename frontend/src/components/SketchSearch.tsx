@@ -46,7 +46,6 @@ export const SketchSearch: React.FC<SketchSearchProps> = ({ onSelect }) => {
 
   return (
     <div className="search-container">
-      <div>{gameState?.config.difficulty}</div>
       <input 
         value={query} 
         onChange={e => setQuery(e.target.value)} 
