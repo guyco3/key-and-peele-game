@@ -20,7 +20,7 @@ const QUOTES = [
 
 export const ThemeWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const scatteredQuotes = useMemo(() => {
-    const seed = 46; // Change seed for a different layout
+    const seed = 51; // Change seed for a different layout
     const random = mulberry32(seed);
 
     const cols = 5;

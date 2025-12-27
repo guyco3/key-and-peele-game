@@ -10,7 +10,7 @@ import { RateLimiterMemory } from 'rate-limiter-flexible';
 
 const MAX_PLAYERS_PER_GAME = 25;
 // Aggressive memory management for 1GB RAM
-const GAME_INACTIVITY_TIMEOUT = 1000 * 60 * 2; // 2 minutes
+const GAME_INACTIVITY_TIMEOUT = 1000 * 60 * 5; // 5 minutes
 const GC_INTERVAL = 1000 * 60 * 1; // Check every 1 minute
 const STATS_SECRET = 'fake, changed on VM';
 
@@ -67,11 +67,19 @@ export const cleanupAbandonedGames = () => {
 
   games.forEach((game, id) => {
     const players = Object.values(game.state.players);
-    const allOffline = players.length > 0 && players.every(p => !p.connected);
+    const isEmpty = players.length === 0;
     const isInactive = (now - game.lastActivityAt > GAME_INACTIVITY_TIMEOUT);
 
-    if (allOffline && isInactive) {
-      logger.info(`[GC] Removing abandoned game: ${game.roomCode}`);
+    if (isInactive || isEmpty) {
+      // Logic: If it's empty, we don't need to emit 'error' to the room 
+      // because there's no one there to hear it.
+      if (!isEmpty) {
+        io.to(id).emit('error', 'Game closed due to inactivity.');
+      }
+
+      const reason = isEmpty ? "empty" : "inactive";
+      logger.info(`[GC] Removing ${reason} game: ${game.roomCode}`);
+      
       fullyDeleteGame(id, game.roomCode);
       count++;
     }
@@ -227,6 +235,12 @@ io.on('connection', (socket) => {
       clientIdToGameId.delete(clientId);
       clientIdToSocketId.delete(clientId);
       socket.leave(gameId!);
+
+      if (Object.keys(game.state.players).length === 0) {
+        logger.info(`[Immediate Delete] Room ${roomCode} is empty.`);
+        fullyDeleteGame(gameId!, roomCode);
+      }
+
     }
   });
 

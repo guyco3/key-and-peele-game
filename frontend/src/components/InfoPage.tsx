@@ -34,14 +34,16 @@ export const InfoPage: React.FC = () => {
           <section id="about" className="legal-info-card">
             <h2>About the Game</h2>
             <div className="legal-body-text">
-              <p>
-                <strong>guesthatbit</strong> is a real-time multiplayer tribute to the comedy of <strong>Key & Peele</strong>. 
-                Built using <strong>React</strong> and <strong>Node.js</strong>, the game leverages <strong>WebSockets </strong> 
-                to synchronize audio loops across all participants.
-              </p>
+                <p>
+                <strong>guessthatbit</strong> began as a game between roommates. We would challenge each other to identify a <strong>Key & Peele</strong> sketch using only a short audio clip, competing to see who could guess the fastest.
+                </p>
+                <p>
+                This site brings that experience online. You can join live rooms and compete with others in real-time to identify sketches from across the entire series.
+                </p>
+
               <p>
                 We utilize the <strong>YouTube IFrame Player API</strong> to serve video content directly from official sources. 
-                This ensures the original creators receive their deserved credit and views while providing a synchronized trivia 
+                This ensures the original creators receive their views while providing a synchronized trivia 
                 environment for fans.
               </p>
               <p style={{ fontSize: '0.85rem', fontStyle: 'italic', marginTop: '1rem' }}>
