@@ -10,6 +10,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import { useGame } from '../context/GameContext';
 import { GameConfig, DifficultyMode } from '../../../shared';
+import { Footer } from './Footer';
 
 export const JoinForm: React.FC = () => {
   const { 
@@ -236,6 +237,7 @@ export const JoinForm: React.FC = () => {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 };

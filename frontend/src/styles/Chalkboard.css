@@ -13,7 +13,7 @@
   /* Graphic board: solid color with subtle radial focus */
   background-color: var(--board-green);
   background-image: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.2) 100%);
-  overflow: hidden;
+  overflow-y: auto;
   z-index: 0; /* Base Layer */
 }
 
@@ -36,7 +36,7 @@
      outside this container and creating a visible gap above the board. */
   padding-top: env(safe-area-inset-top, 12px);
   /* Prevent child margins from collapsing through this container */
-  overflow: hidden;
+  overflow: visible;
 }
 
 .bg-chalk-text {
