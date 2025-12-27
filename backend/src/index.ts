@@ -82,7 +82,7 @@ export const cleanupAbandonedGames = () => {
 
 // --- HTTP ROUTES ---
 
-app.get('/api/stats', (req, res) => {
+app.get('/stats', (req, res) => {
   // 1. Check key immediately before doing ANY heavy lifting
   if (req.query.key !== STATS_SECRET) {
     // End the request instantly with a 403. 
