@@ -9,6 +9,9 @@ import { Player } from '../../shared';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
 
 const MAX_PLAYERS_PER_GAME = 25;
+// Reduced to 2 minutes for aggressive memory management on 1GB RAM
+const GAME_INACTIVITY_TIMEOUT = 1000 * 60 * 2; 
+const GC_INTERVAL = 1000 * 60 * 1; 
 
 const rateLimiter = new RateLimiterMemory({
   points: 10, 
@@ -20,18 +23,18 @@ app.use(cors());
 app.use(express.json());
 
 const httpServer = createServer(app);
-const io = new Server(httpServer, { cors: { origin: "*" } });
+const io = new Server(httpServer, { 
+  cors: { origin: "*" },
+  pingTimeout: 30000,
+  pingInterval: 10000 
+});
 
-const games = new Map<string, GameInstance>();
-const roomCodeToId = new Map<string, string>();
-const clientIdToSocketId = new Map<string, string>();
-const clientIdToGameId = new Map<string, string>();
+export const games = new Map<string, GameInstance>();
+export const roomCodeToId = new Map<string, string>();
+export const clientIdToSocketId = new Map<string, string>();
+export const clientIdToGameId = new Map<string, string>();
 
-/**
- * HELPER: Full Cleanup
- * Prevents memory leaks by clearing all associated player mappings.
- */
-const fullyDeleteGame = (gameId: string, roomCode: string) => {
+export const fullyDeleteGame = (gameId: string, roomCode: string) => {
   const game = games.get(gameId);
   if (game) {
     Object.keys(game.state.players).forEach(cId => {
@@ -42,6 +45,31 @@ const fullyDeleteGame = (gameId: string, roomCode: string) => {
   }
   games.delete(gameId);
   roomCodeToId.delete(roomCode);
+  
+  for (const [code, id] of roomCodeToId.entries()) {
+    if (id === gameId) roomCodeToId.delete(code);
+  }
+};
+
+export const cleanupAbandonedGames = () => {
+  const now = Date.now();
+  let count = 0;
+
+  games.forEach((game, id) => {
+    const players = Object.values(game.state.players);
+    // Everyone must be offline
+    const allOffline = players.length > 0 && players.every(p => !p.connected);
+    // Must have passed the 2-minute inactivity threshold
+    const isInactive = (now - game.lastActivityAt > GAME_INACTIVITY_TIMEOUT);
+
+    // We no longer delete GAME_OVER games instantly to allow for refreshes
+    if (allOffline && isInactive) {
+      fullyDeleteGame(id, game.roomCode);
+      count++;
+    }
+  });
+
+  if (count > 0) logger.info(`[GC] Purged ${count} abandoned games.`);
 };
 
 app.post('/create-room', (req, res) => {
@@ -49,18 +77,15 @@ app.post('/create-room', (req, res) => {
   const gameId = uuidv4();
   
   let roomCode = "";
+  let attempts = 0;
   do {
     roomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
-  } while (roomCodeToId.has(roomCode));
+    attempts++;
+  } while (roomCodeToId.has(roomCode) && attempts < 10);
 
   const host: Player = { 
-    clientId: hostClientId, 
-    name: hostName, 
-    score: 0, 
-    connected: true, 
-    hasGuessed: false,
-    lastGuessCorrect: false,
-    lastGuessSketch: ''
+    clientId: hostClientId, name: hostName, score: 0, 
+    connected: true, hasGuessed: false, lastGuessCorrect: false, lastGuessSketch: ''
   };
 
   const game = new GameInstance(gameId, roomCode, config, host, (state) => {
@@ -69,134 +94,42 @@ app.post('/create-room', (req, res) => {
 
   games.set(gameId, game);
   roomCodeToId.set(roomCode, gameId);
-  
-  logger.info(`[Room Created] Code: ${roomCode} | Host: ${hostName}`);
   res.json({ gameId, roomCode });
 });
 
 io.on('connection', (socket) => {
-
   socket.use(async (_packet, next) => {
-
     const forwarded = socket.handshake.headers['x-forwarded-for'];
-
-    const clientIP: string = Array.isArray(forwarded) 
-      ? forwarded[0] 
-      : forwarded || socket.handshake.address;
-    
+    const clientIP: string = Array.isArray(forwarded) ? forwarded[0] : forwarded || socket.handshake.address;
     try {
       await rateLimiter.consume(clientIP);
       next();
-    } catch (rejRes) {
+    } catch {
       socket.emit('error', 'Too many requests. Slow down!');
     }
-  });
-
-  // 🌐 NEW: Quick Play Logic
-  socket.on('quick_play', ({ clientId, name }) => {
-    // Find all games that are PUBLIC and in LOBBY phase
-    const availableGames = Array.from(games.values()).filter(
-      (g) => 
-        g.state.config.isPublic && 
-        g.state.phase === "LOBBY" &&
-        Object.keys(g.state.players).length < MAX_PLAYERS_PER_GAME 
-    );
-
-    availableGames.sort((a: GameInstance, b: GameInstance) => (
-      Object.keys(b.state.players).length - Object.keys(a.state.players).length)
-    );
-
-    if (availableGames.length === 0) {
-      return socket.emit('error', 'No public games available. Why not host one?');
-    }
-
-    // Pick a random public game
-    const randomGame = availableGames[Math.floor(Math.random() * availableGames.length)];
-    
-    // Tell the client which room they found so they can "identify" normally
-    socket.emit('quick_play_found', { roomCode: randomGame.roomCode });
   });
 
   socket.on('identify', ({ clientId, name, roomCode }) => {
     const gameId = roomCodeToId.get(roomCode);
     const game = games.get(gameId || '');
-    
-    if (!game) {
-      return socket.emit('error', 'Game not found');
+    if (!game) return socket.emit('error', 'Game not found');
+
+    if (!game.state.players[clientId] && Object.keys(game.state.players).length >= MAX_PLAYERS_PER_GAME) {
+      return socket.emit('error', 'Room is full.');
     }
 
-    // 🛡️ CAPACITY GUARD: Check if room is full
-    const playerCount = Object.keys(game.state.players).length;
-    const isExistingPlayer = !!game.state.players[clientId];
-
-    // Only block if it's a NEW player joining a full room
-    if (!isExistingPlayer && playerCount >= MAX_PLAYERS_PER_GAME) {
-      return socket.emit('error', `This room is full (Max ${MAX_PLAYERS_PER_GAME} players).`);
-    }
-
-    // Update session mappings
     clientIdToSocketId.set(clientId, socket.id);
     clientIdToGameId.set(clientId, gameId!);
     socket.join(gameId!);
 
     if (game.state.players[clientId]) {
       game.setConnectionStatus(clientId, true);
-      logger.info(`[Reconnected] ${name} to ${roomCode}`);
     } else {
       game.addPlayer({ clientId, name, score: 0, connected: true, hasGuessed: false, lastGuessCorrect: false, lastGuessSketch: '' });
-      logger.info(`[Joined] ${name} to ${roomCode}`);
     }
     
     socket.emit('init_sync', { serverTime: Date.now() });
     socket.emit('game_update', game.state);
-  });
-
-  socket.on('start_game', ({ roomCode, clientId }) => {
-    const gameId = roomCodeToId.get(roomCode);
-    const game = games.get(gameId || '');
-    
-    // Only the host can start the game
-    if (game && game.state.hostId === clientId) {
-      game.start();
-    }
-  });
-
-  socket.on('submit_guess', ({ clientId, roomCode, guess }) => {
-    const gameId = roomCodeToId.get(roomCode);
-    const game = games.get(gameId || '');
-    if (game) {
-      game.submitGuess(clientId, guess);
-    }
-  });
-
-  socket.on('leave_game', ({ clientId, roomCode }) => {
-    const gameId = roomCodeToId.get(roomCode);
-    if (!gameId) return;
-
-    const game = games.get(gameId);
-    if (!game) return;
-
-    if (game.state.hostId === clientId && game.state.phase === "LOBBY") {
-      io.to(gameId).emit('error', 'Host closed the room');
-      fullyDeleteGame(gameId, roomCode);
-    } else {
-      game.removePlayer(clientId);
-      clientIdToGameId.delete(clientId);
-      clientIdToSocketId.delete(clientId);
-      socket.leave(gameId);
-    }
-  });
-
-  socket.on('video_error', ({ clientId, roomCode, youtubeId, errorCode }) => {
-    const gameId = roomCodeToId.get(roomCode);
-    const game = games.get(gameId || '');
-    if (!game) return;
-
-    const currentVideo = game.state.currentSketch?.youtubeId;
-    if (game.state.phase !== "ROUND_PLAYING") return;
-    if (currentVideo && youtubeId && currentVideo !== youtubeId) return;
-
-    game.rerollVideoForError(clientId, errorCode);
   });
 
   socket.on('disconnect', () => {
@@ -207,30 +140,22 @@ io.on('connection', (socket) => {
         break;
       }
     }
-
     if (dClientId) {
       const gId = clientIdToGameId.get(dClientId);
       const game = games.get(gId || '');
-
-      if (game) {
-        game.setConnectionStatus(dClientId, false);
-      }
-      // Note: We keep clientIdToGameId so they can reconnect!
+      if (game) game.setConnectionStatus(dClientId, false);
       clientIdToSocketId.delete(dClientId);
     }
   });
 });
 
-// GC: Cleanup abandoned games (everyone offline for 10 mins)
-setInterval(() => {
-  const now = Date.now();
-  games.forEach((game, id) => {
-    const allOffline = Object.values(game.state.players).every(p => !p.connected);
-    if (allOffline && (now - game.lastActivityAt > 1000 * 60 * 10)) {
-      logger.info(`[GC] Removing abandoned game: ${game.roomCode}`);
-      fullyDeleteGame(id, game.roomCode);
-    }
-  });
-}, 1000 * 60 * 5);
+export const gcInterval = process.env.NODE_ENV !== 'test' 
+  ? setInterval(cleanupAbandonedGames, GC_INTERVAL) 
+  : undefined;
 
-httpServer.listen(3001, () => logger.info('Server started on port 3001'));
+// Memory Watchdog for 1GB Droplet
+if (process.env.NODE_ENV !== 'test') {
+  httpServer.listen(3001, () => logger.info('Server started on port 3001'));
+}
+
+export { httpServer };

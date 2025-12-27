@@ -13,7 +13,7 @@
       "@shared/*": ["../shared/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "tests/integration/socket-limit.test.ts"],
   "exclude": ["node_modules", "dist"],
   "ts-node": {
     "transpileOnly": true,
